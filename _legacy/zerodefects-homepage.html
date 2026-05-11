@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero Defects — Ceramic Coatings · Paint Protection · Paint Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --black: #080a0c;
+    --dark: #0e1216;
+    --card: #12161b;
+    --border: rgba(255,255,255,0.07);
+    --blue: #1a8fff;
+    --green: #00e5a0;
+    --accent: #1a8fff;
+    --white: #f0f4f8;
+    --muted: rgba(240,244,248,0.45);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--blue);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(26,143,255,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.25s, height 0.25s, border-color 0.2s;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* ── NAV ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    background: rgba(8,10,12,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.8s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-badge {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .nav-logo-text { line-height: 1.1; }
+  .nav-logo-text strong {
+    display: block;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .nav-logo-text span {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-condensed);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    font-family: var(--font-condensed);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black) !important;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* ── HERO ─────────────────────────────────── */
+  .hero {
+    position: relative;
+    height: 100vh; min-height: 700px;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+    padding: 0 48px 80px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(8,10,12,0.92) 40%, rgba(8,10,12,0.4) 100%),
+      linear-gradient(to top, rgba(8,10,12,0.8) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  /* Simulated car image area with gradient placeholder */
+  .hero-img-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(26,143,255,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(0,229,160,0.05) 0%, transparent 40%),
+      linear-gradient(135deg, #0e1216 0%, #1a2030 50%, #0e1216 100%);
+    z-index: 0;
+  }
+
+  /* Diagonal accent line */
+  .hero-line {
+    position: absolute;
+    top: 0; right: 200px;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--blue), transparent);
+    opacity: 0.3;
+    z-index: 2;
+    animation: lineGlow 3s ease-in-out infinite alternate;
+  }
+  @keyframes lineGlow {
+    from { opacity: 0.15; }
+    to   { opacity: 0.4; }
+  }
+
+  .hero-content {
+    position: relative; z-index: 3;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-condensed);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(72px, 10vw, 140px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .hero-title .accent {
+    -webkit-text-stroke: 1px var(--blue);
+    color: transparent;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 20px;
+    animation: fadeUp 0.8s 0.75s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-condensed);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+    background: linear-gradient(90deg, var(--blue) 0%, var(--green) 100%);
+    padding: 14px 32px;
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(26,143,255,0.35);
+  }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-condensed);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--white);
+    border: 1px solid var(--border);
+    padding: 14px 32px;
+    border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(26,143,255,0.4);
+    background: rgba(26,143,255,0.06);
+  }
+
+  /* Badges row */
+  .hero-badges {
+    position: absolute; right: 48px; bottom: 80px; z-index: 3;
+    display: flex; flex-direction: column; gap: 12px;
+    animation: fadeUp 0.8s 0.9s ease both;
+  }
+  .badge {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 16px;
+    backdrop-filter: blur(10px);
+  }
+  .badge-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    flex-shrink: 0;
+  }
+  .badge span {
+    font-family: var(--font-condensed);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MARQUEE ─────────────────────────────── */
+  .marquee-wrap {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 14px 0;
+    background: rgba(26,143,255,0.03);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 48px;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: var(--font-condensed);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 48px;
+  }
+  .marquee-item::after {
+    content: '·';
+    color: var(--blue);
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── SERVICES ─────────────────────────────── */
+  .section {
+    padding: 120px 48px;
+  }
+
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 64px;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-condensed);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+  }
+
+  .section-link {
+    font-family: var(--font-condensed);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    margin-bottom: 8px;
+  }
+  .section-link:hover { color: var(--white); border-color: var(--blue); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: none;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { border-color: rgba(26,143,255,0.25); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-card:hover .service-num { color: var(--blue); }
+
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    line-height: 1;
+    color: rgba(255,255,255,0.04);
+    transition: color 0.3s;
+    margin-bottom: 24px;
+  }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    margin-bottom: 24px;
+  }
+
+  .service-name {
+    font-family: var(--font-condensed);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .service-price {
+    font-family: var(--font-condensed);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+
+  .service-arrow {
+    position: absolute; bottom: 40px; right: 40px;
+    opacity: 0;
+    transform: translate(-8px, 8px);
+    transition: opacity 0.3s, transform 0.3s;
+    color: var(--blue);
+    font-size: 20px;
+  }
+  .service-card:hover .service-arrow { opacity: 1; transform: translate(0,0); }
+
+  /* ── WORK / GALLERY ───────────────────────── */
+  .work-section {
+    padding: 0 0 120px;
+    overflow: hidden;
+  }
+
+  .work-header {
+    padding: 0 48px;
+    margin-bottom: 48px;
+  }
+
+  .gallery-scroll {
+    display: flex;
+    gap: 16px;
+    padding: 0 48px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .gallery-scroll::-webkit-scrollbar { display: none; }
+
+  .gallery-item {
+    flex: 0 0 380px;
+    height: 480px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s;
+    cursor: none;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+
+  .gallery-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover .gallery-img { transform: scale(1.05); }
+
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,10,12,0.85) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 24px;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+  .gallery-label {
+    font-family: var(--font-condensed);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .gallery-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* ── STATS ────────────────────────────────── */
+  .stats-section {
+    padding: 80px 48px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--dark);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+  }
+
+  .stat-item {
+    padding: 40px;
+    position: relative;
+  }
+  .stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute; right: 0; top: 20%; bottom: 20%;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    line-height: 1;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-family: var(--font-condensed);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── TRUST / CERTIFICATIONS ───────────────── */
+  .trust-section {
+    padding: 100px 48px;
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .trust-feature {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 48px;
+    display: flex; gap: 32px;
+    transition: border-color 0.3s;
+  }
+  .trust-feature:hover { border-color: rgba(26,143,255,0.2); }
+
+  .trust-icon-wrap {
+    width: 56px; height: 56px;
+    border-radius: 12px;
+    background: rgba(26,143,255,0.1);
+    border: 1px solid rgba(26,143,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 24px;
+  }
+
+  .trust-content h3 {
+    font-family: var(--font-condensed);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .trust-content p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* Cert badges */
+  .cert-row {
+    display: flex; align-items: center; gap: 32px;
+    margin-top: 64px;
+    padding-top: 64px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .cert-label {
+    font-family: var(--font-condensed);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .cert-badges { display: flex; gap: 16px; flex-wrap: wrap; }
+  .cert-badge {
+    font-family: var(--font-condensed);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .cert-badge:hover { border-color: rgba(26,143,255,0.4); color: var(--white); }
+
+  /* ── CTA SECTION ──────────────────────────── */
+  .cta-section {
+    padding: 120px 48px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(26,143,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section::after {
+    content: '';
+    position: absolute; top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,229,160,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-eyebrow {
+    font-family: var(--font-condensed);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 8vw, 112px);
+    line-height: 0.9;
+    margin-bottom: 24px;
+  }
+
+  .cta-title .stroke {
+    -webkit-text-stroke: 1px rgba(26,143,255,0.5);
+    color: transparent;
+  }
+
+  .cta-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  .cta-actions {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+  }
+
+  /* ── FOOTER ───────────────────────────────── */
+  footer {
+    padding: 48px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--white);
+  }
+
+  .footer-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .footer-links a {
+    font-family: var(--font-condensed);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(240,244,248,0.2);
+    letter-spacing: 1px;
+  }
+
+  /* ── PROCESS STRIP ────────────────────────── */
+  .process-section {
+    padding: 100px 48px;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 64px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 24px; left: 12.5%; right: 12.5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    opacity: 0.3;
+  }
+
+  .process-step {
+    padding: 0 32px;
+    text-align: center;
+  }
+
+  .process-dot {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(26,143,255,0.4);
+    background: var(--card);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    font-family: var(--font-condensed);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-name {
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .process-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── NAV DROPDOWNS ───────────────────────── */
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
+  .nav-dropdown > a::after { content: '▾'; font-size: 9px; opacity: 0.5; transition: transform 0.2s; }
+  .nav-dropdown:hover > a::after { transform: rotate(180deg); }
+
+  .dropdown-panel {
+    position: absolute; top: calc(100% + 16px); left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    width: 400px;
+    background: rgba(14,18,22,0.98);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    backdrop-filter: blur(24px);
+    padding: 28px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 200;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  }
+  .nav-dropdown:hover .dropdown-panel {
+    opacity: 1; pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+  }
+  .dp-eyebrow {
+    font-family: var(--font-condensed); font-size: 10px;
+    font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 6px;
+  }
+  .dp-title {
+    font-family: var(--font-display); font-size: 26px;
+    letter-spacing: 2px; margin-bottom: 10px; line-height: 1;
+  }
+  .dp-desc {
+    font-size: 13px; color: var(--muted); line-height: 1.7;
+    margin-bottom: 18px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dp-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .dp-feature { display: flex; align-items: flex-start; gap: 10px; }
+  .dp-feature-icon {
+    width: 32px; height: 32px; flex-shrink: 0;
+    background: rgba(26,143,255,0.08); border: 1px solid rgba(26,143,255,0.15);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px;
+  }
+  .dp-feature-name {
+    font-family: var(--font-condensed); font-size: 13px;
+    font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--white); margin-bottom: 2px;
+  }
+  .dp-feature-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .dp-pricing { display: flex; gap: 6px; margin-bottom: 18px; }
+  .dp-price-item {
+    flex: 1; padding: 10px 8px; text-align: center;
+    background: rgba(26,143,255,0.05); border: 1px solid rgba(26,143,255,0.1); border-radius: 4px;
+  }
+  .dp-price-size {
+    font-family: var(--font-condensed); font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  }
+  .dp-price-val {
+    font-family: var(--font-display); font-size: 20px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .dp-packages { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+  .dp-package {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 12px; background: rgba(26,143,255,0.05);
+    border: 1px solid rgba(26,143,255,0.1); border-radius: 4px;
+  }
+  .dp-package.popular { border-color: rgba(26,143,255,0.3); }
+  .dp-pkg-name {
+    font-family: var(--font-condensed); font-size: 13px;
+    font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .dp-pkg-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .dp-pkg-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    color: var(--black); padding: 2px 8px; border-radius: 2px; white-space: nowrap;
+  }
+  .dp-warranty {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+    padding: 8px 12px; background: rgba(0,229,160,0.06);
+    border: 1px solid rgba(0,229,160,0.15); border-radius: 4px;
+  }
+  .dp-warranty-text {
+    font-family: var(--font-condensed); font-size: 12px;
+    font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--green);
+  }
+  .dp-cta {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 12px;
+    font-family: var(--font-condensed); font-size: 13px;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; border-radius: 4px; color: var(--black);
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    transition: opacity 0.2s;
+  }
+  .dp-cta:hover { opacity: 0.9; }
+
+  /* ── HERO CAROUSEL ───────────────────────── */
+  .hero-carousel {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  .carousel-slide {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    transform: scale(1.04);
+    animation: none;
+  }
+  .carousel-slide.active {
+    opacity: 1;
+    animation: slowZoom 7s ease-in-out forwards;
+  }
+  @keyframes slowZoom {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1); }
+  }
+
+  /* Carousel dots */
+  .carousel-dots {
+    position: absolute; bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 5;
+  }
+  .carousel-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(240,244,248,0.25);
+    border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    padding: 0;
+  }
+  .carousel-dot.active {
+    background: var(--blue);
+    transform: scale(1.3);
+  }
+
+  /* ── SCROLLBAR ────────────────────────────── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: rgba(26,143,255,0.4); border-radius: 2px; }
+
+  /* ── RESPONSIVE ───────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 24px 60px; }
+    .section { padding: 80px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .stats-section { grid-template-columns: 1fr 1fr; padding: 60px 24px; }
+    .stat-item:nth-child(2)::after { display: none; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .cta-section { padding: 80px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+    .work-header, .gallery-scroll { padding: 0 24px; }
+    .hero-badges { display: none; }
+    .trust-section { padding: 80px 24px; }
+    .process-section { padding: 80px 24px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="zd-logo.png" alt="Zero Defects Logo" style="height:48px;width:auto;display:block;">
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+
+    <!-- Ceramic Coating Dropdown -->
+    <li class="nav-dropdown">
+      <a href="#services">Ceramic Coating</a>
+      <div class="dropdown-panel" style="width:520px;">
+        <p class="dp-eyebrow">Two Premium Brands · One Elite Shop</p>
+        <h3 class="dp-title">CERAMIC COATINGS</h3>
+        <p class="dp-desc">We install two of the best ceramic coating brands in the industry — Gtechniq and CCI. Choose the right protection level for your vehicle and budget.</p>
+
+        <!-- Brand 1: Gtechniq -->
+        <div style="margin-bottom:16px;">
+          <div style="font-family:var(--font-condensed);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">GTECHNIQ · Accredited Installer</div>
+          <div class="dp-package" style="margin-bottom:6px;">
+            <div>
+              <div class="dp-pkg-name">Crystal Serum Ultra</div>
+              <div class="dp-pkg-desc">Dual-layer 10H/7H system · 9-Year Warranty · From $1,500</div>
+            </div>
+            <span class="dp-pkg-badge">Flagship</span>
+          </div>
+        </div>
+
+        <!-- Brand 2: CCI -->
+        <div style="margin-bottom:16px;">
+          <div style="font-family:var(--font-condensed);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">CCI · Ceramic Coating Inc</div>
+          <div class="dp-package" style="margin-bottom:6px;">
+            <div>
+              <div class="dp-pkg-name">CCI Revolution</div>
+              <div class="dp-pkg-desc">Micro Sediment Suspension · 6+ Year Protection</div>
+            </div>
+            <span class="dp-pkg-badge">Flagship</span>
+          </div>
+          <div class="dp-package">
+            <div>
+              <div class="dp-pkg-name">CCI Advance</div>
+              <div class="dp-pkg-desc">Sediment Suspension · 3–5 Year Protection</div>
+            </div>
+            <span class="dp-pkg-badge" style="background:linear-gradient(90deg,#00e5a0,#1a8fff);">Best Value</span>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;">
+          <a href="#services" class="dp-cta" style="flex:1;">View All Packages →</a>
+          <a href="#" class="dp-cta" style="flex:1;background:rgba(26,143,255,0.1);color:var(--white);border:1px solid rgba(26,143,255,0.3);">Get a Quote →</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- PPF Dropdown -->
+    <li class="nav-dropdown">
+      <a href="#services">PPF</a>
+      <div class="dropdown-panel">
+        <p class="dp-eyebrow">XPEL Authorized Installer</p>
+        <h3 class="dp-title">PAINT PROTECTION FILM</h3>
+        <p class="dp-desc">Self-healing TPU film that defends against rock chips, scratches, road debris & UV. Available in gloss (Ultimate Plus) or satin matte (Stealth). Backed by a 10-year XPEL warranty.</p>
+
+        <div class="dp-packages">
+          <div class="dp-package popular">
+            <div>
+              <div class="dp-pkg-name">Full Front End</div>
+              <div class="dp-pkg-desc">Bumper · Headlights · Partial Hood · Partial Fenders</div>
+            </div>
+            <span class="dp-pkg-badge">Popular</span>
+          </div>
+          <div class="dp-package">
+            <div>
+              <div class="dp-pkg-name">Track Pack</div>
+              <div class="dp-pkg-desc">Full Hood · Full Fenders · Bumper · Mirrors · Headlights</div>
+            </div>
+            <span style="font-family:var(--font-condensed);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);">Call</span>
+          </div>
+          <div class="dp-package">
+            <div>
+              <div class="dp-pkg-name">Full Vehicle</div>
+              <div class="dp-pkg-desc">Every painted panel — total protection for exotics & luxury</div>
+            </div>
+            <span style="font-family:var(--font-condensed);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);">Call</span>
+          </div>
+        </div>
+
+        <div class="dp-features">
+          <div class="dp-feature">
+            <div class="dp-feature-icon">💧</div>
+            <div>
+              <div class="dp-feature-name">Self-Healing Technology</div>
+              <div class="dp-feature-desc">Minor scratches disappear with heat. The film heals itself so your paint doesn't have to.</div>
+            </div>
+          </div>
+          <div class="dp-feature">
+            <div class="dp-feature-icon">🎨</div>
+            <div>
+              <div class="dp-feature-name">Gloss or Matte Finish</div>
+              <div class="dp-feature-desc">XPEL Ultimate Plus for gloss. XPEL Stealth for a factory satin/matte look. Both invisible.</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="dp-cta">Get a Free Quote →</a>
+      </div>
+    </li>
+
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+
+  <!-- Auto-rotating carousel background -->
+  <div class="hero-carousel">
+    <div class="carousel-slide active" style="background-image:url('IMG_9439.jpeg')" aria-label="Porsche 911 GT2 RS ceramic coating Zero Defects"></div>
+    <div class="carousel-slide" style="background-image:url('IMG_8575.jpeg')" aria-label="Bentley Bentayga ceramic coating Zero Defects"></div>
+    <div class="carousel-slide" style="background-image:url('IMG_8434.jpeg')" aria-label="Porsche 911 GT3 RS ceramic coating Zero Defects"></div>
+    <div class="carousel-slide" style="background-image:url('IMG_7887.jpeg')" aria-label="Corvette C8 color shift ceramic coating Zero Defects"></div>
+    <div class="carousel-slide" style="background-image:url('IMG_0183.jpeg')" aria-label="Cirrus SR22T ceramic coating Zero Defects"></div>
+    <div class="carousel-slide" style="background-image:url('IMG_8058.jpeg')" aria-label="Corvette Z06 red ceramic coating Zero Defects"></div>
+    <div class="carousel-slide" style="background-image:url('IMG_9219.jpeg')" aria-label="Ferrari 296 GTS ceramic coating Zero Defects"></div>
+    <div class="carousel-slide" style="background-image:url('IMG_5450.jpeg')" aria-label="BMW M3 olive green ceramic coating Zero Defects"></div>
+  </div>
+
+  <!-- Overlay gradients -->
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+
+  <!-- Carousel dots -->
+  <div class="carousel-dots" id="carouselDots"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Gtechniq Crystal Serum Ultra · XPEL Authorized</p>
+    <h1 class="hero-title">ZERO<br><span class="accent">DEFECTS</span></h1>
+    <p class="hero-desc">Precision ceramic coatings, paint protection film, and paint correction for vehicles that demand the absolute best.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">
+        Get a Quote
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#work" class="btn-ghost">View Our Work</a>
+    </div>
+  </div>
+
+  <div class="hero-badges">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span>Gtechniq Crystal Serum Ultra Accredited</span>
+    </div>
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span>XPEL Authorized Installer</span>
+    </div>
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span>Glassparency Authorized</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">Ceramic Coatings</div>
+    <div class="marquee-item">Paint Protection Film</div>
+    <div class="marquee-item">Paint Correction</div>
+    <div class="marquee-item">Crystal Serum Ultra</div>
+    <div class="marquee-item">XPEL Ultimate Plus</div>
+    <div class="marquee-item">XPEL Stealth</div>
+    <div class="marquee-item">Braselton Georgia</div>
+    <div class="marquee-item">Ceramic Coatings</div>
+    <div class="marquee-item">Paint Protection Film</div>
+    <div class="marquee-item">Paint Correction</div>
+    <div class="marquee-item">Crystal Serum Ultra</div>
+    <div class="marquee-item">XPEL Ultimate Plus</div>
+    <div class="marquee-item">XPEL Stealth</div>
+    <div class="marquee-item">Braselton Georgia</div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="section" id="services">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">What We Do</p>
+      <h2 class="section-title">OUR<br>SERVICES</h2>
+    </div>
+    <a href="#" class="section-link">View All Services →</a>
+  </div>
+
+  <div class="services-grid">
+    <!-- CERAMIC COATINGS — Two Brand Split -->
+    <!-- Gtechniq Brand Header -->
+    <div style="background:var(--dark);border:1px solid var(--border);padding:24px 40px;grid-column:span 3;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div>
+        <p style="font-family:var(--font-condensed);font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--blue);margin-bottom:4px;">Brand 01</p>
+        <h3 style="font-family:var(--font-display);font-size:28px;letter-spacing:2px;">GTECHNIQ <span style="-webkit-text-stroke:1px rgba(26,143,255,0.4);color:transparent;">CRYSTAL SERUM ULTRA</span></h3>
+      </div>
+      <div style="font-family:var(--font-condensed);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Accredited Installer · Only Shop in the Area</div>
+    </div>
+
+    <!-- Gtechniq Crystal Serum Ultra Card -->
+    <div class="service-card" style="grid-column:span 3;">
+      <div class="service-num">01</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="20" stroke="#1a8fff" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <path d="M24 8C24 8 16 16 16 24C16 32 24 38 24 38" stroke="#1a8fff" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="4" fill="#00e5a0" opacity="0.8"/>
+      </svg>
+      <h3 class="service-name">Gtechniq Crystal Serum Ultra</h3>
+      <p class="service-desc">Our premium flagship coating package — the absolute best in protection, durability, and performance. Features a revolutionary dual-layer system: a hard 10H top layer over a flexible 7H base, delivering swirl resistance no standard 9H coating can match. Withstands wash chemicals, bird droppings, and temperatures from -40°C to +250°C. <strong style="color:#f0f4f8;">9-year warranty.</strong> Ready to drive in just 12 hours.</p>
+      <ul style="list-style:none;margin:16px 0 20px;padding:0;display:flex;flex-direction:column;gap:6px;">
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Paint · Windows · Wheels · Calipers · Trim</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Full wash, decontamination &amp; clay bar included</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Paint correction included</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Accredited installer — only shop in area</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(26,143,255,0.06);border:1px solid rgba(26,143,255,0.12);border-radius:4px;">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(240,244,248,0.5);">Small Cars</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;background:linear-gradient(90deg,#1a8fff,#00e5a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$1,500</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(26,143,255,0.06);border:1px solid rgba(26,143,255,0.12);border-radius:4px;">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(240,244,248,0.5);">Medium Cars</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;background:linear-gradient(90deg,#1a8fff,#00e5a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$1,750</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(26,143,255,0.06);border:1px solid rgba(26,143,255,0.12);border-radius:4px;">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(240,244,248,0.5);">Large Cars</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;background:linear-gradient(90deg,#1a8fff,#00e5a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$2,000</span>
+        </div>
+      </div>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <!-- CCI Brand Header -->
+    <div style="background:var(--dark);border:1px solid var(--border);padding:24px 40px;grid-column:span 3;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:2px;">
+      <div>
+        <p style="font-family:var(--font-condensed);font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:4px;">Brand 02</p>
+        <h3 style="font-family:var(--font-display);font-size:28px;letter-spacing:2px;">CCI <span style="-webkit-text-stroke:1px rgba(0,229,160,0.4);color:transparent;">CERAMIC COATING INC</span></h3>
+      </div>
+      <div style="font-family:var(--font-condensed);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Micro Sediment Suspension Technology</div>
+    </div>
+
+    <!-- CCI Revolution Card -->
+    <div class="service-card">
+      <div class="service-num" style="color:rgba(0,229,160,0.06);">02</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none">
+        <path d="M24 4L44 24L24 44L4 24Z" stroke="#00e5a0" stroke-width="1.5"/>
+        <circle cx="24" cy="24" r="8" stroke="#00e5a0" stroke-width="1" stroke-dasharray="3 2"/>
+        <circle cx="24" cy="24" r="3" fill="#00e5a0"/>
+      </svg>
+      <h3 class="service-name" style="color:#00e5a0;">CCI Revolution</h3>
+      <p class="service-desc">CCI's flagship coating. Micro Sediment Suspension technology delivers a denser load of ceramic material that bonds harder to your paint for stronger, longer-lasting protection. Unmatched chemical resistance, abrasion resistance, and gloss — all in a single coating install that covers paint, trim, plastics, and wheels.</p>
+      <ul style="list-style:none;margin:16px 0 20px;padding:0;display:flex;flex-direction:column;gap:6px;">
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> 6+ years of protection</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Micro Sediment Suspension — maximum ceramic density</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Single coat covers paint, trim, plastics &amp; wheels</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Unmatched hydrophobic performance</li>
+      </ul>
+      <div style="display:inline-block;margin-bottom:12px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(90deg,#1a8fff,#00e5a0);color:#080a0c;padding:4px 14px;border-radius:2px;">Flagship</div>
+      <p style="font-family:var(--font-condensed);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--green);">Call for Pricing</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <!-- CCI Advance Card -->
+    <div class="service-card">
+      <div class="service-num" style="color:rgba(0,229,160,0.04);">03</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none">
+        <rect x="10" y="10" width="28" height="28" stroke="#00e5a0" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <rect x="18" y="18" width="12" height="12" fill="#00e5a0" opacity="0.3"/>
+        <circle cx="24" cy="24" r="3" fill="#00e5a0"/>
+      </svg>
+      <h3 class="service-name" style="color:#00e5a0;">CCI Advance</h3>
+      <p class="service-desc">CCI's premier entry coating — engineered with the same proprietary Sediment Suspension technology as Revolution but tuned for a 3–5 year protection window. Delivers excellent chemical resistance, ultra-high gloss, and a super slick surface on any exterior surface. An outstanding value for drivers who want professional-grade protection without the longest-term commitment.</p>
+      <ul style="list-style:none;margin:16px 0 20px;padding:0;display:flex;flex-direction:column;gap:6px;">
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> 3–5 years of protection</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Sediment Suspension — full-strength formula every time</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Ultra-high gloss · super slick surface</li>
+        <li style="font-size:12px;color:rgba(240,244,248,0.5);display:flex;gap:8px;align-items:center;"><span style="color:#00e5a0;">✓</span> Paint, trim, plastics &amp; wheels — one product</li>
+      </ul>
+      <div style="display:inline-block;margin-bottom:12px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(90deg,#00e5a0,#1a8fff);color:#080a0c;padding:4px 14px;border-radius:2px;">Best Value</div>
+      <p style="font-family:var(--font-condensed);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--green);">Call for Pricing</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <!-- PPF -->
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none">
+        <rect x="8" y="8" width="32" height="32" rx="2" stroke="#1a8fff" stroke-width="1.5"/>
+        <path d="M8 20h32M20 8v32" stroke="#1a8fff" stroke-width="1" stroke-dasharray="3 2"/>
+        <path d="M14 14l6 6M28 28l6 6" stroke="#00e5a0" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <h3 class="service-name">XPEL Paint Protection Film</h3>
+      <p class="service-desc">Self-healing TPU film that defends against rock chips, scratches, road debris, UV rays, and environmental contaminants. Available in gloss (Ultimate Plus) or satin matte (Stealth). Backed by a <strong style="color:#f0f4f8;">10-year XPEL warranty.</strong></p>
+
+      <div style="display:flex;flex-direction:column;gap:6px;margin:20px 0;">
+
+        <!-- Package 1 -->
+        <div style="padding:14px 16px;background:rgba(26,143,255,0.05);border:1px solid rgba(26,143,255,0.12);border-radius:4px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#f0f4f8;">Full Front End</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1a8fff;">Call for Pricing</span>
+          </div>
+          <p style="font-size:12px;color:rgba(240,244,248,0.45);line-height:1.5;">Front bumper, headlights, partial hood &amp; partial fenders. Best protection for high-impact zones.</p>
+        </div>
+
+        <!-- Package 2 -->
+        <div style="padding:14px 16px;background:rgba(26,143,255,0.08);border:1px solid rgba(26,143,255,0.2);border-radius:4px;position:relative;">
+          <div style="position:absolute;top:-1px;right:12px;background:linear-gradient(90deg,#1a8fff,#00e5a0);color:#080a0c;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:0 0 4px 4px;">Most Popular</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#f0f4f8;">Track Pack</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1a8fff;">Call for Pricing</span>
+          </div>
+          <p style="font-size:12px;color:rgba(240,244,248,0.45);line-height:1.5;">Full hood, full fenders, bumper, mirrors &amp; optional headlights. Ideal for daily drivers wanting maximum peace of mind.</p>
+        </div>
+
+        <!-- Package 3 -->
+        <div style="padding:14px 16px;background:rgba(26,143,255,0.05);border:1px solid rgba(26,143,255,0.12);border-radius:4px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#f0f4f8;">Full Vehicle</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1a8fff;">Call for Pricing</span>
+          </div>
+          <p style="font-size:12px;color:rgba(240,244,248,0.45);line-height:1.5;">Every painted panel wrapped. The ultimate solution for exotics, luxury vehicles &amp; car enthusiasts who want total protection.</p>
+        </div>
+
+      </div>
+      <p style="font-size:11px;color:rgba(240,244,248,0.3);letter-spacing:1px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;">All packages available in matte PPF option</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <!-- PPF SECTION HEADER -->
+    <div style="background:var(--dark);border:1px solid var(--border);padding:24px 40px;grid-column:span 3;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:2px;">
+      <div>
+        <p style="font-family:var(--font-condensed);font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--blue);margin-bottom:4px;">Paint Protection Film</p>
+        <h3 style="font-family:var(--font-display);font-size:28px;letter-spacing:2px;">XPEL <span style="-webkit-text-stroke:1px rgba(26,143,255,0.4);color:transparent;">AUTHORIZED INSTALLER</span></h3>
+      </div>
+      <div style="font-family:var(--font-condensed);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Factory Trained · San Antonio, TX · 10-Year Warranty</div>
+    </div>
+
+    <!-- PPF Main Card -->
+    <div class="service-card" style="grid-column:span 3;">
+      <div class="service-num">04</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none">
+        <rect x="8" y="8" width="32" height="32" rx="2" stroke="#1a8fff" stroke-width="1.5"/>
+        <path d="M8 20h32M20 8v32" stroke="#1a8fff" stroke-width="1" stroke-dasharray="3 2"/>
+        <path d="M14 14l6 6M28 28l6 6" stroke="#00e5a0" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <h3 class="service-name">XPEL Paint Protection Film</h3>
+
+      <p class="service-desc">Paint Protection Film (PPF — also called clear bra, clear film, or clear paint film) is a urethane film applied to painted surfaces to protect against stone chips, bug splatters, and minor abrasions. It is OEM approved by virtually all car manufacturers and used on everything from exotic sports cars to aircraft and motorcycles.</p>
+
+      <p class="service-desc" style="margin-top:12px;">Today's PPF is highly conformable and optically clear. XPEL's Pro Series features a multi-layered self-healing top coat capable of reforming itself after being scuffed or scratched — maintaining its clarity for more than ten years. PPF is most commonly applied to forward-facing high-impact areas but can also cover a full vehicle for maximum protection.</p>
+
+      <p class="service-desc" style="margin-top:12px;">At Zero Defects, we completed a week-long XPEL factory training certification at their headquarters in San Antonio, Texas. We use all current techniques and practices to ensure the highest quality install possible.</p>
+
+      <ul style="list-style:none;margin:20px 0;padding:0;display:flex;flex-direction:column;gap:8px;">
+        <li style="font-size:13px;color:rgba(240,244,248,0.6);display:flex;gap:10px;align-items:flex-start;"><span style="color:#1a8fff;flex-shrink:0;margin-top:2px;">✓</span> Self-healing top coat — scuffs and light scratches disappear with heat</li>
+        <li style="font-size:13px;color:rgba(240,244,248,0.6);display:flex;gap:10px;align-items:flex-start;"><span style="color:#1a8fff;flex-shrink:0;margin-top:2px;">✓</span> OEM approved by virtually all car manufacturers</li>
+        <li style="font-size:13px;color:rgba(240,244,248,0.6);display:flex;gap:10px;align-items:flex-start;"><span style="color:#1a8fff;flex-shrink:0;margin-top:2px;">✓</span> XPEL factory-trained & certified — week-long course in San Antonio, TX</li>
+        <li style="font-size:13px;color:rgba(240,244,248,0.6);display:flex;gap:10px;align-items:flex-start;"><span style="color:#1a8fff;flex-shrink:0;margin-top:2px;">✓</span> Computer-cut templates for seamless, precision fitment</li>
+        <li style="font-size:13px;color:rgba(240,244,248,0.6);display:flex;gap:10px;align-items:flex-start;"><span style="color:#1a8fff;flex-shrink:0;margin-top:2px;">✓</span> XPEL Ultimate Plus (gloss) or XPEL Stealth (satin matte) — your choice</li>
+        <li style="font-size:13px;color:rgba(240,244,248,0.6);display:flex;gap:10px;align-items:flex-start;"><span style="color:#1a8fff;flex-shrink:0;margin-top:2px;">✓</span> 10-year XPEL manufacturer warranty</li>
+      </ul>
+
+      <!-- Packages -->
+      <p style="font-family:var(--font-condensed);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Installation Packages</p>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
+
+        <div style="padding:14px 16px;background:rgba(26,143,255,0.08);border:1px solid rgba(26,143,255,0.25);border-radius:4px;position:relative;">
+          <div style="position:absolute;top:-1px;right:12px;background:linear-gradient(90deg,#1a8fff,#00e5a0);color:#080a0c;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:0 0 4px 4px;">Most Popular</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#f0f4f8;">Full Front End</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1a8fff;">Call for Pricing</span>
+          </div>
+          <p style="font-size:12px;color:rgba(240,244,248,0.45);line-height:1.5;">Front bumper · Headlights · Partial hood · Partial fenders — the highest-impact zones on the road.</p>
+        </div>
+
+        <div style="padding:14px 16px;background:rgba(26,143,255,0.05);border:1px solid rgba(26,143,255,0.12);border-radius:4px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#f0f4f8;">Track Pack</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1a8fff;">Call for Pricing</span>
+          </div>
+          <p style="font-size:12px;color:rgba(240,244,248,0.45);line-height:1.5;">Full hood · Full fenders · Bumper · Mirrors · Headlights — maximum coverage for daily drivers and track enthusiasts.</p>
+        </div>
+
+        <div style="padding:14px 16px;background:rgba(26,143,255,0.05);border:1px solid rgba(26,143,255,0.12);border-radius:4px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#f0f4f8;">Full Vehicle</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1a8fff;">Call for Pricing</span>
+          </div>
+          <p style="font-size:12px;color:rgba(240,244,248,0.45);line-height:1.5;">Every painted panel protected — the ultimate solution for exotics, luxury vehicles, and collectors who refuse to compromise.</p>
+        </div>
+
+      </div>
+
+      <p style="font-size:11px;color:rgba(240,244,248,0.3);letter-spacing:1px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;">All packages available in XPEL Stealth matte finish</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <!-- Paint Correction -->
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none">
+        <path d="M12 36L24 12L36 36" stroke="#1a8fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 28h16" stroke="#1a8fff" stroke-width="1" stroke-dasharray="3 2"/>
+        <circle cx="24" cy="12" r="3" fill="#00e5a0"/>
+      </svg>
+      <h3 class="service-name">Paint Correction</h3>
+      <p class="service-desc">Machine polishing to remove swirl marks, water spots, oxidation, and light scratches — restoring depth and clarity to your paint before protection.</p>
+      <p class="service-price">Contact for pricing</p>
+      <span class="service-arrow">↗</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-section">
+  <div class="stat-item">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Years of Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Vehicles Protected</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Premium Certifications</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5★</div>
+    <div class="stat-label">Average Google Rating</div>
+  </div>
+</div>
+
+<!-- ── WORK / GALLERY ── -->
+<section class="work-section" id="work">
+  <div class="work-header section-header">
+    <div>
+      <p class="section-eyebrow">Recent Projects</p>
+      <h2 class="section-title">OUR<br>WORK</h2>
+    </div>
+    <a href="#" class="section-link">Full Gallery →</a>
+  </div>
+
+  <div class="gallery-scroll">
+    <div class="gallery-item">
+      <img src="IMG_9315.jpeg" alt="BMW M3 Touring - Ceramic Coating" class="gallery-img">
+      <div class="gallery-overlay">
+        <div>
+          <div class="gallery-label">BMW M3 Touring</div>
+          <div class="gallery-sub">Crystal Serum Ultra · XPEL Stealth</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_9306.jpeg" alt="Corvette Z06 - PPF" class="gallery-img">
+      <div class="gallery-overlay">
+        <div>
+          <div class="gallery-label">Corvette Z06</div>
+          <div class="gallery-sub">XPEL Ultimate Plus · Full Front</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_9219.jpeg" alt="Ferrari 296 GTS - Full PPF" class="gallery-img">
+      <div class="gallery-overlay">
+        <div>
+          <div class="gallery-label">Ferrari 296 GTS</div>
+          <div class="gallery-sub">Full PPF · Ceramic Coating</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_9101.jpeg" alt="BMW M2 - Ceramic Coating" class="gallery-img">
+      <div class="gallery-overlay">
+        <div>
+          <div class="gallery-label">BMW M2</div>
+          <div class="gallery-sub">Crystal Serum Ultra</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_9122.jpeg" alt="Lexus - Paint Protection Film" class="gallery-img">
+      <div class="gallery-overlay">
+        <div>
+          <div class="gallery-label">Lexus</div>
+          <div class="gallery-sub">XPEL Ultimate Plus</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_9193.jpeg" alt="Porsche Cayenne - PPF" class="gallery-img">
+      <div class="gallery-overlay">
+        <div>
+          <div class="gallery-label">Porsche Cayenne</div>
+          <div class="gallery-sub">XPEL Ultimate Plus · Paint Correction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section class="process-section" id="process">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title">THE<br>PROCESS</h2>
+    </div>
+  </div>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="process-dot">01</div>
+      <div class="process-name">Consultation</div>
+      <p class="process-desc">We assess your vehicle, goals, and budget to recommend the ideal protection package.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-dot">02</div>
+      <div class="process-name">Decontamination</div>
+      <p class="process-desc">Full wash, clay bar, iron decontamination, and surface prep before any work begins.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-dot">03</div>
+      <div class="process-name">Correction</div>
+      <p class="process-desc">Paint correction removes defects so your finish is flawless before coating or film.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-dot">04</div>
+      <div class="process-name">Protection</div>
+      <p class="process-desc">Ceramic coating or PPF applied with precision by certified installers. Inspect and deliver.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST ── -->
+<section class="trust-section" id="about">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">Why Zero Defects</p>
+      <h2 class="section-title">BUILT ON<br>PRECISION</h2>
+    </div>
+  </div>
+
+  <div class="trust-grid">
+    <div class="trust-feature">
+      <div class="trust-icon-wrap">🏆</div>
+      <div class="trust-content">
+        <h3>Gtechniq Accredited Installer</h3>
+        <p>One of a select group of shops certified to install Crystal Serum Ultra — the pinnacle of ceramic coating technology. Backed by a professional warranty.</p>
+      </div>
+    </div>
+    <div class="trust-feature">
+      <div class="trust-icon-wrap">🛡️</div>
+      <div class="trust-content">
+        <h3>XPEL Authorized Installer</h3>
+        <p>Factory-trained in XPEL Ultimate Plus and XPEL Stealth PPF. Computer-cut templates, seamless installation, and an industry-leading warranty.</p>
+      </div>
+    </div>
+    <div class="trust-feature">
+      <div class="trust-icon-wrap">🔬</div>
+      <div class="trust-content">
+        <h3>Meticulous Paint Correction</h3>
+        <p>We don't mask defects — we remove them. Multi-stage machine polishing restores true paint depth before any protection product touches your car.</p>
+      </div>
+    </div>
+    <div class="trust-feature">
+      <div class="trust-icon-wrap">📍</div>
+      <div class="trust-content">
+        <h3>Braselton, Georgia</h3>
+        <p>Serving the greater Atlanta metro and Northeast Georgia. Our climate-controlled shop is purpose-built for precision detailing work at the highest level.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cert-row">
+    <span class="cert-label">Certified by:</span>
+    <div class="cert-badges">
+      <span class="cert-badge">Gtechniq Crystal Serum Ultra</span>
+      <span class="cert-badge">XPEL Authorized</span>
+      <span class="cert-badge">Glassparency Authorized</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <p class="cta-eyebrow">Ready to Protect Your Investment?</p>
+  <h2 class="cta-title">LET'S GET<br><span class="stroke">TO WORK</span></h2>
+  <p class="cta-sub">Schedule a free consultation and get a custom quote for your vehicle.</p>
+  <div class="cta-actions">
+    <a href="tel:+1" class="btn-primary">
+      Call Us Today
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="mailto:info@zerodefectsatl.com" class="btn-ghost">Email Us</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="zd-logo.png" alt="Zero Defects" style="height:64px;width:auto;display:block;">
+  <ul class="footer-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Instagram</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 Zero Defects · Braselton, GA 30517</p>
+</footer>
+
+<script>
+  // ── HERO CAROUSEL ──
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsContainer = document.getElementById('carouselDots');
+  let current = 0;
+  let carouselTimer;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    // Restart the slow zoom animation
+    slides[current].style.animation = 'none';
+    slides[current].offsetHeight; // force reflow
+    slides[current].style.animation = '';
+    clearInterval(carouselTimer);
+    carouselTimer = setInterval(next, 5000);
+  }
+
+  function next() {
+    goTo((current + 1) % slides.length);
+  }
+
+  // Start auto-rotation
+  carouselTimer = setInterval(next, 5000);
+
+  // Pause on hover
+  document.querySelector('.hero').addEventListener('mouseenter', () => clearInterval(carouselTimer));
+  document.querySelector('.hero').addEventListener('mouseleave', () => {
+    carouselTimer = setInterval(next, 5000);
+  });
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateCursor() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  document.querySelectorAll('a, button, .service-card, .gallery-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '16px';
+      cursor.style.height = '16px';
+      ring.style.width = '56px';
+      ring.style.height = '56px';
+      ring.style.borderColor = 'rgba(0,229,160,0.6)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px';
+      cursor.style.height = '10px';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.borderColor = 'rgba(26,143,255,0.5)';
+    });
+  });
+
+  // Intersection observer fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .trust-feature, .process-step, .stat-item, .gallery-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

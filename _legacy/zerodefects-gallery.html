@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Zero Defects</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080a0c;
+    --dark: #0e1216;
+    --card: #12161b;
+    --border: rgba(255,255,255,0.07);
+    --blue: #1a8fff;
+    --green: #00e5a0;
+    --white: #f0f4f8;
+    --muted: rgba(240,244,248,0.45);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 72px;
+    background: rgba(8,10,12,0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo-badge {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff;
+  }
+  .nav-logo-text strong {
+    display: block; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 16px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--white);
+  }
+  .nav-logo-text span {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+    font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--white); }
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+    font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--black); background: linear-gradient(90deg, var(--blue), var(--green));
+    padding: 10px 24px; border-radius: 4px; text-decoration: none;
+  }
+
+  /* ── HERO ── */
+  .gallery-hero {
+    padding: 140px 48px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+    font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 8vw, 120px);
+    line-height: 0.9; letter-spacing: 2px; margin-bottom: 20px;
+  }
+  .hero-title .stroke {
+    -webkit-text-stroke: 1px rgba(26,143,255,0.5); color: transparent;
+  }
+  .hero-sub {
+    font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 500px;
+  }
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap;
+  }
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 40px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1;
+  }
+  .hero-stat-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+    font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); margin-top: 4px;
+  }
+
+  /* ── FILTERS ── */
+  .filters-bar {
+    position: sticky; top: 72px; z-index: 50;
+    background: rgba(8,10,12,0.95); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+  }
+  .filter-tabs {
+    display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+
+  .filter-group {
+    display: flex; align-items: center; gap: 0;
+    border-right: 1px solid var(--border);
+    padding-right: 0; margin-right: 0;
+  }
+  .filter-group:last-child { border-right: none; }
+  .filter-group-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px;
+    font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(240,244,248,0.2); padding: 0 16px; white-space: nowrap;
+    border-right: 1px solid var(--border);
+  }
+
+  .filter-btn {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px;
+    font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); background: none; border: none; cursor: pointer;
+    padding: 18px 20px; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    position: relative;
+  }
+  .filter-btn:hover { color: var(--white); }
+  .filter-btn.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+  }
+  .filter-btn .count {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: rgba(26,143,255,0.15);
+    font-size: 10px; color: var(--blue);
+    margin-left: 6px;
+  }
+
+  /* ── GALLERY GRID ── */
+  .gallery-section {
+    padding: 48px;
+  }
+
+  .gallery-controls {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .results-count {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+    font-weight: 500; letter-spacing: 1px; color: var(--muted);
+  }
+  .results-count span { color: var(--white); font-weight: 600; }
+
+  .view-toggle {
+    display: flex; gap: 4px;
+  }
+  .view-btn {
+    width: 36px; height: 36px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.2s;
+    color: var(--muted);
+  }
+  .view-btn.active { border-color: var(--blue); color: var(--blue); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    transition: all 0.3s;
+  }
+  .gallery-grid.view-3 { grid-template-columns: repeat(3, 1fr); }
+  .gallery-grid.view-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .gallery-card {
+    position: relative; overflow: hidden; border-radius: 4px;
+    background: var(--card); border: 1px solid var(--border);
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s, opacity 0.4s;
+  }
+  .gallery-card.hidden {
+    display: none;
+  }
+  .gallery-card:hover { transform: scale(1.02); border-color: rgba(26,143,255,0.3); }
+
+  /* Featured cards */
+  .gallery-card.featured {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+
+  .gallery-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .gallery-card:hover img { transform: scale(1.06); }
+
+  .card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,10,12,0.9) 0%, rgba(8,10,12,0.2) 50%, transparent 100%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 20px;
+  }
+  .gallery-card:hover .card-overlay { opacity: 1; }
+
+  .card-make {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+    font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 4px;
+  }
+  .card-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 18px;
+    font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .card-tags {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .card-tag {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px;
+    font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--black);
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    padding: 3px 10px; border-radius: 2px;
+  }
+
+  /* Always-visible badge for featured */
+  .card-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--black);
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    padding: 4px 10px; border-radius: 2px;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(8,10,12,0.97);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+
+  .lightbox-img {
+    max-width: 90vw; max-height: 85vh;
+    object-fit: contain; border-radius: 4px;
+  }
+  .lightbox-close {
+    position: absolute; top: 24px; right: 24px;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
+    color: var(--white); font-size: 20px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.15); }
+
+  .lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); border: 1px solid var(--border);
+    color: var(--white); font-size: 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.15); }
+  .lightbox-prev { left: 24px; }
+  .lightbox-next { right: 24px; }
+
+  .lightbox-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 24px 48px;
+    background: linear-gradient(to top, rgba(8,10,12,0.9), transparent);
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+  .lightbox-make {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+    font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 4px;
+  }
+  .lightbox-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 36px;
+    letter-spacing: 2px; line-height: 1;
+  }
+  .lightbox-counter {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+    font-weight: 600; letter-spacing: 2px; color: var(--muted);
+  }
+
+  /* ── CTA ── */
+  .gallery-cta {
+    margin: 0 48px 80px;
+    padding: 64px;
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .gallery-cta::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(26,143,255,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .gallery-cta h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 72px); letter-spacing: 2px; margin-bottom: 12px;
+  }
+  .gallery-cta p { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; color: var(--black);
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    padding: 14px 32px; border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(26,143,255,0.3);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px;
+  }
+  .footer-copy { font-size: 12px; color: rgba(240,244,248,0.2); letter-spacing: 1px; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .gallery-hero { padding: 120px 20px 48px; }
+    .filters-bar { padding: 0 20px; }
+    .gallery-section { padding: 24px 20px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+    .gallery-card.featured { grid-column: span 2; }
+    .gallery-cta { margin: 0 20px 48px; padding: 40px 24px; }
+    footer { padding: 24px 20px; }
+    .lightbox-nav { display: none; }
+    .lightbox-info { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="zerodefects-homepage.html" class="nav-logo">
+    <img src="zd-logo.png" alt="Zero Defects Logo" style="height:48px;width:auto;display:block;">
+  </a>
+  <a href="zerodefects-homepage.html" class="nav-back">← Back to Home</a>
+  <a href="#" class="nav-cta">Book Now</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="gallery-hero">
+  <p class="hero-eyebrow">Our Work</p>
+  <h1 class="hero-title">THE<br><span class="stroke">GALLERY</span></h1>
+  <p class="hero-sub">Every vehicle that enters our shop gets treated like it's our own. Here's proof of what precision looks like.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">60+</div>
+      <div class="hero-stat-label">Photos</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">15+</div>
+      <div class="hero-stat-label">Makes</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Service Types</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FILTERS ── -->
+<div class="filters-bar">
+  <div class="filter-tabs">
+    <div class="filter-group">
+      <span class="filter-group-label">Show</span>
+      <button class="filter-btn active" data-filter="all">All <span class="count" id="count-all">37</span></button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-group-label">Service</span>
+      <button class="filter-btn" data-filter="ceramic">Ceramic <span class="count" id="count-ceramic"></span></button>
+      <button class="filter-btn" data-filter="ppf">PPF <span class="count" id="count-ppf"></span></button>
+      <button class="filter-btn" data-filter="correction">Correction <span class="count" id="count-correction"></span></button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-group-label">Make</span>
+      <button class="filter-btn" data-filter="ferrari">Ferrari</button>
+      <button class="filter-btn" data-filter="porsche">Porsche</button>
+      <button class="filter-btn" data-filter="bmw">BMW</button>
+      <button class="filter-btn" data-filter="aston">Aston Martin</button>
+      <button class="filter-btn" data-filter="bentley">Bentley</button>
+      <button class="filter-btn" data-filter="audi">Audi</button>
+      <button class="filter-btn" data-filter="mercedes">Mercedes</button>
+      <button class="filter-btn" data-filter="corvette">Corvette</button>
+      <button class="filter-btn" data-filter="classic">Classics</button>
+      <button class="filter-btn" data-filter="race">Race Cars</button>
+      <button class="filter-btn" data-filter="other">Other</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── GALLERY ── -->
+<section class="gallery-section">
+  <div class="gallery-controls">
+    <p class="results-count"><span id="visible-count">37</span> projects</p>
+    <div class="view-toggle">
+      <button class="view-btn" data-view="2" title="2 columns">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="7" height="7"/><rect x="9" y="0" width="7" height="7"/><rect x="0" y="9" width="7" height="7"/><rect x="9" y="9" width="7" height="7"/></svg>
+      </button>
+      <button class="view-btn active" data-view="3" title="3 columns">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="4" height="4"/><rect x="6" y="0" width="4" height="4"/><rect x="12" y="0" width="4" height="4"/><rect x="0" y="6" width="4" height="4"/><rect x="6" y="6" width="4" height="4"/><rect x="12" y="6" width="4" height="4"/><rect x="0" y="12" width="4" height="4"/><rect x="6" y="12" width="4" height="4"/><rect x="12" y="12" width="4" height="4"/></svg>
+      </button>
+      <button class="view-btn" data-view="4" title="4 columns">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="3" height="3"/><rect x="4" y="0" width="3" height="3"/><rect x="8" y="0" width="3" height="3"/><rect x="12" y="0" width="3" height="3"/><rect x="0" y="4" width="3" height="3"/><rect x="4" y="4" width="3" height="3"/><rect x="8" y="4" width="3" height="3"/><rect x="12" y="4" width="3" height="3"/><rect x="0" y="8" width="3" height="3"/><rect x="4" y="8" width="3" height="3"/><rect x="8" y="8" width="3" height="3"/><rect x="12" y="8" width="3" height="3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="gallery-grid view-3" id="galleryGrid">
+
+    <!-- BMW M3 Touring - FEATURED -->
+    <div class="gallery-card featured" data-tags="bmw,ceramic,ppf" data-make="BMW" data-title="M3 Touring" data-service="Ceramic · XPEL Stealth" data-img="IMG_9315.jpeg">
+      <img src="IMG_9315.jpeg" alt="BMW M3 Touring">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">BMW</div>
+        <div class="card-title">M3 Touring</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span><span class="card-tag">XPEL Stealth</span></div>
+      </div>
+    </div>
+
+    <!-- BMW M3 Touring rear -->
+    <div class="gallery-card" data-tags="bmw,ppf" data-make="BMW" data-title="M3 Touring" data-service="XPEL Stealth PPF" data-img="IMG_9313.jpeg">
+      <img src="IMG_9313.jpeg" alt="BMW M3 Touring rear">
+      <div class="card-overlay">
+        <div class="card-make">BMW</div>
+        <div class="card-title">M3 Touring — Rear</div>
+        <div class="card-tags"><span class="card-tag">XPEL Stealth</span></div>
+      </div>
+    </div>
+
+    <!-- Corvette Z06 front -->
+    <div class="gallery-card" data-tags="other,ppf" data-make="Corvette" data-title="Z06" data-service="XPEL Ultimate Plus" data-img="IMG_9306.jpeg">
+      <img src="IMG_9306.jpeg" alt="Corvette Z06">
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">Corvette Z06</div>
+        <div class="card-tags"><span class="card-tag">XPEL Ultimate</span></div>
+      </div>
+    </div>
+
+    <!-- Corvette Z06 rear -->
+    <div class="gallery-card" data-tags="other,ppf" data-make="Corvette" data-title="Z06 Rear" data-service="XPEL Ultimate Plus" data-img="IMG_9287.jpeg">
+      <img src="IMG_9287.jpeg" alt="Corvette Z06 rear">
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">Corvette Z06 — Rear</div>
+        <div class="card-tags"><span class="card-tag">XPEL Ultimate</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 GTS shop wide -->
+    <div class="gallery-card featured" data-tags="ferrari,ppf,ceramic" data-make="Ferrari" data-title="296 GTS" data-service="Full PPF + Ceramic" data-img="IMG_9286.jpeg">
+      <img src="IMG_9286.jpeg" alt="Ferrari 296 GTS shop wide">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS — Shop</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 GTS -->
+    <div class="gallery-card" data-tags="ferrari,ppf,ceramic" data-make="Ferrari" data-title="296 GTS" data-service="Full PPF + Ceramic" data-img="IMG_9219.jpeg">
+      <img src="IMG_9219.jpeg" alt="Ferrari 296 GTS">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS</div>
+        <div class="card-tags"><span class="card-tag">Full PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 PPF application -->
+    <div class="gallery-card" data-tags="ferrari,ppf" data-make="Ferrari" data-title="296 GTS — Install" data-service="PPF Application" data-img="IMG_9182.jpeg">
+      <img src="IMG_9182.jpeg" alt="Ferrari 296 PPF front">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS — PPF Install</div>
+        <div class="card-tags"><span class="card-tag">Process</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 side PPF -->
+    <div class="gallery-card" data-tags="ferrari,ppf" data-make="Ferrari" data-title="296 GTS — Side" data-service="PPF Application" data-img="IMG_9185.jpeg">
+      <img src="IMG_9185.jpeg" alt="Ferrari 296 side PPF">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS — Side Install</div>
+        <div class="card-tags"><span class="card-tag">Process</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 fender PPF -->
+    <div class="gallery-card" data-tags="ferrari,ppf" data-make="Ferrari" data-title="296 GTS — Fender" data-service="PPF Application" data-img="IMG_9184.jpeg">
+      <img src="IMG_9184.jpeg" alt="Ferrari 296 fender">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS — Fender</div>
+        <div class="card-tags"><span class="card-tag">PPF Detail</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 after -->
+    <div class="gallery-card" data-tags="ferrari,ppf,ceramic" data-make="Ferrari" data-title="296 GTS — After" data-service="Completed" data-img="IMG_9183.jpeg">
+      <img src="IMG_9183.jpeg" alt="Ferrari 296 completed">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS — Completed</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 front nose -->
+    <div class="gallery-card" data-tags="ferrari,ppf" data-make="Ferrari" data-title="296 GTS — Nose" data-service="PPF" data-img="IMG_9193.jpeg">
+      <img src="IMG_9193.jpeg" alt="Ferrari 296 nose PPF">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS — Nose</div>
+        <div class="card-tags"><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 front close -->
+    <div class="gallery-card" data-tags="ferrari,ppf" data-make="Ferrari" data-title="296 GTS — Front" data-service="PPF" data-img="IMG_9174.jpeg">
+      <img src="IMG_9174.jpeg" alt="Ferrari 296 front close">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS — Front Close</div>
+        <div class="card-tags"><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 296 side after -->
+    <div class="gallery-card" data-tags="ferrari,ppf,ceramic" data-make="Ferrari" data-title="296 GTS — Side After" data-service="Completed" data-img="IMG_9172.jpeg">
+      <img src="IMG_9172.jpeg" alt="Ferrari 296 side after">
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">296 GTS — Side</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche Cayenne PPF before -->
+    <div class="gallery-card" data-tags="porsche,ppf" data-make="Porsche" data-title="Cayenne — Install" data-service="XPEL PPF" data-img="IMG_9170.jpeg">
+      <img src="IMG_9170.jpeg" alt="Porsche Cayenne PPF">
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">Cayenne — PPF Install</div>
+        <div class="card-tags"><span class="card-tag">Process</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche Cayenne after -->
+    <div class="gallery-card" data-tags="porsche,ppf,ceramic" data-make="Porsche" data-title="Cayenne — After" data-service="Completed" data-img="IMG_9175.jpeg">
+      <img src="IMG_9175.jpeg" alt="Porsche Cayenne after">
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">Cayenne — Completed</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche Cayenne front bead -->
+    <div class="gallery-card" data-tags="porsche,ceramic" data-make="Porsche" data-title="Cayenne — Beading" data-service="Ceramic Coating" data-img="IMG_9176.jpeg">
+      <img src="IMG_9176.jpeg" alt="Porsche Cayenne beading">
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">Cayenne — Water Beading</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- BMW M2 Blue - FEATURED -->
+    <div class="gallery-card featured" data-tags="bmw,ceramic" data-make="BMW" data-title="M2" data-service="Crystal Serum Ultra" data-img="IMG_9101.jpeg">
+      <img src="IMG_9101.jpeg" alt="BMW M2 Blue">
+      <div class="card-overlay">
+        <div class="card-make">BMW</div>
+        <div class="card-title">M2 — Ceramic</div>
+        <div class="card-tags"><span class="card-tag">Crystal Serum Ultra</span></div>
+      </div>
+    </div>
+
+    <!-- BMW M2 windshield -->
+    <div class="gallery-card" data-tags="bmw,ppf" data-make="BMW" data-title="M2 — Windshield" data-service="PPF Process" data-img="IMG_9103.jpeg">
+      <img src="IMG_9103.jpeg" alt="BMW M2 windshield PPF">
+      <div class="card-overlay">
+        <div class="card-make">BMW</div>
+        <div class="card-title">M2 — Windshield Install</div>
+        <div class="card-tags"><span class="card-tag">Process</span></div>
+      </div>
+    </div>
+
+    <!-- Lexus PPF install -->
+    <div class="gallery-card" data-tags="other,ppf" data-make="Lexus" data-title="Lexus — Install" data-service="XPEL PPF" data-img="IMG_9122.jpeg">
+      <img src="IMG_9122.jpeg" alt="Lexus PPF install">
+      <div class="card-overlay">
+        <div class="card-make">Lexus</div>
+        <div class="card-title">Lexus — PPF Install</div>
+        <div class="card-tags"><span class="card-tag">Process</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Lexus completed -->
+    <div class="gallery-card" data-tags="other,ppf,ceramic" data-make="Lexus" data-title="Lexus — After" data-service="Completed" data-img="IMG_9073.jpeg">
+      <img src="IMG_9073.jpeg" alt="Lexus completed">
+      <div class="card-overlay">
+        <div class="card-make">Lexus</div>
+        <div class="card-title">Lexus — Completed</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche 911 e-hybrid - FEATURED -->
+    <div class="gallery-card featured" data-tags="porsche,ppf,ceramic" data-make="Porsche" data-title="911 e-hybrid" data-service="Full PPF + Ceramic" data-img="IMG_8882.jpeg">
+      <img src="IMG_8882.jpeg" alt="Porsche 911 e-hybrid">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">911 e-hybrid</div>
+        <div class="card-tags"><span class="card-tag">Full PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche 911 fender PPF -->
+    <div class="gallery-card" data-tags="porsche,ppf" data-make="Porsche" data-title="911 e-hybrid — Fender" data-service="PPF Install" data-img="IMG_8880.jpeg">
+      <img src="IMG_8880.jpeg" alt="Porsche 911 fender PPF">
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">911 e-hybrid — Fender</div>
+        <div class="card-tags"><span class="card-tag">PPF Detail</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche 911 after -->
+    <div class="gallery-card" data-tags="porsche,ppf,ceramic" data-make="Porsche" data-title="911 e-hybrid — After" data-service="Completed" data-img="IMG_8862.jpeg">
+      <img src="IMG_8862.jpeg" alt="Porsche 911 after">
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">911 e-hybrid — After</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Aston Martin GT4 race car - FEATURED -->
+    <div class="gallery-card featured" data-tags="aston,ppf,race" data-make="Aston Martin" data-title="Vantage GT4 #21" data-service="PPF" data-img="IMG_8859.jpeg">
+      <img src="IMG_8859.jpeg" alt="Aston Martin Vantage GT4">
+      <div class="card-badge">🏁 Race Car</div>
+      <div class="card-overlay">
+        <div class="card-make">Aston Martin</div>
+        <div class="card-title">Vantage GT4 — #21</div>
+        <div class="card-tags"><span class="card-tag">Race Car</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Aston GT4 install -->
+    <div class="gallery-card" data-tags="aston,ppf" data-make="Aston Martin" data-title="Vantage GT4 — Install" data-service="PPF Process" data-img="IMG_8856.jpeg">
+      <img src="IMG_8856.jpeg" alt="Aston Martin GT4 install">
+      <div class="card-overlay">
+        <div class="card-make">Aston Martin</div>
+        <div class="card-title">Vantage GT4 — Install</div>
+        <div class="card-tags"><span class="card-tag">Process</span></div>
+      </div>
+    </div>
+
+    <!-- Aston GT4 wrap -->
+    <div class="gallery-card" data-tags="aston,ppf" data-make="Aston Martin" data-title="Vantage GT4 — Wrap" data-service="PPF Wrap" data-img="IMG_8851.jpeg">
+      <img src="IMG_8851.jpeg" alt="Aston Martin GT4 wrap">
+      <div class="card-overlay">
+        <div class="card-make">Aston Martin</div>
+        <div class="card-title">Vantage GT4 — Wrap</div>
+        <div class="card-tags"><span class="card-tag">Process</span></div>
+      </div>
+    </div>
+
+    <!-- Mustang Orange -->
+    <div class="gallery-card" data-tags="other,ceramic" data-make="Ford" data-title="Mustang Mach 1" data-service="Ceramic Coating" data-img="IMG_8822.jpeg">
+      <img src="IMG_8822.jpeg" alt="Ford Mustang orange">
+      <div class="card-overlay">
+        <div class="card-make">Ford</div>
+        <div class="card-title">Mustang Mach 1</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Cadillac CT5-V after -->
+    <div class="gallery-card" data-tags="other,ppf,ceramic" data-make="Cadillac" data-title="CT5-V Blackwing — After" data-service="Full Protection" data-img="IMG_8718.jpeg">
+      <img src="IMG_8718.jpeg" alt="Cadillac CT5-V after">
+      <div class="card-overlay">
+        <div class="card-make">Cadillac</div>
+        <div class="card-title">CT5-V Blackwing</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Cadillac CT5-V front -->
+    <div class="gallery-card" data-tags="other,ppf,ceramic" data-make="Cadillac" data-title="CT5-V Blackwing — Front" data-service="Full Protection" data-img="IMG_8715.jpeg">
+      <img src="IMG_8715.jpeg" alt="Cadillac CT5-V front">
+      <div class="card-overlay">
+        <div class="card-make">Cadillac</div>
+        <div class="card-title">CT5-V Blackwing — Front</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Ferrari 488 red - FEATURED -->
+    <div class="gallery-card featured" data-tags="ferrari,ceramic,ppf" data-make="Ferrari" data-title="488 Spider" data-service="Ceramic + PPF" data-img="IMG_8707.jpeg">
+      <img src="IMG_8707.jpeg" alt="Ferrari 488 Spider red">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Ferrari</div>
+        <div class="card-title">488 Spider</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Bentley Bentayga Gold - FEATURED -->
+    <div class="gallery-card featured" data-tags="bentley,ppf,ceramic" data-make="Bentley" data-title="Bentayga Speed" data-service="Full Protection" data-img="IMG_8575.jpeg">
+      <img src="IMG_8575.jpeg" alt="Bentley Bentayga Gold">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Bentley</div>
+        <div class="card-title">Bentayga Speed</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Bentley Bentayga front -->
+    <div class="gallery-card" data-tags="bentley,ppf,ceramic" data-make="Bentley" data-title="Bentayga Speed — Front" data-service="Full Protection" data-img="IMG_8556.jpeg">
+      <img src="IMG_8556.jpeg" alt="Bentley Bentayga front">
+      <div class="card-overlay">
+        <div class="card-make">Bentley</div>
+        <div class="card-title">Bentayga Speed — Front</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche 911 GT3 RS - FEATURED -->
+    <div class="gallery-card featured" data-tags="porsche,ceramic,ppf" data-make="Porsche" data-title="911 GT3 RS" data-service="Full Protection" data-img="IMG_8434.jpeg">
+      <img src="IMG_8434.jpeg" alt="Porsche 911 GT3 RS">
+      <div class="card-badge">🏆 Best Shot</div>
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">911 GT3 RS</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Tesla Model Y -->
+    <div class="gallery-card" data-tags="other,ppf,ceramic" data-make="Tesla" data-title="Model Y" data-service="Full Protection" data-img="IMG_8518.jpeg">
+      <img src="IMG_8518.jpeg" alt="Tesla Model Y">
+      <div class="card-overlay">
+        <div class="card-make">Tesla</div>
+        <div class="card-title">Model Y</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Tesla Model Y 2 -->
+    <div class="gallery-card" data-tags="other,ppf,ceramic" data-make="Tesla" data-title="Model Y — Side" data-service="Full Protection" data-img="IMG_8513.jpeg">
+      <img src="IMG_8513.jpeg" alt="Tesla Model Y side">
+      <div class="card-overlay">
+        <div class="card-make">Tesla</div>
+        <div class="card-title">Model Y — Side</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Aston Martin DB11 front -->
+    <div class="gallery-card" data-tags="aston,ppf,ceramic" data-make="Aston Martin" data-title="DB11 — Front" data-service="PPF + Ceramic" data-img="IMG_8433.jpeg">
+      <img src="IMG_8433.jpeg" alt="Aston Martin DB11 front">
+      <div class="card-overlay">
+        <div class="card-make">Aston Martin</div>
+        <div class="card-title">DB11 — Front</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Aston Martin DB11 side -->
+    <div class="gallery-card" data-tags="aston,ppf,ceramic" data-make="Aston Martin" data-title="DB11" data-service="PPF + Ceramic" data-img="IMG_8427.jpeg">
+      <img src="IMG_8427.jpeg" alt="Aston Martin DB11 side">
+      <div class="card-overlay">
+        <div class="card-make">Aston Martin</div>
+        <div class="card-title">DB11 — After</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Tesla Model S -->
+    <div class="gallery-card" data-tags="other,ppf,ceramic" data-make="Tesla" data-title="Model S" data-service="PPF + Ceramic" data-img="IMG_8142.jpeg">
+      <img src="IMG_8142.jpeg" alt="Tesla Model S graphite">
+      <div class="card-overlay">
+        <div class="card-make">Tesla</div>
+        <div class="card-title">Model S</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Corvette Z06 Red - FEATURED -->
+    <div class="gallery-card featured" data-tags="other,ppf,ceramic" data-make="Corvette" data-title="Z06 — Red" data-service="Full Protection" data-img="IMG_8058.jpeg">
+      <img src="IMG_8058.jpeg" alt="Corvette Z06 Red">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">Corvette Z06 — Red</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Corvette Z06 Yellow - FEATURED -->
+    <div class="gallery-card featured" data-tags="other,ppf,ceramic" data-make="Corvette" data-title="Z06 — Yellow" data-service="Full Protection" data-img="IMG_8054.jpeg">
+      <img src="IMG_8054.jpeg" alt="Corvette Z06 Yellow">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">Corvette Z06 — Yellow</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Corvette C8 Red hood beading -->
+    <div class="gallery-card" data-tags="other,ceramic" data-make="Corvette" data-title="C8 — Beading" data-service="Ceramic Coating" data-img="IMG_8048.jpeg">
+      <img src="IMG_8048.jpeg" alt="Corvette C8 red beading">
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">Corvette C8 — Beading</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Corvette C8 Color-Shift Purple/Blue - FEATURED -->
+    <div class="gallery-card featured" data-tags="other,ceramic" data-make="Corvette" data-title="C8 Color-Shift" data-service="Ceramic Coating" data-img="IMG_7887.jpeg">
+      <img src="IMG_7887.jpeg" alt="Corvette C8 color shift purple blue">
+      <div class="card-badge">🔥 Eye Catcher</div>
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">Corvette C8 — Color Shift</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span><span class="card-tag">Custom</span></div>
+      </div>
+    </div>
+
+    <!-- Audi R8 completed side -->
+    <div class="gallery-card featured" data-tags="audi,ppf,ceramic" data-make="Audi" data-title="R8 V10 — Matte" data-service="Full PPF + Ceramic" data-img="IMG_7394.jpeg">
+      <img src="IMG_7394.jpeg" alt="Audi R8 V10 matte black completed">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Audi</div>
+        <div class="card-title">R8 V10 — Matte Black</div>
+        <div class="card-tags"><span class="card-tag">Full PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Audi R8 PPF install white liner -->
+    <div class="gallery-card" data-tags="audi,ppf" data-make="Audi" data-title="R8 V10 — PPF Install" data-service="XPEL PPF" data-img="IMG_7398.jpeg">
+      <img src="IMG_7398.jpeg" alt="Audi R8 PPF install white liner">
+      <div class="card-overlay">
+        <div class="card-make">Audi</div>
+        <div class="card-title">R8 V10 — PPF Install</div>
+        <div class="card-tags"><span class="card-tag">Process</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Audi R8 PPF front wet -->
+    <div class="gallery-card" data-tags="audi,ppf" data-make="Audi" data-title="R8 V10 — PPF Front" data-service="XPEL PPF" data-img="IMG_7399.jpeg">
+      <img src="IMG_7399.jpeg" alt="Audi R8 PPF front wet">
+      <div class="card-overlay">
+        <div class="card-make">Audi</div>
+        <div class="card-title">R8 V10 — Front PPF</div>
+        <div class="card-tags"><span class="card-tag">Process</span></div>
+      </div>
+    </div>
+
+    <!-- Audi R8 PPF front matte -->
+    <div class="gallery-card" data-tags="audi,ppf" data-make="Audi" data-title="R8 V10 — Matte Front" data-service="XPEL Stealth PPF" data-img="IMG_7400.jpeg">
+      <img src="IMG_7400.jpeg" alt="Audi R8 matte front PPF">
+      <div class="card-overlay">
+        <div class="card-make">Audi</div>
+        <div class="card-title">R8 V10 — Matte Front</div>
+        <div class="card-tags"><span class="card-tag">XPEL Stealth</span></div>
+      </div>
+    </div>
+
+    <!-- Audi R8 rear beading -->
+    <div class="gallery-card" data-tags="audi,ppf,ceramic" data-make="Audi" data-title="R8 V10 — Rear" data-service="PPF + Ceramic" data-img="IMG_7405.jpeg">
+      <img src="IMG_7405.jpeg" alt="Audi R8 rear beading">
+      <div class="card-overlay">
+        <div class="card-make">Audi</div>
+        <div class="card-title">R8 V10 — Rear Detail</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Audi R8 side after 1 -->
+    <div class="gallery-card" data-tags="audi,ppf,ceramic" data-make="Audi" data-title="R8 V10 — Side After" data-service="Completed" data-img="IMG_7409.jpeg">
+      <img src="IMG_7409.jpeg" alt="Audi R8 side after">
+      <div class="card-overlay">
+        <div class="card-make">Audi</div>
+        <div class="card-title">R8 V10 — Side After</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Audi R8 side after 2 -->
+    <div class="gallery-card" data-tags="audi,ppf,ceramic" data-make="Audi" data-title="R8 V10 — Completed" data-service="Completed" data-img="IMG_7418.jpeg">
+      <img src="IMG_7418.jpeg" alt="Audi R8 completed side 2">
+      <div class="card-overlay">
+        <div class="card-make">Audi</div>
+        <div class="card-title">R8 V10 — Completed</div>
+        <div class="card-tags"><span class="card-tag">After</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche 718 GT4 race car skull wrap - FEATURED -->
+    <div class="gallery-card featured" data-tags="porsche,ceramic,race" data-make="Porsche" data-title="718 Cayman GT4" data-service="Ceramic + Wrap Protection" data-img="IMG_7387.jpeg">
+      <img src="IMG_7387.jpeg" alt="Porsche 718 GT4 skull wrap race car">
+      <div class="card-badge">🏁 Race Car</div>
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">718 Cayman GT4 — Race</div>
+        <div class="card-tags"><span class="card-tag">Race Car</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche Cayenne GTS Black -->
+    <div class="gallery-card" data-tags="porsche,ppf,ceramic" data-make="Porsche" data-title="Cayenne GTS" data-service="PPF + Ceramic" data-img="IMG_6130.jpeg">
+      <img src="IMG_6130.jpeg" alt="Porsche Cayenne GTS black">
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">Cayenne GTS</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Classic Ford Mustang 1965 - FEATURED -->
+    <div class="gallery-card featured" data-tags="other,ceramic,classic" data-make="Ford" data-title="1965 Mustang 289" data-service="Ceramic Coating" data-img="IMG_5920.jpeg">
+      <img src="IMG_5920.jpeg" alt="1965 Ford Mustang red">
+      <div class="card-badge">🏆 Classic</div>
+      <div class="card-overlay">
+        <div class="card-make">Ford</div>
+        <div class="card-title">1965 Mustang 289</div>
+        <div class="card-tags"><span class="card-tag">Classic</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Classic C1 Corvette - FEATURED -->
+    <div class="gallery-card featured" data-tags="other,ceramic,classic,corvette" data-make="Corvette" data-title="C1 Corvette — Classic" data-service="Ceramic Coating" data-img="IMG_5979.jpeg">
+      <img src="IMG_5979.jpeg" alt="Classic C1 Corvette champagne">
+      <div class="card-badge">🏆 Classic</div>
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">C1 Corvette — Classic</div>
+        <div class="card-tags"><span class="card-tag">Classic</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Mercedes E63 AMG Matte -->
+    <div class="gallery-card" data-tags="mercedes,ppf,ceramic" data-make="Mercedes" data-title="E63 AMG — Matte" data-service="PPF + Ceramic" data-img="IMG_5864.jpeg">
+      <img src="IMG_5864.jpeg" alt="Mercedes E63 AMG matte grey">
+      <div class="card-overlay">
+        <div class="card-make">Mercedes-AMG</div>
+        <div class="card-title">E63 AMG — Matte</div>
+        <div class="card-tags"><span class="card-tag">PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- BMW M3 Olive Green - FEATURED -->
+    <div class="gallery-card featured" data-tags="bmw,ceramic,ppf" data-make="BMW" data-title="M3 — Olive Green" data-service="Ceramic + PPF" data-img="IMG_5450.jpeg">
+      <img src="IMG_5450.jpeg" alt="BMW M3 olive army green">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">BMW</div>
+        <div class="card-title">M3 — Olive Green</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Cadillac Escalade blacked out -->
+    <div class="gallery-card" data-tags="other,ceramic,ppf" data-make="Cadillac" data-title="Escalade — Blacked Out" data-service="Ceramic + PPF" data-img="IMG_4847.jpeg">
+      <img src="IMG_4847.jpeg" alt="Cadillac Escalade ceramic coating and paint protection film Braselton Georgia Zero Defects">
+      <div class="card-overlay">
+        <div class="card-make">Cadillac</div>
+        <div class="card-title">Escalade — Blacked Out</div>
+        <div class="card-tags"><span class="card-tag">Ceramic</span><span class="card-tag">PPF</span></div>
+      </div>
+    </div>
+
+    <!-- Audi R8 V10 black carbon - FEATURED -->
+    <div class="gallery-card featured" data-tags="audi,ceramic,ppf" data-make="Audi" data-title="R8 V10 — Gloss Black" data-service="XPEL PPF + Ceramic Coating" data-img="IMG_9519.jpeg">
+      <img src="IMG_9519.jpeg" alt="Audi R8 V10 gloss black XPEL paint protection film ceramic coating Braselton Georgia Zero Defects">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Audi</div>
+        <div class="card-title">R8 V10 — Gloss Black</div>
+        <div class="card-tags"><span class="card-tag">XPEL PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Porsche 911 GT2 RS white - FEATURED -->
+    <div class="gallery-card featured" data-tags="porsche,ceramic,ppf,race" data-make="Porsche" data-title="911 GT2 RS" data-service="XPEL PPF + Ceramic Coating" data-img="IMG_9439.jpeg">
+      <img src="IMG_9439.jpeg" alt="Porsche 911 GT2 RS white XPEL paint protection film ceramic coating Braselton Georgia Zero Defects">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Porsche</div>
+        <div class="card-title">911 GT2 RS</div>
+        <div class="card-tags"><span class="card-tag">XPEL PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Corvette Z06 Red new - FEATURED -->
+    <div class="gallery-card featured" data-tags="other,corvette,ceramic,ppf" data-make="Corvette" data-title="Z06 — Torch Red" data-service="XPEL PPF + Ceramic Coating" data-img="IMG_9417.jpeg">
+      <img src="IMG_9417.jpeg" alt="Chevrolet Corvette Z06 torch red XPEL paint protection film ceramic coating Braselton Georgia Zero Defects">
+      <div class="card-badge">⭐ Featured</div>
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">Corvette Z06 — Torch Red</div>
+        <div class="card-tags"><span class="card-tag">XPEL PPF</span><span class="card-tag">Ceramic</span></div>
+      </div>
+    </div>
+
+    <!-- Corvette Z06 White existing - update alt text for SEO -->
+    <div class="gallery-card" data-tags="other,corvette,ppf" data-make="Corvette" data-title="Z06 — Arctic White" data-service="XPEL Ultimate Plus PPF" data-img="IMG_9306.jpeg">
+      <img src="IMG_9306.jpeg" alt="Chevrolet Corvette Z06 arctic white XPEL Ultimate Plus paint protection film Braselton Georgia Zero Defects">
+      <div class="card-overlay">
+        <div class="card-make">Chevrolet</div>
+        <div class="card-title">Corvette Z06 — Arctic White</div>
+        <div class="card-tags"><span class="card-tag">XPEL Ultimate</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<div class="gallery-cta">
+  <h2>READY TO PROTECT<br>YOUR INVESTMENT?</h2>
+  <p>Schedule a free consultation and get a custom quote for your vehicle.</p>
+  <a href="#" class="btn-primary">Get a Quote →</a>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="zd-logo.png" alt="Zero Defects" style="height:64px;width:auto;display:block;">
+  <p class="footer-copy">© 2025 Zero Defects · Braselton, GA 30517</p>
+</footer>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev">←</button>
+  <img src="" alt="" class="lightbox-img" id="lbImg">
+  <button class="lightbox-nav lightbox-next" id="lbNext">→</button>
+  <div class="lightbox-info">
+    <div>
+      <div class="lightbox-make" id="lbMake"></div>
+      <div class="lightbox-title" id="lbTitle"></div>
+    </div>
+    <div class="lightbox-counter" id="lbCounter"></div>
+  </div>
+</div>
+
+<script>
+  // ── FILTER LOGIC ──
+  const cards = Array.from(document.querySelectorAll('.gallery-card'));
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const visibleCount = document.getElementById('visible-count');
+
+  // Count tags
+  const counts = { ceramic: 0, ppf: 0, correction: 0 };
+  cards.forEach(c => {
+    const tags = c.dataset.tags.split(',');
+    if (tags.includes('ceramic')) counts.ceramic++;
+    if (tags.includes('ppf')) counts.ppf++;
+    if (tags.includes('correction')) counts.correction++;
+  });
+  document.getElementById('count-all').textContent = cards.length;
+  document.getElementById('count-ceramic').textContent = counts.ceramic;
+  document.getElementById('count-ppf').textContent = counts.ppf;
+  document.getElementById('count-correction').textContent = counts.correction;
+  visibleCount.textContent = cards.length;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      let visible = 0;
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(',');
+        const matches = filter === 'all' || tags.includes(filter);
+        card.classList.toggle('hidden', !matches);
+        if (matches) visible++;
+      });
+      visibleCount.textContent = visible;
+    });
+  });
+
+  // ── VIEW TOGGLE ──
+  const grid = document.getElementById('galleryGrid');
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      grid.className = 'gallery-grid view-' + btn.dataset.view;
+    });
+  });
+
+  // ── LIGHTBOX ──
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbMake = document.getElementById('lbMake');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbCounter = document.getElementById('lbCounter');
+  let currentIndex = 0;
+
+  function getVisibleCards() {
+    return cards.filter(c => !c.classList.contains('hidden'));
+  }
+
+  function openLightbox(index) {
+    const visible = getVisibleCards();
+    currentIndex = index;
+    const card = visible[index];
+    lbImg.src = card.dataset.img;
+    lbMake.textContent = card.dataset.make;
+    lbTitle.textContent = card.dataset.title + ' — ' + card.dataset.service;
+    lbCounter.textContent = (index + 1) + ' / ' + visible.length;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(dir) {
+    const visible = getVisibleCards();
+    currentIndex = (currentIndex + dir + visible.length) % visible.length;
+    openLightbox(currentIndex);
+  }
+
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+      const visible = getVisibleCards();
+      const visibleIndex = visible.indexOf(card);
+      if (visibleIndex >= 0) openLightbox(visibleIndex);
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => navigate(-1));
+  document.getElementById('lbNext').addEventListener('click', () => navigate(1));
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+</script>
+</body>
+</html>
