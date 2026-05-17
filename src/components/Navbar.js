@@ -90,65 +90,8 @@ export default function Navbar() {
         </div>
       </a>
 
-      {/* Desktop links */}
-      <ul
-        style={{
-          gap: '8px',
-          listStyle: 'none',
-          margin: 0,
-          padding: 0,
-        }}
-        className="hidden md:flex"
-      >
-        {links.map((l) => (
-          <li key={l.label}>
-            <a
-              href={l.href}
-              style={{
-                fontFamily: 'var(--font-barlow-cond), sans-serif',
-                fontSize: '13px',
-                fontWeight: 600,
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                color: 'rgba(240,244,248,0.6)',
-                textDecoration: 'none',
-                padding: '8px 12px',
-                borderRadius: '4px',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.color = '#f0f4f8')}
-              onMouseLeave={(e) => (e.target.style.color = 'rgba(240,244,248,0.6)')}
-            >
-              {l.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      {/* Book Now CTA */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <a
-          href="tel:4044063355"
-          style={{
-            fontFamily: 'var(--font-barlow-cond), sans-serif',
-            fontSize: '13px',
-            fontWeight: 600,
-            letterSpacing: '2px',
-            textTransform: 'uppercase',
-            color: '#080a0c',
-            background: 'linear-gradient(90deg, #1a8fff, #00e5a0)',
-            padding: '10px 24px',
-            borderRadius: '4px',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          Book Now
-        </a>
-
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden"
+      {/* Hamburger */}
+      <button
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
             background: 'none',
@@ -172,9 +115,8 @@ export default function Navbar() {
             </svg>
           )}
         </button>
-      </div>
 
-      {/* Mobile dropdown */}
+      {/* Dropdown */}
       {menuOpen && (
         <div
           style={{
