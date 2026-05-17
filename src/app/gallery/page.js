@@ -13,6 +13,7 @@ export const metadata = {
 }
 
 const photos = [
+  '/images/gallery/apex-gt4.jpg',
   '/images/gallery/IMG_5864.jpeg',
   '/images/gallery/IMG_5920.jpeg',
   '/images/gallery/IMG_5979.jpeg',
