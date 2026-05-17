@@ -3,18 +3,20 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
+// Each slide has a unique motion — no two feel the same
 const SLIDES = [
-  { src: '/images/gallery/IMG_9517.jpeg', pos: 'center 40%', kb: 'kb1' },
-  { src: '/images/gallery/IMG_8707.jpeg', pos: 'center 50%', kb: 'kb4' },
-  { src: '/images/gallery/IMG_9306.jpeg', pos: 'center 40%', kb: 'kb6' },
-  { src: '/images/gallery/IMG_8715.jpeg', pos: 'center 45%', kb: 'kb7' },
-  { src: '/images/gallery/IMG_9417.jpeg', pos: 'center 45%', kb: 'kb5' },
-  { src: '/images/gallery/IMG_8556.jpeg', pos: 'center 40%', kb: 'kb2' },
-  { src: '/images/gallery/IMG_7388.jpeg', pos: 'center 35%', kb: 'kb3' },
+  { src: '/images/gallery/IMG_9306.jpeg', pos: 'center 42%', kb: 'kb-zoomin',    dur: '9s'  },  // slow zoom in from center
+  { src: '/images/gallery/IMG_8707.jpeg', pos: 'center 50%', dur: '10s', kb: 'kb-panleft'   },  // drift left across car
+  { src: '/images/gallery/IMG_9219.jpeg', pos: 'center 38%', dur: '11s', kb: 'kb-zoomout'   },  // pull back reveal
+  { src: '/images/gallery/IMG_7437.jpeg', pos: 'center 45%', dur: '9s',  kb: 'kb-panright'  },  // sweep right
+  { src: '/images/gallery/IMG_8433.jpeg', pos: 'center 40%', dur: '10s', kb: 'kb-diag1'     },  // diagonal BL→TR
+  { src: '/images/gallery/IMG_7887.jpeg', pos: 'center 44%', dur: '9s',  kb: 'kb-driftup'   },  // drift upward
+  { src: '/images/gallery/IMG_8058.jpeg', pos: 'center 42%', dur: '11s', kb: 'kb-diag2'     },  // diagonal TR→BL
+  { src: '/images/gallery/IMG_8556.jpeg', pos: 'center 40%', dur: '10s', kb: 'kb-zoomin2'   },  // zoom in off-center
 ]
 
-const INTERVAL = 5500
-const FADE_MS  = 1400
+const INTERVAL = 5500   // ms per slide
+const FADE_MS  = 1400   // crossfade duration
 
 export default function HeroSlider() {
   const [cur,    setCur]    = useState(0)
@@ -41,18 +43,25 @@ export default function HeroSlider() {
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
       {/* Previous slide — fades out */}
       {prev !== null && (
-        <div key={`prev-${prev}`} style={{ position: 'absolute', inset: 0, opacity: fading ? 0 : 1, transition: `opacity ${FADE_MS}ms ease` }}>
+        <div
+          key={`prev-${prev}`}
+          style={{ position: 'absolute', inset: 0, opacity: 0, transition: `opacity ${FADE_MS}ms ease` }}
+        >
           <SlideFrame slide={SLIDES[prev]} active={false} />
         </div>
       )}
 
-      {/* Current slide — always visible */}
+      {/* Current slide */}
       <div key={`cur-${cur}`} style={{ position: 'absolute', inset: 0 }}>
         <SlideFrame slide={SLIDES[cur]} active />
       </div>
 
-      {/* Cinematic grade overlay */}
-      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2, background: 'linear-gradient(105deg, rgba(8,10,12,0.45) 20%, rgba(8,10,12,0.12) 100%)', mixBlendMode: 'multiply' }} />
+      {/* Cinematic color grade */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2,
+        background: 'linear-gradient(105deg, rgba(8,10,12,0.40) 15%, rgba(8,10,12,0.08) 100%)',
+        mixBlendMode: 'multiply',
+      }} />
     </div>
   )
 }
@@ -69,8 +78,8 @@ function SlideFrame({ slide, active }) {
         style={{
           objectFit: 'cover',
           objectPosition: slide.pos,
-          filter: 'brightness(0.84) contrast(1.09) saturate(0.85)',
-          animation: active ? `${slide.kb} 10s ease-in-out forwards` : 'none',
+          filter: 'brightness(0.82) contrast(1.10) saturate(0.84)',
+          animation: active ? `${slide.kb} ${slide.dur} ease-in-out forwards` : 'none',
           transformOrigin: '50% 50%',
         }}
       />

@@ -220,10 +220,10 @@ export default function Home() {
         {/* Sliding Ken Burns photo carousel */}
         <HeroSlider />
 
-        {/* Gradient overlay */}
+        {/* Gradient overlay — lighter so the car photos breathe */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 1,
-          background: 'linear-gradient(105deg, rgba(8,10,12,0.88) 40%, rgba(8,10,12,0.45) 100%)',
+          background: 'linear-gradient(105deg, rgba(8,10,12,0.58) 35%, rgba(8,10,12,0.18) 100%)',
         }} />
 
         {/* Blue accent line at base */}
