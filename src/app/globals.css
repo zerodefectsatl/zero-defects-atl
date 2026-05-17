@@ -203,34 +203,54 @@ body {
   100% { transform: scale(1.04) translate(-0.4%, 0.8%); }
 }
 
-/* ── Ken Burns slide variants ───────────────────────── */
-@keyframes kb1 {
-  0%   { transform: scale(1.0)  translate(1.5%, 1%); }
-  100% { transform: scale(1.10) translate(0%,   0%); }
+/* ── Ken Burns slide variants (8 unique motions) ────── */
+
+/* 1: slow zoom in — pulls viewer into the car */
+@keyframes kb-zoomin {
+  0%   { transform: scale(1.0)  translate(0%,    0%);   }
+  100% { transform: scale(1.12) translate(-0.5%, 0.5%); }
 }
-@keyframes kb2 {
-  0%   { transform: scale(1.0)  translate(-1.5%, -1%); }
-  100% { transform: scale(1.10) translate(0%,     0%); }
+
+/* 2: pan left — sweeps across the body */
+@keyframes kb-panleft {
+  0%   { transform: scale(1.06) translate(2.5%, 0%); }
+  100% { transform: scale(1.09) translate(-1%,  0%); }
 }
-@keyframes kb3 {
-  0%   { transform: scale(1.12) translate(0.5%, -0.5%); }
+
+/* 3: zoom out / reveal — starts tight, pulls back */
+@keyframes kb-zoomout {
+  0%   { transform: scale(1.14) translate(0.5%, -0.5%); }
   100% { transform: scale(1.0)  translate(0%,    0%);   }
 }
-@keyframes kb4 {
-  0%   { transform: scale(1.06) translate(-2%, 0%); }
-  100% { transform: scale(1.09) translate(1%,  0%); }
+
+/* 4: pan right — opposite sweep */
+@keyframes kb-panright {
+  0%   { transform: scale(1.06) translate(-2.5%, 0%); }
+  100% { transform: scale(1.09) translate(1%,    0%); }
 }
-@keyframes kb5 {
-  0%   { transform: scale(1.06) translate(2%, 0%); }
-  100% { transform: scale(1.09) translate(-1%, 0%); }
+
+/* 5: diagonal bottom-left → top-right */
+@keyframes kb-diag1 {
+  0%   { transform: scale(1.0)  translate(-1.5%, 1.5%); }
+  100% { transform: scale(1.11) translate(1%,   -1%);   }
 }
-@keyframes kb6 {
-  0%   { transform: scale(1.08) translate(0%, 1.5%); }
-  100% { transform: scale(1.04) translate(0%, -0.5%); }
+
+/* 6: drift upward — slow float */
+@keyframes kb-driftup {
+  0%   { transform: scale(1.09) translate(0%,  1.8%); }
+  100% { transform: scale(1.04) translate(0%, -0.6%); }
 }
-@keyframes kb7 {
-  0%   { transform: scale(1.0)  translate(-1%, 1.5%); }
-  100% { transform: scale(1.10) translate(1%,  -1%);  }
+
+/* 7: diagonal top-right → bottom-left */
+@keyframes kb-diag2 {
+  0%   { transform: scale(1.0)  translate(1.5%, -1.5%); }
+  100% { transform: scale(1.11) translate(-1%,  1%);    }
+}
+
+/* 8: zoom in off-center — pushes into corner detail */
+@keyframes kb-zoomin2 {
+  0%   { transform: scale(1.0)  translate(1.5%, 1%);  }
+  100% { transform: scale(1.13) translate(-1%, -0.5%); }
 }
 
 /* ── Logo swirl-in ──────────────────────────────────── */

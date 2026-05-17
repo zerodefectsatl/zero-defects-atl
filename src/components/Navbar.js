@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -46,48 +47,14 @@ export default function Navbar() {
         style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
       >
-        <div
-          style={{
-            width: '40px',
-            height: '40px',
-            background: 'linear-gradient(135deg, #1a8fff, #00e5a0)',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontFamily: 'var(--font-bebas-neue), sans-serif',
-            fontSize: '18px',
-            color: '#080a0c',
-            fontWeight: 400,
-            letterSpacing: '1px',
-          }}
-        >
-          ZD
-        </div>
-        <div>
-          <div
-            style={{
-              fontFamily: 'var(--font-barlow-cond), sans-serif',
-              fontWeight: 700,
-              fontSize: '15px',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              color: '#f0f4f8',
-            }}
-          >
-            Zero Defects
-          </div>
-          <div
-            style={{
-              fontSize: '10px',
-              letterSpacing: '1.5px',
-              textTransform: 'uppercase',
-              color: 'rgba(240,244,248,0.45)',
-            }}
-          >
-            Braselton, Georgia
-          </div>
-        </div>
+        <Image
+          src="/images/logos/zd-logo.png"
+          alt="Zero Defects ATL"
+          width={52}
+          height={52}
+          style={{ display: 'block', objectFit: 'contain' }}
+          priority
+        />
       </a>
 
       {/* Hamburger */}
