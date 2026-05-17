@@ -4,17 +4,16 @@ import SiteGate from '@/components/SiteGate'
 import ParallaxScroll from '@/components/ParallaxScroll'
 import ContactForm from '@/components/ContactForm'
 import RevealText from '@/components/RevealText'
+import HeroSlider from '@/components/HeroSlider'
 
 const galleryImages = [
-  '/images/gallery/IMG_6937.jpeg',
-  '/images/gallery/IMG_7388.jpeg',
-  '/images/gallery/IMG_7531.jpeg',
-  '/images/gallery/IMG_8427.jpeg',
-  '/images/gallery/IMG_8856.jpeg',
-  '/images/gallery/IMG_9306.jpeg',
+  '/images/gallery/IMG_7437.jpeg',
+  '/images/gallery/IMG_7887.jpeg',
+  '/images/gallery/IMG_8058.jpeg',
+  '/images/gallery/IMG_8433.jpeg',
+  '/images/gallery/IMG_8556.jpeg',
+  '/images/gallery/IMG_8707.jpeg',
 ]
-
-const heroImage = '/images/gallery/IMG_9517.jpeg'
 
 /* ─── Data ─────────────────────────────────────────────────── */
 const stats = [
@@ -137,12 +136,12 @@ const trustPoints = [
 ]
 
 const recentWork = [
-  { title: 'Porsche Cayenne GTS', service: 'XPEL Ultimate Plus · Full Front', img: galleryImages[0] },
-  { title: 'Porsche Cayenne GTS', service: 'Crystal Serum Ultra · Paint Correction', img: galleryImages[1] },
-  { title: 'GMC Sierra Denali', service: 'XPEL Stealth · Full Wrap', img: galleryImages[2] },
-  { title: 'Aston Martin DB11', service: 'XPEL Ultimate Plus · Full PPF', img: galleryImages[3] },
-  { title: 'BMW i8', service: 'XPEL Ultimate Plus · Full PPF', img: galleryImages[4] },
-  { title: 'Corvette Z06 C8', service: 'Crystal Serum Ultra · Ceramic Coating', img: galleryImages[5] },
+  { title: 'Paint Correction', service: 'Multi-Stage Polish · Full Detail', img: galleryImages[0] },
+  { title: 'Ceramic Coating', service: 'Crystal Serum Ultra · Gtechniq', img: galleryImages[1] },
+  { title: 'Paint Protection Film', service: 'XPEL Ultimate Plus · Full Front', img: galleryImages[2] },
+  { title: 'Paint Protection Film', service: 'XPEL Ultimate Plus · Full Vehicle', img: galleryImages[3] },
+  { title: 'Ceramic Coating', service: 'Crystal Serum Ultra · Paint Correction', img: galleryImages[4] },
+  { title: 'Ceramic Coating', service: 'CCI Revolution · Full Detail', img: galleryImages[5] },
 ]
 
 /* ─── Style constants ──────────────────────────────────────── */
@@ -218,25 +217,8 @@ export default function Home() {
         className="zd-hero"
         style={{ position: 'relative', overflow: 'hidden' }}
       >
-        {/* Ken Burns background */}
-        <div
-          data-parallax
-          data-parallax-speed="0.28"
-          style={{ position: 'absolute', top: '-15%', bottom: '-15%', left: 0, right: 0, zIndex: 0 }}
-        >
-          <Image
-            src={heroImage}
-            alt="Zero Defects ATL shop"
-            fill
-            priority
-            className="ken-burns"
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center 40%',
-              filter: 'brightness(0.82) contrast(1.08) saturate(0.88)',
-            }}
-          />
-        </div>
+        {/* Sliding Ken Burns photo carousel */}
+        <HeroSlider />
 
         {/* Gradient overlay */}
         <div style={{
@@ -568,10 +550,27 @@ export default function Home() {
 
       {/* ── WHY ZERO DEFECTS ──────────────────────────────────── */}
       <section style={{ position: 'relative', borderTop: '1px solid rgba(255,255,255,0.07)', padding: '96px 0', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,10,12,0.92)' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(26,143,255,0.08) 0%, transparent 70%)' }} />
+        {/* Ferrari wheel video background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            zIndex: 0,
+          }}
+        >
+          <source src="/videos/ferrari-wheel.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay so text stays readable */}
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,10,12,0.82)', zIndex: 1 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(26,143,255,0.07) 0%, transparent 70%)', zIndex: 1 }} />
 
-        <div style={{ ...S.section, position: 'relative', zIndex: 1 }}>
+        <div style={{ ...S.section, position: 'relative', zIndex: 2 }}>
           <span style={S.eyebrow} data-reveal>Why Zero Defects</span>
           <h2 style={{ ...S.sectionTitle, textShadow: GLOW }} data-reveal data-reveal-delay="1">Built on Precision</h2>
 
