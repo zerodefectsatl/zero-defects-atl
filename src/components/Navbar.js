@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -95,7 +93,6 @@ export default function Navbar() {
       {/* Desktop links */}
       <ul
         style={{
-          display: 'flex',
           gap: '8px',
           listStyle: 'none',
           margin: 0,

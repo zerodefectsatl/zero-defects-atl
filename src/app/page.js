@@ -11,7 +11,7 @@ const galleryImages = [
   '/images/gallery/IMG_9306.jpeg',
 ]
 
-const heroImage = '/images/gallery/IMG_6951.jpeg'
+const heroImage = '/images/gallery/IMG_9723.jpeg'
 
 /* ─── Data ─────────────────────────────────────────────────── */
 const stats = [
@@ -152,7 +152,6 @@ const recentWork = [
 /* ─── Shared style constants ───────────────────────────────── */
 const S = {
   section: {
-    padding: '96px 48px',
     maxWidth: '1200px',
     margin: '0 auto',
   },
@@ -231,10 +230,8 @@ export default function Home() {
 
         {/* Hero content */}
         <div
+          className="zd-hero-content"
           style={{
-            position: 'relative',
-            zIndex: 1,
-            padding: '160px 48px 80px',
             maxWidth: '800px',
           }}
         >
@@ -354,12 +351,11 @@ export default function Home() {
         }}
       >
         <div
+          className="grid grid-cols-2 md:grid-cols-4"
           style={{
             maxWidth: '1200px',
             margin: '0 auto',
             padding: '0 48px',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
           }}
         >
           {stats.map((s, i) => (
@@ -398,7 +394,7 @@ export default function Home() {
 
       {/* ── SERVICES — CERAMIC COATINGS ───────────────────────── */}
       <section id="services" style={{ background: '#080a0c', padding: '96px 0' }}>
-        <div style={S.section}>
+        <div style={S.section} className="zd-section">
           <span style={S.eyebrow}>What We Do</span>
           <h2 style={S.sectionTitle}>Our Services</h2>
 
@@ -647,9 +643,8 @@ export default function Home() {
 
             {/* PPF explainer */}
             <div
+              className="grid grid-cols-1 md:grid-cols-2"
               style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
                 gap: '48px',
                 marginBottom: '40px',
               }}
@@ -686,9 +681,8 @@ export default function Home() {
             </div>
 
             <div
+              className="grid grid-cols-1 md:grid-cols-3"
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
                 gap: '2px',
               }}
             >
@@ -846,7 +840,7 @@ export default function Home() {
           padding: '96px 0',
         }}
       >
-        <div style={S.section}>
+        <div style={S.section} className="zd-section">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '48px', flexWrap: 'wrap', gap: '16px' }}>
             <div>
               <span style={S.eyebrow}>Recent Projects</span>
@@ -869,9 +863,8 @@ export default function Home() {
           </div>
 
           <div
+            className="grid grid-cols-1 md:grid-cols-3"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
               gap: '12px',
             }}
           >
@@ -926,14 +919,13 @@ export default function Home() {
 
       {/* ── PROCESS ───────────────────────────────────────────── */}
       <section id="process" style={{ background: '#080a0c', padding: '96px 0' }}>
-        <div style={S.section}>
+        <div style={S.section} className="zd-section">
           <span style={S.eyebrow}>How It Works</span>
           <h2 style={S.sectionTitle}>The Process</h2>
 
           <div
+            className="grid grid-cols-2 md:grid-cols-4"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
               gap: '1px',
               background: 'rgba(255,255,255,0.07)',
               borderRadius: '4px',
@@ -1005,14 +997,13 @@ export default function Home() {
           padding: '96px 0',
         }}
       >
-        <div style={S.section}>
+        <div style={S.section} className="zd-section">
           <span style={S.eyebrow}>Why Zero Defects</span>
           <h2 style={S.sectionTitle}>Built on Precision</h2>
 
           <div
+            className="grid grid-cols-1 md:grid-cols-2"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
               gap: '2px',
             }}
           >
@@ -1100,11 +1091,11 @@ export default function Home() {
 
       {/* ── CTA BANNER ────────────────────────────────────────── */}
       <section
+        className="zd-cta"
         style={{
           background: 'linear-gradient(135deg, rgba(26,143,255,0.12) 0%, rgba(0,229,160,0.08) 100%)',
           borderTop: '1px solid rgba(26,143,255,0.2)',
           borderBottom: '1px solid rgba(26,143,255,0.2)',
-          padding: '96px 48px',
           textAlign: 'center',
         }}
       >
@@ -1172,10 +1163,10 @@ export default function Home() {
 
       {/* ── FOOTER ────────────────────────────────────────────── */}
       <footer
+        className="zd-footer"
         style={{
           background: '#080a0c',
           borderTop: '1px solid rgba(255,255,255,0.07)',
-          padding: '48px',
         }}
       >
         <div

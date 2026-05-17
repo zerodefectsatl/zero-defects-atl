@@ -57,3 +57,31 @@ body {
 .zd-border {
   border-color: rgba(255, 255, 255, 0.07);
 }
+
+/* ── Responsive layout ──────────────────────────────── */
+
+.zd-section {
+  padding: 96px 48px;
+}
+
+.zd-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 160px 48px 80px;
+  max-width: 800px;
+}
+
+.zd-cta {
+  padding: 96px 48px;
+}
+
+.zd-footer {
+  padding: 48px;
+}
+
+@media (max-width: 767px) {
+  .zd-section     { padding: 64px 20px; }
+  .zd-hero-content { padding: 120px 20px 60px; }
+  .zd-cta         { padding: 64px 20px; }
+  .zd-footer      { padding: 40px 20px; }
+}
