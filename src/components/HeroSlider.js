@@ -5,14 +5,15 @@ import Image from 'next/image'
 
 // Each slide has a unique motion — no two feel the same
 const SLIDES = [
-  { src: '/images/gallery/IMG_9306.jpeg', pos: 'center 42%', kb: 'kb-zoomin',    dur: '9s'  },  // slow zoom in from center
-  { src: '/images/gallery/IMG_8707.jpeg', pos: 'center 50%', dur: '10s', kb: 'kb-panleft'   },  // drift left across car
-  { src: '/images/gallery/IMG_9219.jpeg', pos: 'center 38%', dur: '11s', kb: 'kb-zoomout'   },  // pull back reveal
-  { src: '/images/gallery/IMG_7437.jpeg', pos: 'center 45%', dur: '9s',  kb: 'kb-panright'  },  // sweep right
-  { src: '/images/gallery/IMG_8433.jpeg', pos: 'center 40%', dur: '10s', kb: 'kb-diag1'     },  // diagonal BL→TR
-  { src: '/images/gallery/IMG_7887.jpeg', pos: 'center 44%', dur: '9s',  kb: 'kb-driftup'   },  // drift upward
-  { src: '/images/gallery/IMG_8058.jpeg', pos: 'center 42%', dur: '11s', kb: 'kb-diag2'     },  // diagonal TR→BL
-  { src: '/images/gallery/IMG_8556.jpeg', pos: 'center 40%', dur: '10s', kb: 'kb-zoomin2'   },  // zoom in off-center
+  { src: '/images/gallery/IMG_9306.jpeg', pos: 'center 42%', kb: 'kb-zoomin',   dur: '9s'  },
+  { src: '/images/gallery/IMG_8707.jpeg', pos: 'center 50%', kb: 'kb-panleft',  dur: '10s' },
+  { src: '/images/gallery/apex-gt4.jpg',  pos: 'center 45%', kb: 'kb-panright', dur: '10s' },
+  { src: '/images/gallery/IMG_9219.jpeg', pos: 'center 38%', kb: 'kb-zoomout',  dur: '11s' },
+  { src: '/images/gallery/IMG_7437.jpeg', pos: 'center 45%', kb: 'kb-diag1',    dur: '9s'  },
+  { src: '/images/gallery/IMG_8433.jpeg', pos: 'center 40%', kb: 'kb-driftup',  dur: '10s' },
+  { src: '/images/gallery/IMG_7887.jpeg', pos: 'center 44%', kb: 'kb-diag2',    dur: '9s'  },
+  { src: '/images/gallery/IMG_8058.jpeg', pos: 'center 42%', kb: 'kb-zoomin2',  dur: '11s' },
+  { src: '/images/gallery/IMG_8556.jpeg', pos: 'center 40%', kb: 'kb-zoomin',   dur: '10s' },
 ]
 
 const INTERVAL = 5500   // ms per slide
