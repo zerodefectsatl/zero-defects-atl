@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react'
 
+// Circle-target reticle cursor: outer ring + inner blue ring + center dot + 4 tick marks
+const CURSOR_TARGET = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Ccircle cx='18' cy='18' r='16' fill='none' stroke='%23f0f4f8' stroke-width='1.2' opacity='0.75'/%3E%3Ccircle cx='18' cy='18' r='6' fill='none' stroke='%231a8fff' stroke-width='1.4'/%3E%3Ccircle cx='18' cy='18' r='1.8' fill='%23f0f4f8'/%3E%3Cline x1='18' y1='1' x2='18' y2='10' stroke='%23f0f4f8' stroke-width='1' opacity='0.6'/%3E%3Cline x1='18' y1='26' x2='18' y2='35' stroke='%23f0f4f8' stroke-width='1' opacity='0.6'/%3E%3Cline x1='1' y1='18' x2='10' y2='18' stroke='%23f0f4f8' stroke-width='1' opacity='0.6'/%3E%3Cline x1='26' y1='18' x2='35' y2='18' stroke='%23f0f4f8' stroke-width='1' opacity='0.6'/%3E%3C/svg%3E") 18 18, crosshair`
+
 const S  = 400   // outer cube side
 const IW = 260   // inner logo prism width
 const IH = 340   // inner logo prism height
@@ -44,7 +47,7 @@ export default function IntroCube({ onComplete }) {
         opacity: phase === 'fading' ? 0 : 1,
         transition: phase === 'fading' ? 'opacity 1s ease' : 'none',
         pointerEvents: phase === 'fading' ? 'none' : 'auto',
-        cursor: 'crosshair',
+        cursor: CURSOR_TARGET,
         overflow: 'hidden',
       }}
     >
