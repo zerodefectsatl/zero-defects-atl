@@ -27,7 +27,7 @@ const siteUrl = 'https://zerodefectsatl.com'
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': ['LocalBusiness', 'AutoBodyShop'],
   name: 'Zero Defects ATL',
   description:
     'Gtechniq Crystal Serum Ultra accredited & XPEL authorized installer in Braselton, GA. Ceramic coatings, paint protection film, and paint correction.',
@@ -36,14 +36,23 @@ const jsonLd = {
   image: `${siteUrl}/images/gallery/IMG_9517.jpeg`,
   address: {
     '@type': 'PostalAddress',
+    streetAddress: '5450 Technology Pkwy, Suite 500',
     addressLocality: 'Braselton',
     addressRegion: 'GA',
+    postalCode: '30517',
     addressCountry: 'US',
   },
   geo: {
     '@type': 'GeoCoordinates',
     latitude: 34.1018,
     longitude: -83.796,
+  },
+  openingHours: 'Mo-Fr 08:00-18:00',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    bestRating: '5',
+    ratingCount: '50',
   },
   areaServed: ['Braselton, GA', 'Gainesville, GA', 'Buford, GA', 'Cumming, GA', 'Atlanta, GA'],
   hasOfferCatalog: {
@@ -74,6 +83,10 @@ export const metadata = {
     'auto detailing Braselton',
     'Zero Defects ATL',
   ],
+  robots: {
+    index: true,
+    follow: true,
+  },
   alternates: {
     canonical: '/',
   },

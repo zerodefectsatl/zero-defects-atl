@@ -5,6 +5,7 @@ import ParallaxScroll from '@/components/ParallaxScroll'
 import ContactForm from '@/components/ContactForm'
 import RevealText from '@/components/RevealText'
 import HeroSlider from '@/components/HeroSlider'
+import IntroCube from '@/components/IntroCube'
 
 const galleryImages = [
   '/images/gallery/IMG_7437.jpeg',
@@ -208,7 +209,7 @@ const S6 = [
 export default function Home() {
   return (
     <>
-      <SiteGate />
+      <IntroCube />
       <ParallaxScroll />
       <Navbar />
 
@@ -580,6 +581,7 @@ export default function Home() {
           muted
           loop
           playsInline
+          poster="/images/gallery/IMG_8707.jpeg"
           style={{
             position: 'absolute', inset: 0,
             width: '100%', height: '100%',
@@ -640,7 +642,7 @@ export default function Home() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
-                  { icon: '📍', label: 'Location', val: 'Braselton, Georgia' },
+                  { icon: '📍', label: 'Location', val: '5450 Technology Pkwy, Suite 500\nBraselton, GA 30517', href: 'https://maps.google.com/?q=5450+Technology+Pkwy+Suite+500+Braselton+GA+30517' },
                   { icon: '📞', label: 'Phone', val: '404-406-3355', href: 'tel:4044063355' },
                   { icon: '⏱', label: 'Response Time', val: 'Within 24 hours' },
                 ].map((item) => (
@@ -672,19 +674,19 @@ export default function Home() {
             <div style={{ width: '36px', height: '36px', background: 'linear-gradient(135deg, #1a8fff, #00e5a0)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: '16px', color: '#080a0c' }}>ZD</div>
             <div>
               <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontWeight: 700, fontSize: '14px', letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8' }}>Zero Defects</div>
-              <div style={{ fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.4)' }}>Braselton, GA 30517</div>
+              <div style={{ fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.4)' }}>5450 Technology Pkwy, Ste 500 · Braselton, GA 30517</div>
             </div>
           </div>
 
           <nav style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-            {[['#services', 'Services'], ['#work', 'Our Work'], ['#about', 'About'], ['#contact', 'Contact']].map(([href, label]) => (
+            {[['#services', 'Services'], ['#work', 'Our Work'], ['#process', 'Process'], ['#about', 'About'], ['#contact', 'Contact']].map(([href, label]) => (
               <a key={href} href={href} style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '12px', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.4)', textDecoration: 'none' }}>{label}</a>
             ))}
             <a href="https://instagram.com/zerodefectsatl" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '12px', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.4)', textDecoration: 'none' }}>Instagram</a>
           </nav>
 
           <div style={{ fontSize: '12px', color: 'rgba(240,244,248,0.25)', fontFamily: 'var(--font-barlow-cond), sans-serif', letterSpacing: '1px' }}>
-            © 2025 Zero Defects · Braselton, GA
+            © {new Date().getFullYear()} Zero Defects · Braselton, GA
           </div>
         </div>
       </footer>

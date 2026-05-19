@@ -10,6 +10,12 @@ export const metadata = {
     description: 'Browse completed projects — ceramic coatings, PPF, and paint correction on luxury vehicles in Braselton, GA.',
     images: [{ url: '/images/gallery/IMG_9517.jpeg', width: 1200, height: 800, alt: 'Zero Defects ATL gallery' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gallery — Zero Defects ATL | Ceramic Coating & PPF Portfolio',
+    description: 'Browse completed projects — ceramic coatings, PPF, and paint correction on luxury vehicles in Braselton, GA.',
+    images: ['/images/gallery/IMG_9517.jpeg'],
+  },
 }
 
 const photos = [

@@ -4,24 +4,15 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 const SLIDES = [
-  // White Corvette Z06 — push left-low, front fascia fills right side of frame
-  { src: '/images/gallery/IMG_9306.jpeg', pos: '38% 72%',  kb: 'kb-pullback',  dur: '6s' },
-  // Red Ferrari 488 — full side profile, centered low on the body
-  { src: '/images/gallery/IMG_8707.jpeg', pos: '50% 60%',  kb: 'kb-panleft',   dur: '5s' },
-  // APEX GT4 art wrap — push right to show the dramatic livery mid-body
-  { src: '/images/gallery/IMG_6130.jpeg', pos: '48% 62%',  kb: 'kb-zoomin',    dur: '6s' },
-  // Grey Ferrari 296 — push right to anchor on the nose & front headlights
-  { src: '/images/gallery/IMG_9219.jpeg', pos: '68% 72%',  kb: 'kb-panright',  dur: '5s' },
-  // Matte black Audi R8 — slight right, low, front air intake area prominent
-  { src: '/images/gallery/IMG_7437.jpeg', pos: '58% 68%',  kb: 'kb-diag1',     dur: '6s' },
-  // Matte black Aston Martin — left-anchor, low enough to show body & wheel arch
-  { src: '/images/gallery/IMG_8433.jpeg', pos: '38% 64%',  kb: 'kb-driftup',   dur: '5s' },
-  // Blue/purple color-shift Corvette — left-center, mid-high to showcase the paint
-  { src: '/images/gallery/IMG_7887.jpeg', pos: '36% 50%',  kb: 'kb-zoomout',   dur: '6s' },
-  // Red Corvette E-Ray — slightly right-center, body fills most of frame
-  { src: '/images/gallery/IMG_8058.jpeg', pos: '55% 64%',  kb: 'kb-diag2',     dur: '5s' },
-  // Gold Bentley Bentayga — left anchor, vertical center to show full SUV height
-  { src: '/images/gallery/IMG_8556.jpeg', pos: '40% 48%',  kb: 'kb-zoomin2',   dur: '6s' },
+  { src: '/images/gallery/IMG_9306.jpeg', pos: '38% 72%', kb: 'kb-pullback',  dur: '6s', alt: 'White Corvette Z06 — ceramic coating by Zero Defects ATL, Braselton GA' },
+  { src: '/images/gallery/IMG_8707.jpeg', pos: '50% 60%', kb: 'kb-panleft',   dur: '5s', alt: 'Red Ferrari 488 — paint protection film by Zero Defects ATL' },
+  { src: '/images/gallery/IMG_6130.jpeg', pos: '48% 62%', kb: 'kb-zoomin',    dur: '6s', alt: 'APEX GT4 custom art wrap — Zero Defects ATL' },
+  { src: '/images/gallery/IMG_9219.jpeg', pos: '68% 72%', kb: 'kb-panright',  dur: '5s', alt: 'Grey Ferrari 296 — ceramic coating detail, Zero Defects ATL' },
+  { src: '/images/gallery/IMG_7437.jpeg', pos: '58% 68%', kb: 'kb-diag1',     dur: '6s', alt: 'Matte black Audi R8 — PPF and ceramic coating, Zero Defects ATL' },
+  { src: '/images/gallery/IMG_8433.jpeg', pos: '38% 64%', kb: 'kb-driftup',   dur: '5s', alt: 'Matte black Aston Martin — paint protection film by Zero Defects ATL' },
+  { src: '/images/gallery/IMG_7887.jpeg', pos: '36% 50%', kb: 'kb-zoomout',   dur: '6s', alt: 'Color-shift Corvette — ceramic coating showcase, Zero Defects ATL' },
+  { src: '/images/gallery/IMG_8058.jpeg', pos: '55% 64%', kb: 'kb-diag2',     dur: '5s', alt: 'Red Corvette E-Ray — PPF full front, Zero Defects ATL Braselton' },
+  { src: '/images/gallery/IMG_8556.jpeg', pos: '40% 48%', kb: 'kb-zoomin2',   dur: '6s', alt: 'Gold Bentley Bentayga — ceramic coating by Zero Defects ATL' },
 ]
 
 const INTERVAL = 4000
@@ -71,7 +62,7 @@ function SlideFrame({ slide, active }) {
     <div style={{ position: 'absolute', inset: 0 }}>
       <Image
         src={slide.src}
-        alt=""
+        alt={slide.alt}
         fill
         priority={active}
         quality={90}
