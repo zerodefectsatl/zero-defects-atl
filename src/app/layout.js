@@ -68,6 +68,7 @@ const jsonLd = [
     priceRange: '$$$',
     sameAs: [
       'https://www.instagram.com/zerodefectsatl',
+      'https://maps.app.goo.gl/2vKxF6ayqwKjdA4i7',
     ],
   },
   {
