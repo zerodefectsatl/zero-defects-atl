@@ -173,6 +173,10 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .zd-grid-reviews {
+    grid-template-columns: 1fr !important;
+  }
+
   .zd-form-row {
     grid-template-columns: 1fr !important;
   }

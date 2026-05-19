@@ -17,6 +17,27 @@ const galleryImages = [
 ]
 
 /* ─── Data ─────────────────────────────────────────────────── */
+const reviews = [
+  {
+    name: 'Keith Campbell',
+    ago: '6 years ago',
+    text: 'The black paint came out looking like black chrome! Absolutely Beautiful, and bugs can now be wiped off easily. This process and this installer are well worth the money. I\'m bringing my other show car to him asap. Great Job Chris!',
+    vehicle: 'ProTouring \'66 Fairlane',
+  },
+  {
+    name: 'Kenny Fletcher',
+    ago: '3 years ago',
+    text: 'Blown away with the caliber and quality of work — from the GTechniq Crystal Serum Ceramic Coating to the XPEL PPF. His attention to every detail is incredible, just like his company name: ZERO DEFECTS. Could not recommend any higher!',
+    vehicle: 'Ford Mach 1',
+  },
+  {
+    name: 'Anthony Matthew',
+    ago: '6 months ago',
+    text: 'Chris did an outstanding and amazing job. When I got there to pick up my car, boy was I impressed. My car was looking amazing and brand new. He walked me around and explained everything. Customer service at its best. 10/10 stars.',
+    vehicle: 'Ceramic Coating & PPF',
+  },
+]
+
 const stats = [
   { num: '17+', label: 'Years of Experience' },
   { num: '500+', label: 'Vehicles Protected' },
@@ -444,6 +465,85 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* ── REVIEWS ───────────────────────────────────────────── */}
+      <section style={{ background: '#080a0c', borderBottom: '1px solid rgba(255,255,255,0.07)', padding: '80px 0' }}>
+        <div style={S.section}>
+
+          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+            <span style={S.eyebrow} data-reveal>Google Reviews</span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '4px' }}>
+              {[...Array(5)].map((_, i) => (
+                <span key={i} style={{ fontSize: '18px', color: '#f5c842' }}>★</span>
+              ))}
+              <span style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '2px', color: 'rgba(240,244,248,0.45)', marginLeft: '8px' }}>5.0 · Google</span>
+            </div>
+          </div>
+
+          <div className="zd-grid-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+            {reviews.map((r, i) => (
+              <div key={r.name} data-reveal data-reveal-delay={String(i + 1)} style={{
+                background: 'rgba(14,20,28,0.6)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                borderRadius: '8px',
+                padding: '36px 32px 32px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                position: 'relative',
+              }}>
+                {/* Large quote mark */}
+                <span style={{
+                  position: 'absolute', top: '20px', right: '28px',
+                  fontFamily: 'Georgia, serif',
+                  fontSize: '72px', lineHeight: 1,
+                  background: 'linear-gradient(135deg, #1a8fff, #00e5a0)',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                  opacity: 0.25,
+                  userSelect: 'none',
+                }}>"</span>
+
+                {/* Stars */}
+                <div style={{ display: 'flex', gap: '3px' }}>
+                  {[...Array(5)].map((_, si) => (
+                    <span key={si} style={{ fontSize: '13px', color: '#f5c842' }}>★</span>
+                  ))}
+                </div>
+
+                {/* Review text */}
+                <p style={{
+                  fontFamily: 'var(--font-barlow-body), sans-serif',
+                  fontSize: '15px', lineHeight: 1.75,
+                  color: 'rgba(240,244,248,0.82)',
+                  margin: 0, flex: 1,
+                }}>"{r.text}"</p>
+
+                {/* Reviewer */}
+                <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '13px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8' }}>{r.name}</div>
+                    <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '11px', letterSpacing: '1px', color: '#1a8fff', marginTop: '3px' }}>{r.vehicle}</div>
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.25)' }}>{r.ago}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Google link */}
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <a
+              href="https://maps.app.goo.gl/2vKxF6ayqwKjdA4i7"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '12px', fontWeight: 600, letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.35)', textDecoration: 'none' }}
+            >
+              Read all reviews on Google →
+            </a>
+          </div>
+
+        </div>
+      </section>
 
       {/* ── OUR WORK ──────────────────────────────────────────── */}
       <section id="work" style={{ background: BG.alt, borderBottom: '1px solid rgba(255,255,255,0.07)', padding: '96px 0' }}>
