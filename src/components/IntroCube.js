@@ -15,10 +15,18 @@ export default function IntroCube({ onComplete }) {
   useEffect(() => {
     const t0 = setTimeout(() => setPhase('spin'),   80)
     const t1 = setTimeout(() => setPhase('stable'), 3600)
-    const t2 = setTimeout(() => setPhase('fading'), 5800)
-    const t3 = setTimeout(() => { setPhase('done'); onComplete?.() }, 6800)
-    return () => [t0, t1, t2, t3].forEach(clearTimeout)
+    return () => [t0, t1].forEach(clearTimeout)
   }, [])
+
+  const dismiss = () => {
+    if (phase === 'fading' || phase === 'done') return
+    setPhase('fading')
+    setTimeout(() => {
+      setPhase('done')
+      document.body.style.cursor = 'auto'
+      onComplete?.()
+    }, 900)
+  }
 
   if (phase === 'done') return null
 
@@ -27,7 +35,7 @@ export default function IntroCube({ onComplete }) {
 
   return (
     <div
-      onClick={() => { setPhase('fading'); setTimeout(() => { setPhase('done'); onComplete?.() }, 1000) }}
+      onClick={dismiss}
       style={{
         position: 'fixed', inset: 0, zIndex: 20000,
         display: 'flex', flexDirection: 'column',
@@ -203,15 +211,18 @@ export default function IntroCube({ onComplete }) {
         </div>
       </div>
 
-      {/* Skip hint */}
+      {/* Tap hint */}
       <p style={{
-        position:'absolute', bottom:36,
-        fontSize:10, letterSpacing:'4px', textTransform:'uppercase',
-        color:'rgba(240,244,248,0.25)',
+        position:'absolute', bottom:40,
+        fontSize:11, letterSpacing:'5px', textTransform:'uppercase',
+        color:'rgba(240,244,248,0.7)',
         opacity: stable ? 1 : 0,
-        transition:'opacity 0.8s ease',
+        transition:'opacity 1.2s ease',
+        animation: stable ? 'tapPulse 2s ease-in-out infinite' : 'none',
         margin:0,
-      }}>Tap anywhere to enter</p>
+        userSelect:'none',
+        pointerEvents:'none',
+      }}>— Tap anywhere to enter —</p>
 
       <style>{`
         @keyframes cubeSpinIn {
@@ -223,6 +234,10 @@ export default function IntroCube({ onComplete }) {
         @keyframes cubeSpin {
           from { transform: scale(1) rotateX(1080deg) rotateY(1455deg); }
           to   { transform: scale(1) rotateX(1080deg) rotateY(1815deg); }
+        }
+        @keyframes tapPulse {
+          0%, 100% { opacity: 0.5; }
+          50%      { opacity: 1; }
         }
       `}</style>
     </div>
