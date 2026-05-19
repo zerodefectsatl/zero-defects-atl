@@ -44,7 +44,7 @@ export default function IntroCube({ onComplete }) {
         opacity: phase === 'fading' ? 0 : 1,
         transition: phase === 'fading' ? 'opacity 1s ease' : 'none',
         pointerEvents: phase === 'fading' ? 'none' : 'auto',
-        cursor: 'pointer',
+        cursor: 'crosshair',
         overflow: 'hidden',
       }}
     >
