@@ -22,10 +22,11 @@ export default function ParallaxScroll() {
     return () => { clearTimeout(t); observer.disconnect() }
   }, [])
 
-  // Parallax — RAF-throttled scroll listener
+  // Parallax + photo-reveal — RAF-throttled scroll listener
   useEffect(() => {
     let raf = null
     let items = []
+    let photoItems = []
 
     const collect = () => {
       items = []
@@ -38,14 +39,33 @@ export default function ParallaxScroll() {
         const speed = parseFloat(el.dataset.parallaxSpeed ?? '0.2')
         items.push({ el, naturalTop, speed })
       })
+
+      photoItems = []
+      document.querySelectorAll('[data-photo-reveal]').forEach((el) => {
+        const prev = el.style.clipPath
+        el.style.clipPath = ''
+        const rect = el.getBoundingClientRect()
+        el.style.clipPath = prev
+        const naturalTop = rect.top + window.scrollY
+        photoItems.push({ el, naturalTop })
+      })
     }
 
     const update = () => {
       const y = window.scrollY
+      const vh = window.innerHeight
+
       items.forEach(({ el, naturalTop, speed }) => {
         const offset = (y - naturalTop) * speed
         el.style.transform = `translateY(${offset}px)`
       })
+
+      photoItems.forEach(({ el, naturalTop }) => {
+        const progress = Math.max(0, Math.min(1, (y + vh - naturalTop) / vh))
+        const inset = Math.round((1 - progress) * 38)
+        el.style.clipPath = `inset(${inset}% 0)`
+      })
+
       raf = null
     }
 

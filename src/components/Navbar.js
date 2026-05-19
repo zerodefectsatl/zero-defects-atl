@@ -32,12 +32,10 @@ export default function Navbar() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 48px',
-        background: scrolled
-          ? 'rgba(8,10,12,0.95)'
-          : 'rgba(8,10,12,0.7)',
-        backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(255,255,255,0.07)',
+        padding: '0 48px 0 clamp(12px, 2vw, 24px)',
+        background: scrolled ? 'rgba(8,10,12,0.92)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : 'none',
         transition: 'background 0.3s',
       }}
     >
@@ -48,11 +46,11 @@ export default function Navbar() {
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
       >
         <Image
-          src="/images/logos/zd-logo.png"
+          src="/images/logos/zd-logo-transparent.png"
           alt="Zero Defects ATL"
-          width={52}
-          height={52}
-          style={{ display: 'block', objectFit: 'contain' }}
+          width={160}
+          height={56}
+          style={{ display: 'block', objectFit: 'contain', height: '148px', width: 'auto', marginTop: '40px' }}
           priority
         />
       </a>

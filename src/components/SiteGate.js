@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 export default function SiteGate() {
-  const [scan, setScan]       = useState(false)
-  const [badge, setBadge]     = useState(false)
+  const [logo, setLogo]       = useState(false)
+  const [frame, setFrame]     = useState(false)
   const [words, setWords]     = useState(false)
   const [prompt, setPrompt]   = useState(false)
   const [closing, setClosing] = useState(false)
@@ -15,10 +15,11 @@ export default function SiteGate() {
   const [cursorHover, setCursorHover] = useState(false)
 
   useEffect(() => {
-    const t0 = setTimeout(() => setScan(true),   80)
-    const t1 = setTimeout(() => setBadge(true),  420)
-    const t2 = setTimeout(() => setWords(true),  580)
-    const t3 = setTimeout(() => setPrompt(true), 1300)
+    // logo spins in (1.8s) → frame locks in → wordmark → prompt
+    const t0 = setTimeout(() => setLogo(true),   300)
+    const t1 = setTimeout(() => setFrame(true),  1900)
+    const t2 = setTimeout(() => setWords(true),  2600)
+    const t3 = setTimeout(() => setPrompt(true), 3400)
     return () => { clearTimeout(t0); clearTimeout(t1); clearTimeout(t2); clearTimeout(t3) }
   }, [])
 
@@ -39,7 +40,7 @@ export default function SiteGate() {
 
   return (
     <>
-      {/* Custom cursor */}
+      {/* Custom cursor ring */}
       <div style={{
         position: 'fixed', top: 0, left: 0,
         width: cursorHover ? '52px' : '34px',
@@ -60,7 +61,7 @@ export default function SiteGate() {
         transition: 'transform 0.02s linear',
       }} />
 
-      {/* Gate */}
+      {/* Gate overlay */}
       <div
         onClick={enter}
         onMouseEnter={() => setCursorHover(true)}
@@ -76,67 +77,48 @@ export default function SiteGate() {
           placeItems: 'center',
         }}
       >
-        {/* Subtle radial glow */}
+        {/* Subtle center glow */}
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(26,143,255,0.055) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(26,143,255,0.06) 0%, transparent 70%)',
         }} />
 
-        {/* Scanner line — sweeps top→bottom */}
-        {scan && (
-          <div style={{
-            position: 'absolute', left: 0, right: 0,
-            height: '1.5px',
-            background: 'linear-gradient(90deg, transparent 0%, rgba(26,143,255,0.9) 20%, rgba(0,229,160,0.9) 80%, transparent 100%)',
-            boxShadow: '0 0 12px rgba(26,143,255,0.6), 0 0 40px rgba(26,143,255,0.2)',
-            animation: 'scanDown 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-            pointerEvents: 'none',
-            zIndex: 2,
-          }} />
-        )}
-
-        {/* Scanned area fill */}
-        {scan && (
-          <div style={{
-            position: 'absolute', left: 0, right: 0, bottom: 0,
-            background: 'rgba(26,143,255,0.015)',
-            animation: 'scanFill 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-            pointerEvents: 'none',
-            zIndex: 1,
-          }} />
-        )}
-
-        {/* Logo block — perfectly centered */}
+        {/* Centered content block */}
         <div style={{
           position: 'relative', zIndex: 3,
           display: 'flex', flexDirection: 'column',
           alignItems: 'center',
-          gap: '0',
         }}>
 
-          {/* Logo — swirls in from a tiny point */}
+          {/* Logo + frame wrapper */}
           <div style={{
-            marginBottom: '28px',
-            animation: badge ? 'logoReveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards' : 'none',
-            opacity: badge ? undefined : 0,
-            maskImage: 'radial-gradient(ellipse 82% 78% at 50% 50%, black 45%, rgba(0,0,0,0.6) 65%, transparent 85%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 82% 78% at 50% 50%, black 45%, rgba(0,0,0,0.6) 65%, transparent 85%)',
+            position: 'relative',
+            marginBottom: '32px',
           }}>
-            <Image
-              src="/images/logos/zd-logo.png"
-              alt="Zero Defects"
-              width={240}
-              height={240}
-              priority
-              style={{ display: 'block' }}
-            />
+
+            {/* Logo — spins in from a tiny invisible point */}
+            <div style={{
+              animation: logo ? 'logoReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards' : 'none',
+              opacity: logo ? undefined : 0,
+            }}>
+              <Image
+                src="/images/logos/zd-logo.png"
+                alt="Zero Defects"
+                width={480}
+                height={270}
+                priority
+                style={{ display: 'block', width: '480px', height: 'auto' }}
+              />
+            </div>
           </div>
 
           {/* Wordmark */}
           <div style={{ overflow: 'hidden', marginBottom: '5px' }}>
             <div style={{
               transform: words ? 'translateY(0)' : 'translateY(105%)',
-              transition: 'transform 0.75s cubic-bezier(0.23, 1, 0.32, 1)',
+              transitionProperty: 'transform, letter-spacing',
+              transitionDuration: '0.75s, 1.1s',
+              transitionTimingFunction: 'cubic-bezier(0.23,1,0.32,1), ease',
               fontFamily: 'var(--font-barlow-cond), sans-serif',
               fontWeight: 700,
               fontSize: '14px',
@@ -144,9 +126,6 @@ export default function SiteGate() {
               textTransform: 'uppercase',
               color: '#f0f4f8',
               whiteSpace: 'nowrap',
-              transitionProperty: 'transform, letter-spacing',
-              transitionDuration: '0.75s, 1.1s',
-              transitionTimingFunction: 'cubic-bezier(0.23,1,0.32,1), ease',
             }}>
               Zero Defects
             </div>

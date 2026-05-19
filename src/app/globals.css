@@ -46,8 +46,9 @@ body {
 }
 
 .stroke-text {
-  -webkit-text-stroke: 1px rgba(26, 143, 255, 0.45);
-  color: transparent;
+  -webkit-text-stroke: 2px #1a8fff;
+  color: rgba(26, 143, 255, 0.45);
+  filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.92));
 }
 
 .gradient-bg {
@@ -55,24 +56,37 @@ body {
 }
 
 .zd-card {
-  background: rgba(12, 16, 22, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 4px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 4px 16px rgba(0, 0, 0, 0.3),
-    0 16px 48px rgba(0, 0, 0, 0.35);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  background: rgba(14, 20, 28, 0.55);
+  border-radius: 16px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease;
+}
+
+/* Gradient border via pseudo-element */
+.zd-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    rgba(26,143,255,0.35) 0%,
+    rgba(0,229,160,0.18) 50%,
+    rgba(255,255,255,0.05) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .zd-card:hover {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 8px 24px rgba(0, 0, 0, 0.35),
-    0 24px 64px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(26, 143, 255, 0.08);
+  transform: translateY(-2px);
 }
 
 .zd-border {
@@ -203,54 +217,60 @@ body {
   100% { transform: scale(1.04) translate(-0.4%, 0.8%); }
 }
 
-/* ── Ken Burns slide variants (8 unique motions) ────── */
+/* ── Ken Burns slide variants ────────────────────────── */
 
-/* 1: slow zoom in — pulls viewer into the car */
-@keyframes kb-zoomin {
-  0%   { transform: scale(1.0)  translate(0%,    0%);   }
-  100% { transform: scale(1.12) translate(-0.5%, 0.5%); }
+/* 1: dramatic pull-back reveal — starts very tight, opens up */
+@keyframes kb-pullback {
+  0%   { transform: scale(1.28) translate(0%, 0%); }
+  100% { transform: scale(1.0)  translate(0%, 0%); }
 }
 
-/* 2: pan left — sweeps across the body */
+/* 2: aggressive tracking pan left */
 @keyframes kb-panleft {
-  0%   { transform: scale(1.06) translate(2.5%, 0%); }
-  100% { transform: scale(1.09) translate(-1%,  0%); }
+  0%   { transform: scale(1.10) translate(4%,  0%); }
+  100% { transform: scale(1.12) translate(-3%, 0%); }
 }
 
-/* 3: zoom out / reveal — starts tight, pulls back */
+/* 3: slow zoom in — pushes into the detail */
+@keyframes kb-zoomin {
+  0%   { transform: scale(1.0)  translate(0%, 0%);    }
+  100% { transform: scale(1.18) translate(-1%, 0.5%); }
+}
+
+/* 4: tracking pan right */
+@keyframes kb-panright {
+  0%   { transform: scale(1.10) translate(-4%, 0%); }
+  100% { transform: scale(1.12) translate(3%,  0%); }
+}
+
+/* 5: diagonal push bottom-left → top-right */
+@keyframes kb-diag1 {
+  0%   { transform: scale(1.0)  translate(-3%,   2.5%);  }
+  100% { transform: scale(1.16) translate(1.5%, -1.5%);  }
+}
+
+/* 6: float upward with scale */
+@keyframes kb-driftup {
+  0%   { transform: scale(1.14) translate(0%,  3%); }
+  100% { transform: scale(1.06) translate(0%, -1%); }
+}
+
+/* 7: zoom out — reveals full scene */
 @keyframes kb-zoomout {
-  0%   { transform: scale(1.14) translate(0.5%, -0.5%); }
+  0%   { transform: scale(1.22) translate(0.5%, -0.5%); }
   100% { transform: scale(1.0)  translate(0%,    0%);   }
 }
 
-/* 4: pan right — opposite sweep */
-@keyframes kb-panright {
-  0%   { transform: scale(1.06) translate(-2.5%, 0%); }
-  100% { transform: scale(1.09) translate(1%,    0%); }
-}
-
-/* 5: diagonal bottom-left → top-right */
-@keyframes kb-diag1 {
-  0%   { transform: scale(1.0)  translate(-1.5%, 1.5%); }
-  100% { transform: scale(1.11) translate(1%,   -1%);   }
-}
-
-/* 6: drift upward — slow float */
-@keyframes kb-driftup {
-  0%   { transform: scale(1.09) translate(0%,  1.8%); }
-  100% { transform: scale(1.04) translate(0%, -0.6%); }
-}
-
-/* 7: diagonal top-right → bottom-left */
+/* 8: diagonal top-right → bottom-left */
 @keyframes kb-diag2 {
-  0%   { transform: scale(1.0)  translate(1.5%, -1.5%); }
-  100% { transform: scale(1.11) translate(-1%,  1%);    }
+  0%   { transform: scale(1.0)  translate(3%,  -2.5%); }
+  100% { transform: scale(1.16) translate(-1.5%, 1.5%); }
 }
 
-/* 8: zoom in off-center — pushes into corner detail */
+/* 9: off-center zoom push */
 @keyframes kb-zoomin2 {
-  0%   { transform: scale(1.0)  translate(1.5%, 1%);  }
-  100% { transform: scale(1.13) translate(-1%, -0.5%); }
+  0%   { transform: scale(1.0)  translate(2.5%,  2%); }
+  100% { transform: scale(1.18) translate(-1.5%, -1%); }
 }
 
 /* ── Logo swirl-in ──────────────────────────────────── */
@@ -264,16 +284,6 @@ body {
 }
 
 /* ── Site gate animations ───────────────────────────── */
-@keyframes scanDown {
-  from { top: -2px; }
-  to   { top: 100%; }
-}
-
-@keyframes scanFill {
-  from { top: 100%; height: 0; }
-  to   { top: 0;    height: 100%; }
-}
-
 @keyframes gatePulse {
   0%, 100% { opacity: 0.4; }
   50%       { opacity: 0.9; }

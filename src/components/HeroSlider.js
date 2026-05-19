@@ -3,21 +3,29 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
-// Each slide has a unique motion — no two feel the same
 const SLIDES = [
-  { src: '/images/gallery/IMG_9306.jpeg', pos: 'center 42%', kb: 'kb-zoomin',   dur: '9s'  },
-  { src: '/images/gallery/IMG_8707.jpeg', pos: 'center 50%', kb: 'kb-panleft',  dur: '10s' },
-  { src: '/images/gallery/apex-gt4.jpg',  pos: 'center 45%', kb: 'kb-panright', dur: '10s' },
-  { src: '/images/gallery/IMG_9219.jpeg', pos: 'center 38%', kb: 'kb-zoomout',  dur: '11s' },
-  { src: '/images/gallery/IMG_7437.jpeg', pos: 'center 45%', kb: 'kb-diag1',    dur: '9s'  },
-  { src: '/images/gallery/IMG_8433.jpeg', pos: 'center 40%', kb: 'kb-driftup',  dur: '10s' },
-  { src: '/images/gallery/IMG_7887.jpeg', pos: 'center 44%', kb: 'kb-diag2',    dur: '9s'  },
-  { src: '/images/gallery/IMG_8058.jpeg', pos: 'center 42%', kb: 'kb-zoomin2',  dur: '11s' },
-  { src: '/images/gallery/IMG_8556.jpeg', pos: 'center 40%', kb: 'kb-zoomin',   dur: '10s' },
+  // White Corvette Z06 — push left-low, front fascia fills right side of frame
+  { src: '/images/gallery/IMG_9306.jpeg', pos: '38% 72%',  kb: 'kb-pullback',  dur: '6s' },
+  // Red Ferrari 488 — full side profile, centered low on the body
+  { src: '/images/gallery/IMG_8707.jpeg', pos: '50% 60%',  kb: 'kb-panleft',   dur: '5s' },
+  // APEX GT4 art wrap — push right to show the dramatic livery mid-body
+  { src: '/images/gallery/IMG_6130.jpeg', pos: '48% 62%',  kb: 'kb-zoomin',    dur: '6s' },
+  // Grey Ferrari 296 — push right to anchor on the nose & front headlights
+  { src: '/images/gallery/IMG_9219.jpeg', pos: '68% 72%',  kb: 'kb-panright',  dur: '5s' },
+  // Matte black Audi R8 — slight right, low, front air intake area prominent
+  { src: '/images/gallery/IMG_7437.jpeg', pos: '58% 68%',  kb: 'kb-diag1',     dur: '6s' },
+  // Matte black Aston Martin — left-anchor, low enough to show body & wheel arch
+  { src: '/images/gallery/IMG_8433.jpeg', pos: '38% 64%',  kb: 'kb-driftup',   dur: '5s' },
+  // Blue/purple color-shift Corvette — left-center, mid-high to showcase the paint
+  { src: '/images/gallery/IMG_7887.jpeg', pos: '36% 50%',  kb: 'kb-zoomout',   dur: '6s' },
+  // Red Corvette E-Ray — slightly right-center, body fills most of frame
+  { src: '/images/gallery/IMG_8058.jpeg', pos: '55% 64%',  kb: 'kb-diag2',     dur: '5s' },
+  // Gold Bentley Bentayga — left anchor, vertical center to show full SUV height
+  { src: '/images/gallery/IMG_8556.jpeg', pos: '40% 48%',  kb: 'kb-zoomin2',   dur: '6s' },
 ]
 
-const INTERVAL = 5500   // ms per slide
-const FADE_MS  = 1400   // crossfade duration
+const INTERVAL = 4000
+const FADE_MS  = 1000
 
 export default function HeroSlider() {
   const [cur,    setCur]    = useState(0)
@@ -42,7 +50,6 @@ export default function HeroSlider() {
 
   return (
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-      {/* Previous slide — fades out */}
       {prev !== null && (
         <div
           key={`prev-${prev}`}
@@ -52,17 +59,9 @@ export default function HeroSlider() {
         </div>
       )}
 
-      {/* Current slide */}
       <div key={`cur-${cur}`} style={{ position: 'absolute', inset: 0 }}>
         <SlideFrame slide={SLIDES[cur]} active />
       </div>
-
-      {/* Cinematic color grade */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2,
-        background: 'linear-gradient(105deg, rgba(8,10,12,0.40) 15%, rgba(8,10,12,0.08) 100%)',
-        mixBlendMode: 'multiply',
-      }} />
     </div>
   )
 }
@@ -75,11 +74,12 @@ function SlideFrame({ slide, active }) {
         alt=""
         fill
         priority={active}
+        quality={90}
         sizes="100vw"
         style={{
           objectFit: 'cover',
           objectPosition: slide.pos,
-          filter: 'brightness(0.82) contrast(1.10) saturate(0.84)',
+          filter: 'brightness(0.96) contrast(1.05) saturate(0.92)',
           animation: active ? `${slide.kb} ${slide.dur} ease-in-out forwards` : 'none',
           transformOrigin: '50% 50%',
         }}
