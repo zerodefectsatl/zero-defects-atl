@@ -6,6 +6,7 @@ import ContactForm from '@/components/ContactForm'
 import RevealText from '@/components/RevealText'
 import HeroSlider from '@/components/HeroSlider'
 import IntroCube from '@/components/IntroCube'
+import LazyVideo from '@/components/LazyVideo'
 
 const galleryImages = [
   '/images/gallery/IMG_7437.jpeg',
@@ -675,12 +676,9 @@ export default function Home() {
 
       {/* ── WHY ZERO DEFECTS ──────────────────────────────────── */}
       <section style={{ position: 'relative', borderTop: '1px solid rgba(255,255,255,0.07)', padding: '96px 0', overflow: 'hidden' }}>
-        {/* Ferrari wheel video background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        {/* Ferrari wheel video background — lazy-loaded when scrolled into view */}
+        <LazyVideo
+          src="/videos/ferrari-wheel.mp4"
           poster="/images/gallery/IMG_8707.jpeg"
           style={{
             position: 'absolute', inset: 0,
@@ -689,9 +687,7 @@ export default function Home() {
             objectPosition: 'center',
             zIndex: 0,
           }}
-        >
-          <source src="/videos/ferrari-wheel.mp4" type="video/mp4" />
-        </video>
+        />
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(26,143,255,0.07) 0%, transparent 70%)', zIndex: 1 }} />
 
         <div style={{ ...S.section, position: 'relative', zIndex: 2 }}>
