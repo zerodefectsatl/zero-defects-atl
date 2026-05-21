@@ -23,7 +23,6 @@ const photos = [
   '/images/gallery/IMG_5864.jpeg',
   '/images/gallery/IMG_5920.jpeg',
   '/images/gallery/IMG_5979.jpeg',
-  '/images/gallery/IMG_6130.jpeg',
   '/images/gallery/IMG_6937.jpeg',
   '/images/gallery/IMG_6940.jpeg',
   '/images/gallery/IMG_6951.jpeg',
