@@ -136,7 +136,12 @@ body {
 }
 @media (max-width: 768px) {
   .zd-hero {
-    min-height: 65vh;
+    min-height: 56vh;
+  }
+  /* Landscape car photos crop hard in a tall phone-shaped box — center the
+     car and ease the zoom so the whole vehicle stays in frame. */
+  .zd-hero img {
+    object-position: 50% 50% !important;
   }
 }
 
