@@ -55,6 +55,29 @@ const jsonLd = [
       bestRating: '5',
       ratingCount: '50',
     },
+    review: [
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Keith Campbell' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody:
+          'The black paint came out looking like black chrome! Absolutely beautiful, and bugs can now be wiped off easily. This process and this installer are well worth the money.',
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Kenny Fletcher' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody:
+          'Blown away with the caliber and quality of work — from the GTechniq Crystal Serum Ceramic Coating to the XPEL PPF. His attention to every detail is incredible, just like his company name: ZERO DEFECTS.',
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Anthony Matthew' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody:
+          'Chris did an outstanding and amazing job. My car was looking amazing and brand new. He walked me around and explained everything. Customer service at its best. 10/10 stars.',
+      },
+    ],
     areaServed: ['Braselton, GA', 'Gainesville, GA', 'Buford, GA', 'Cumming, GA', 'Atlanta, GA'],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
