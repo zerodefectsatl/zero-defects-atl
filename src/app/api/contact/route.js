@@ -10,7 +10,12 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    await resend.emails.send({
+    if (!process.env.RESEND_API_KEY) {
+      console.error('Resend error: RESEND_API_KEY is not set')
+      return NextResponse.json({ error: 'Email not configured' }, { status: 500 })
+    }
+
+    const { data, error } = await resend.emails.send({
       from: 'Zero Defects ATL <quotes@zerodefectsatl.com>',
       to: ['zerodefectsatl@gmail.com'],
       replyTo: email,
@@ -58,7 +63,12 @@ export async function POST(request) {
       `,
     })
 
-    return NextResponse.json({ ok: true })
+    if (error) {
+      console.error('Resend error:', error)
+      return NextResponse.json({ error: error.message || 'Failed to send' }, { status: 502 })
+    }
+
+    return NextResponse.json({ ok: true, id: data?.id })
   } catch (err) {
     console.error('Resend error:', err)
     return NextResponse.json({ error: 'Failed to send' }, { status: 500 })
