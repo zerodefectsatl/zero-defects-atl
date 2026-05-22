@@ -11,7 +11,7 @@ export async function POST(request) {
     }
 
     await resend.emails.send({
-      from: 'Zero Defects ATL <onboarding@resend.dev>',
+      from: 'Zero Defects ATL <quotes@zerodefectsatl.com>',
       to: ['zerodefectsatl@gmail.com'],
       replyTo: email,
       subject: `New Quote Request — ${service || 'General Inquiry'}`,
