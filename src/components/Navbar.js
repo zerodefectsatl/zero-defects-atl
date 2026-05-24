@@ -32,7 +32,7 @@ export default function Navbar() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 48px 0 clamp(12px, 2vw, 24px)',
+        padding: '0 32px 0 clamp(12px, 2vw, 24px)',
         background: scrolled ? 'rgba(8,10,12,0.92)' : 'transparent',
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : 'none',
@@ -55,8 +55,48 @@ export default function Navbar() {
         />
       </a>
 
-      {/* Hamburger */}
-      <button
+      {/* Desktop nav — hidden on mobile via CSS class */}
+      <div className="nav-links-desktop">
+        {links.map((l) => (
+          <a
+            key={l.label}
+            href={l.href}
+            style={{
+              fontFamily: 'var(--font-barlow-cond), sans-serif',
+              fontSize: '13px',
+              fontWeight: 600,
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              color: 'rgba(240,244,248,0.7)',
+              textDecoration: 'none',
+            }}
+          >
+            {l.label}
+          </a>
+        ))}
+        <a
+          href="tel:4044063355"
+          style={{
+            fontFamily: 'var(--font-barlow-cond), sans-serif',
+            fontSize: '12px',
+            fontWeight: 700,
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            color: '#080a0c',
+            background: 'linear-gradient(90deg, #1a8fff, #00e5a0)',
+            padding: '10px 20px',
+            borderRadius: '4px',
+            textDecoration: 'none',
+            marginLeft: '8px',
+          }}
+        >
+          Book Now
+        </a>
+      </div>
+
+      {/* Hamburger — hidden on desktop via CSS class */}
+      <div className="nav-hamburger">
+        <button
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
             background: 'none',
@@ -80,8 +120,9 @@ export default function Navbar() {
             </svg>
           )}
         </button>
+      </div>
 
-      {/* Dropdown */}
+      {/* Mobile dropdown */}
       {menuOpen && (
         <div
           style={{

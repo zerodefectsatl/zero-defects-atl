@@ -297,3 +297,106 @@ body {
   0%, 100% { opacity: 0.4; }
   50%       { opacity: 0.9; }
 }
+
+/* ── Nav desktop / mobile toggle ────────────────────────── */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-hamburger {
+  display: none;
+}
+
+/* ── Contact 2-col grid ─────────────────────────────────── */
+.zd-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* ── Services parallax background (iOS: no fixed) ───────── */
+.zd-services-bg {
+  background-attachment: fixed;
+}
+
+/* ── CSU editorial 1fr / 2fr split ─────────────────────── */
+.zd-csu-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ── CSU features 2-col list ────────────────────────────── */
+.zd-features-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ── CCI tier cards 2-col ───────────────────────────────── */
+.zd-cci-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ── Process 2 × 2 grid ─────────────────────────────────── */
+.zd-process-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ── Process cell padding ───────────────────────────────── */
+.zd-process-cell {
+  padding: 56px 48px;
+}
+
+/* ── Hero wordmark positioning ──────────────────────────── */
+.zd-hero-wordmark {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 0 0 clamp(200px, 34vh, 380px) clamp(12px, 2vw, 24px);
+}
+
+/* ── Mobile overrides (new classes) ─────────────────────── */
+@media (max-width: 768px) {
+  .nav-links-desktop  { display: none; }
+  .nav-hamburger      { display: flex; }
+
+  .zd-contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  .zd-services-bg {
+    background-attachment: scroll !important;
+  }
+
+  .zd-csu-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .zd-features-2col {
+    grid-template-columns: 1fr !important;
+  }
+
+  .zd-cci-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .zd-process-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .zd-process-cell {
+    padding: 32px 20px !important;
+  }
+
+  .zd-hero-wordmark {
+    padding: 0 0 clamp(24px, 4vh, 60px) 20px !important;
+  }
+}

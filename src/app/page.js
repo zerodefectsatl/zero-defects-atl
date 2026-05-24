@@ -249,13 +249,8 @@ export default function Home() {
           background: 'linear-gradient(to top right, rgba(8,10,12,0.48) 0%, rgba(8,10,12,0.12) 50%, rgba(8,10,12,0.02) 100%)',
         }} />
 
-        {/* Wordmark — bottom-left */}
-        <div style={{
-          position: 'absolute',
-          bottom: 0, left: 0,
-          zIndex: 2,
-          padding: '0 0 clamp(200px, 34vh, 380px) clamp(12px, 2vw, 24px)',
-        }}>
+        {/* Wordmark — bottom-left; mobile override in zd-hero-wordmark class */}
+        <div className="zd-hero-wordmark">
           <h1 style={{
             fontFamily: 'var(--font-bebas-neue), sans-serif',
             fontSize: 'clamp(54px, 9vw, 120px)',
@@ -291,11 +286,10 @@ export default function Home() {
 
       {/* ── SERVICES — CERAMIC COATINGS ───────────────────────── */}
       <section id="services" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Fixed parallax background — sits still while content scrolls over it */}
-        <div style={{
+        {/* Parallax background — fixed on desktop, scroll on iOS (background-attachment:fixed broken on Safari) */}
+        <div className="zd-services-bg" style={{
           position: 'absolute', inset: 0,
           backgroundImage: "url('/images/gallery/g-techniq-ultra-serum.jpg')",
-          backgroundAttachment: 'fixed',
           backgroundSize: 'cover',
           backgroundPosition: 'center 50%',
           zIndex: 0,
@@ -326,7 +320,7 @@ export default function Home() {
                   <span className="gradient-text" style={{ fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: '64px', lineHeight: 1 }}>01</span>
                   <span style={{ ...S.cardLabel, fontSize: '10px', color: '#00e5a0', letterSpacing: '2px' }}>9-Year Warranty</span>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '56px', alignItems: 'start' }}>
+                <div className="zd-csu-grid">
                   <div>
                     <div style={{ ...S.cardLabel, fontSize: '10px', color: '#1a8fff', marginBottom: '8px' }}>Gtechniq</div>
                     <h4 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '32px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8', marginBottom: '8px' }}>Crystal Serum Ultra</h4>
@@ -336,7 +330,7 @@ export default function Home() {
                     <p style={{ fontSize: '15px', lineHeight: 1.75, color: 'rgba(240,244,248,0.78)', marginBottom: '28px' }}>
                       The absolute best in ceramic protection. Dual-layer 10H/7H system delivers swirl resistance no 9H coating can match — rated from −40°C to +250°C.
                     </p>
-                    <ul style={{ listStyle: 'none', padding: 0, marginBottom: '32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+                    <ul style={{ listStyle: 'none', padding: 0, marginBottom: '32px' }} className="zd-features-2col">
                       {coatingServices[0].features.map((f) => (
                         <li key={f} style={{ fontSize: '14px', color: 'rgba(240,244,248,0.72)', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                           <span style={{ color: '#1a8fff', flexShrink: 0 }}>✓</span>{f}
@@ -356,7 +350,7 @@ export default function Home() {
               </div>
 
               {/* CCI Revolution + Advance — open 2-col */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div className="zd-cci-grid">
                 {coatingServices.slice(1).map((svc, i) => (
                   <div key={svc.name} data-reveal style={{ padding: '48px 40px', borderRight: i === 0 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
@@ -607,10 +601,9 @@ export default function Home() {
           <span style={S.eyebrow} data-reveal>How It Works</span>
           <h2 style={{ ...S.sectionTitle, textShadow: GLOW }} data-reveal data-reveal-delay="1">The Process</h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+          <div className="zd-process-grid">
             {processSteps.map((step, i) => (
-              <div key={step.num} style={{
-                padding: '56px 48px',
+              <div key={step.num} className="zd-process-cell" style={{
                 borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.08)' : 'none',
                 borderRight: i % 2 === 0 ? '1px solid rgba(255,255,255,0.08)' : 'none',
               }}>
@@ -727,7 +720,7 @@ export default function Home() {
       {/* ── CONTACT ───────────────────────────────────────────── */}
       <section id="contact" style={{ background: BG.alt, padding: '96px 0' }}>
         <div style={S.section}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }} className="zd-grid-trust">
+          <div className="zd-contact-grid">
             <div>
               <span style={{ ...S.eyebrow, color: '#f0f4f8' }}>Get a Quote</span>
               <h2 style={{ ...S.sectionTitle, color: '#f0f4f8', textShadow: 'none', marginBottom: '24px' }}>
