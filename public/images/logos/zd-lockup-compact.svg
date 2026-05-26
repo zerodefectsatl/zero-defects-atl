@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 880" fill="none">
+  <defs>
+    <linearGradient id="zg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#c8e0ff"/>
+      <stop offset="22%" stop-color="#1a8fff"/>
+      <stop offset="58%" stop-color="#0044bb"/>
+      <stop offset="100%" stop-color="#001840"/>
+    </linearGradient>
+    <linearGradient id="dg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#fffde0"/>
+      <stop offset="28%" stop-color="#f8ff50"/>
+      <stop offset="65%" stop-color="#eaff00"/>
+      <stop offset="100%" stop-color="#c8d800"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Z: 60→460 = 400px wide, 55→520 = 465px tall, 88px bars, symmetric diagonal -->
+  <polygon
+    points="60,55 460,55 460,143 268,432 460,432 460,520 60,520 60,432 252,143 60,143"
+    fill="url(#zg)"
+  />
+
+  <!-- D: 500→960 = 460px wide, same 55→520 height — slightly wider than Z like real type -->
+  <path d="
+    M500,55
+    L690,55
+    Q940,55 940,210
+    L940,365
+    Q940,520 690,520
+    L500,520
+    Z
+    M596,148
+    L672,148
+    Q840,148 840,214
+    L840,362
+    Q840,427 672,427
+    L596,427
+    Z
+  " fill="url(#dg)" fill-rule="evenodd"/>
+
+  <!-- ZERO — gap from monogram bottom (520) = 52px → baseline 696 -->
+  <text
+    x="500" y="696"
+    text-anchor="middle"
+    font-family="Manrope, Arial Black, sans-serif"
+    font-weight="800"
+    font-size="175"
+    fill="#1a8fff"
+    letter-spacing="20"
+    textLength="740"
+    lengthAdjust="spacingAndGlyphs"
+  >ZERO</text>
+
+  <!-- DEFECTS — same 52px gap below ZERO baseline → y=847 -->
+  <text
+    x="500" y="847"
+    text-anchor="middle"
+    font-family="Manrope, Arial Black, sans-serif"
+    font-weight="800"
+    font-size="140"
+    fill="#eaff00"
+    letter-spacing="10"
+    textLength="880"
+    lengthAdjust="spacingAndGlyphs"
+  >DEFECTS</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="none">
+  <defs>
+    <linearGradient id="z-flow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000615"/>
+      <stop offset="0.35" stop-color="#001f5c"/>
+      <stop offset="1" stop-color="#1a8fff"/>
+    </linearGradient>
+  </defs>
+  <!-- Z: polygon shape -->
+  <polygon points="80,120 620,120 620,240 280,760 640,760 640,880 80,880 80,760 420,240 80,240" fill="url(#z-flow)"/>
+  <!-- D: outer rounded-rect minus inner cutout for bowl -->
+  <path d="
+    M660,120
+    L820,120
+    Q940,120 940,280
+    L940,720
+    Q940,880 820,880
+    L660,880
+    Z
+    M740,240
+    L800,240
+    Q860,240 860,310
+    L860,690
+    Q860,760 800,760
+    L740,760
+    Z
+  " fill="#eaff00" fill-rule="evenodd"/>
+</svg>

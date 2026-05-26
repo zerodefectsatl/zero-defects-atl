@@ -53,7 +53,7 @@ export default function IntroCube({ onComplete }) {
     >
       {/* Multi-layer ambient glow */}
       <div style={{ position:'absolute', inset:0, pointerEvents:'none',
-        background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(26,143,255,0.07) 0%, rgba(0,229,160,0.03) 40%, transparent 70%)'
+        background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(26,143,255,0.07) 0%, rgba(234,255,0,0.03) 40%, transparent 70%)'
       }}/>
 
       {/* 3D perspective scene */}
@@ -100,8 +100,8 @@ export default function IntroCube({ onComplete }) {
               position:'absolute',
               width: 7, height: 7,
               borderRadius:'50%',
-              background: i < 4 ? '#1a8fff' : '#00e5a0',
-              boxShadow: `0 0 10px 3px ${i < 4 ? 'rgba(26,143,255,0.9)' : 'rgba(0,229,160,0.9)'}`,
+              background: i < 4 ? '#1a8fff' : '#eaff00',
+              boxShadow: `0 0 10px 3px ${i < 4 ? 'rgba(26,143,255,0.9)' : 'rgba(234,255,0,0.9)'}`,
               left: c[0] - 3.5,
               top:  c[1] - 3.5,
               transform: `translateZ(${c[2]}px)`,
@@ -151,8 +151,8 @@ export default function IntroCube({ onComplete }) {
             position:'absolute',
             width: RB, height: RB,
             borderRadius:'50%',
-            border: '1px solid rgba(0,229,160,0.22)',
-            boxShadow: '0 0 14px rgba(0,229,160,0.1)',
+            border: '1px solid rgba(234,255,0,0.22)',
+            boxShadow: '0 0 14px rgba(234,255,0,0.1)',
             top:'50%', left:'50%',
             marginTop: -RB/2, marginLeft: -RB/2,
             transform: 'rotateY(90deg)',
@@ -202,8 +202,8 @@ export default function IntroCube({ onComplete }) {
                 position:'absolute',
                 width: 5, height: 5,
                 borderRadius:'50%',
-                background: i % 2 === 0 ? 'rgba(26,143,255,0.9)' : 'rgba(0,229,160,0.9)',
-                boxShadow: `0 0 8px 2px ${i%2===0?'rgba(26,143,255,0.7)':'rgba(0,229,160,0.7)'}`,
+                background: i % 2 === 0 ? 'rgba(26,143,255,0.9)' : 'rgba(234,255,0,0.9)',
+                boxShadow: `0 0 8px 2px ${i%2===0?'rgba(26,143,255,0.7)':'rgba(234,255,0,0.7)'}`,
                 left: c[0] - 2.5,
                 top:  c[1] - 2.5,
                 transform: `translateZ(${c[2]}px)`,
@@ -251,8 +251,8 @@ export default function IntroCube({ onComplete }) {
 const h = S / 2
 const OUTER_FACES = [
   { type:'front',  w:S, h:S, tf:`translateZ(${h}px)`,               bg:'rgba(26,143,255,0.025)',  border:'rgba(26,143,255,0.4)',  shadow:'inset 0 0 60px rgba(26,143,255,0.05)', lineColor:'#1a8fff' },
-  { type:'back',   w:S, h:S, tf:`rotateY(180deg) translateZ(${h}px)`,bg:'rgba(0,229,160,0.015)',   border:'rgba(0,229,160,0.25)',  shadow:null,                                   lineColor:'#00e5a0' },
-  { type:'right',  w:S, h:S, tf:`rotateY(90deg) translateZ(${h}px)`, bg:'rgba(0,229,160,0.02)',    border:'rgba(0,229,160,0.3)',   shadow:null,                                   lineColor:'#00e5a0' },
+  { type:'back',   w:S, h:S, tf:`rotateY(180deg) translateZ(${h}px)`,bg:'rgba(234,255,0,0.015)',   border:'rgba(234,255,0,0.25)',  shadow:null,                                   lineColor:'#eaff00' },
+  { type:'right',  w:S, h:S, tf:`rotateY(90deg) translateZ(${h}px)`, bg:'rgba(234,255,0,0.02)',    border:'rgba(234,255,0,0.3)',   shadow:null,                                   lineColor:'#eaff00' },
   { type:'left',   w:S, h:S, tf:`rotateY(-90deg) translateZ(${h}px)`,bg:'rgba(26,143,255,0.015)',  border:'rgba(26,143,255,0.25)', shadow:null,                                   lineColor:'#1a8fff' },
   { type:'top',    w:S, h:S, tf:`rotateX(90deg) translateZ(${h}px)`, bg:'rgba(100,200,255,0.015)', border:'rgba(100,200,255,0.22)',shadow:null,                                   lineColor:'#64c8ff' },
   { type:'bottom', w:S, h:S, tf:`rotateX(-90deg) translateZ(${h}px)`,bg:'rgba(100,200,255,0.01)',  border:'rgba(100,200,255,0.18)',shadow:null,                                   lineColor:'#64c8ff' },
@@ -278,8 +278,8 @@ const EDGE_MIDS = [
 const iw2 = IW/2, ih2 = IH/2, id2 = ID/2
 const INNER_FACES = [
   { type:'front',  w:IW, h:IH, tf:`translateZ(${id2}px)`,                bg:'rgba(26,143,255,0.06)', border:'rgba(26,143,255,0.5)',  shadow:'inset 0 0 40px rgba(26,143,255,0.08)' },
-  { type:'back',   w:IW, h:IH, tf:`rotateY(180deg) translateZ(${id2}px)`,bg:'rgba(0,229,160,0.03)',  border:'rgba(0,229,160,0.35)',  shadow:null },
-  { type:'right',  w:ID, h:IH, tf:`rotateY(90deg) translateZ(${iw2}px)`, bg:'rgba(0,229,160,0.03)',  border:'rgba(0,229,160,0.3)',   shadow:null },
+  { type:'back',   w:IW, h:IH, tf:`rotateY(180deg) translateZ(${id2}px)`,bg:'rgba(234,255,0,0.03)',  border:'rgba(234,255,0,0.35)',  shadow:null },
+  { type:'right',  w:ID, h:IH, tf:`rotateY(90deg) translateZ(${iw2}px)`, bg:'rgba(234,255,0,0.03)',  border:'rgba(234,255,0,0.3)',   shadow:null },
   { type:'left',   w:ID, h:IH, tf:`rotateY(-90deg) translateZ(${iw2}px)`,bg:'rgba(26,143,255,0.03)', border:'rgba(26,143,255,0.3)',  shadow:null },
   { type:'top',    w:IW, h:ID, tf:`rotateX(90deg) translateZ(${ih2}px)`, bg:'rgba(100,200,255,0.02)',border:'rgba(100,200,255,0.25)',shadow:null },
   { type:'bottom', w:IW, h:ID, tf:`rotateX(-90deg) translateZ(${ih2}px)`,bg:'rgba(100,200,255,0.02)',border:'rgba(100,200,255,0.2)', shadow:null },
@@ -297,37 +297,35 @@ function LogoInCube() {
     <svg width="230" height="300" viewBox="-10 0 400 440" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="cz" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#ffffff"/>
-          <stop offset="18%"  stopColor="#90ccff"/>
-          <stop offset="48%"  stopColor="#1a8fff"/>
-          <stop offset="80%"  stopColor="#0060cc"/>
-          <stop offset="100%" stopColor="#003d80"/>
+          <stop offset="0%"   stopColor="#c8e0ff"/>
+          <stop offset="20%"  stopColor="#1a8fff"/>
+          <stop offset="55%"  stopColor="#0044bb"/>
+          <stop offset="100%" stopColor="#001840"/>
         </linearGradient>
         <linearGradient id="cd" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#ffffff"/>
-          <stop offset="18%"  stopColor="#80ffda"/>
-          <stop offset="48%"  stopColor="#00e5a0"/>
-          <stop offset="80%"  stopColor="#00a870"/>
-          <stop offset="100%" stopColor="#006644"/>
+          <stop offset="0%"   stopColor="#fffde0"/>
+          <stop offset="28%"  stopColor="#f8ff50"/>
+          <stop offset="62%"  stopColor="#eaff00"/>
+          <stop offset="100%" stopColor="#c8d800"/>
         </linearGradient>
         <linearGradient id="ct" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%"   stopColor="#1a8fff"/>
-          <stop offset="50%"  stopColor="#00d4c8"/>
-          <stop offset="100%" stopColor="#00e5a0"/>
+          <stop offset="60%"  stopColor="#44aaff"/>
+          <stop offset="100%" stopColor="#eaff00"/>
         </linearGradient>
         <filter id="ls">
           <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000" floodOpacity="0.9"/>
         </filter>
         <filter id="tg">
           <feGaussianBlur stdDeviation="3" result="b"/>
-          <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.1  0 0 0 0 0.6  0 0 0 0 1  0 0 0 0.5 0" result="g"/>
+          <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.1  0 0 0 0 0.3  0 0 0 0 1  0 0 0 0.5 0" result="g"/>
           <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
       <rect x="8"   y="8" width="163" height="188" rx="3" fill="rgba(26,143,255,0.08)" stroke="rgba(26,143,255,0.35)" strokeWidth="1"/>
       <text x="14"  y="174" fontFamily="Arial Black,Impact,sans-serif" fontSize="170" fontWeight="900" fill="rgba(0,20,60,0.5)" dx="4" dy="4">Z</text>
       <text x="14"  y="174" fontFamily="Arial Black,Impact,sans-serif" fontSize="170" fontWeight="900" fill="url(#cz)" filter="url(#ls)">Z</text>
-      <rect x="179" y="8" width="173" height="188" rx="3" fill="rgba(0,229,160,0.06)" stroke="rgba(0,229,160,0.3)" strokeWidth="1"/>
+      <rect x="179" y="8" width="173" height="188" rx="3" fill="rgba(234,255,0,0.06)" stroke="rgba(234,255,0,0.3)" strokeWidth="1"/>
       <text x="183" y="174" fontFamily="Arial Black,Impact,sans-serif" fontSize="170" fontWeight="900" fill="rgba(0,20,10,0.5)" dx="4" dy="4">D</text>
       <text x="183" y="174" fontFamily="Arial Black,Impact,sans-serif" fontSize="170" fontWeight="900" fill="url(#cd)" filter="url(#ls)">D</text>
       <rect x="8" y="208" width="344" height="1" fill="rgba(255,255,255,0.08)"/>

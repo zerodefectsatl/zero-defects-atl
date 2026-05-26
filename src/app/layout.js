@@ -1,25 +1,24 @@
-import { Bebas_Neue, Barlow, Barlow_Condensed } from 'next/font/google'
+import { Manrope } from 'next/font/google'
 import './globals.css'
 
-const bebasNeue = Bebas_Neue({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-bebas-neue',
-  display: 'swap',
-})
-
-const barlow = Barlow({
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
+const manropeBody = Manrope({
+  weight: ['400', '500', '600', '700', '800'],
   subsets: ['latin'],
   variable: '--font-barlow-body',
   display: 'swap',
 })
 
-const barlowCondensed = Barlow_Condensed({
-  weight: ['400', '500', '600', '700'],
+const manropeUi = Manrope({
+  weight: ['500', '600', '700', '800'],
   subsets: ['latin'],
   variable: '--font-barlow-cond',
+  display: 'swap',
+})
+
+const manropeDisplay = Manrope({
+  weight: ['600', '700', '800'],
+  subsets: ['latin'],
+  variable: '--font-bebas-neue',
   display: 'swap',
 })
 
@@ -195,7 +194,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${barlow.variable} ${barlowCondensed.variable}`}
+      className={`${manropeDisplay.variable} ${manropeBody.variable} ${manropeUi.variable}`}
     >
       <body>
         {children}

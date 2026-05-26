@@ -2,17 +2,17 @@
 
 @theme inline {
   --color-zd-black:  #000000;
-  --color-zd-dark:   #0e1216;
-  --color-zd-card:   #12161b;
+  --color-zd-dark:   #1a1a1a;
+  --color-zd-card:   #1a1a1a;
   --color-zd-blue:   #1a8fff;
-  --color-zd-green:  #00e5a0;
-  --color-zd-white:  #f0f4f8;
+  --color-zd-yellow: #eaff00;
+  --color-zd-white:  #ffffff;
 
   --color-background: #000000;
-  --color-foreground: #f0f4f8;
+  --color-foreground: #ffffff;
 
-  --gradient-brand:         linear-gradient(90deg, #1a8fff, #00e5a0);
-  --gradient-brand-diag:    linear-gradient(105deg, #1a8fff, #00e5a0);
+  --gradient-brand:         linear-gradient(90deg, #1a8fff, #eaff00);
+  --gradient-brand-diag:    linear-gradient(105deg, #1a8fff, #eaff00);
   --gradient-overlay-hero:  linear-gradient(105deg, rgba(8,10,12,0.95) 45%, rgba(8,10,12,0.5) 100%);
   --gradient-overlay-dark:  linear-gradient(to bottom, transparent, #000000);
 
@@ -30,8 +30,8 @@ html {
 
 body {
   background-color: #000000;
-  color: #f0f4f8;
-  font-family: var(--font-barlow-body), 'Barlow', sans-serif;
+  color: #ffffff;
+  font-family: var(--font-barlow-body), 'Manrope', sans-serif;
   font-weight: 400;
   overflow-x: hidden;
 }
@@ -39,20 +39,39 @@ body {
 /* ── Reusable utilities ─────────────────────────────── */
 
 .gradient-text {
-  background: linear-gradient(90deg, #1a8fff, #00e5a0);
+  background: linear-gradient(90deg, #1a8fff, #eaff00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* hero-zero: Z letter blue gradient */
+.hero-zero {
+  backgroundImage: linear-gradient(180deg, #000615 0%, #001f5c 40%, #1a8fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* stroke-text: double-outline DEFECTS */
 .stroke-text {
   -webkit-text-stroke: 2px #1a8fff;
-  color: rgba(26, 143, 255, 0.45);
-  filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.92));
+  color: transparent;
+  position: relative;
+}
+.stroke-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-text-stroke: 2px rgba(234, 255, 0, 0.35);
+  color: transparent;
+  transform: scale(1.035);
+  transform-origin: left center;
 }
 
 .gradient-bg {
-  background: linear-gradient(90deg, #1a8fff, #00e5a0);
+  background: linear-gradient(90deg, #1a8fff, #eaff00);
 }
 
 .zd-card {
@@ -298,105 +317,234 @@ body {
   50%       { opacity: 0.9; }
 }
 
-/* ── Nav desktop / mobile toggle ────────────────────────── */
-.nav-links-desktop {
+/* ── Bento section ──────────────────────────────────── */
+.zd-bento-section {
+  background: #000;
+  padding: 64px 24px;
+}
+
+/* Outer block — 363-style: pure black bg becomes the gap,
+   overflow:hidden + border-radius clips tile corners into rounded shape */
+.zd-bento-block {
+  --notch-w: 186px;
+  --notch-h: 186px;
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-radius: 14px;       /* outer container rounds the whole unit    */
+  overflow: hidden;
+  background: #000;          /* pure black — shows as 5px gap between tiles */
+  box-shadow: 0 8px 48px rgba(0,0,0,0.7);
+}
+
+/* Logo chip — absolute top-left, same pure-black bg as the gap */
+.zd-bento-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--notch-w);
+  height: var(--notch-h);
+  z-index: 20;
   display: flex;
   align-items: center;
-  gap: 32px;
-}
-.nav-hamburger {
-  display: none;
+  justify-content: center;
+  background: #000;
+  border-radius: 0 0 6px 0; /* matches tile radius at the notch seam */
 }
 
-/* ── Contact 2-col grid ─────────────────────────────────── */
-.zd-contact-grid {
+/* Inner grid: large left (spans 2 rows) + 2 stacked right tiles */
+.zd-bento-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5px;                  /* 363 uses 5px — black bg peeks through  */
+  background: transparent;
+  height: 500px;
 }
 
-/* ── Services parallax background (iOS: no fixed) ───────── */
-.zd-services-bg {
-  background-attachment: fixed;
+/* Notch — no clip-path needed: logo chip covers the corner at z-index 20 */
+.zd-bento-tile--notched {
+  /* clip-path removed — pure overlap approach */
 }
 
-/* ── CSU editorial 1fr / 2fr split ─────────────────────── */
-.zd-csu-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 56px;
-  align-items: start;
+/* Large tile spans both rows */
+.zd-bento-tile--large {
+  grid-row: 1 / span 2;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #1a1a1a;      /* 363 --color-near-black */
+  border-radius: 6px;        /* 363 rounded-md = 6px — softens internal corners */
+  overflow: hidden;
 }
 
-/* ── CSU features 2-col list ────────────────────────────── */
-.zd-features-2col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* Video pan on large tile hover */
+.zd-bento-tile--large video {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.zd-bento-tile--large:hover video {
+  transform: scale(1.04) translateX(-6px);
 }
 
-/* ── CCI tier cards 2-col ───────────────────────────────── */
-.zd-cci-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* Small stacked tile */
+.zd-bento-tile--small {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;      /* 363 --color-near-black */
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-/* ── Process 2 × 2 grid ─────────────────────────────────── */
-.zd-process-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-/* ── Process cell padding ───────────────────────────────── */
-.zd-process-cell {
-  padding: 56px 48px;
-}
-
-/* ── Hero wordmark positioning ──────────────────────────── */
-.zd-hero-wordmark {
+/* Image pan wrapper — image pans independently inside clipped tile */
+.zd-tile-img-wrap {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  padding: 0 0 clamp(200px, 34vh, 380px) clamp(12px, 2vw, 24px);
+  inset: 0;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ── Mobile overrides (new classes) ─────────────────────── */
+.zd-bento-tile--small:hover .zd-tile-img-wrap--left {
+  transform: scale(1.05) translateX(-10px);
+}
+
+.zd-bento-tile--small:hover .zd-tile-img-wrap--right {
+  transform: scale(1.05) translateX(10px);
+}
+
+/* Yellow icon chip — 363-style: top-right of each tile */
+.zd-bento-chip {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  background: #eaff00;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+/* ── Services page ──────────────────────────────────── */
+/* Intro glass card */
+.zd-services-intro-card {
+  background: rgba(20, 20, 20, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 48px;
+}
+
+/* 363-style numbered service card */
+.zd-svc-card {
+  background: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 360px;
+}
+
+.zd-svc-card__body {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.zd-svc-card__num {
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(234, 255, 0, 0.12);
+  font-family: var(--font-bebas-neue), 'Manrope', sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.zd-svc-card__img {
+  position: relative;
+  overflow: hidden;
+}
+
 @media (max-width: 768px) {
-  .nav-links-desktop  { display: none; }
-  .nav-hamburger      { display: flex; }
-
-  .zd-contact-grid {
-    grid-template-columns: 1fr !important;
-    gap: 40px !important;
+  .zd-svc-card {
+    grid-template-columns: 1fr;
   }
-
-  .zd-services-bg {
-    background-attachment: scroll !important;
+  .zd-svc-card__img {
+    aspect-ratio: 16/9;
   }
-
-  .zd-csu-grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
+  .zd-bento-section {
+    padding: 32px 12px;
   }
-
-  .zd-features-2col {
-    grid-template-columns: 1fr !important;
+  .zd-bento-block {
+    --notch-w: 130px;
+    --notch-h: 130px;
+    border-radius: 12px;
   }
-
-  .zd-cci-grid {
-    grid-template-columns: 1fr !important;
+  .zd-bento-logo {
+    width: var(--notch-w);
+    height: var(--notch-h);
   }
-
-  .zd-process-grid {
-    grid-template-columns: 1fr !important;
+  .zd-bento-inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
   }
-
-  .zd-process-cell {
-    padding: 32px 20px !important;
+  .zd-bento-tile--large {
+    grid-row: auto;
+    aspect-ratio: 4/3;
+    height: auto;
   }
-
-  .zd-hero-wordmark {
-    padding: 0 0 clamp(24px, 4vh, 60px) 20px !important;
+  .zd-bento-tile--small {
+    aspect-ratio: 16/9;
+    height: auto;
   }
+  .zd-services-intro-card {
+    padding: 28px 20px;
+  }
+}
+
+/* ── Work tile ──────────────────────────────────────── */
+.zd-work-tile {
+  position: relative;
+  aspect-ratio: 21/7;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* ── Intro video gate ───────────────────────────────── */
+.zd-video-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  overflow: hidden;
+}
+
+.zd-video-gate__btn {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #eaff00;
+  color: #000;
+  font-family: var(--font-bebas-neue), 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.zd-video-gate__btn:hover {
+  opacity: 0.85;
 }

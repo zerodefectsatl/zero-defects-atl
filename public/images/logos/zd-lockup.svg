@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1120" fill="none">
+  <defs>
+    <linearGradient id="z-flow-l" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000615"/>
+      <stop offset="0.35" stop-color="#001f5c"/>
+      <stop offset="1" stop-color="#1a8fff"/>
+    </linearGradient>
+  </defs>
+  <!-- ZD monogram -->
+  <polygon points="168,80 448,80 448,148 288,532 454,532 454,600 168,600 168,532 330,148 168,148" fill="url(#z-flow-l)"/>
+  <path d="M462,80 L580,80 Q660,80 660,180 L660,500 Q660,600 580,600 L462,600 Z M534,148 L568,148 Q590,148 590,175 L590,505 Q590,532 568,532 L534,532 Z" fill="#eaff00" fill-rule="evenodd"/>
+  <!-- ZERO -->
+  <text x="500" y="760" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="210" fill="#1a8fff" letter-spacing="28" textLength="780" lengthAdjust="spacingAndGlyphs">ZERO</text>
+  <!-- DEFECTS -->
+  <text x="500" y="970" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="165" fill="#eaff00" letter-spacing="16" textLength="920" lengthAdjust="spacingAndGlyphs">DEFECTS</text>
+  <!-- ATL tagline -->
+  <text x="500" y="1090" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="600" font-size="72" fill="rgba(255,255,255,0.5)" letter-spacing="20" textLength="600" lengthAdjust="spacingAndGlyphs">BRASELTON, GA</text>
+</svg>
