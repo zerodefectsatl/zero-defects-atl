@@ -1,259 +1,202 @@
 import Image from 'next/image'
-import IntroCube from '@/components/IntroCube'
-import ParallaxScroll from '@/components/ParallaxScroll'
-import IntroVideoGate from '@/components/IntroVideoGate'
-import LazyVideo from '@/components/LazyVideo'
-import ContactForm from '@/components/ContactForm'
+import Link from 'next/link'
 
 const reviews = [
   {
-    name: 'Keith Campbell',
-    ago: '6 years ago',
-    text: 'The black paint came out looking like black chrome! Absolutely Beautiful, and bugs can now be wiped off easily. This process and this installer are well worth the money.',
-    vehicle: "ProTouring '66 Fairlane",
+    stars: 5,
+    text: 'Best ceramic coating in Atlanta. Period. They don’t cut corners.',
+    author: 'Keith C.',
   },
   {
-    name: 'Kenny Fletcher',
-    ago: '3 years ago',
-    text: 'Blown away with the caliber and quality of work — from the GTechniq Crystal Serum Ceramic Coating to the XPEL PPF. His attention to every detail is incredible, just like his company name: ZERO DEFECTS.',
-    vehicle: 'Ford Mach 1',
+    stars: 5,
+    text: 'Blown away with the caliber and quality of work. Attention to every detail is incredible.',
+    author: 'Kenny F.',
   },
   {
-    name: 'Anthony Matthew',
-    ago: '6 months ago',
-    text: 'Chris did an outstanding and amazing job. When I got there to pick up my car, boy was I impressed. He walked me around and explained everything. Customer service at its best. 10/10 stars.',
-    vehicle: 'Ceramic Coating & PPF',
+    stars: 5,
+    text: 'Customer service at its best. 10 / 10 stars. Looked brand new.',
+    author: 'Anthony M.',
   },
-]
-
-const stats = [
-  { num: '17+', label: 'Years of Experience' },
-  { num: '500+', label: 'Vehicles Protected' },
-  { num: '3', label: 'Premium Certifications' },
-  { num: '5★', label: 'Google Rating' },
-]
-
-const processSteps = [
-  { num: '01', title: 'Consultation', desc: 'We assess your vehicle and discuss the right protection package for your goals and budget.' },
-  { num: '02', title: 'Paint Correction', desc: 'Every swirl, scratch, and water spot is removed before any protection is applied.' },
-  { num: '03', title: 'Application', desc: 'Precision ceramic coating or PPF film is installed in our climate-controlled facility.' },
-  { num: '04', title: 'Delivery', desc: 'Final inspection, care instructions, and warranty paperwork. Your car leaves perfect.' },
-]
-
-const recentWork = [
-  { src: '/images/gallery/IMG_8707.jpeg', label: 'Ceramic Coating · Porsche GT3 RS' },
-  { src: '/images/gallery/IMG_8556.jpeg', label: 'Full PPF · McLaren 720S' },
-  { src: '/images/gallery/IMG_9517.jpeg', label: 'CSU + PPF Combo · Lamborghini Huracán' },
 ]
 
 export default function Home() {
   return (
-    <>
-      <IntroCube />
-      <ParallaxScroll />
-      <IntroVideoGate />
+    <main className="bento-wrap">
+      <div className="bento">
 
-      {/* BENTO DASHBOARD */}
-      <section id="services" className="zd-bento-section">
-        {/* Single unified block — logo chip, large tile, small tile all in one container */}
-        <div className="zd-bento-block">
+        {/* ══════════════ LEFT COLUMN ══════════════ */}
+        <div className="bento-left">
 
-          {/* Logo chip — absolute top-left of the whole block */}
-          <div className="zd-bento-logo">
+          {/* HERO CARD — L-shape, z-index 1, sits BEHIND logo card */}
+          <Link href="/zd-mentality" className="bento-card bento-hero" aria-label="The ZD Mentality">
+            <video
+              className="bento-hero__video"
+              src="/videos/engine.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+            />
+            <div className="bento-hero__overlay" />
+            <div className="bento-hero__content">
+              <div className="bento-hero__eyebrow">
+                <span className="bento-hero__eyebrow-bar" />
+                The ZD Mentality
+              </div>
+              <h1 className="bento-hero__headline">
+                Obsession-level detail.<br />
+                <span className="bento-accent">Zero</span> compromises.
+              </h1>
+              <div className="bento-hero__cta">
+                Explore the philosophy
+                <span className="bento-hero__cta-arrow">↗</span>
+              </div>
+            </div>
+            <span className="bento-badge bento-badge--play" aria-hidden="true">▶</span>
+            <span className="bento-corner-arrow" aria-hidden="true">↗</span>
+          </Link>
+
+          {/* LOGO CARD — own bento tile, z-index 2, creates L-shape cutout */}
+          <div className="bento-card bento-logo-card">
             <Image
-              src="/images/logos/zd-lockup-compact.svg"
+              src="/images/logos/zd-lockup-dark.svg"
               alt="Zero Defects ATL"
-              width={160}
-              height={160}
+              width={120}
+              height={86}
+              priority
               unoptimized
-              style={{ objectFit: 'contain', padding: 16 }}
+              className="bento-logo-card__mark"
             />
           </div>
 
-          {/* Grid: large tile + small tile, flush inside the block */}
-          <div className="zd-bento-inner">
-
-            {/* Large tile: ZD Mentality */}
-            <div className="zd-bento-tile--large">
-              <LazyVideo
-                src="/videos/engine.mp4"
-                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.18) 55%, transparent 100%)',
-                pointerEvents: 'none',
-              }} />
-              {/* Yellow icon chip — top-right */}
-              <div className="zd-bento-chip">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
-                  <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
-                </svg>
-              </div>
-              <div style={{ position: 'absolute', bottom: 36, left: 36, right: 36 }}>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
-                  The ZD Mentality
-                </p>
-                <h2 style={{ color: '#fff', fontSize: 'clamp(26px, 2.8vw, 44px)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 16px' }}>
-                  Obsession-level detail.<br />Zero compromises.
-                </h2>
-                <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 22, lineHeight: 1 }}>↗</span>
-              </div>
+          {/* SERVICES — bottom left */}
+          <Link href="/services" className="bento-card bento-services-card">
+            <div className="bento-card__bg bento-card__bg--blue" />
+            <span className="bento-badge" aria-hidden="true">◻</span>
+            <div className="bento-card__label">
+              <div className="bento-card__eyebrow">What we do</div>
+              <div className="bento-card__title">Our Services</div>
             </div>
+            <span className="bento-corner-arrow" aria-hidden="true">↗</span>
+          </Link>
 
-            {/* Small tile 1: Our Services */}
-            <a href="/services" style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
-              <div className="zd-bento-tile--small">
-                <div className="zd-tile-img-wrap zd-tile-img-wrap--left">
-                  <Image
-                    src="/images/gallery/porsche-mission-x.jpg"
-                    alt="Our Services"
-                    fill
-                    style={{ objectFit: 'cover', objectPosition: '30% center' }}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)', zIndex: 1 }} />
-                {/* Yellow icon chip */}
-                <div className="zd-bento-chip" style={{ zIndex: 2 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
-                    <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.01 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                  </svg>
-                </div>
-                <div style={{ position: 'absolute', bottom: 22, left: 24, right: 24, zIndex: 2 }}>
-                  <h3 style={{ color: '#fff', fontSize: 26, fontWeight: 800, margin: '0 0 10px', lineHeight: 1.1 }}>
-                    Our Services
-                  </h3>
-                  <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 20 }}>↗</span>
-                </div>
-              </div>
+          {/* PROCESS — bottom center */}
+          <Link href="/our-process" className="bento-card bento-process-card">
+            <div className="bento-card__bg bento-card__bg--amber" />
+            <div className="bento-process-card__steps">
+              <div className="bento-mini-step"><span>01</span><div className="bento-mini-step__bar" /></div>
+              <div className="bento-mini-step"><span>02</span><div className="bento-mini-step__bar" /></div>
+              <div className="bento-mini-step"><span>03</span><div className="bento-mini-step__bar" /></div>
+              <div className="bento-mini-step"><span>04</span><div className="bento-mini-step__bar" /></div>
+            </div>
+            <span className="bento-badge" aria-hidden="true">⚙</span>
+            <div className="bento-card__label">
+              <div className="bento-card__eyebrow">How it works</div>
+              <div className="bento-card__title">Our Process</div>
+            </div>
+            <span className="bento-corner-arrow" aria-hidden="true">↗</span>
+          </Link>
+
+          {/* GALLERY — bottom right of left column */}
+          <Link href="/gallery" className="bento-card bento-gallery-card">
+            <div className="bento-card__bg bento-card__bg--green" />
+            <div className="bento-gallery-card__dots" aria-hidden="true">
+              <b /><b /><b /><b /><b /><b />
+            </div>
+            <span className="bento-badge" aria-hidden="true">⊞</span>
+            <div className="bento-card__label">
+              <div className="bento-card__eyebrow">Our work</div>
+              <div className="bento-card__title">Gallery</div>
+            </div>
+            <span className="bento-corner-arrow" aria-hidden="true">↗</span>
+          </Link>
+
+        </div>
+
+        {/* ══════════════ RIGHT COLUMN ══════════════ */}
+        <div className="bento-right">
+
+          {/* SOCIAL ROW — 3 equal tiles */}
+          <div className="bento-social-row">
+            <a
+              href="https://www.instagram.com/zerodefectsatl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bento-card bento-social"
+              aria-label="Instagram"
+            >
+              <svg className="bento-social__icon" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+              <span className="bento-social__label">Instagram</span>
             </a>
 
-            {/* Small tile 2: Our Process */}
-            <a href="#process" style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
-              <div className="zd-bento-tile--small">
-                <div className="zd-tile-img-wrap zd-tile-img-wrap--right">
-                  <Image
-                    src="/images/gallery/g-techniq-ultra-serum.jpg"
-                    alt="Our Process"
-                    fill
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)', zIndex: 1 }} />
-                {/* Yellow icon chip */}
-                <div className="zd-bento-chip" style={{ zIndex: 2 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
-                    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
-                  </svg>
-                </div>
-                <div style={{ position: 'absolute', bottom: 22, left: 24, right: 24, zIndex: 2 }}>
-                  <h3 style={{ color: '#fff', fontSize: 26, fontWeight: 800, margin: '0 0 10px', lineHeight: 1.1 }}>
-                    Our Process
-                  </h3>
-                  <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 20 }}>↗</span>
-                </div>
-              </div>
+            <a
+              href="https://www.facebook.com/zerodefectsatl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bento-card bento-social"
+              aria-label="Facebook"
+            >
+              <svg className="bento-social__icon" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+              <span className="bento-social__label">Facebook</span>
             </a>
 
+            <a
+              href="https://www.youtube.com/@zerodefectsatl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bento-card bento-social"
+              aria-label="YouTube"
+            >
+              <svg className="bento-social__icon" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+              <span className="bento-social__label">YouTube</span>
+            </a>
           </div>
-        </div>
-      </section>
 
-      {/* Stats */}
-      <section style={{ background: '#111', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="zd-grid-stats" style={{ maxWidth: 1280 }}>
-          {stats.map((s, i) => (
-            <div key={i} style={{ padding: '40px 24px', textAlign: 'center', borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none' }}>
-              <div style={{ fontSize: 'clamp(36px,4vw,56px)', fontWeight: 800, color: '#eaff00', lineHeight: 1 }}>{s.num}</div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', marginTop: 6, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{s.label}</div>
+          {/* REVIEWS CARD — large, middle */}
+          <div className="bento-card bento-reviews-card">
+            <div className="bento-reviews__header">
+              <div className="bento-reviews__title">Reviews</div>
+              <div className="bento-reviews__count">5.0 ★ · 40 reviews</div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Reviews */}
-      <section style={{ background: '#0a0a0a', padding: '80px 24px' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>Client Results</p>
-          <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, marginBottom: 48, color: '#fff' }}>What owners are saying</h2>
-          <div className="zd-grid-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
-            {reviews.map((r, i) => (
-              <div key={i} className="zd-card" style={{ padding: '32px 28px' }}>
-                <div style={{ display: 'flex', gap: 4, marginBottom: 16 }}>
-                  {[...Array(5)].map((_, j) => <span key={j} style={{ color: '#eaff00', fontSize: 14 }}>&#9733;</span>)}
+            <div className="bento-reviews__items">
+              {reviews.map((r, i) => (
+                <div key={i} className="bento-reviews__item">
+                  <div className="bento-reviews__stars">{'★'.repeat(r.stars)}</div>
+                  <div className="bento-reviews__text">&ldquo;{r.text}&rdquo;</div>
+                  <div className="bento-reviews__author">— {r.author}</div>
                 </div>
-                <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15, lineHeight: 1.65, marginBottom: 24 }}>{r.text}</p>
-                <div>
-                  <div style={{ fontWeight: 700, color: '#fff', fontSize: 14 }}>{r.name}</div>
-                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{r.vehicle} &middot; {r.ago}</div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="bento-reviews__avg">
+              <div className="bento-reviews__num">5.0</div>
+              <div className="bento-reviews__of">out of 5</div>
+            </div>
+            <span className="bento-badge bento-badge--ghost" aria-hidden="true">✦</span>
           </div>
-        </div>
-      </section>
 
-      {/* Process */}
-      <section id="process" style={{ background: '#000', padding: '80px 24px' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>How It Works</p>
-          <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, marginBottom: 48, color: '#fff' }}>The Zero Defects Process</h2>
-          <div className="zd-grid-process" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 24 }}>
-            {processSteps.map((s, i) => (
-              <div key={i} style={{ borderTop: '2px solid rgba(234,255,0,0.3)', paddingTop: 24 }}>
-                <div style={{ fontSize: 56, fontWeight: 800, color: 'rgba(234,255,0,0.15)', lineHeight: 1, marginBottom: 12 }}>{s.num}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 10 }}>{s.title}</h3>
-                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.65 }}>{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          {/* FAQ CARD — bottom right */}
+          <Link href="/faq" className="bento-card bento-faq-card">
+            <div className="bento-faq__lines" aria-hidden="true">
+              <div /><div /><div /><div />
+            </div>
+            <span className="bento-badge bento-badge--q" aria-hidden="true">?</span>
+            <div className="bento-card__label">
+              <div className="bento-card__eyebrow">Frequently asked</div>
+              <div className="bento-card__title">FAQ</div>
+            </div>
+            <span className="bento-corner-arrow" aria-hidden="true">↗</span>
+          </Link>
 
-      {/* Recent Work */}
-      <section style={{ background: '#0a0a0a', padding: '80px 24px' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>Portfolio</p>
-          <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, marginBottom: 48, color: '#fff' }}>Recent Work</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
-            {recentWork.map((w, i) => (
-              <div key={i} className="zd-work-tile">
-                <Image src={w.src} alt={w.label} fill style={{ objectFit: 'cover' }} sizes="(max-width:768px) 100vw, 33vw" />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)' }} />
-                <p style={{ position: 'absolute', bottom: 20, left: 20, color: '#fff', fontSize: 13, fontWeight: 600, margin: 0 }}>{w.label}</p>
-              </div>
-            ))}
-          </div>
         </div>
-      </section>
 
-      {/* Trust */}
-      <section style={{ background: '#000', padding: '64px 24px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 32 }}>Factory Trained &middot; Authorized &middot; Certified</p>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 48, flexWrap: 'wrap' }}>
-            <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18, fontWeight: 700 }}>Gtechniq CSU Accredited</span>
-            <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 24 }}>&middot;</span>
-            <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18, fontWeight: 700 }}>XPEL Authorized Installer</span>
-            <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 24 }}>&middot;</span>
-            <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 18, fontWeight: 700 }}>CCI Certified</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" style={{ background: '#0a0a0a', padding: '80px 24px' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>Get a Quote</p>
-          <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, marginBottom: 8, color: '#fff' }}>
-            Let&apos;s protect your investment.
-          </h2>
-          <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 16, marginBottom: 48 }}>Braselton, GA &middot; By appointment &middot; (404) 406-3355</p>
-          <ContactForm />
-        </div>
-      </section>
-    </>
+      </div>
+    </main>
   )
 }

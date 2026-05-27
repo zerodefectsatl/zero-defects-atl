@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" fill="none">
+  <defs>
+    <linearGradient id="zg-dk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#1e6dd6"/>
+      <stop offset="40%" stop-color="#0a3aa0"/>
+      <stop offset="100%" stop-color="#001230"/>
+    </linearGradient>
+    <linearGradient id="dg-dk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#d4e600"/>
+      <stop offset="55%" stop-color="#a8b800"/>
+      <stop offset="100%" stop-color="#6a7800"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Z -->
+  <polygon
+    points="60,55 460,55 460,150 268,420 460,420 460,520 60,520 60,420 252,150 60,150"
+    fill="url(#zg-dk)"
+  />
+
+  <!-- D -->
+  <path
+    d="M 500,55 L 588,55 A 232 232 0 0 1 588,517 L 500,517 Z M 588,150 A 137 137 0 0 1 588,422 Z"
+    fill="url(#dg-dk)"
+    fill-rule="evenodd"
+  />
+
+  <!-- ZERO DEFECTS — chunky, wide, stencil-like with Impact + extra tracking -->
+  <text
+    x="500" y="660"
+    text-anchor="middle"
+    font-family="Impact, 'Haettenschweiler', 'Arial Narrow Bold', 'Arial Black', sans-serif"
+    font-weight="900"
+    font-size="140"
+    letter-spacing="10"
+    fill="#ffffff"
+  >ZERO DEFECTS</text>
+</svg>

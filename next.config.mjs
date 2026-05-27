@@ -1,3 +1,8 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
 const securityHeaders = [
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
@@ -9,6 +14,12 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Pin Turbopack root to THIS directory so Next doesn't pick up the
+  // main repo's package-lock.json and serve master's source instead of
+  // the worktree's. Without this, multiple lockfiles confuse root detection.
+  turbopack: {
+    root: __dirname,
+  },
   images: {
     qualities: [75, 90, 95],
     minimumCacheTTL: 60,
