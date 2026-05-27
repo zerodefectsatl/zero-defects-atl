@@ -694,12 +694,13 @@ body {
 .bento-card__bg {
   position: absolute;
   inset: 0;
-  opacity: 0.35;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
   pointer-events: none;
+  z-index: 0;
 }
-.bento-card__bg--blue  { background: linear-gradient(135deg, #0a1828 0%, #0d1520 100%); }
-.bento-card__bg--amber { background: linear-gradient(135deg, #18100a 0%, #201408 100%); }
-.bento-card__bg--green { background: linear-gradient(135deg, #0a1810 0%, #0d2010 100%); }
 
 /* LOGO CARD - z-index 2, sits ON TOP of hero */
 .bento-logo-card {
@@ -956,6 +957,8 @@ body {
 }
 
 .bento-faq-card {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
   min-height: 168px;
 }
 .bento-faq__lines {
@@ -996,3 +999,78 @@ body {
   .bento-gallery-card  { grid-column: 1; grid-row: 5; min-height: 168px; }
   .bento-right { grid-template-rows: 80px auto 168px; }
 }
+
+/* Dark gradient overlay over .bento-card__bg images so text remains readable */
+.bento-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.90) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Top-left teaser list (Services card) */
+.bento-card__list {
+  position: absolute;
+  top: 16px;
+  left: 14px;
+  z-index: 3;
+  pointer-events: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 70%;
+}
+.bento-card__list li {
+  font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Top-left teaser steps (Process card) — replaces old mini-step bars */
+.bento-card__steps {
+  position: absolute;
+  top: 16px;
+  left: 14px;
+  z-index: 3;
+  pointer-events: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 80%;
+}
+.bento-card__steps li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 500;
+  line-height: 1.3;
+}
+.bento-card__steps li span {
+  color: var(--bento-yellow);
+  font-size: 8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  min-width: 18px;
+}
+
+/* Position the photos for best framing on small cards */
+.bento-services-card .bento-card__bg { background-position: center center; background-size: contain; background-color: #0a0a0a; }
+.bento-process-card .bento-card__bg  { background-position: center 50%; }
+.bento-gallery-card .bento-card__bg  { background-position: center 60%; }
+

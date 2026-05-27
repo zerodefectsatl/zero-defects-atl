@@ -60,36 +60,41 @@ export default function Home() {
           {/* LOGO CARD — own bento tile, z-index 2, creates L-shape cutout */}
           <div className="bento-card bento-logo-card">
             <Image
-              src="/images/logos/zd-lockup-dark.svg"
-              alt="Zero Defects ATL"
+              src="/images/logos/zd-logo.png"
+              alt="Zero Defects ATL — Protective Surface Coatings"
               width={120}
-              height={86}
+              height={120}
               priority
-              unoptimized
               className="bento-logo-card__mark"
             />
           </div>
 
-          {/* SERVICES — bottom left */}
-          <Link href="/services" className="bento-card bento-services-card">
-            <div className="bento-card__bg bento-card__bg--blue" />
-            <span className="bento-badge" aria-hidden="true">◻</span>
+          {/* FAQ — bottom left (narrow tile) */}
+          <Link href="/faq" className="bento-card bento-faq-card">
+            <div className="bento-faq__lines" aria-hidden="true">
+              <div /><div /><div /><div />
+            </div>
+            <span className="bento-badge bento-badge--q" aria-hidden="true">?</span>
             <div className="bento-card__label">
-              <div className="bento-card__eyebrow">What we do</div>
-              <div className="bento-card__title">Our Services</div>
+              <div className="bento-card__eyebrow">Help</div>
+              <div className="bento-card__title">FAQ</div>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
           </Link>
 
           {/* PROCESS — bottom center */}
           <Link href="/our-process" className="bento-card bento-process-card">
-            <div className="bento-card__bg bento-card__bg--amber" />
-            <div className="bento-process-card__steps">
-              <div className="bento-mini-step"><span>01</span><div className="bento-mini-step__bar" /></div>
-              <div className="bento-mini-step"><span>02</span><div className="bento-mini-step__bar" /></div>
-              <div className="bento-mini-step"><span>03</span><div className="bento-mini-step__bar" /></div>
-              <div className="bento-mini-step"><span>04</span><div className="bento-mini-step__bar" /></div>
-            </div>
+            <div
+              className="bento-card__bg"
+              style={{ backgroundImage: 'url(/images/gallery/IMG_9306.jpeg)' }}
+            />
+            <div className="bento-card__overlay" />
+            <ol className="bento-card__steps" aria-hidden="true">
+              <li><span>01</span>Consultation</li>
+              <li><span>02</span>Correction</li>
+              <li><span>03</span>Application</li>
+              <li><span>04</span>Delivery</li>
+            </ol>
             <span className="bento-badge" aria-hidden="true">⚙</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">How it works</div>
@@ -100,10 +105,11 @@ export default function Home() {
 
           {/* GALLERY — bottom right of left column */}
           <Link href="/gallery" className="bento-card bento-gallery-card">
-            <div className="bento-card__bg bento-card__bg--green" />
-            <div className="bento-gallery-card__dots" aria-hidden="true">
-              <b /><b /><b /><b /><b /><b />
-            </div>
+            <div
+              className="bento-card__bg"
+              style={{ backgroundImage: 'url(/images/gallery/IMG_8707.jpeg)' }}
+            />
+            <div className="bento-card__overlay" />
             <span className="bento-badge" aria-hidden="true">⊞</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">Our work</div>
@@ -181,15 +187,22 @@ export default function Home() {
             <span className="bento-badge bento-badge--ghost" aria-hidden="true">✦</span>
           </div>
 
-          {/* FAQ CARD — bottom right */}
-          <Link href="/faq" className="bento-card bento-faq-card">
-            <div className="bento-faq__lines" aria-hidden="true">
-              <div /><div /><div /><div />
-            </div>
-            <span className="bento-badge bento-badge--q" aria-hidden="true">?</span>
+          {/* SERVICES — bottom right (wide tile) */}
+          <Link href="/services" className="bento-card bento-services-card">
+            <div
+              className="bento-card__bg"
+              style={{ backgroundImage: 'url(/images/gallery/g-techniq-ultra-serum.jpg)' }}
+            />
+            <div className="bento-card__overlay" />
+            <ul className="bento-card__list" aria-hidden="true">
+              <li>Ceramic Coating</li>
+              <li>Paint Protection Film</li>
+              <li>Paint Correction</li>
+            </ul>
+            <span className="bento-badge" aria-hidden="true">◻</span>
             <div className="bento-card__label">
-              <div className="bento-card__eyebrow">Frequently asked</div>
-              <div className="bento-card__title">FAQ</div>
+              <div className="bento-card__eyebrow">What we do</div>
+              <div className="bento-card__title">Our Services</div>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
           </Link>

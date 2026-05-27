@@ -22,7 +22,12 @@ const services = [
     subtitle: 'XPEL Authorized · Factory-Trained in San Antonio',
     desc: 'Physical TPU armor that stops rock chips, scratches, and road debris before they reach your paint. Computer-cut templates ensure perfect fitment on every panel. Our XPEL installations carry a 10-year manufacturer warranty.',
     features: ['XPEL Ultimate Plus · self-healing', 'Computer-cut templates for perfect fit', '10-year XPEL manufacturer warranty', 'Full-front, partial, or custom zone coverage'],
-    img: '/images/gallery/IMG_8433.jpeg',
+    img: '/images/gallery/ppf-r8-01.jpg',
+    gallery: [
+      { src: '/images/gallery/ppf-r8-01.jpg', caption: '01 · Film applied wet' },
+      { src: '/images/gallery/ppf-r8-02.jpg', caption: '02 · Template cut & laid' },
+      { src: '/images/gallery/ppf-r8-03.jpg', caption: '03 · Finished install' },
+    ],
     cta: 'Get a PPF Quote',
   },
   {
@@ -131,7 +136,63 @@ export default function ServicesPage() {
                   </div>
                 </div>
                 <div className="zd-svc-card__img">
-                  <Image src={svc.img} alt={svc.name} fill style={{ objectFit: 'cover' }} sizes="(max-width:768px) 100vw, 50vw" />
+                  {svc.gallery ? (
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateRows: 'repeat(3, 1fr)',
+                        gap: 8,
+                        width: '100%',
+                        height: '100%',
+                      }}
+                    >
+                      {svc.gallery.map((g, gi) => (
+                        <div
+                          key={gi}
+                          style={{
+                            position: 'relative',
+                            overflow: 'hidden',
+                            borderRadius: 6,
+                          }}
+                        >
+                          <Image
+                            src={g.src}
+                            alt={`${svc.name} — ${g.caption}`}
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            sizes="(max-width:768px) 100vw, 25vw"
+                          />
+                          <div
+                            style={{
+                              position: 'absolute',
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              padding: '8px 12px',
+                              background:
+                                'linear-gradient(0deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0) 100%)',
+                              color: '#eaff00',
+                              fontSize: 10,
+                              fontWeight: 700,
+                              letterSpacing: '0.14em',
+                              textTransform: 'uppercase',
+                              pointerEvents: 'none',
+                            }}
+                          >
+                            {g.caption}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <Image
+                      src={svc.img}
+                      alt={svc.name}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="(max-width:768px) 100vw, 50vw"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -139,9 +200,47 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" style={{ background: '#0a0a0a', padding: '80px 24px' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
+      {/* Contact — Ferrari wheel video background */}
+      <section
+        id="contact"
+        style={{
+          position: 'relative',
+          background: '#0a0a0a',
+          padding: '80px 24px',
+          overflow: 'hidden',
+          isolation: 'isolate',
+        }}
+      >
+        {/* Background video */}
+        <video
+          src="/videos/ferrari-wheel.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+          }}
+        />
+        {/* Dark overlay so form stays readable */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.92) 100%)',
+            zIndex: 1,
+            pointerEvents: 'none',
+          }}
+        />
+        {/* Form content, above the video */}
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 800, margin: '0 auto' }}>
           <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>Get a Quote</p>
           <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, marginBottom: 8, color: '#fff' }}>
             Ready to protect your car?
