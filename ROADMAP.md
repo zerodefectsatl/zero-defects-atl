@@ -1,6 +1,6 @@
 # Zero Defects ATL — Website Tracker
 
-A running list of website work. Last updated: **2026-05-29**
+A running list of website work. Last updated: **2026-05-30**
 
 Status key: **Done** · **In Progress** · **Up Next** · **Later** · **Waiting on Chris**
 
@@ -28,6 +28,7 @@ Status key: **Done** · **In Progress** · **Up Next** · **Later** · **Waiting
 
 | Item | When |
 |------|------|
+| Richer homepage dashboard now live — added Reviews panel, social tiles, and new FAQ, Process, and Reviews pages (this work was sitting unsaved on the computer and had never been deployed) | 2026-05-30 |
 | Intro animation now shows only once per visit — coming back to the home page from Gallery/Services skips it instead of replaying | 2026-05-30 |
 | Bento dashboard redesign — new look with hover effects + polished ZD logo | 2026-05-26 |
 | Mobile layout cleanup — nav, services, process, contact, and hero all fixed for phones | 2026-05-24 |
