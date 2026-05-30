@@ -118,6 +118,23 @@ body {
   .tile-scroll { height: auto; overflow: visible; }
 }
 
+/* ───────────── Reviews page (normal-scroll, tiled cards on the field) ───────────── */
+.zd-reviews-hero { background: #1f1f23; padding: 120px 24px 44px; }
+.zd-reviews-hero__inner { max-width: 1080px; margin: 0 auto; }
+.zd-reviews-hero__eyebrow { font-family: var(--font-barlow-cond), sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #eaff00; margin: 0 0 14px; }
+.zd-reviews-hero__title { font-family: var(--font-bebas-neue), sans-serif; font-weight: 800; font-size: clamp(40px, 7vw, 84px); line-height: 0.95; letter-spacing: 1px; margin: 0 0 16px; color: #fff; }
+.zd-reviews-hero__tagline { color: rgba(255,255,255,0.6); font-size: 16px; margin: 0; max-width: 560px; }
+.zd-reviews-grid { background: #1f1f23; padding: 8px 24px 72px; }
+.zd-reviews-grid__inner { max-width: 1080px; margin: 0 auto; display: grid; gap: 6px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.zd-review-card { background: #101010; border: 1px solid #262626; border-radius: 10px; padding: 24px 26px; }
+.zd-review-card__stars { color: #eaff00; font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
+.zd-review-card__text { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.78); font-style: italic; margin: 0 0 16px; }
+.zd-review-card__name { font-family: var(--font-barlow-cond), sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
+.zd-review-card__sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+.zd-reviews-cta { background: #1f1f23; padding: 0 24px 96px; text-align: center; }
+.zd-reviews-cta h2 { font-family: var(--font-bebas-neue), sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 48px); margin: 0 0 24px; color: #fff; }
+.zd-reviews-cta__btn { display: inline-block; background: #eaff00; color: #000; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; padding: 14px 30px; border-radius: 999px; text-decoration: none; }
+
 /* ── Reusable utilities ─────────────────────────────── */
 
 .gradient-text {

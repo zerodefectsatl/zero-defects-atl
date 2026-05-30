@@ -125,7 +125,7 @@ export default function Gallery() {
       <section
         className="zd-gallery-hero"
         style={{
-          background: '#080a0c',
+          background: '#1f1f23',
           padding: '160px 48px 80px',
           borderBottom: '1px solid rgba(255,255,255,0.07)',
         }}
@@ -218,7 +218,7 @@ export default function Gallery() {
       </section>
 
       {/* ── GALLERY GRID ──────────────────────────────────────── */}
-      <section className="zd-gallery-grid" style={{ background: '#0a0d10', padding: '64px 48px 96px' }}>
+      <section className="zd-gallery-grid" style={{ background: '#1f1f23', padding: '64px 48px 96px' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div
             className="zd-gallery-grid__inner"
@@ -239,7 +239,7 @@ export default function Gallery() {
       <section
         className="zd-gallery-cta"
         style={{
-          background: '#080a0c',
+          background: '#1f1f23',
           borderTop: '1px solid rgba(255,255,255,0.07)',
           padding: '80px 48px',
           textAlign: 'center',
@@ -293,8 +293,9 @@ function GalleryCard({ item }) {
         position: 'relative',
         aspectRatio: '4/3',
         overflow: 'hidden',
-        borderRadius: '4px',
-        background: '#111416',
+        borderRadius: '8px',
+        background: '#101010',
+        border: '1px solid #262626',
       }}
     >
       <Image

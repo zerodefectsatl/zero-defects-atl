@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
-import MorphLogo from '@/components/MorphLogo'
+import TilePage from '@/components/TilePage'
 import Footer from '@/components/Footer'
 import { pageMetadata } from '@/lib/seo'
 
@@ -64,11 +64,10 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <>
+    <TilePage>
       {/* Hero */}
-      <MorphLogo />
       <h1 className="sr-only">Ceramic Coating, PPF &amp; Paint Correction in Atlanta, GA</h1>
-      <section style={{ background: '#000', paddingTop: 120, paddingBottom: 0, paddingLeft: 24, paddingRight: 24 }}>
+      <section style={{ background: 'transparent', paddingTop: 80, paddingBottom: 0, paddingLeft: 24, paddingRight: 24 }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
 
           <a
@@ -112,7 +111,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Service Cards */}
-      <section style={{ background: '#000', padding: '80px 24px' }}>
+      <section style={{ background: 'transparent', padding: '64px 24px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
           {services.map((svc, idx) => (
             <div key={idx}>
@@ -255,8 +254,8 @@ export default function ServicesPage() {
         id="contact"
         style={{
           position: 'relative',
-          background: '#0a0a0a',
-          padding: '80px 24px',
+          background: 'transparent',
+          padding: '64px 24px',
           overflow: 'hidden',
           isolation: 'isolate',
         }}
@@ -302,6 +301,6 @@ export default function ServicesPage() {
         </div>
       </section>
       <Footer />
-    </>
+    </TilePage>
   )
 }

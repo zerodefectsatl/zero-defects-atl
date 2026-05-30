@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import MorphLogo from '@/components/MorphLogo'
+import TilePage from '@/components/TilePage'
 import Footer from '@/components/Footer'
 
 const sections = [
@@ -109,16 +109,8 @@ export default function FAQPage() {
     })
 
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        background: '#080808',
-        color: '#ffffff',
-        padding: '64px 24px 120px',
-      }}
-    >
-      <MorphLogo />
-      <article style={{ maxWidth: 820, margin: '0 auto' }}>
+    <TilePage>
+      <article style={{ padding: '80px 38px 40px' }}>
         <a
           href="/"
           style={{
@@ -347,6 +339,6 @@ export default function FAQPage() {
         </div>
       </article>
       <Footer />
-    </main>
+    </TilePage>
   )
 }
