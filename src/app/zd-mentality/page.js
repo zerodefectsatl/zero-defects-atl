@@ -86,6 +86,7 @@ export default function ZdMentalityPage() {
             lineHeight: 0.95,
             marginBottom: 32,
             letterSpacing: 0.5,
+            fontWeight: 800,
           }}
         >
           Obsession-level detail.<br />
@@ -159,6 +160,7 @@ export default function ZdMentalityPage() {
             lineHeight: 1.0,
             marginBottom: 28,
             letterSpacing: 0.5,
+            fontWeight: 800,
           }}
         >
           The standard, made real.
