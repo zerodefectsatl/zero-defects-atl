@@ -4,6 +4,7 @@ import { BUSINESS, cityJsonLd } from '@/lib/seo'
 
 const LIME = '#eaff00'
 const BLUE = '#1a8fff'
+const DISPLAY = 'var(--font-bebas-neue), Manrope, sans-serif'
 
 const SERVICES = [
   { href: '/ceramic-coating', name: 'Ceramic Coating', blurb: 'Gtechniq Crystal Serum Ultra — gloss, hydrophobicity, and UV protection. Up to a 9-year warranty.' },
@@ -13,65 +14,53 @@ const SERVICES = [
 
 /**
  * Template for a city service-area page (/service-areas/<slug>).
- * Server component — emits LocalBusiness + BreadcrumbList JSON-LD focused
- * on the city and renders locally-specific copy.
+ * 363-style scrolling tile layout. Server component — emits LocalBusiness +
+ * BreadcrumbList JSON-LD focused on the city.
  */
 export default function CityLanding({ city }) {
   const jsonLd = cityJsonLd({ slug: city.slug, cityName: city.name })
 
   return (
-    <main style={{ background: '#080808', color: '#fff', minHeight: '100vh', padding: '0 24px' }}>
+    <main className="tile-field">
       <MorphLogo />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div style={{ maxWidth: 860, margin: '0 auto', padding: '120px 0 64px' }}>
-        <a
-          href="/service-areas"
-          style={{ display: 'inline-block', marginBottom: 24, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none' }}
-        >
-          ← All service areas
-        </a>
-        <p style={{ color: LIME, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>
-          Service Area · {city.name}, GA
-        </p>
-        <h1 style={{ fontFamily: 'var(--font-bebas-neue), Manrope, sans-serif', fontSize: 'clamp(36px, 5.5vw, 68px)', lineHeight: 1.03, letterSpacing: '1px', margin: '0 0 20px' }}>
-          Ceramic Coating, PPF &amp; Paint Correction in {city.name}, GA
-        </h1>
-        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.7, margin: 0 }}>
-          {city.lead}
-        </p>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 30 }}>
-          <a href="/services#contact" style={{ background: LIME, color: '#000', fontWeight: 700, fontSize: 14, letterSpacing: 1, textTransform: 'uppercase', padding: '14px 26px', borderRadius: 999, textDecoration: 'none' }}>
-            Get a Free Quote →
+      <div className="tile-frame">
+        {/* Hero tile */}
+        <section className="tile">
+          <a href="/service-areas" style={{ display: 'inline-block', marginBottom: 22, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}>
+            ← All service areas
           </a>
-          <a href={`tel:${BUSINESS.telephone.replace('+1', '')}`} style={{ border: '1px solid #2e2e2e', color: '#fff', fontWeight: 700, fontSize: 14, letterSpacing: 1, textTransform: 'uppercase', padding: '14px 26px', borderRadius: 999, textDecoration: 'none' }}>
-            Call 404-406-3355
-          </a>
-        </div>
-      </div>
+          <p className="tile-eyebrow">Service Area · {city.name}, GA</p>
+          <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 'clamp(34px, 5.2vw, 64px)', lineHeight: 1.03, letterSpacing: 0.5, margin: '0 0 20px' }}>
+            Ceramic Coating, PPF &amp; Paint Correction in {city.name}, GA
+          </h1>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 18, lineHeight: 1.7, margin: 0 }}>{city.lead}</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 30 }}>
+            <a href="/services#contact" style={{ background: LIME, color: '#000', fontWeight: 700, fontSize: 14, letterSpacing: 1, textTransform: 'uppercase', padding: '14px 26px', borderRadius: 999, textDecoration: 'none' }}>
+              Get a Free Quote →
+            </a>
+            <a href={`tel:${BUSINESS.telephone.replace('+1', '')}`} style={{ border: '1px solid #2e2e2e', color: '#fff', fontWeight: 700, fontSize: 14, letterSpacing: 1, textTransform: 'uppercase', padding: '14px 26px', borderRadius: 999, textDecoration: 'none' }}>
+              Call 404-406-3355
+            </a>
+          </div>
+        </section>
 
-      {/* Services offered */}
-      <section style={{ maxWidth: 860, margin: '0 auto', paddingBottom: 48 }}>
-        <p style={{ color: BLUE, fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: 14 }}>
-          What we do in {city.name}
-        </p>
-        <div style={{ display: 'grid', gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
+        {/* Service tiles */}
+        <div className="tile-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
           {SERVICES.map((s) => (
-            <a key={s.href} href={s.href} style={{ background: '#101010', border: '1px solid #1c1c1c', borderRadius: 12, padding: 22, textDecoration: 'none', color: '#fff' }}>
+            <a key={s.href} href={s.href} className="tile" style={{ padding: '22px 24px', textDecoration: 'none', color: '#fff' }}>
               <h2 style={{ fontSize: 18, fontWeight: 800, margin: '0 0 8px' }}>{s.name} →</h2>
               <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>{s.blurb}</p>
             </a>
           ))}
         </div>
-      </section>
 
-      {/* Local context */}
-      <section style={{ maxWidth: 860, margin: '0 auto', paddingBottom: 72 }}>
-        <div style={{ background: '#101010', border: '1px solid #1c1c1c', borderRadius: 12, padding: 26 }}>
+        {/* Local-context tile */}
+        <section className="tile">
           <h2 style={{ fontSize: 18, fontWeight: 800, margin: '0 0 8px' }}>
             Serving {city.name} from Braselton
           </h2>
@@ -81,8 +70,8 @@ export default function CityLanding({ city }) {
           <a href={BUSINESS.googleProfile} target="_blank" rel="noopener noreferrer" style={{ color: BLUE, fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
             Find us on Google →
           </a>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <Footer />
     </main>

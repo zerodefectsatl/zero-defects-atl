@@ -28,6 +28,8 @@ html {
   scroll-behavior: smooth;
   /* UI/label font var reuses the body font (Inter) — one font load. */
   --font-barlow-cond: var(--font-barlow-body);
+  /* Blue scrollbar (Firefox) */
+  scrollbar-color: #1a8fff #0d0d0f;
 }
 
 body {
@@ -37,6 +39,52 @@ body {
   font-family: var(--font-barlow-body), 'Manrope', sans-serif;
   font-weight: 400;
   overflow-x: hidden;
+}
+
+/* Blue scrollbar (WebKit/Blink) */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #0d0d0f; }
+::-webkit-scrollbar-thumb {
+  background: #1a8fff;
+  border-radius: 6px;
+  border: 3px solid #0d0d0f;
+}
+::-webkit-scrollbar-thumb:hover { background: #3aa0ff; }
+
+/* ───────────── Tile-page primitives (363-style scrolling tiles) ─────────────
+   Shared by the inner content pages so they match the homepage bento. */
+.tile-field {
+  background: #1f1f23;
+  color: #fff;
+  min-height: 100vh;
+  padding: 92px 14px 14px;
+}
+.tile-frame {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tile {
+  background: #101010;
+  border: 1px solid #262626;
+  border-radius: 10px;
+  padding: 32px 34px;
+}
+.tile-grid {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.tile-eyebrow {
+  font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #eaff00;
+  margin-bottom: 14px;
 }
 
 /* ── Reusable utilities ─────────────────────────────── */

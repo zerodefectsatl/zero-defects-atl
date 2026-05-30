@@ -21,28 +21,27 @@ export const metadata = pageMetadata({
 
 export default function ServiceAreasPage() {
   return (
-    <main style={{ background: '#080808', color: '#fff', minHeight: '100vh', padding: '0 24px' }}>
+    <main className="tile-field">
       <MorphLogo />
-      <div style={{ maxWidth: 860, margin: '0 auto', padding: '120px 0 64px' }}>
-        <a
-          href="/"
-          style={{ display: 'inline-block', marginBottom: 24, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none' }}
-        >
-          ← Back to home
-        </a>
-        <p style={{ color: LIME, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>
-          Service Areas
-        </p>
-        <h1 style={{ fontFamily: 'var(--font-bebas-neue), Manrope, sans-serif', fontSize: 'clamp(36px, 5.5vw, 68px)', lineHeight: 1.03, letterSpacing: '1px', margin: '0 0 20px' }}>
-          Where we work
-        </h1>
-        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.7, margin: '0 0 36px', maxWidth: 640 }}>
-          Based in Braselton, we bring Gtechniq-accredited ceramic coating, XPEL paint protection film, and paint correction to drivers across North Georgia and metro Atlanta.
-        </p>
+      <div className="tile-frame">
+        {/* Hero tile */}
+        <section className="tile">
+          <a href="/" style={{ display: 'inline-block', marginBottom: 22, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}>
+            ← Back to home
+          </a>
+          <p className="tile-eyebrow">Service Areas</p>
+          <h1 style={{ fontFamily: 'var(--font-bebas-neue), Manrope, sans-serif', fontWeight: 800, fontSize: 'clamp(34px, 5.2vw, 64px)', lineHeight: 1.03, letterSpacing: 0.5, margin: '0 0 18px' }}>
+            Where we work
+          </h1>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 18, lineHeight: 1.7, margin: 0, maxWidth: 640 }}>
+            Based in Braselton, we bring Gtechniq-accredited ceramic coating, XPEL paint protection film, and paint correction to drivers across North Georgia and metro Atlanta.
+          </p>
+        </section>
 
-        <div style={{ display: 'grid', gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
+        {/* City tiles */}
+        <div className="tile-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
           {CITIES.map((c) => (
-            <a key={c.slug} href={`/service-areas/${c.slug}`} style={{ background: '#101010', border: '1px solid #1c1c1c', borderRadius: 12, padding: 22, textDecoration: 'none', color: '#fff' }}>
+            <a key={c.slug} href={`/service-areas/${c.slug}`} className="tile" style={{ padding: '22px 24px', textDecoration: 'none', color: '#fff' }}>
               <h2 style={{ fontSize: 20, fontWeight: 800, margin: '0 0 6px' }}>{c.name}, GA →</h2>
               <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 13, lineHeight: 1.6, margin: 0 }}>
                 Ceramic coating, PPF &amp; paint correction — {c.drive}.
