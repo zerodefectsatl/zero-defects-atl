@@ -23,7 +23,7 @@ const manropeDisplay = Manrope({
   display: 'swap',
 })
 
-const siteUrl = 'https://zerodefectsatl.com'
+const siteUrl = 'https://www.zerodefectsatl.com'
 
 const jsonLd = [
   {

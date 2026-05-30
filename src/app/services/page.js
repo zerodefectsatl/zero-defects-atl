@@ -10,7 +10,7 @@ export const metadata = {
     title: 'Ceramic Coating, PPF & Paint Correction in Atlanta, GA | Zero Defects ATL',
     description:
       'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
-    url: 'https://zerodefectsatl.com/services',
+    url: 'https://www.zerodefectsatl.com/services',
     siteName: 'Zero Defects ATL',
     locale: 'en_US',
     type: 'website',
