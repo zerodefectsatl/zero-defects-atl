@@ -1104,8 +1104,6 @@ body {
     grid-template-columns: 1fr;
     height: auto;
     max-height: none;
-    /* clearance so the fixed CTA dock never covers the last card */
-    padding-bottom: 84px;
   }
   .bento-left {
     grid-template-columns: 1fr;
@@ -1221,60 +1219,6 @@ body {
 
 /* Visually-hidden but screen-reader/SEO-readable (accessible H1 on visual pages) */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-/* ───────────── Persistent conversion dock ─────────────
-   Fixed call + quote actions so a ready-to-buy visitor always has a
-   path to contact, independent of the bento navigation. Sits below the
-   intro gate (z 20000) so it only appears once the intro clears. */
-.bento-cta-dock {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 200;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.bento-cta-dock__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 46px;
-  padding: 0 20px;
-  border-radius: 999px;
-  font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  text-decoration: none;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-.bento-cta-dock__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55); }
-.bento-cta-dock__btn--call {
-  background: rgba(16, 16, 16, 0.92);
-  border: 1px solid #2e2e2e;
-  color: #fff;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-}
-.bento-cta-dock__btn--call svg { color: var(--bento-yellow); }
-.bento-cta-dock__btn--quote {
-  background: var(--bento-yellow);
-  color: #000;
-}
-.bento-cta-dock__btn--quote span { font-size: 16px; line-height: 1; }
-
-@media (max-width: 700px) {
-  .bento-cta-dock { left: 12px; right: 12px; bottom: 12px; gap: 8px; }
-  .bento-cta-dock__btn { flex: 1; justify-content: center; height: 50px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bento-cta-dock__btn { transition: none; }
-  .bento-cta-dock__btn:hover { transform: none; }
-}
 
 /* ZD Mentality — "Zero" headline: outline only, double blue traced (inner + outer line, transparent fill) */
 .zd-zero-outline{
