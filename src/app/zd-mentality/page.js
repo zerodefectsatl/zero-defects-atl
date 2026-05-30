@@ -24,13 +24,10 @@ export default function ZdMentalityPage() {
         background: '#080808',
         color: '#ffffff',
         padding: '80px 24px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
       }}
     >
       <MorphLogo />
-      <article style={{ maxWidth: '720px', width: '100%' }}>
+      <article style={{ maxWidth: '720px', width: '100%', margin: '0 auto' }}>
         <a
           href="/"
           style={{

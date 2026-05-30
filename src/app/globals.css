@@ -587,8 +587,8 @@ body {
   width: 100%;
   /* compact, reference-style centered grid (363sudbury.com) rather than
      full-bleed: smaller tiles, capped height, gutters around the box */
-  max-width: 1040px;
-  height: min(calc(100dvh - 64px), 620px);
+  max-width: 1080px;
+  height: min(calc(100dvh - 60px), 652px);
   overflow: hidden;
   padding: 10px;
   box-sizing: border-box;
@@ -598,8 +598,8 @@ body {
   min-height: 0;
   min-width: 0;
   display: grid;
-  grid-template-columns: 104px 1fr 1fr;
-  grid-template-rows: 76px 1fr 124px;
+  grid-template-columns: 110px 1fr 1fr;
+  grid-template-rows: 80px 1fr 132px;
   gap: var(--bento-gap);
 }
 
@@ -607,7 +607,7 @@ body {
   min-height: 0;
   min-width: 0;
   display: grid;
-  grid-template-rows: 76px 1fr 124px;
+  grid-template-rows: 80px 1fr 132px;
   gap: var(--bento-gap);
 }
 
@@ -624,8 +624,8 @@ body {
   min-height: 0;
 }
 .bento-card:hover {
-  /* blue hover glow — echoes the Z in the logo */
-  border-color: rgba(26, 143, 255, 0.55);
+  /* subtle neutral hover — no blue outline around tiles */
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .bento-badge {
@@ -730,7 +730,7 @@ body {
 .bento-logo-card:hover { border-color: var(--bento-border); }
 .bento-logo-card__mark {
   width: auto;
-  height: 54px;
+  height: 58px;
   max-width: 100%;
   object-fit: contain;
 }
@@ -978,7 +978,7 @@ body {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
   /* match the compact bottom-row track so the label isn't clipped */
-  min-height: 124px;
+  min-height: 132px;
 }
 .bento-faq__lines {
   position: absolute;
