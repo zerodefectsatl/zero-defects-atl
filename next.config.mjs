@@ -33,6 +33,17 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      // /process was an orphan duplicate of /our-process. Permanent (308)
+      // redirect so any indexed URLs or bookmarks land on the canonical page.
+      {
+        source: '/process',
+        destination: '/our-process',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;
