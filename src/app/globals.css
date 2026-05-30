@@ -1083,17 +1083,16 @@ body {
    a gallery photo) carry their own view-transition-name and morph
    independently of this whole-page motion. Tune feel via the
    translateY % and the 950ms duration. */
-@media (prefers-reduced-motion: no-preference) {
-  @view-transition { navigation: auto; }
+@view-transition { navigation: auto; }
 
+@media (prefers-reduced-motion: no-preference) {
   ::view-transition-old(root) {
     animation: zd-page-fall 950ms cubic-bezier(.22, 1, .36, 1) both;
   }
   ::view-transition-new(root) {
     animation: zd-page-rise 950ms cubic-bezier(.22, 1, .36, 1) both;
   }
-  ::view-transition-group(zd-logo),
-  ::view-transition-group(zd-photo) {
+  ::view-transition-group(zd-logo) {
     animation-duration: 950ms;
     animation-timing-function: cubic-bezier(.22, 1, .36, 1);
   }

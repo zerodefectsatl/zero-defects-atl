@@ -46,12 +46,14 @@ export default function Navbar() {
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
       >
         <Image
-          src="/images/logos/zd-logo.png"
+          src="/images/logos/zd-logo-clean.png"
           alt="Zero Defects ATL"
-          width={160}
-          height={56}
-          style={{ display: 'block', objectFit: 'contain', height: '56px', width: 'auto', marginTop: '0', viewTransitionName: 'zd-logo' }}
+          width={48}
+          height={47}
+          style={{ display: 'block', objectFit: 'contain', height: '48px', width: '48px', marginTop: '0', viewTransitionName: 'zd-logo' }}
           priority
+          fetchPriority="high"
+          loading="eager"
         />
       </a>
 

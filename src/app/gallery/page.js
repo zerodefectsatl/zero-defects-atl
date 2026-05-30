@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 
 export const metadata = {
@@ -132,7 +131,7 @@ export default function Gallery() {
         }}
       >
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <Link
+          <a
             href="/"
             style={{
               display: 'inline-block',
@@ -147,7 +146,7 @@ export default function Gallery() {
             }}
           >
             ← Back to home
-          </Link>
+          </a>
           <span style={S.eyebrow}>Portfolio · {allWork.length} Projects</span>
           <h1
             style={{

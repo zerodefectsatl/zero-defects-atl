@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import MorphLogo from '@/components/MorphLogo'
 
 const sections = [
   {
@@ -115,6 +116,7 @@ export default function FAQPage() {
         padding: '64px 24px 120px',
       }}
     >
+      <MorphLogo />
       <article style={{ maxWidth: 820, margin: '0 auto' }}>
         <a
           href="/"

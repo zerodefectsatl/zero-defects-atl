@@ -1,3 +1,4 @@
+import MorphLogo from '@/components/MorphLogo'
 
 export const metadata = {
   title: 'Our Process — Zero Defects ATL',
@@ -54,6 +55,7 @@ export default function OurProcessPage() {
         padding: '64px 24px 120px',
       }}
     >
+      <MorphLogo />
       <article style={{ maxWidth: 880, margin: '0 auto' }}>
         {/* Back link */}
         <a

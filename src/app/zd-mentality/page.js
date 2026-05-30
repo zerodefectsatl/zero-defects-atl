@@ -1,3 +1,4 @@
+import MorphLogo from '@/components/MorphLogo'
 
 export const metadata = {
   title: 'ZD Mentality — Zero Defects ATL',
@@ -19,6 +20,7 @@ export default function ZdMentalityPage() {
         alignItems: 'flex-start',
       }}
     >
+      <MorphLogo />
       <article style={{ maxWidth: '720px', width: '100%' }}>
         <a
           href="/"

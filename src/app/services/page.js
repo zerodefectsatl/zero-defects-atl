@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
+import MorphLogo from '@/components/MorphLogo'
 
 export const metadata = {
   title: 'Services — Ceramic Coating, PPF & Paint Correction | Zero Defects ATL',
@@ -45,6 +46,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
+      <MorphLogo />
       <section style={{ background: '#000', paddingTop: 120, paddingBottom: 0, paddingLeft: 24, paddingRight: 24 }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
 
