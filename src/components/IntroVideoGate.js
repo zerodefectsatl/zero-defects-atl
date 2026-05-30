@@ -9,6 +9,14 @@ export default function IntroVideoGate() {
   useEffect(() => {
     if (!visible) return
 
+    // Returning visitor in this session — skip the gate entirely, don't lock scroll
+    let seen = false
+    try { seen = !!sessionStorage.getItem('zd-intro-seen') } catch (e) {}
+    if (seen) {
+      setVisible(false)
+      return
+    }
+
     // Lock scroll
     document.documentElement.style.overflow = 'hidden'
     document.body.style.overflow = 'hidden'
@@ -33,6 +41,7 @@ export default function IntroVideoGate() {
 
   const handleDashboard = () => {
     // Release scroll immediately
+    try { sessionStorage.setItem('zd-intro-seen', '1') } catch (e) {}
     document.documentElement.style.overflow = ''
     document.body.style.overflow = ''
     setVisible(false)
@@ -47,7 +56,7 @@ export default function IntroVideoGate() {
   if (!visible) return null
 
   return (
-    <div className="zd-video-gate">
+    <div className="zd-video-gate zd-intro-gate">
       <LazyVideo
         src="/videos/dual-car.mp4"
         style={{

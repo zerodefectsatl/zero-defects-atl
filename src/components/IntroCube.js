@@ -16,6 +16,13 @@ export default function IntroCube({ onComplete }) {
   const [phase, setPhase] = useState('hidden')
 
   useEffect(() => {
+    let seen = false
+    try { seen = !!sessionStorage.getItem('zd-intro-seen') } catch (e) {}
+    if (seen) {
+      setPhase('done')
+      document.body.style.cursor = 'auto'
+      return
+    }
     const t0 = setTimeout(() => setPhase('spin'),   80)
     const t1 = setTimeout(() => setPhase('stable'), 3600)
     return () => [t0, t1].forEach(clearTimeout)
@@ -23,6 +30,7 @@ export default function IntroCube({ onComplete }) {
 
   const dismiss = () => {
     if (phase === 'fading' || phase === 'done') return
+    try { sessionStorage.setItem('zd-intro-seen', '1') } catch (e) {}
     setPhase('fading')
     setTimeout(() => {
       setPhase('done')
@@ -39,6 +47,7 @@ export default function IntroCube({ onComplete }) {
   return (
     <div
       onClick={dismiss}
+      className="zd-intro-gate"
       style={{
         position: 'fixed', inset: 0, zIndex: 20000,
         display: 'flex', flexDirection: 'column',

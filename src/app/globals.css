@@ -517,6 +517,11 @@ body {
   border-radius: 16px;
 }
 
+/* Skip the intro gates on return visits within the same browser session */
+html[data-intro-seen="1"] .zd-intro-gate {
+  display: none !important;
+}
+
 /* ── Intro video gate ───────────────────────────────── */
 .zd-video-gate {
   position: fixed;

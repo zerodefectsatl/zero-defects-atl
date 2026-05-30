@@ -1,6 +1,6 @@
 # Zero Defects ATL — Website Tracker
 
-A running list of website work. Last updated: **2026-05-22**
+A running list of website work. Last updated: **2026-05-29**
 
 Status key: **Done** · **In Progress** · **Up Next** · **Later** · **Waiting on Chris**
 
@@ -28,6 +28,11 @@ Status key: **Done** · **In Progress** · **Up Next** · **Later** · **Waiting
 
 | Item | When |
 |------|------|
+| Intro animation now shows only once per visit — coming back to the home page from Gallery/Services skips it instead of replaying | 2026-05-30 |
+| Bento dashboard redesign — new look with hover effects + polished ZD logo | 2026-05-26 |
+| Mobile layout cleanup — nav, services, process, contact, and hero all fixed for phones | 2026-05-24 |
+| Contact form now shows an error if a quote email fails to send (instead of falsely saying "sent") | 2026-05-23 |
+| Opaque background on the mobile hamburger menu so text is readable | 2026-05-23 |
 | Street address (5450 Technology Pkwy, Suite 500, Braselton GA 30517) confirmed in Google listing schema | 2026-05-22 |
 | Contact form live via Resend — quote requests now email to zerodefectsatl@gmail.com (reply directly to reach the customer) | 2026-05-22 |
 | Fixed Google star-rating count to match real reviews (40) | 2026-05-21 |
