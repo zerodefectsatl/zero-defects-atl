@@ -1,16 +1,21 @@
+const siteUrl = 'https://www.zerodefectsatl.com'
+
+const routes = [
+  { path: '', priority: 1, changeFrequency: 'monthly' },
+  { path: '/services', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/gallery', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/reviews', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/faq', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/our-process', priority: 0.6, changeFrequency: 'yearly' },
+  { path: '/zd-mentality', priority: 0.5, changeFrequency: 'yearly' },
+]
+
 export default function sitemap() {
-  return [
-    {
-      url: 'https://www.zerodefectsatl.com',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: 'https://www.zerodefectsatl.com/gallery',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-  ]
+  const lastModified = new Date()
+  return routes.map(({ path, priority, changeFrequency }) => ({
+    url: `${siteUrl}${path}`,
+    lastModified,
+    changeFrequency,
+    priority,
+  }))
 }
