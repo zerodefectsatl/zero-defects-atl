@@ -144,9 +144,9 @@ const jsonLd = [
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Zero Defects ATL — Ceramic Coating & PPF | Braselton, GA',
+  title: 'PPF & Ceramic Coating in Atlanta, GA | Zero Defects ATL',
   description:
-    'Gtechniq Crystal Serum Ultra accredited & XPEL authorized installer in Braselton, GA. Ceramic coatings, PPF & paint correction. Get a free quote today.',
+    'PPF & ceramic coating for metro Atlanta, GA. Gtechniq-accredited, XPEL-authorized installer in Braselton. Paint correction included — get a free quote.',
   keywords: [
     'ceramic coating Atlanta',
     'PPF Atlanta',
@@ -166,9 +166,9 @@ export const metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Zero Defects ATL — Ceramic Coating & PPF | Braselton, GA',
+    title: 'PPF & Ceramic Coating in Atlanta, GA | Zero Defects ATL',
     description:
-      'Gtechniq Crystal Serum Ultra accredited & XPEL authorized installer in Braselton, GA. Ceramic coatings, PPF & paint correction. Get a free quote today.',
+      'PPF & ceramic coating for metro Atlanta, GA. Gtechniq-accredited, XPEL-authorized installer in Braselton. Paint correction included — get a free quote.',
     url: siteUrl,
     siteName: 'Zero Defects ATL',
     locale: 'en_US',
@@ -184,9 +184,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zero Defects ATL — Ceramic Coating & PPF | Braselton, GA',
+    title: 'PPF & Ceramic Coating in Atlanta, GA | Zero Defects ATL',
     description:
-      'Gtechniq Crystal Serum Ultra accredited & XPEL authorized installer in Braselton, GA. Ceramic coatings, PPF & paint correction. Get a free quote today.',
+      'PPF & ceramic coating for metro Atlanta, GA. Gtechniq-accredited, XPEL-authorized installer in Braselton. Paint correction included — get a free quote.',
     images: ['/images/gallery/IMG_9517.jpeg'],
   },
 }

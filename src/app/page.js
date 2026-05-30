@@ -22,6 +22,7 @@ const reviews = [
 export default function Home() {
   return (
     <main className="bento-wrap">
+      <h1 className="sr-only">PPF &amp; Ceramic Coating in Atlanta, GA — Zero Defects ATL</h1>
       {/* Logo intro cube — self-dismisses on click, ~3.5s auto-spin */}
       <IntroCube />
 
@@ -47,10 +48,10 @@ export default function Home() {
                 <span className="bento-hero__eyebrow-bar" />
                 The ZD Mentality
               </div>
-              <h1 className="bento-hero__headline">
+              <p className="bento-hero__headline">
                 Obsession-level detail.<br />
                 <span className="bento-accent">Zero</span> compromises.
-              </h1>
+              </p>
               <div className="bento-hero__cta">
                 Explore the philosophy
                 <span className="bento-hero__cta-arrow">↗</span>
@@ -83,7 +84,7 @@ export default function Home() {
             <span className="bento-badge bento-badge--q" aria-hidden="true">?</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">Help</div>
-              <div className="bento-card__title">FAQ</div>
+              <h2 className="bento-card__title">FAQ</h2>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
           </a>
@@ -104,7 +105,7 @@ export default function Home() {
             <span className="bento-badge" aria-hidden="true">⚙</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">How it works</div>
-              <div className="bento-card__title">Our Process</div>
+              <h2 className="bento-card__title">Our Process</h2>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
           </a>
@@ -119,7 +120,7 @@ export default function Home() {
             <span className="bento-badge" aria-hidden="true">⊞</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">Our work</div>
-              <div className="bento-card__title">Gallery</div>
+              <h2 className="bento-card__title">Gallery</h2>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
           </a>
@@ -208,7 +209,7 @@ export default function Home() {
             <span className="bento-badge" aria-hidden="true">◻</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">What we do</div>
-              <div className="bento-card__title">Our Services</div>
+              <h2 className="bento-card__title">Our Services</h2>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
           </a>

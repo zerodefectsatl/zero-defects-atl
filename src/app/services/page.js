@@ -3,8 +3,8 @@ import ContactForm from '@/components/ContactForm'
 import MorphLogo from '@/components/MorphLogo'
 
 export const metadata = {
-  title: 'Services — Ceramic Coating, PPF & Paint Correction | Zero Defects ATL',
-  description: 'Gtechniq Crystal Serum Ultra ceramic coating, XPEL paint protection film, and paint correction in Braselton, GA. Factory-trained. Get a quote today.',
+  title: 'Ceramic Coating & PPF Services in Atlanta, GA | Zero Defects',
+  description: 'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
 }
 
 const services = [
@@ -47,6 +47,7 @@ export default function ServicesPage() {
     <>
       {/* Hero */}
       <MorphLogo />
+      <h1 className="sr-only">Ceramic Coating, PPF &amp; Paint Correction in Atlanta, GA</h1>
       <section style={{ background: '#000', paddingTop: 120, paddingBottom: 0, paddingLeft: 24, paddingRight: 24 }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
 
