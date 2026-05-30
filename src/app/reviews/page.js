@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
@@ -115,6 +116,7 @@ export default function ReviewsPage() {
         <h2>Ready to join the wall of reviews?</h2>
         <a href="/services#contact" className="zd-reviews-cta__btn">Get a Quote &rarr;</a>
       </section>
+      <Footer />
     </>
   )
 }

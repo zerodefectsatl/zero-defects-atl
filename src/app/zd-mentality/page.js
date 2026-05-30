@@ -1,4 +1,5 @@
 import MorphLogo from '@/components/MorphLogo'
+import Footer from '@/components/Footer'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
@@ -128,6 +129,7 @@ export default function ZdMentalityPage() {
           ))}
         </div>
       </article>
+      <Footer />
     </main>
   )
 }

@@ -14,10 +14,14 @@ export default function Navbar() {
   }, [])
 
   const links = [
-    { label: 'Services', href: '#services' },
-    { label: 'Our Work', href: '#work' },
-    { label: 'Process', href: '#process' },
-    { label: 'About', href: '#about' },
+    { label: 'Services', href: '/services' },
+    { label: 'Ceramic Coating', href: '/ceramic-coating' },
+    { label: 'Paint Protection Film', href: '/paint-protection-film' },
+    { label: 'Paint Correction', href: '/paint-correction' },
+    { label: 'Our Work', href: '/gallery' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Process', href: '/our-process' },
+    { label: 'FAQ', href: '/faq' },
   ]
 
   return (
@@ -41,9 +45,8 @@ export default function Navbar() {
     >
       {/* Logo */}
       <a
-        href="#"
+        href="/"
         style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}
-        onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
       >
         <Image
           src="/images/logos/zd-logo-clean.png"

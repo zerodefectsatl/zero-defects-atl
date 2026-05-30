@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import MorphLogo from '@/components/MorphLogo'
+import Footer from '@/components/Footer'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
@@ -300,6 +301,7 @@ export default function ServicesPage() {
           <ContactForm />
         </div>
       </section>
+      <Footer />
     </>
   )
 }

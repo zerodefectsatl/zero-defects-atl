@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import MorphLogo from '@/components/MorphLogo'
+import Footer from '@/components/Footer'
 
 const sections = [
   {
@@ -345,6 +346,7 @@ export default function FAQPage() {
           </div>
         </div>
       </article>
+      <Footer />
     </main>
   )
 }

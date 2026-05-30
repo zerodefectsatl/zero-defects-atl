@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import MorphLogo from '@/components/MorphLogo'
+import Footer from '@/components/Footer'
 import { BUSINESS, SERVICE_AREAS, serviceJsonLd } from '@/lib/seo'
 
 const LIME = '#eaff00'
@@ -173,6 +174,8 @@ export default function ServiceLanding({
           </div>
         </section>
       )}
+
+      <Footer />
     </main>
   )
 }

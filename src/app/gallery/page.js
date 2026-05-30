@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
@@ -278,6 +279,7 @@ export default function Gallery() {
           Contact Us →
         </a>
       </section>
+      <Footer />
     </>
   )
 }
