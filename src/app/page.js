@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import IntroCube from '@/components/IntroCube'
 
 const reviews = [
   {
@@ -22,6 +23,9 @@ const reviews = [
 export default function Home() {
   return (
     <main className="bento-wrap">
+      {/* Logo intro cube — self-dismisses on click, ~3.5s auto-spin */}
+      <IntroCube />
+
       <div className="bento">
 
         {/* ══════════════ LEFT COLUMN ══════════════ */}
