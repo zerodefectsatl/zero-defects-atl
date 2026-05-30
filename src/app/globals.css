@@ -1182,23 +1182,6 @@ body {
 
 /* ZD Mentality — "Zero" headline: outline only, double blue traced (inner + outer line, transparent fill) */
 .zd-zero-outline{
-  position: relative;
   color: transparent;
-  -webkit-text-stroke: 4px #1a8fff;
-}
-.zd-zero-outline::before{
-  content: "Zero";
-  position: absolute;
-  inset: 0;
-  color: transparent;
-  -webkit-text-stroke: 8px #ffffff;
-  z-index: -1;
-}
-.zd-zero-outline::after{
-  content: "Zero";
-  position: absolute;
-  inset: 0;
-  color: transparent;
-  -webkit-text-stroke: 13px #1a8fff;
-  z-index: -2;
+  -webkit-text-stroke: 3px #1a8fff;
 }
