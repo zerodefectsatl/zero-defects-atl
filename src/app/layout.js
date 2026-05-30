@@ -1,4 +1,5 @@
 import { Manrope } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const manropeBody = Manrope({
@@ -195,8 +196,12 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${manropeDisplay.variable} ${manropeBody.variable} ${manropeUi.variable}`}
+      suppressHydrationWarning
     >
       <body>
+        <Script id="zd-intro-skip" strategy="beforeInteractive">
+          {"try{if(sessionStorage.getItem('zd-intro-seen'))document.documentElement.setAttribute('data-intro-seen','1')}catch(e){}"}
+        </Script>
         {children}
         <script
           type="application/ld+json"

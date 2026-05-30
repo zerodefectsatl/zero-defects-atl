@@ -16,6 +16,13 @@ export default function IntroCube({ onComplete }) {
   const [phase, setPhase] = useState('hidden')
 
   useEffect(() => {
+    let seen = false
+    try { seen = !!sessionStorage.getItem('zd-intro-seen') } catch (e) {}
+    if (seen) {
+      setPhase('done')
+      document.body.style.cursor = 'auto'
+      return
+    }
     const t0 = setTimeout(() => setPhase('spin'),   80)
     const t1 = setTimeout(() => setPhase('stable'), 3600)
     return () => [t0, t1].forEach(clearTimeout)
@@ -23,6 +30,7 @@ export default function IntroCube({ onComplete }) {
 
   const dismiss = () => {
     if (phase === 'fading' || phase === 'done') return
+    try { sessionStorage.setItem('zd-intro-seen', '1') } catch (e) {}
     setPhase('fading')
     setTimeout(() => {
       setPhase('done')
@@ -39,6 +47,7 @@ export default function IntroCube({ onComplete }) {
   return (
     <div
       onClick={dismiss}
+      className="zd-intro-gate"
       style={{
         position: 'fixed', inset: 0, zIndex: 20000,
         display: 'flex', flexDirection: 'column',
@@ -322,12 +331,14 @@ function LogoInCube() {
           <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
-      <rect x="8"   y="8" width="163" height="188" rx="3" fill="rgba(26,143,255,0.08)" stroke="rgba(26,143,255,0.35)" strokeWidth="1"/>
-      <text x="14"  y="174" fontFamily="Arial Black,Impact,sans-serif" fontSize="170" fontWeight="900" fill="rgba(0,20,60,0.5)" dx="4" dy="4">Z</text>
-      <text x="14"  y="174" fontFamily="Arial Black,Impact,sans-serif" fontSize="170" fontWeight="900" fill="url(#cz)" filter="url(#ls)">Z</text>
-      <rect x="179" y="8" width="173" height="188" rx="3" fill="rgba(234,255,0,0.06)" stroke="rgba(234,255,0,0.3)" strokeWidth="1"/>
-      <text x="183" y="174" fontFamily="Arial Black,Impact,sans-serif" fontSize="170" fontWeight="900" fill="rgba(0,20,10,0.5)" dx="4" dy="4">D</text>
-      <text x="183" y="174" fontFamily="Arial Black,Impact,sans-serif" fontSize="170" fontWeight="900" fill="url(#cd)" filter="url(#ls)">D</text>
+      {/* Z — thick blocky bars + parallelogram diagonal (matches original chunky logo) */}
+      <rect x="8" y="8" width="163" height="188" rx="3" fill="rgba(26,143,255,0.08)" stroke="rgba(26,143,255,0.35)" strokeWidth="1"/>
+      <polygon points="18,12 175,12 175,72 88,140 175,140 175,200 18,200 18,140 105,72 18,72" fill="rgba(0,20,60,0.5)"/>
+      <polygon points="14,8 171,8 171,68 84,136 171,136 171,196 14,196 14,136 101,68 14,68" fill="url(#cz)" filter="url(#ls)"/>
+      {/* D — shifted right to clear Z shadow bleed; moderately rounded bowl */}
+      <rect x="191" y="8" width="163" height="188" rx="3" fill="rgba(234,255,0,0.06)" stroke="rgba(234,255,0,0.3)" strokeWidth="1"/>
+      <path d="M 197,12 L 239,12 A 115 94 0 0 1 239,200 L 197,200 Z M 239,52 A 73 54 0 0 1 239,160 Z" fill="rgba(0,20,10,0.5)" fillRule="evenodd"/>
+      <path d="M 193,8 L 235,8 A 115 94 0 0 1 235,196 L 193,196 Z M 235,48 A 73 54 0 0 1 235,156 Z" fill="url(#cd)" fillRule="evenodd" filter="url(#ls)"/>
       <rect x="8" y="208" width="344" height="1" fill="rgba(255,255,255,0.08)"/>
       <text x="180" y="278" textAnchor="middle" fontFamily="Arial Black,Impact,sans-serif" fontSize="72" fontWeight="900" letterSpacing="8" fill="url(#ct)" filter="url(#tg)">ZERO</text>
       <text x="180" y="348" textAnchor="middle" fontFamily="Arial Black,Impact,sans-serif" fontSize="68" fontWeight="900" letterSpacing="4" fill="url(#ct)" filter="url(#tg)">DEFECTS</text>
