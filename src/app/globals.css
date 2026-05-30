@@ -558,13 +558,13 @@ body {
 =============================================================== */
 
 .bento-wrap {
-  --bento-bg:      #18181b;
+  --bento-bg:      #1f1f23;
   --bento-card:    #101010;
   --bento-yellow:  #eaff00;
   --bento-blue:    #1a8fff;
   --bento-white:   #ffffff;
   --bento-muted:   #9a9a9a;
-  --bento-border:  #1c1c1c;
+  --bento-border:  #262626;
   --bento-gap:     4px;
   --bento-r:       10px;
 
