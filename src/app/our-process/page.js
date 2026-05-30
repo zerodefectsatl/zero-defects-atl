@@ -1,4 +1,4 @@
-import MorphLogo from '@/components/MorphLogo'
+import TilePage from '@/components/TilePage'
 import Footer from '@/components/Footer'
 import { pageMetadata } from '@/lib/seo'
 
@@ -56,9 +56,8 @@ const timing = [
 
 export default function OurProcessPage() {
   return (
-    <main className="tile-field">
-      <MorphLogo />
-      <article className="tile-frame">
+    <TilePage>
+      <article style={{ padding: '80px 38px 40px' }}>
         {/* Back link */}
         <a
           href="/"
@@ -78,7 +77,7 @@ export default function OurProcessPage() {
         </a>
 
         {/* Header */}
-        <header className="tile">
+        <header>
           <div
             style={{
               fontSize: 11,
@@ -122,7 +121,7 @@ export default function OurProcessPage() {
         </header>
 
         {/* The 4 steps */}
-        <section className="tile">
+        <section style={{ borderTop: '1px solid #262626', marginTop: 32, paddingTop: 30 }}>
           {steps.map((s, i) => (
             <div
               key={s.num}
@@ -209,7 +208,7 @@ export default function OurProcessPage() {
         </section>
 
         {/* Timing block */}
-        <section className="tile">
+        <section style={{ background: '#171717', border: '1px solid #262626', borderRadius: 8, padding: '28px 26px', marginTop: 30 }}>
           <div
             style={{
               fontSize: 11,
@@ -282,7 +281,7 @@ export default function OurProcessPage() {
         </section>
 
         {/* CTA */}
-        <div className="tile" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ background: '#171717', border: '1px solid #262626', borderRadius: 8, padding: '28px 26px', marginTop: 30, display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div
             style={{
               fontSize: 11,
@@ -350,6 +349,6 @@ export default function OurProcessPage() {
         </div>
       </article>
       <Footer />
-    </main>
+    </TilePage>
   )
 }
