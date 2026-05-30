@@ -56,16 +56,9 @@ const timing = [
 
 export default function OurProcessPage() {
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        background: '#080808',
-        color: '#ffffff',
-        padding: '64px 24px 120px',
-      }}
-    >
+    <main className="tile-field">
       <MorphLogo />
-      <article style={{ maxWidth: 880, margin: '0 auto' }}>
+      <article className="tile-frame">
         {/* Back link */}
         <a
           href="/"
@@ -85,7 +78,7 @@ export default function OurProcessPage() {
         </a>
 
         {/* Header */}
-        <header style={{ marginBottom: 64 }}>
+        <header className="tile">
           <div
             style={{
               fontSize: 11,
@@ -129,7 +122,7 @@ export default function OurProcessPage() {
         </header>
 
         {/* The 4 steps */}
-        <section style={{ marginBottom: 80 }}>
+        <section className="tile">
           {steps.map((s, i) => (
             <div
               key={s.num}
@@ -216,15 +209,7 @@ export default function OurProcessPage() {
         </section>
 
         {/* Timing block */}
-        <section
-          style={{
-            background: '#101010',
-            border: '1px solid #1c1c1c',
-            borderRadius: 10,
-            padding: '40px 32px',
-            marginBottom: 64,
-          }}
-        >
+        <section className="tile">
           <div
             style={{
               fontSize: 11,
@@ -297,17 +282,7 @@ export default function OurProcessPage() {
         </section>
 
         {/* CTA */}
-        <div
-          style={{
-            padding: '40px 32px',
-            background: '#101010',
-            border: '1px solid #1c1c1c',
-            borderRadius: 10,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 12,
-          }}
-        >
+        <div className="tile" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div
             style={{
               fontSize: 11,
