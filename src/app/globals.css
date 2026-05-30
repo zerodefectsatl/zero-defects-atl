@@ -561,6 +561,7 @@ body {
   --bento-bg:      #2a2a2a;
   --bento-card:    #101010;
   --bento-yellow:  #eaff00;
+  --bento-blue:    #1a8fff;
   --bento-white:   #ffffff;
   --bento-muted:   #9a9a9a;
   --bento-border:  #1c1c1c;
@@ -623,7 +624,8 @@ body {
   min-height: 0;
 }
 .bento-card:hover {
-  border-color: rgba(234, 255, 0, 0.4);
+  /* blue hover glow — echoes the Z in the logo */
+  border-color: rgba(26, 143, 255, 0.55);
 }
 
 .bento-badge {
@@ -657,13 +659,13 @@ body {
   right: 12px;
   width: 24px;
   height: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(26, 143, 255, 0.35);
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 11px;
-  color: var(--bento-muted);
+  color: var(--bento-blue);
   z-index: 10;
   pointer-events: none;
 }
@@ -784,7 +786,7 @@ body {
 .bento-hero__eyebrow-bar {
   width: 20px;
   height: 1px;
-  background: var(--bento-yellow);
+  background: var(--bento-blue);
   display: block;
 }
 .bento-hero__headline {
