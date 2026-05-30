@@ -811,7 +811,10 @@ body {
   color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
 }
-.bento-hero__cta-arrow { color: var(--bento-yellow); font-size: 14px; }
+.bento-hero__cta-arrow { color: var(--bento-blue); font-size: 14px; }
+
+/* one blue badge as a focal accent (the logo Z) among the lime badges */
+.bento-gallery-card .bento-badge { background: var(--bento-blue); color: #fff; }
 
 .bento-services-card { grid-column: 1 / 2; grid-row: 3 / 4; }
 .bento-process-card  { grid-column: 2 / 3; grid-row: 3 / 4; }
@@ -960,7 +963,7 @@ body {
   font-family: var(--font-bebas-neue), 'Manrope', sans-serif;
   font-size: 52px;
   line-height: 1;
-  color: var(--bento-yellow);
+  color: var(--bento-blue);
   font-weight: 700;
 }
 .bento-reviews__of {
