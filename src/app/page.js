@@ -64,10 +64,10 @@ export default function Home() {
           {/* LOGO CARD — own bento tile, z-index 2, creates L-shape cutout */}
           <div className="bento-card bento-logo-card">
             <Image
-              src="/images/logos/zd-logo.png"
-              alt="Zero Defects ATL — Protective Surface Coatings"
-              width={120}
-              height={120}
+              src="/images/logos/zd-logo-clean.png"
+              alt="Zero Defects ATL"
+              width={325}
+              height={321}
               priority
               className="bento-logo-card__mark"
             />
