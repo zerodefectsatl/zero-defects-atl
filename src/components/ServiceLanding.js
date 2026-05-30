@@ -53,9 +53,9 @@ export default function ServiceLanding({
               fill
               priority
               sizes="100vw"
-              style={{ objectFit: 'cover', opacity: 0.34 }}
+              style={{ objectFit: 'cover', opacity: 0.72 }}
             />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(16,16,16,0.55) 0%, rgba(16,16,16,0.78) 60%, #101010 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(16,16,16,0.25) 0%, rgba(16,16,16,0.55) 62%, rgba(16,16,16,0.9) 100%)' }} />
           </div>
           <div style={{ position: 'relative', zIndex: 1, padding: '48px 36px' }}>
             <a href="/" style={{ display: 'inline-block', marginBottom: 24, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}>
