@@ -30,7 +30,7 @@ export default function ZdMentalityPage() {
             fontSize: 11,
             letterSpacing: 3,
             textTransform: 'uppercase',
-            color: '#FFD700',
+            color: '#eaff00',
             textDecoration: 'none',
           }}
         >
@@ -42,7 +42,7 @@ export default function ZdMentalityPage() {
             fontSize: 11,
             letterSpacing: 4,
             textTransform: 'uppercase',
-            color: '#FFD700',
+            color: '#eaff00',
             marginBottom: 16,
           }}
         >
@@ -59,7 +59,7 @@ export default function ZdMentalityPage() {
           }}
         >
           Obsession-level detail.<br />
-          <span style={{ color: '#FFD700' }}>Zero</span> compromises.
+          <span style={{ color: '#eaff00' }}>Zero</span> compromises.
         </h1>
 
         <p style={{ fontSize: 18, lineHeight: 1.6, color: 'rgba(255,255,255,0.75)', marginBottom: 20 }}>
@@ -80,7 +80,7 @@ export default function ZdMentalityPage() {
             fontSize: 11,
             letterSpacing: 4,
             textTransform: 'uppercase',
-            color: '#FFD700',
+            color: '#eaff00',
             marginBottom: 24,
           }}
         >
@@ -110,8 +110,8 @@ export default function ZdMentalityPage() {
               d: 'PONC — the real cost of errors, rework, and scrap. Putting a number on what failure costs is what makes getting it right the first time impossible to argue with.',
             },
           ].map((a, i) => (
-            <div key={i} style={{ borderLeft: '2px solid #FFD700', paddingLeft: 22 }}>
-              <div style={{ fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: '#FFD700', marginBottom: 8 }}>
+            <div key={i} style={{ borderLeft: '2px solid #eaff00', paddingLeft: 22 }}>
+              <div style={{ fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: '#eaff00', marginBottom: 8 }}>
                 {String(i + 1).padStart(2, '0')} &middot; {a.k}
               </div>
               <h2 style={{ fontSize: 22, lineHeight: 1.3, marginBottom: 8, fontWeight: 700 }}>{a.t}</h2>

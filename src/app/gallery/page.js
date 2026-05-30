@@ -139,7 +139,7 @@ export default function Gallery() {
               fontSize: 11,
               letterSpacing: 3,
               textTransform: 'uppercase',
-              color: '#FFD700',
+              color: '#eaff00',
               textDecoration: 'none',
               fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
               fontWeight: 600,

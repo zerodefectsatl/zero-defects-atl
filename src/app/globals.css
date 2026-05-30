@@ -554,13 +554,13 @@ body {
    BENTO HOMEPAGE - Zero Defects ATL
    2fr/1fr outer | 130/1fr/1fr x 100/1fr/168 inner-left
    L-shape hero (z-1) with logo card on top (z-2)
-   Brand: #FFD700 yellow, #080808 bg, #101010 card
+   Brand: #eaff00 yellow, #080808 bg, #101010 card
 =============================================================== */
 
 .bento-wrap {
   --bento-bg:      #080808;
   --bento-card:    #101010;
-  --bento-yellow:  #FFD700;
+  --bento-yellow:  #eaff00;
   --bento-white:   #ffffff;
   --bento-muted:   #9a9a9a;
   --bento-border:  #1c1c1c;
@@ -621,7 +621,7 @@ body {
   min-height: 0;
 }
 .bento-card:hover {
-  border-color: rgba(255, 215, 0, 0.4);
+  border-color: rgba(234, 255, 0, 0.4);
 }
 
 .bento-badge {
@@ -910,7 +910,7 @@ body {
   padding: 16px 0;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,215,0,0.25) transparent;
+  scrollbar-color: rgba(234,255,0,0.25) transparent;
 }
 .bento-reviews__item {
   border-top: 1px solid var(--bento-border);
