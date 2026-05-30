@@ -42,6 +42,16 @@ const nextConfig = {
         destination: '/our-process',
         permanent: true,
       },
+
+      // ── Legacy WordPress URLs → new Next.js equivalents ──
+      // The old WP pages are still indexed by Google. 301/308 redirecting
+      // them consolidates ranking signals onto the new pages and clears the
+      // duplicate-content / crawl conflict (better than letting them 404).
+      { source: '/contact-us', destination: '/services#contact', permanent: true },
+      { source: '/contact', destination: '/services#contact', permanent: true },
+      { source: '/ceramic-coating-intro', destination: '/ceramic-coating', permanent: true },
+      { source: '/about', destination: '/zd-mentality', permanent: true },
+      { source: '/about-us', destination: '/zd-mentality', permanent: true },
     ]
   },
 };
