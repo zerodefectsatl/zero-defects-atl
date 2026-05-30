@@ -44,8 +44,8 @@ export default function ServiceLanding({
       />
 
       <div className="tile-frame">
-        {/* Hero tile */}
-        <section className="tile" style={{ position: 'relative', overflow: 'hidden', padding: 0 }}>
+        {/* Hero tile — bright photo, left gradient, content scrolls inside the tile */}
+        <section className="tile" style={{ position: 'relative', overflow: 'hidden', padding: 0, height: 'min(78vh, 660px)' }}>
           <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <Image
               src={heroImage}
@@ -53,26 +53,29 @@ export default function ServiceLanding({
               fill
               priority
               sizes="100vw"
-              style={{ objectFit: 'cover', opacity: 0.72 }}
+              style={{ objectFit: 'cover', opacity: 0.95 }}
             />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(16,16,16,0.25) 0%, rgba(16,16,16,0.55) 62%, rgba(16,16,16,0.9) 100%)' }} />
+            {/* Left-to-right gradient: dark on the left for text, photo visible on the right */}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(16,16,16,0.94) 0%, rgba(16,16,16,0.72) 38%, rgba(16,16,16,0.25) 68%, rgba(16,16,16,0) 100%)' }} />
           </div>
-          <div style={{ position: 'relative', zIndex: 1, padding: '48px 36px' }}>
-            <a href="/" style={{ display: 'inline-block', marginBottom: 24, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}>
-              ← Back to home
-            </a>
-            <p className="tile-eyebrow">{eyebrow}</p>
-            <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 'clamp(38px, 5.6vw, 70px)', lineHeight: 1.0, letterSpacing: 0.5, margin: '0 0 20px' }}>
-              {h1}
-            </h1>
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 18, lineHeight: 1.7, maxWidth: 640, margin: 0 }}>{lead}</p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 30 }}>
-              <a href="/services#contact" style={{ background: LIME, color: '#000', fontWeight: 700, fontSize: 14, letterSpacing: 1, textTransform: 'uppercase', padding: '14px 26px', borderRadius: 999, textDecoration: 'none' }}>
-                Get a Free Quote →
+          <div style={{ position: 'relative', zIndex: 1, height: '100%', overflowY: 'auto', padding: '44px 38px' }}>
+            <div style={{ maxWidth: 560 }}>
+              <a href="/" style={{ display: 'inline-block', marginBottom: 22, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}>
+                ← Back to home
               </a>
-              <a href={`tel:${BUSINESS.telephone.replace('+1', '')}`} style={{ border: '1px solid #2e2e2e', color: '#fff', fontWeight: 700, fontSize: 14, letterSpacing: 1, textTransform: 'uppercase', padding: '14px 26px', borderRadius: 999, textDecoration: 'none' }}>
-                Call 404-406-3355
-              </a>
+              <p className="tile-eyebrow">{eyebrow}</p>
+              <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 'clamp(40px, 6vw, 76px)', lineHeight: 0.98, letterSpacing: 0.5, margin: '0 0 20px' }}>
+                {h1}
+              </h1>
+              <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 18, lineHeight: 1.7, margin: 0 }}>{lead}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, margin: '30px 0 8px' }}>
+                <a href="/services#contact" style={{ background: LIME, color: '#000', fontWeight: 700, fontSize: 14, letterSpacing: 1, textTransform: 'uppercase', padding: '14px 26px', borderRadius: 999, textDecoration: 'none' }}>
+                  Get a Free Quote →
+                </a>
+                <a href={`tel:${BUSINESS.telephone.replace('+1', '')}`} style={{ border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontWeight: 700, fontSize: 14, letterSpacing: 1, textTransform: 'uppercase', padding: '14px 26px', borderRadius: 999, textDecoration: 'none' }}>
+                  Call 404-406-3355
+                </a>
+              </div>
             </div>
           </div>
         </section>
