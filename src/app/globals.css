@@ -562,7 +562,7 @@ body {
   --bento-card:    #101010;
   --bento-yellow:  #FFD700;
   --bento-white:   #ffffff;
-  --bento-muted:   #666666;
+  --bento-muted:   #9a9a9a;
   --bento-border:  #1c1c1c;
   --bento-gap:     8px;
   --bento-r:       10px;
@@ -675,7 +675,7 @@ body {
 }
 .bento-card__eyebrow {
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 2px;
   color: var(--bento-muted);
   text-transform: uppercase;
@@ -762,7 +762,7 @@ body {
   align-items: center;
   gap: 10px;
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 4px;
   color: var(--bento-yellow);
   text-transform: uppercase;
@@ -791,10 +791,10 @@ body {
   align-items: center;
   gap: 8px;
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
 }
 .bento-hero__cta-arrow { color: var(--bento-yellow); font-size: 14px; }
@@ -866,7 +866,7 @@ body {
 .bento-social:hover .bento-social__label { color: var(--bento-yellow); }
 .bento-social__label {
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--bento-muted);
@@ -893,10 +893,11 @@ body {
   font-size: 28px;
   letter-spacing: 1px;
   font-weight: 700;
+  margin: 0;
 }
 .bento-reviews__count {
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 9px;
+  font-size: 11px;
   color: var(--bento-yellow);
   letter-spacing: 2px;
   font-weight: 600;
@@ -917,20 +918,20 @@ body {
 }
 .bento-reviews__stars {
   color: var(--bento-yellow);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 2px;
   margin-bottom: 5px;
 }
 .bento-reviews__text {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
   font-style: italic;
   line-height: 1.5;
   margin-bottom: 5px;
 }
 .bento-reviews__author {
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 8.5px;
+  font-size: 11px;
   letter-spacing: 2px;
   color: var(--bento-muted);
   text-transform: uppercase;
@@ -950,7 +951,7 @@ body {
 }
 .bento-reviews__of {
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 9px;
+  font-size: 11px;
   color: var(--bento-muted);
   margin-bottom: 8px;
   font-weight: 600;
@@ -987,6 +988,8 @@ body {
     grid-template-columns: 1fr;
     height: auto;
     max-height: none;
+    /* clearance so the fixed CTA dock never covers the last card */
+    padding-bottom: 84px;
   }
   .bento-left {
     grid-template-columns: 1fr;
@@ -1026,7 +1029,7 @@ body {
 }
 .bento-card__list li {
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.78);
@@ -1054,7 +1057,7 @@ body {
   align-items: center;
   gap: 8px;
   font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.78);
@@ -1063,7 +1066,7 @@ body {
 }
 .bento-card__steps li span {
   color: var(--bento-yellow);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 1px;
   font-weight: 600;
   min-width: 18px;
@@ -1102,3 +1105,57 @@ body {
 
 /* Visually-hidden but screen-reader/SEO-readable (accessible H1 on visual pages) */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ───────────── Persistent conversion dock ─────────────
+   Fixed call + quote actions so a ready-to-buy visitor always has a
+   path to contact, independent of the bento navigation. Sits below the
+   intro gate (z 20000) so it only appears once the intro clears. */
+.bento-cta-dock {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 200;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.bento-cta-dock__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-family: var(--font-barlow-cond), 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.bento-cta-dock__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55); }
+.bento-cta-dock__btn--call {
+  background: rgba(16, 16, 16, 0.92);
+  border: 1px solid #2e2e2e;
+  color: #fff;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.bento-cta-dock__btn--call svg { color: var(--bento-yellow); }
+.bento-cta-dock__btn--quote {
+  background: var(--bento-yellow);
+  color: #000;
+}
+.bento-cta-dock__btn--quote span { font-size: 16px; line-height: 1; }
+
+@media (max-width: 700px) {
+  .bento-cta-dock { left: 12px; right: 12px; bottom: 12px; gap: 8px; }
+  .bento-cta-dock__btn { flex: 1; justify-content: center; height: 50px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-cta-dock__btn { transition: none; }
+  .bento-cta-dock__btn:hover { transform: none; }
+}

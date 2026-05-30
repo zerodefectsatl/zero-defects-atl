@@ -175,7 +175,7 @@ export default function Home() {
           {/* REVIEWS CARD — large, middle */}
           <div className="bento-card bento-reviews-card">
             <div className="bento-reviews__header">
-              <div className="bento-reviews__title">Reviews</div>
+              <h2 className="bento-reviews__title">Reviews</h2>
               <div className="bento-reviews__count">5.0 ★ · 40 reviews</div>
             </div>
             <div className="bento-reviews__items">
@@ -216,6 +216,28 @@ export default function Home() {
 
         </div>
 
+      </div>
+
+      {/* Persistent conversion dock — always-available call + quote path,
+          since the bento cards alone don't surface a way to make contact. */}
+      <div className="bento-cta-dock">
+        <a
+          href="tel:4044063355"
+          className="bento-cta-dock__btn bento-cta-dock__btn--call"
+          aria-label="Call Zero Defects ATL at 404-406-3355"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
+          <span>Call</span>
+        </a>
+        <a
+          href="/services#contact"
+          className="bento-cta-dock__btn bento-cta-dock__btn--quote"
+        >
+          Get a Quote
+          <span aria-hidden="true">→</span>
+        </a>
       </div>
     </main>
   )
