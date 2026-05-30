@@ -1,11 +1,19 @@
 import MorphLogo from '@/components/MorphLogo'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
+  path: '/our-process',
   title: 'Our Process — Zero Defects ATL',
   description:
     'Four steps. Zero shortcuts. How Zero Defects ATL approaches every ceramic coating, PPF install, and paint correction in our Braselton, GA facility.',
-  alternates: { canonical: '/our-process' },
-}
+  keywords: [
+    'ceramic coating process Braselton',
+    'paint correction steps Georgia',
+    'how PPF is installed',
+    'detailing process Atlanta',
+    'Zero Defects method',
+  ],
+})
 
 const steps = [
   {

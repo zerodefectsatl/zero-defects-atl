@@ -1,11 +1,19 @@
 import MorphLogo from '@/components/MorphLogo'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
+  path: '/zd-mentality',
   title: 'ZD Mentality — Zero Defects ATL',
   description:
     'Obsession-level detail. Zero compromises. The philosophy behind every ceramic coating, PPF install, and paint correction at Zero Defects ATL.',
-  alternates: { canonical: '/zd-mentality' },
-}
+  keywords: [
+    'Zero Defects philosophy',
+    'attention to detail car care',
+    'quality ceramic coating Braselton',
+    'meticulous PPF installer Georgia',
+    'no shortcuts detailing Atlanta',
+  ],
+})
 
 export default function ZdMentalityPage() {
   return (

@@ -1,36 +1,27 @@
 import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import MorphLogo from '@/components/MorphLogo'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
+  path: '/services',
   title: 'Ceramic Coating & PPF Services in Atlanta, GA | Zero Defects',
-  description: 'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
-  alternates: { canonical: '/services' },
-  openGraph: {
-    title: 'Ceramic Coating, PPF & Paint Correction in Atlanta, GA | Zero Defects ATL',
-    description:
-      'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
-    url: 'https://www.zerodefectsatl.com/services',
-    siteName: 'Zero Defects ATL',
-    locale: 'en_US',
-    type: 'website',
-    images: [
-      {
-        url: '/images/gallery/IMG_9517.jpeg',
-        width: 1200,
-        height: 800,
-        alt: 'Ceramic coating and PPF services at Zero Defects ATL — Atlanta, GA',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Ceramic Coating, PPF & Paint Correction in Atlanta, GA | Zero Defects ATL',
-    description:
-      'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
-    images: ['/images/gallery/IMG_9517.jpeg'],
-  },
-}
+  description:
+    'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
+  ogTitle: 'Ceramic Coating, PPF & Paint Correction in Atlanta, GA | Zero Defects ATL',
+  keywords: [
+    'ceramic coating Braselton GA',
+    'PPF Braselton',
+    'paint protection film Atlanta',
+    'paint correction Atlanta',
+    'Gtechniq installer Georgia',
+    'XPEL installer Braselton',
+    'ceramic coating near Buford',
+    'PPF installer near Gainesville',
+    'auto detailing Braselton GA',
+  ],
+  imageAlt: 'Ceramic coating and PPF services at Zero Defects ATL — Atlanta, GA',
+})
 
 const services = [
   {
@@ -41,6 +32,7 @@ const services = [
     features: ['Crystal Serum Ultra · 9-year warranty', 'CCI Revolution · 6+ years', 'CCI Advance · 3–5 years', 'Paint correction included on every install'],
     img: '/images/gallery/g-techniq-ultra-serum.jpg',
     cta: 'Get a Ceramic Quote',
+    slug: '/ceramic-coating',
   },
   {
     rank: '02',
@@ -55,6 +47,7 @@ const services = [
       { src: '/images/gallery/ppf-r8-03.jpg', caption: '03 · Finished install' },
     ],
     cta: 'Get a PPF Quote',
+    slug: '/paint-protection-film',
   },
   {
     rank: '03',
@@ -64,6 +57,7 @@ const services = [
     features: ['Single, two, and three-stage correction', 'Machine polish with Rupes and Flex', 'IDA/Detailing PRO certified technician', 'Required before every coating install'],
     img: '/images/gallery/IMG_7437.jpeg',
     cta: 'Get a Correction Quote',
+    slug: '/paint-correction',
   },
 ]
 
@@ -165,7 +159,7 @@ export default function ServicesPage() {
                       ))}
                     </ul>
                   </div>
-                  <div style={{ marginTop: 32 }}>
+                  <div style={{ marginTop: 32, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 20 }}>
                     <a href="#contact" style={{
                       display: 'inline-block',
                       background: '#eaff00',
@@ -178,6 +172,16 @@ export default function ServicesPage() {
                       textTransform: 'uppercase',
                       textDecoration: 'none',
                     }}>{svc.cta}</a>
+                    {svc.slug && (
+                      <a href={svc.slug} style={{
+                        color: '#eaff00',
+                        fontSize: 13,
+                        fontWeight: 700,
+                        letterSpacing: '0.08em',
+                        textTransform: 'uppercase',
+                        textDecoration: 'none',
+                      }}>Learn more →</a>
+                    )}
                   </div>
                 </div>
                 <div className="zd-svc-card__img">

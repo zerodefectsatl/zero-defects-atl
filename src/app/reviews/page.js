@@ -1,10 +1,19 @@
 import Navbar from '@/components/Navbar'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
+  path: '/reviews',
   title: 'Reviews — Zero Defects ATL | What Owners Say',
-  description: 'Real reviews from Zero Defects ATL clients — ceramic coating, PPF, and paint correction in Braselton, GA.',
-  alternates: { canonical: '/reviews' },
-}
+  description:
+    'Real reviews from Zero Defects ATL clients — ceramic coating, PPF, and paint correction in Braselton, GA.',
+  keywords: [
+    'Zero Defects ATL reviews',
+    'ceramic coating reviews Braselton',
+    'best ceramic coating Atlanta reviews',
+    'XPEL installer reviews Georgia',
+    'PPF reviews near Gainesville',
+  ],
+})
 
 const allReviews = [
   {

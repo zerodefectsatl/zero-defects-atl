@@ -1,22 +1,21 @@
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
+  path: '/gallery',
   title: 'Gallery — Zero Defects ATL | Ceramic Coating & PPF Portfolio',
-  description: 'Browse completed projects — ceramic coatings, paint protection film, and paint correction on luxury vehicles in Braselton, GA.',
-  alternates: { canonical: '/gallery' },
-  openGraph: {
-    title: 'Gallery — Zero Defects ATL | Ceramic Coating & PPF Portfolio',
-    description: 'Browse completed projects — ceramic coatings, PPF, and paint correction on luxury vehicles in Braselton, GA.',
-    images: [{ url: '/images/gallery/IMG_9517.jpeg', width: 1200, height: 800, alt: 'Zero Defects ATL gallery' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Gallery — Zero Defects ATL | Ceramic Coating & PPF Portfolio',
-    description: 'Browse completed projects — ceramic coatings, PPF, and paint correction on luxury vehicles in Braselton, GA.',
-    images: ['/images/gallery/IMG_9517.jpeg'],
-  },
-}
+  description:
+    'Browse completed projects — ceramic coatings, paint protection film, and paint correction on luxury vehicles in Braselton, GA.',
+  keywords: [
+    'ceramic coating portfolio Braselton',
+    'PPF gallery Atlanta',
+    'paint protection film examples Georgia',
+    'exotic car detailing Braselton GA',
+    'Zero Defects ATL work',
+  ],
+  imageAlt: 'Zero Defects ATL gallery',
+})
 
 /* ─── All automotive projects (aviation excluded) ─────────── */
 const allWork = [
