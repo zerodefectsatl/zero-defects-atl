@@ -196,6 +196,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${manropeDisplay.variable} ${manropeBody.variable} ${manropeUi.variable}`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body>

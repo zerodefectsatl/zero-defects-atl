@@ -40,7 +40,7 @@ export default function Home() {
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="auto"
             />
             <div className="bento-hero__overlay" />
             <div className="bento-hero__content">
@@ -69,6 +69,8 @@ export default function Home() {
               width={325}
               height={321}
               priority
+              fetchPriority="high"
+              loading="eager"
               className="bento-logo-card__mark"
             />
           </div>
