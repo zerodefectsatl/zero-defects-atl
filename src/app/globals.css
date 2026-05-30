@@ -753,12 +753,12 @@ body {
 .bento-hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.42);
   background-image: linear-gradient(
     115deg,
-    rgba(0, 0, 0, 0.78) 0%,
-    rgba(0, 0, 0, 0.5)  45%,
-    rgba(0, 0, 0, 0.35) 100%
+    rgba(0, 0, 0, 0.62) 0%,
+    rgba(0, 0, 0, 0.38) 45%,
+    rgba(0, 0, 0, 0.22) 100%
   );
   z-index: 1;
   pointer-events: none;
@@ -1176,4 +1176,27 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .bento-cta-dock__btn { transition: none; }
   .bento-cta-dock__btn:hover { transform: none; }
+}
+
+/* ZD Mentality — "Zero" headline: outline only, double blue traced (inner + outer line, transparent fill) */
+.zd-zero-outline{
+  position: relative;
+  color: transparent;
+  -webkit-text-stroke: 2px #1a8fff;
+}
+.zd-zero-outline::before{
+  content: "Zero";
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 5px #ffffff;
+  z-index: -1;
+}
+.zd-zero-outline::after{
+  content: "Zero";
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 8px #1a8fff;
+  z-index: -2;
 }

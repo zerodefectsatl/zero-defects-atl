@@ -96,12 +96,6 @@ export default function Home() {
               style={{ backgroundImage: 'url(/images/gallery/IMG_9306.jpeg)' }}
             />
             <div className="bento-card__overlay" />
-            <ol className="bento-card__steps" aria-hidden="true">
-              <li><span>01</span>Consultation</li>
-              <li><span>02</span>Correction</li>
-              <li><span>03</span>Application</li>
-              <li><span>04</span>Delivery</li>
-            </ol>
             <span className="bento-badge" aria-hidden="true">⚙</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">How it works</div>
@@ -201,11 +195,6 @@ export default function Home() {
               style={{ backgroundImage: 'url(/images/gallery/g-techniq-ultra-serum.jpg)' }}
             />
             <div className="bento-card__overlay" />
-            <ul className="bento-card__list" aria-hidden="true">
-              <li>Ceramic Coating</li>
-              <li>Paint Protection Film</li>
-              <li>Paint Correction</li>
-            </ul>
             <span className="bento-badge" aria-hidden="true">◻</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">What we do</div>
