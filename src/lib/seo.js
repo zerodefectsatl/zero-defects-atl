@@ -102,6 +102,32 @@ export function localBusinessNode() {
 }
 
 /**
+ * JSON-LD for a city service-area landing page: a LocalBusiness node whose
+ * areaServed centers on the city, plus a BreadcrumbList
+ * (Home > Service Areas > City).
+ */
+export function cityJsonLd({ slug, cityName }) {
+  const url = `${SITE_URL}/service-areas/${slug}`
+  return [
+    {
+      '@context': 'https://schema.org',
+      ...localBusinessNode(),
+      url,
+      areaServed: { '@type': 'City', name: `${cityName}, GA` },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Service Areas', item: `${SITE_URL}/service-areas` },
+        { '@type': 'ListItem', position: 3, name: `${cityName}, GA`, item: url },
+      ],
+    },
+  ]
+}
+
+/**
  * JSON-LD for an individual service landing page: a Service node plus a
  * BreadcrumbList. Returns an array ready to JSON.stringify into a script tag.
  */

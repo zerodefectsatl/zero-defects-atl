@@ -1,4 +1,5 @@
 import { BUSINESS } from '@/lib/seo'
+import { CITIES } from '@/lib/cities'
 
 const LIME = '#eaff00'
 
@@ -83,6 +84,18 @@ export default function Footer() {
             {QUICK_LINKS.map((l) => (
               <a key={l.href} href={l.href} style={linkStyle}>
                 {l.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        {/* Service areas */}
+        <div>
+          <p style={labelStyle}>Service Areas</p>
+          <nav style={{ display: 'flex', flexDirection: 'column' }}>
+            {CITIES.map((c) => (
+              <a key={c.slug} href={`/service-areas/${c.slug}`} style={linkStyle}>
+                {c.name}, GA
               </a>
             ))}
           </nav>
