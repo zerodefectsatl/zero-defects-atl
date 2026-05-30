@@ -67,10 +67,57 @@ export default function ZdMentalityPage() {
           but because that&rsquo;s the only standard we know.
         </p>
 
-        <p style={{ fontSize: 16, lineHeight: 1.6, color: 'rgba(255,255,255,0.55)', marginBottom: 20 }}>
-          (Placeholder copy — full story page lives here.
-          Replace with the company narrative when ready.)
+        <p style={{ fontSize: 18, lineHeight: 1.6, color: 'rgba(255,255,255,0.75)', marginBottom: 40 }}>
+          The name isn&rsquo;t a slogan. Defects aren&rsquo;t inevitable &mdash; they&rsquo;re the
+          product of weak systems. Build the system right and the work comes out right, which is
+          why we treat prevention as the job itself: catching a flaw before it happens always
+          costs less than correcting it after.
         </p>
+
+        <div
+          style={{
+            fontSize: 11,
+            letterSpacing: 4,
+            textTransform: 'uppercase',
+            color: '#FFD700',
+            marginBottom: 24,
+          }}
+        >
+          The Four Absolutes of Quality
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+          {[
+            {
+              k: 'Definition',
+              t: 'Quality is conformance to requirements.',
+              d: 'Not “goodness” or subjective excellence, but a defined standard a result either meets or it doesn’t. We set the spec before the work starts, so quality is measurable — never a matter of opinion.',
+            },
+            {
+              k: 'System',
+              t: 'The system of quality is prevention.',
+              d: 'Not detection, not inspection after the fact. We engineer the process so errors never enter it, rather than hunting for them once the damage is already done.',
+            },
+            {
+              k: 'Standard',
+              t: 'The performance standard is zero defects.',
+              d: 'Doing it right the first time — not an “acceptable quality level” that quietly budgets for failure. One standard, every car, every time.',
+            },
+            {
+              k: 'Measurement',
+              t: 'The measure of quality is the price of nonconformance.',
+              d: 'PONC — the real cost of errors, rework, and scrap. Putting a number on what failure costs is what makes getting it right the first time impossible to argue with.',
+            },
+          ].map((a, i) => (
+            <div key={i} style={{ borderLeft: '2px solid #FFD700', paddingLeft: 22 }}>
+              <div style={{ fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: '#FFD700', marginBottom: 8 }}>
+                {String(i + 1).padStart(2, '0')} &middot; {a.k}
+              </div>
+              <h2 style={{ fontSize: 22, lineHeight: 1.3, marginBottom: 8, fontWeight: 700 }}>{a.t}</h2>
+              <p style={{ fontSize: 16, lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{a.d}</p>
+            </div>
+          ))}
+        </div>
       </article>
     </main>
   )
