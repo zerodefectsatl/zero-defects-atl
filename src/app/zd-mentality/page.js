@@ -74,6 +74,7 @@ export default function ZdMentalityPage() {
             textTransform: 'uppercase',
             color: '#1a8fff',
             marginBottom: 16,
+            fontWeight: 700,
           }}
         >
           The ZD Mentality
@@ -113,6 +114,7 @@ export default function ZdMentalityPage() {
             textTransform: 'uppercase',
             color: '#1a8fff',
             marginBottom: 24,
+            fontWeight: 700,
           }}
         >
           The Four Absolutes of Quality
@@ -121,7 +123,7 @@ export default function ZdMentalityPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
           {absolutes.map((a, i) => (
             <div key={i} style={{ borderLeft: '2px solid #1a8fff', paddingLeft: 22 }}>
-              <div style={{ fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: '#1a8fff', marginBottom: 8 }}>
+              <div style={{ fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: '#1a8fff', marginBottom: 8, fontWeight: 700 }}>
                 {String(i + 1).padStart(2, '0')} &middot; {a.k}
               </div>
               <h2 style={{ fontSize: 22, lineHeight: 1.3, marginBottom: 8, fontWeight: 700 }}>{a.t}</h2>
@@ -148,6 +150,7 @@ export default function ZdMentalityPage() {
             textTransform: 'uppercase',
             color: '#1a8fff',
             marginBottom: 16,
+            fontWeight: 700,
           }}
         >
           About
