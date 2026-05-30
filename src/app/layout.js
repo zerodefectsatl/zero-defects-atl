@@ -1,23 +1,17 @@
-import { Manrope } from 'next/font/google'
+import { Bebas_Neue, Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 
-const manropeBody = Manrope({
-  weight: ['400', '500', '600', '700', '800'],
+// Body + UI text → Inter (the --font-barlow-cond label var is aliased to
+// this in globals.css). Display headings → Bebas Neue.
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-barlow-body',
   display: 'swap',
 })
 
-const manropeUi = Manrope({
-  weight: ['500', '600', '700', '800'],
-  subsets: ['latin'],
-  variable: '--font-barlow-cond',
-  display: 'swap',
-})
-
-const manropeDisplay = Manrope({
-  weight: ['600', '700', '800'],
+const bebas = Bebas_Neue({
+  weight: '400',
   subsets: ['latin'],
   variable: '--font-bebas-neue',
   display: 'swap',
@@ -207,7 +201,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${manropeDisplay.variable} ${manropeBody.variable} ${manropeUi.variable}`}
+      className={`${bebas.variable} ${inter.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >

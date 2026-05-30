@@ -26,6 +26,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* UI/label font var reuses the body font (Inter) — one font load. */
+  --font-barlow-cond: var(--font-barlow-body);
 }
 
 body {
