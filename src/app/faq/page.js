@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 
 const sections = [
   {
@@ -117,7 +116,7 @@ export default function FAQPage() {
       }}
     >
       <article style={{ maxWidth: 820, margin: '0 auto' }}>
-        <Link
+        <a
           href="/"
           style={{
             display: 'inline-block',
@@ -132,7 +131,7 @@ export default function FAQPage() {
           }}
         >
           ← Back to home
-        </Link>
+        </a>
 
         <header style={{ marginBottom: 56 }}>
           <div
@@ -323,7 +322,7 @@ export default function FAQPage() {
             >
               Call 404-406-3355
             </a>
-            <Link
+            <a
               href="/services#contact"
               style={{
                 display: 'inline-block',
@@ -340,7 +339,7 @@ export default function FAQPage() {
               }}
             >
               Request a Quote
-            </Link>
+            </a>
           </div>
         </div>
       </article>

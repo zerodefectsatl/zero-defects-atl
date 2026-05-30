@@ -50,7 +50,7 @@ export default function Navbar() {
           alt="Zero Defects ATL"
           width={160}
           height={56}
-          style={{ display: 'block', objectFit: 'contain', height: '56px', width: 'auto', marginTop: '0' }}
+          style={{ display: 'block', objectFit: 'contain', height: '56px', width: 'auto', marginTop: '0', viewTransitionName: 'zd-logo' }}
           priority
         />
       </a>

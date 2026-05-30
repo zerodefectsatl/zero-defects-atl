@@ -1,4 +1,3 @@
-import Link from 'next/link'
 
 export const metadata = {
   title: 'ZD Mentality — Zero Defects ATL',
@@ -21,7 +20,7 @@ export default function ZdMentalityPage() {
       }}
     >
       <article style={{ maxWidth: '720px', width: '100%' }}>
-        <Link
+        <a
           href="/"
           style={{
             display: 'inline-block',
@@ -34,7 +33,7 @@ export default function ZdMentalityPage() {
           }}
         >
           ← Back
-        </Link>
+        </a>
 
         <div
           style={{

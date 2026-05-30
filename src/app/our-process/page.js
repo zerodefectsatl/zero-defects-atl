@@ -1,4 +1,3 @@
-import Link from 'next/link'
 
 export const metadata = {
   title: 'Our Process — Zero Defects ATL',
@@ -57,7 +56,7 @@ export default function OurProcessPage() {
     >
       <article style={{ maxWidth: 880, margin: '0 auto' }}>
         {/* Back link */}
-        <Link
+        <a
           href="/"
           style={{
             display: 'inline-block',
@@ -72,7 +71,7 @@ export default function OurProcessPage() {
           }}
         >
           ← Back to home
-        </Link>
+        </a>
 
         {/* Header */}
         <header style={{ marginBottom: 64 }}>
@@ -343,7 +342,7 @@ export default function OurProcessPage() {
             >
               Call 404-406-3355
             </a>
-            <Link
+            <a
               href="/services#contact"
               style={{
                 display: 'inline-block',
@@ -360,7 +359,7 @@ export default function OurProcessPage() {
               }}
             >
               Request a Quote
-            </Link>
+            </a>
           </div>
         </div>
       </article>

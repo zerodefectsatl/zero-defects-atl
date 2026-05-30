@@ -1074,3 +1074,29 @@ body {
 .bento-process-card .bento-card__bg  { background-position: center 50%; }
 .bento-gallery-card .bento-card__bg  { background-position: center 60%; }
 
+
+
+/* ───────────── View Transitions (cross-document) ─────────────
+   Slow, deliberate page motion: the outgoing page falls away and
+   the incoming page rises up. Gated behind reduced-motion so it
+   never imposes on users who opt out. Shared elements (the logo,
+   a gallery photo) carry their own view-transition-name and morph
+   independently of this whole-page motion. Tune feel via the
+   translateY % and the 950ms duration. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+
+  ::view-transition-old(root) {
+    animation: zd-page-fall 950ms cubic-bezier(.22, 1, .36, 1) both;
+  }
+  ::view-transition-new(root) {
+    animation: zd-page-rise 950ms cubic-bezier(.22, 1, .36, 1) both;
+  }
+  ::view-transition-group(zd-logo),
+  ::view-transition-group(zd-photo) {
+    animation-duration: 950ms;
+    animation-timing-function: cubic-bezier(.22, 1, .36, 1);
+  }
+}
+@keyframes zd-page-fall { to   { transform: translateY(14%); opacity: 0; } }
+@keyframes zd-page-rise { from { transform: translateY(14%); opacity: 0; } }

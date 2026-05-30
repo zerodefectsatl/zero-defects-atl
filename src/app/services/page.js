@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import ContactForm from '@/components/ContactForm'
 
 export const metadata = {
@@ -49,7 +48,7 @@ export default function ServicesPage() {
       <section style={{ background: '#000', paddingTop: 120, paddingBottom: 0, paddingLeft: 24, paddingRight: 24 }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
 
-          <Link
+          <a
             href="/"
             style={{
               display: 'inline-block',
@@ -64,7 +63,7 @@ export default function ServicesPage() {
             }}
           >
             ← Back to home
-          </Link>
+          </a>
 
           {/* Intro glass card */}
           <div className="zd-services-intro-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>

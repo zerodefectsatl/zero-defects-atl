@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import IntroCube from '@/components/IntroCube'
 
 const reviews = [
@@ -32,7 +31,7 @@ export default function Home() {
         <div className="bento-left">
 
           {/* HERO CARD — L-shape, z-index 1, sits BEHIND logo card */}
-          <Link href="/zd-mentality" className="bento-card bento-hero" aria-label="The ZD Mentality">
+          <a href="/zd-mentality" className="bento-card bento-hero" aria-label="The ZD Mentality">
             <video
               className="bento-hero__video"
               src="/videos/engine.mp4"
@@ -59,7 +58,7 @@ export default function Home() {
             </div>
             <span className="bento-badge bento-badge--play" aria-hidden="true">▶</span>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
-          </Link>
+          </a>
 
           {/* LOGO CARD — own bento tile, z-index 2, creates L-shape cutout */}
           <div className="bento-card bento-logo-card">
@@ -72,11 +71,12 @@ export default function Home() {
               fetchPriority="high"
               loading="eager"
               className="bento-logo-card__mark"
+              style={{ viewTransitionName: 'zd-logo' }}
             />
           </div>
 
           {/* FAQ — bottom left (narrow tile) */}
-          <Link href="/faq" className="bento-card bento-faq-card">
+          <a href="/faq" className="bento-card bento-faq-card">
             <div className="bento-faq__lines" aria-hidden="true">
               <div /><div /><div /><div />
             </div>
@@ -86,10 +86,10 @@ export default function Home() {
               <div className="bento-card__title">FAQ</div>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
-          </Link>
+          </a>
 
           {/* PROCESS — bottom center */}
-          <Link href="/our-process" className="bento-card bento-process-card">
+          <a href="/our-process" className="bento-card bento-process-card">
             <div
               className="bento-card__bg"
               style={{ backgroundImage: 'url(/images/gallery/IMG_9306.jpeg)' }}
@@ -107,10 +107,10 @@ export default function Home() {
               <div className="bento-card__title">Our Process</div>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
-          </Link>
+          </a>
 
           {/* GALLERY — bottom right of left column */}
-          <Link href="/gallery" className="bento-card bento-gallery-card">
+          <a href="/gallery" className="bento-card bento-gallery-card">
             <div
               className="bento-card__bg"
               style={{ backgroundImage: 'url(/images/gallery/IMG_8707.jpeg)' }}
@@ -122,7 +122,7 @@ export default function Home() {
               <div className="bento-card__title">Gallery</div>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
-          </Link>
+          </a>
 
         </div>
 
@@ -194,7 +194,7 @@ export default function Home() {
           </div>
 
           {/* SERVICES — bottom right (wide tile) */}
-          <Link href="/services" className="bento-card bento-services-card">
+          <a href="/services" className="bento-card bento-services-card">
             <div
               className="bento-card__bg"
               style={{ backgroundImage: 'url(/images/gallery/g-techniq-ultra-serum.jpg)' }}
@@ -211,7 +211,7 @@ export default function Home() {
               <div className="bento-card__title">Our Services</div>
             </div>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
-          </Link>
+          </a>
 
         </div>
 
