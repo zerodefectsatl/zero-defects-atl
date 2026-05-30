@@ -147,7 +147,7 @@ export default function Gallery() {
           >
             ← Back to home
           </a>
-          <span style={S.eyebrow}>Portfolio · {allWork.length} Projects</span>
+          <span style={S.eyebrow}>Portfolio</span>
           <h1
             style={{
               fontFamily: 'var(--font-bebas-neue), Manrope, sans-serif',
