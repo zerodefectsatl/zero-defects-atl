@@ -52,6 +52,21 @@ const nextConfig = {
       { source: '/ceramic-coating-intro', destination: '/ceramic-coating', permanent: true },
       { source: '/about', destination: '/zd-mentality', permanent: true },
       { source: '/about-us', destination: '/zd-mentality', permanent: true },
+      { source: '/testimonials', destination: '/reviews', permanent: true },
+      { source: '/ultimate-detail', destination: '/services', permanent: true },
+      { source: '/zero-defects', destination: '/paint-correction', permanent: true },
+      { source: '/zero-defects-intro', destination: '/paint-correction', permanent: true },
+      { source: '/xpel', destination: '/paint-protection-film', permanent: true },
+      { source: '/gtechniq', destination: '/ceramic-coating', permanent: true },
+      { source: '/gtechniq-intro', destination: '/ceramic-coating', permanent: true },
+      { source: '/bmw-z8', destination: '/gallery', permanent: true },
+      { source: '/recent-projects', destination: '/gallery', permanent: true },
+      { source: '/our-shop', destination: '/', permanent: true },
+      // WordPress archive URLs → home (specific category before the wildcard).
+      { source: '/category/why-us', destination: '/zd-mentality', permanent: true },
+      { source: '/category/:slug*', destination: '/', permanent: true },
+      { source: '/author/:slug*', destination: '/', permanent: true },
+      { source: '/tag/:slug*', destination: '/', permanent: true },
     ]
   },
 };
