@@ -94,13 +94,18 @@ body {
   color: #fff;
   height: 100dvh;
   overflow: hidden;
-  padding: 12px;
   box-sizing: border-box;
+  /* center the contained tile in the field, gutters all around */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
 }
 .tile-lock {
+  width: 100%;
   max-width: 1040px;
-  height: 100%;
-  margin: 0 auto;
+  /* a contained box, a touch smaller than the bento — floats centered */
+  height: min(calc(100dvh - 88px), 624px);
 }
 .tile-scroll {
   height: 100%;
@@ -108,8 +113,8 @@ body {
 }
 /* Mobile: release the lock and scroll the page normally. */
 @media (max-width: 900px) {
-  .tile-page { height: auto; min-height: 100dvh; overflow: visible; padding: 84px 12px 12px; }
-  .tile-lock { height: auto; }
+  .tile-page { height: auto; min-height: 100dvh; overflow: visible; display: block; padding: 84px 12px 12px; }
+  .tile-lock { height: auto; max-width: 720px; margin: 0 auto; }
   .tile-scroll { height: auto; overflow: visible; }
 }
 
