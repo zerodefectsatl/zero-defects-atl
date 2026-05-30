@@ -717,9 +717,13 @@ body {
   padding: 10px;
   cursor: default;
   /* Wider gap = more "floated" logo. The ring follows the card's
-     border-radius, so a larger radius rounds the hero's inner notch corner. */
+     border-radius, so a larger radius rounds the hero's inner notch corner.
+     Second layer draws a 1px border line at the gap's outer edge so the hero
+     keeps a continuous outline around the L-notch. */
   border-radius: 16px;
-  box-shadow: 0 0 0 11px var(--bento-bg);
+  box-shadow:
+    0 0 0 11px var(--bento-bg),
+    0 0 0 12px var(--bento-border);
 }
 .bento-logo-card:hover { border-color: var(--bento-border); }
 .bento-logo-card__mark {
