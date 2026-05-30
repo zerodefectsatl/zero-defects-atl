@@ -704,7 +704,9 @@ body {
   z-index: 0;
 }
 
-/* LOGO CARD - z-index 2, sits ON TOP of hero */
+/* LOGO CARD - z-index 2, sits ON TOP of hero. The bg-coloured ring paints
+   over the hero around the logo so it reads as a separate tile with a real
+   gap — an L-shaped cutout notched out of the ZD Mentality hero. */
 .bento-logo-card {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
@@ -714,6 +716,7 @@ body {
   justify-content: center;
   padding: 10px;
   cursor: default;
+  box-shadow: 0 0 0 var(--bento-gap) var(--bento-bg);
 }
 .bento-logo-card:hover { border-color: var(--bento-border); }
 .bento-logo-card__mark {
