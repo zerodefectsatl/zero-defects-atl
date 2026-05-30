@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 
 export const metadata = {
@@ -131,15 +132,32 @@ export default function Gallery() {
         }}
       >
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <Link
+            href="/"
+            style={{
+              display: 'inline-block',
+              marginBottom: 32,
+              fontSize: 11,
+              letterSpacing: 3,
+              textTransform: 'uppercase',
+              color: '#FFD700',
+              textDecoration: 'none',
+              fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
+              fontWeight: 600,
+            }}
+          >
+            ← Back to home
+          </Link>
           <span style={S.eyebrow}>Portfolio · {allWork.length} Projects</span>
           <h1
             style={{
-              fontFamily: 'var(--font-bebas-neue), sans-serif',
+              fontFamily: 'var(--font-bebas-neue), Manrope, sans-serif',
               fontSize: 'clamp(64px, 10vw, 140px)',
               lineHeight: 0.9,
               letterSpacing: '3px',
               color: '#f0f4f8',
               marginBottom: '24px',
+              fontWeight: 700,
             }}
           >
             Our Work

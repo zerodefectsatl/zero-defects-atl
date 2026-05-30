@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import ContactForm from '@/components/ContactForm'
 
 export const metadata = {
@@ -47,6 +48,23 @@ export default function ServicesPage() {
       {/* Hero */}
       <section style={{ background: '#000', paddingTop: 120, paddingBottom: 0, paddingLeft: 24, paddingRight: 24 }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+
+          <Link
+            href="/"
+            style={{
+              display: 'inline-block',
+              marginBottom: 32,
+              fontSize: 11,
+              letterSpacing: 3,
+              textTransform: 'uppercase',
+              color: '#FFD700',
+              textDecoration: 'none',
+              fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
+              fontWeight: 600,
+            }}
+          >
+            ← Back to home
+          </Link>
 
           {/* Intro glass card */}
           <div className="zd-services-intro-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
