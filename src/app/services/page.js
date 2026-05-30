@@ -1,5 +1,23 @@
 import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
+import ServiceCarousel from '@/components/ServiceCarousel'
+
+const ceramicSlides = [
+  { src: '/images/gallery/IMG_7887.jpeg', label: 'Custom-finished Corvette C8 — coated to chameleon depth' },
+  { src: '/images/gallery/IMG_8707.jpeg', label: 'Ferrari 488 — Crystal Serum Ultra candy-red gloss', position: '75% center' },
+  { src: '/images/gallery/IMG_9219.jpeg', label: 'Ferrari 296 — multi-stage correction + ceramic finish' },
+]
+
+const ppfSlides = [
+  { src: '/images/gallery/IMG_6937.jpeg', label: 'XPEL Ultimate film draped over front end' },
+  { src: '/images/gallery/IMG_7398.jpeg', label: 'Pre-cut XPEL template laid on hood' },
+  { src: '/images/gallery/IMG_7399.jpeg', label: 'Wet install — squeegeeing film onto paint' },
+  { src: '/images/gallery/IMG_7400.jpeg', label: 'Mid-install — front fender wrap' },
+  { src: '/images/gallery/IMG_7405.jpeg', label: 'Rear quarter panel — film going down' },
+  { src: '/images/gallery/IMG_7402.jpeg', label: 'Finished — flawless front-end coverage' },
+  { src: '/images/gallery/IMG_7409.jpeg', label: 'Finished — side profile' },
+  { src: '/images/gallery/IMG_7437.jpeg', label: 'Final delivery — XPEL Ultimate Plus' },
+]
 
 export const metadata = {
   title: 'Services — Ceramic Coating, PPF & Paint Correction | Zero Defects ATL',
@@ -13,7 +31,7 @@ const services = [
     subtitle: 'Gtechniq Crystal Serum Ultra · Accredited Installer',
     desc: 'The absolute pinnacle of ceramic protection. Our dual-layer 10H/7H system is the only ceramic coating rated from −40°C to +250°C — and we\'re the only shop in the area with Gtechniq CSU accreditation. Every coating includes full paint correction.',
     features: ['Crystal Serum Ultra · 9-year warranty', 'CCI Revolution · 6+ years', 'CCI Advance · 3–5 years', 'Paint correction included on every install'],
-    img: '/images/gallery/g-techniq-ultra-serum.jpg',
+    img: '/images/gallery/IMG_9517.jpeg',
     cta: 'Get a Ceramic Quote',
   },
   {
@@ -22,7 +40,7 @@ const services = [
     subtitle: 'XPEL Authorized · Factory-Trained in San Antonio',
     desc: 'Physical TPU armor that stops rock chips, scratches, and road debris before they reach your paint. Computer-cut templates ensure perfect fitment on every panel. Our XPEL installations carry a 10-year manufacturer warranty.',
     features: ['XPEL Ultimate Plus · self-healing', 'Computer-cut templates for perfect fit', '10-year XPEL manufacturer warranty', 'Full-front, partial, or custom zone coverage'],
-    img: '/images/gallery/IMG_8433.jpeg',
+    img: '/images/gallery/IMG_7399.jpeg',
     cta: 'Get a PPF Quote',
   },
   {
@@ -31,7 +49,7 @@ const services = [
     subtitle: 'Multi-Stage · Machine Polish · Zero Shortcuts',
     desc: 'Swirls, water spots, oxidation, and buffer trails — we eliminate them all. Our multi-stage correction process restores depth and clarity before any protection is applied. Because coating over damaged paint just preserves the damage.',
     features: ['Single, two, and three-stage correction', 'Machine polish with Rupes and Flex', 'IDA/Detailing PRO certified technician', 'Required before every coating install'],
-    img: '/images/gallery/IMG_7437.jpeg',
+    img: '/images/gallery/IMG_9417.jpeg',
     cta: 'Get a Correction Quote',
   },
 ]
@@ -39,30 +57,42 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      {/* Hero */}
-      <section style={{ background: '#000', paddingTop: 120, paddingBottom: 0, paddingLeft: 24, paddingRight: 24 }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-
-          {/* Intro glass card */}
-          <div className="zd-services-intro-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
-            <div>
-              <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>
-                Zero Defects ATL &mdash; Braselton, GA
-              </p>
-              <blockquote style={{ fontSize: 'clamp(28px, 3vw, 44px)', fontWeight: 800, lineHeight: 1.15, color: '#fff', margin: 0 }}>
-                &ldquo;We protect the cars that deserve it most.&rdquo;
-              </blockquote>
-            </div>
-            <div>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 16, lineHeight: 1.75, margin: 0 }}>
-                Every service we offer starts with the same standard: paint correction first, protection second. Whether it&apos;s Gtechniq Crystal Serum Ultra, XPEL PPF, or a multi-stage polish — we never apply protection over compromised paint. That&apos;s the Zero Defects difference.
-              </p>
-              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 13, marginTop: 20 }}>
-                Gtechniq CSU Accredited &middot; XPEL Authorized &middot; CCI Certified &middot; 17+ Years
-              </p>
-            </div>
+      {/* Hero — 363-style two-column with custom video backdrop */}
+      <section className="zd-services-hero">
+        <div className="zd-services-hero__bg">
+          <video
+            className="zd-services-hero__video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/images/gallery/IMG_7399.jpeg"
+          >
+            <source src="/videos/hero-services.mp4" type="video/mp4" />
+          </video>
+          <div className="zd-services-hero__bg-overlay" />
+        </div>
+        <div className="zd-services-hero__inner">
+          <div className="zd-services-hero__left">
+            <h1 className="zd-services-hero__title">
+              Bespoke Car<br />Care Services
+            </h1>
+            <p className="zd-services-hero__tagline">
+              Your Vehicle Deserves an Enthusiast.<br />
+              <span className="zd-services-hero__tagline-sub">
+                Refined Care, Engineered by Devotion, Perfected by Obsession.
+              </span>
+            </p>
           </div>
-
+          <div className="zd-services-hero__right">
+            <p>
+              Every service we offer starts with the same standard: paint correction first, protection second. Whether it&apos;s Gtechniq Crystal Serum Ultra, XPEL PPF, or a multi-stage polish &mdash; we never apply protection over compromised paint. That&apos;s the Zero Defects difference.
+            </p>
+            <p className="zd-services-hero__credentials">
+              Gtechniq CSU Accredited &middot; XPEL Authorized &middot; CCI Certified &middot; 17+ Years
+            </p>
+          </div>
         </div>
       </section>
 
@@ -131,7 +161,19 @@ export default function ServicesPage() {
                   </div>
                 </div>
                 <div className="zd-svc-card__img">
-                  <Image src={svc.img} alt={svc.name} fill style={{ objectFit: 'cover' }} sizes="(max-width:768px) 100vw, 50vw" />
+                  {svc.rank === '01' ? (
+                    <ServiceCarousel slides={ceramicSlides} alt={svc.name} />
+                  ) : svc.rank === '02' ? (
+                    <ServiceCarousel slides={ppfSlides} alt={svc.name} />
+                  ) : (
+                    <Image
+                      src={svc.img}
+                      alt={svc.name}
+                      fill
+                      style={{ objectFit: 'contain', objectPosition: 'center', background: '#0a0a0c' }}
+                      sizes="(max-width:768px) 100vw, 60vw"
+                    />
+                  )}
                 </div>
               </div>
             </div>

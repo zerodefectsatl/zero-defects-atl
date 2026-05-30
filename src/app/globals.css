@@ -319,47 +319,332 @@ body {
 
 /* ── Bento section ──────────────────────────────────── */
 .zd-bento-section {
-  background: #000;
-  padding: 64px 24px;
-}
-
-/* Outer block — 363-style: pure black bg becomes the gap,
-   overflow:hidden + border-radius clips tile corners into rounded shape */
-.zd-bento-block {
-  --notch-w: 186px;
-  --notch-h: 186px;
+  /* Radial vignette — darker corners, slightly lighter center (363-style depth) */
+  background:
+    radial-gradient(ellipse 90% 65% at center, #1c1f24 0%, #15181c 55%, #0a0c0f 100%);
+  padding: 56px 24px 64px;
   position: relative;
-  max-width: 1280px;
-  margin: 0 auto;
-  border-radius: 14px;       /* outer container rounds the whole unit    */
   overflow: hidden;
-  background: #000;          /* pure black — shows as 5px gap between tiles */
-  box-shadow: 0 8px 48px rgba(0,0,0,0.7);
 }
+/* Subtle inner glow at the top — mimics 363's overhead light */
+.zd-bento-section::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.04), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.zd-bento-section > * { position: relative; z-index: 1; }
 
-/* Logo chip — absolute top-left, same pure-black bg as the gap */
+/* Logo box — sits in the L-shape cutout at top-left of ZD Mentality tile (Option B) */
 .zd-bento-logo {
   position: absolute;
   top: 0;
   left: 0;
-  width: var(--notch-w);
-  height: var(--notch-h);
-  z-index: 20;
+  z-index: 15;
+  width: 180px;
+  height: 110px;
+  background: #1a1a1a;            /* same as other bento tiles */
+  border-radius: 6px;             /* matches other tile rounding */
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
-  border-radius: 0 0 6px 0; /* matches tile radius at the notch seam */
+  padding: 14px;
 }
 
-/* Inner grid: large left (spans 2 rows) + 2 stacked right tiles */
+/* Outer block — pure black bg becomes the 5px gap between tiles */
+.zd-bento-block {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 12px 56px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+/* Inner grid: top row, hero+video, action row + FAQ, reviews marquee */
 .zd-bento-inner {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 5px;                  /* 363 uses 5px — black bg peeks through  */
+  grid-template-columns: 1fr 1fr 1fr 1.4fr;
+  grid-template-rows: 100px 1fr 130px 90px;
+  grid-template-areas:
+    "ig     fb     yt     wthr"
+    "large  large  large  vid"
+    "bottom bottom bottom bottom"
+    "revs   revs   revs   revs";
+  gap: 5px;
   background: transparent;
-  height: 500px;
+  height: 740px;
+}
+
+.zd-bento-tile--large {
+  grid-area: large;
+  position: relative;
+  /* L-shape: cut out top-left 180×110 corner for the logo box, with 5px gap */
+  --cut-w: 180px;
+  --cut-h: 110px;
+  --gap: 5px;
+  clip-path: polygon(
+    calc(var(--cut-w) + var(--gap)) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 calc(var(--cut-h) + var(--gap)),
+    calc(var(--cut-w) + var(--gap)) calc(var(--cut-h) + var(--gap))
+  );
+}
+
+/* Featured Video tile — middle row, right column */
+.zd-bento-tile--video {
+  grid-area: vid;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #1a1a1a;
+  text-decoration: none;
+  display: block;
+}
+.zd-bento-tile--video video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.zd-bento-tile--video:hover video { transform: scale(1.06); }
+.zd-bento-tile--video__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
+  z-index: 1;
+}
+.zd-bento-tile--video__body {
+  position: absolute;
+  bottom: 22px;
+  left: 24px;
+  right: 24px;
+  z-index: 2;
+}
+.zd-bento-tile--video__eyebrow {
+  color: rgba(255,255,255,0.7);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.zd-bento-tile--video__title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  margin: 0 0 12px;
+}
+
+/* FAQ tile — 4th cell in the bottom action row */
+.zd-bento-tile--faq {
+  position: relative;
+  background: #1a1a1a;
+  border-radius: 6px;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  /* Subtle gradient overlay for depth */
+  background:
+    radial-gradient(circle at 100% 0%, rgba(234,255,0,0.06), transparent 50%),
+    #1a1a1a;
+}
+.zd-bento-tile--faq__body {
+  position: absolute;
+  bottom: 22px;
+  left: 24px;
+  right: 24px;
+}
+.zd-bento-tile--faq__eyebrow {
+  color: rgba(255,255,255,0.5);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.zd-bento-tile--faq__title {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+/* Reviews marquee — full-width strip at bottom of bento */
+.zd-bento-tile--reviews {
+  grid-area: revs;
+  position: relative;
+  background: #1a1a1a;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.zd-bento-tile--reviews__track {
+  display: flex;
+  gap: 80px;
+  white-space: nowrap;
+  animation: zd-marquee 60s linear infinite;
+  will-change: transform;
+  padding-left: 24px;
+  padding-right: 180px; /* room for the sticky CTA */
+}
+.zd-bento-tile--reviews:hover .zd-bento-tile--reviews__track {
+  animation-play-state: paused;
+}
+.zd-bento-tile--reviews__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  font-weight: 500;
+}
+.zd-bento-tile--reviews__stars {
+  color: #eaff00;
+  font-size: 12px;
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+.zd-bento-tile--reviews__text {
+  color: rgba(255,255,255,0.85);
+  font-style: italic;
+}
+.zd-bento-tile--reviews__name {
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+  font-weight: 600;
+}
+.zd-bento-tile--reviews__cta {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  color: #000;
+  background: #eaff00;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 2;
+  /* Soft fade from transparent on the left so reviews blend into the button */
+  box-shadow: -40px 0 30px -10px #1a1a1a;
+  transition: background 0.2s;
+}
+.zd-bento-tile--reviews__cta span { margin-left: 8px; transition: transform 0.2s; }
+.zd-bento-tile--reviews:hover .zd-bento-tile--reviews__cta { background: #d4e600; }
+.zd-bento-tile--reviews:hover .zd-bento-tile--reviews__cta span { transform: translateX(4px); }
+
+@keyframes zd-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }  /* we triple the reviews, so loop at 1/3 */
+}
+.zd-bento-social--ig { grid-area: ig; }
+.zd-bento-social--fb { grid-area: fb; }
+.zd-bento-social--yt { grid-area: yt; }
+
+.zd-bento-social {
+  background: #1a1a1a;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.zd-bento-social:hover {
+  background: #eaff00;
+  color: #000;
+}
+.zd-bento-social__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Weather + coordinates widget — top-right cell on the socials row */
+.zd-bento-weather {
+  grid-area: wthr;
+  background: #1a1a1a;
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  overflow: hidden;
+}
+.zd-bento-weather__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.zd-bento-weather__city {
+  font-size: 12px;
+  font-weight: 800;
+  margin: 0 0 2px;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+}
+.zd-bento-weather__coords {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+.zd-bento-weather__main {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.zd-bento-weather__temp {
+  font-size: 28px;
+  font-weight: 800;
+  color: #eaff00;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.zd-bento-weather__cond {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.zd-bento-weather__sub {
+  display: none;  /* hidden in compact row layout */
+}
+
+/* Bottom row: Services / Process / Gallery / FAQ */
+.zd-bento-bottom-row {
+  grid-area: bottom;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5px;
 }
 
 /* Notch — no clip-path needed: logo chip covers the corner at z-index 20 */
@@ -369,7 +654,6 @@ body {
 
 /* Large tile spans both rows */
 .zd-bento-tile--large {
-  grid-row: 1 / span 2;
   width: 100%;
   height: 100%;
   position: relative;
@@ -428,6 +712,60 @@ body {
   flex-shrink: 0;
 }
 
+/* Process row — full-width tile inside the bento block (compact) */
+.zd-bento-process {
+  background: #1a1a1a;
+  border-radius: 6px;
+  padding: 26px 32px 30px;
+  margin-top: 5px;          /* match the 5px black gap between bento tiles */
+}
+.zd-bento-process__eyebrow {
+  color: #eaff00;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.zd-bento-process__title {
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0 0 22px;
+}
+.zd-bento-process__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.zd-bento-process__step {
+  border-top: 2px solid #eaff00;
+  padding-top: 14px;
+}
+.zd-bento-process__num {
+  font-size: 38px;
+  font-weight: 800;
+  color: #eaff00;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.zd-bento-process__step-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.005em;
+  margin: 0 0 6px;
+}
+.zd-bento-process__step-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.55;
+  margin: 0;
+}
+
 /* ── Services page ──────────────────────────────────── */
 /* Intro glass card */
 .zd-services-intro-card {
@@ -439,19 +777,114 @@ body {
   padding: 48px;
 }
 
-/* 363-style numbered service card */
+/* 363-style services hero — two-column with blurred backdrop */
+.zd-services-hero {
+  position: relative;
+  background: #000;
+  min-height: 640px;
+  padding: 140px 48px 96px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.zd-services-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.zd-services-hero__bg img,
+.zd-services-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.95) saturate(1.05) contrast(1.02);
+}
+.zd-services-hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(0,0,0,0.2), rgba(0,0,0,0.55) 70%),
+    linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 100%);
+}
+.zd-services-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.zd-services-hero__title {
+  font-size: clamp(48px, 6.5vw, 96px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin: 0 0 36px;
+}
+.zd-services-hero__tagline {
+  color: #eaff00;
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.zd-services-hero__tagline-sub {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.78em;
+  font-weight: 500;
+  color: #eaff00;
+  opacity: 0.92;
+  letter-spacing: 0;
+}
+.zd-services-hero__right p {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 17px;
+  line-height: 1.75;
+  margin: 0;
+}
+.zd-services-hero__credentials {
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 13px !important;
+  margin-top: 28px !important;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .zd-services-hero {
+    padding: 110px 24px 64px;
+    min-height: auto;
+  }
+  .zd-services-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .zd-services-hero__title br {
+    display: none;
+  }
+}
+
+/* 363-style numbered service card — text 40%, image 60% so cars don't get side-cropped */
 .zd-svc-card {
   background: #111114;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 360px;
+  grid-template-columns: 2fr 3fr;
+  min-height: 480px;
 }
 
 .zd-svc-card__body {
-  padding: 48px;
+  padding: 44px 36px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -471,6 +904,96 @@ body {
   overflow: hidden;
 }
 
+/* PPF flip-through carousel — fills .zd-svc-card__img container */
+.zd-ppf-carousel {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+.zd-ppf-carousel__slide {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.zd-ppf-carousel__caption {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  border-left: 3px solid #eaff00;
+  z-index: 2;
+  max-width: calc(100% - 100px);
+}
+.zd-ppf-carousel__step {
+  color: #eaff00;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.zd-ppf-carousel__label {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.zd-ppf-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.zd-ppf-carousel__btn:hover {
+  background: #eaff00;
+  color: #000;
+  border-color: #eaff00;
+}
+.zd-ppf-carousel__btn--prev { left: 12px; }
+.zd-ppf-carousel__btn--next { right: 12px; }
+.zd-ppf-carousel__dots {
+  position: absolute;
+  right: 16px;
+  bottom: 24px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+.zd-ppf-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s, width 0.2s;
+}
+.zd-ppf-carousel__dot.is-active {
+  background: #eaff00;
+  width: 22px;
+  border-radius: 4px;
+}
+
 @media (max-width: 768px) {
   .zd-svc-card {
     grid-template-columns: 1fr;
@@ -478,6 +1001,9 @@ body {
   .zd-svc-card__img {
     aspect-ratio: 16/9;
   }
+  .zd-ppf-carousel__btn { width: 36px; height: 36px; font-size: 16px; }
+  .zd-ppf-carousel__btn--prev { left: 8px; }
+  .zd-ppf-carousel__btn--next { right: 8px; }
   .zd-bento-section {
     padding: 32px 12px;
   }
@@ -504,8 +1030,431 @@ body {
     aspect-ratio: 16/9;
     height: auto;
   }
+  .zd-bento-process {
+    padding: 32px 22px 36px;
+  }
+  .zd-bento-process__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .zd-bento-process__title {
+    margin-bottom: 28px;
+  }
+  .zd-bento-process__num {
+    font-size: 48px;
+  }
   .zd-services-intro-card {
     padding: 28px 20px;
+  }
+}
+@media (max-width: 480px) {
+  .zd-bento-process__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   YELLOW SCROLLBAR — 363-style accent on the right edge of the page
+   ═══════════════════════════════════════════════════════════════ */
+html { scrollbar-width: thin; scrollbar-color: #eaff00 transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #eaff00;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: #d4e600; }
+
+/* ═══════════════════════════════════════════════════════════════
+   /process page — standalone process detail page
+   ═══════════════════════════════════════════════════════════════ */
+.zd-process-hero {
+  position: relative;
+  background: #000;
+  min-height: 480px;
+  padding: 140px 48px 80px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.zd-process-hero__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.zd-process-hero__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55) saturate(0.95);
+}
+.zd-process-hero__overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 40% 50%, rgba(0,0,0,0.3), rgba(0,0,0,0.75) 75%),
+    linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.7) 100%);
+}
+.zd-process-hero__inner {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin: 0 auto;
+  width: 100%;
+}
+.zd-process-hero__eyebrow {
+  color: #eaff00;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin: 0 0 16px;
+}
+.zd-process-hero__title {
+  font-size: clamp(48px, 6.5vw, 96px);
+  font-weight: 800; color: #fff;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin: 0 0 28px;
+}
+.zd-process-hero__tagline {
+  color: #fff;
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 600;
+  margin: 0;
+  max-width: 620px;
+  opacity: 0.85;
+}
+
+.zd-process-detail {
+  background: #0a0a0a;
+  padding: 96px 48px;
+}
+.zd-process-detail__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+.zd-process-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.zd-process-step--reverse { direction: rtl; }
+.zd-process-step--reverse > * { direction: ltr; }
+
+.zd-process-step__media {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111114;
+}
+.zd-process-step__body {}
+.zd-process-step__num {
+  font-size: 96px;
+  font-weight: 800;
+  color: #eaff00;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 16px;
+}
+.zd-process-step__title {
+  font-size: clamp(32px, 3.6vw, 52px);
+  font-weight: 800; color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+}
+.zd-process-step__desc {
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.55;
+  margin: 0 0 18px;
+  font-weight: 600;
+}
+.zd-process-step__detail {
+  font-size: 15px;
+  color: rgba(255,255,255,0.62);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.zd-process-cta {
+  background: #15181c;
+  padding: 96px 48px 120px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.zd-process-cta__title {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 800; color: #fff;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+.zd-process-cta__sub {
+  color: rgba(255,255,255,0.6);
+  font-size: 17px;
+  margin: 0 0 36px;
+}
+.zd-process-cta__btn {
+  display: inline-block;
+  background: #eaff00;
+  color: #000;
+  padding: 16px 40px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.zd-process-cta__btn:hover { transform: translateY(-2px); opacity: 0.92; }
+
+@media (max-width: 768px) {
+  .zd-process-hero { padding: 100px 22px 56px; min-height: auto; }
+  .zd-process-detail { padding: 56px 22px; }
+  .zd-process-detail__inner { gap: 48px; }
+  .zd-process-step { grid-template-columns: 1fr; gap: 24px; }
+  .zd-process-step--reverse { direction: ltr; }
+  .zd-process-step__num { font-size: 64px; margin-bottom: 12px; }
+  .zd-process-cta { padding: 64px 22px 80px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   /reviews page
+   ═══════════════════════════════════════════════════════════════ */
+.zd-reviews-hero {
+  background: radial-gradient(ellipse 80% 60% at center, #1a1f24 0%, #0a0c0f 100%);
+  padding: 140px 48px 80px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.zd-reviews-hero__inner { max-width: 1200px; margin: 0 auto; }
+.zd-reviews-hero__eyebrow {
+  color: #eaff00;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+.zd-reviews-hero__title {
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin: 0 0 24px;
+}
+.zd-reviews-hero__tagline {
+  color: rgba(255,255,255,0.6);
+  font-size: 17px;
+  margin: 0;
+}
+.zd-reviews-grid { background: #0a0a0a; padding: 80px 48px; }
+.zd-reviews-grid__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+.zd-review-card {
+  background: #111114;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.zd-review-card__stars { display: flex; gap: 3px; }
+.zd-review-card__star { color: #eaff00; font-size: 14px; }
+.zd-review-card__text {
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+}
+.zd-review-card__meta {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 16px;
+}
+.zd-review-card__name { color: #fff; font-weight: 800; font-size: 14px; }
+.zd-review-card__sub { color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 4px; }
+
+.zd-reviews-cta {
+  background: #0a0c0f;
+  padding: 80px 48px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.zd-reviews-cta h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 28px;
+}
+.zd-reviews-cta__btn {
+  display: inline-block;
+  background: #eaff00;
+  color: #000;
+  padding: 16px 40px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .zd-reviews-hero { padding: 100px 22px 56px; }
+  .zd-reviews-grid { padding: 48px 18px; }
+  .zd-reviews-grid__inner { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   /faq page
+   ═══════════════════════════════════════════════════════════════ */
+.zd-faq-hero {
+  background: radial-gradient(ellipse 80% 60% at center, #1a1f24 0%, #0a0c0f 100%);
+  padding: 140px 48px 64px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.zd-faq-hero__inner { max-width: 900px; margin: 0 auto; }
+.zd-faq-hero__eyebrow {
+  color: #eaff00;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.zd-faq-hero__title {
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+}
+.zd-faq-hero__tagline {
+  color: rgba(255,255,255,0.6);
+  font-size: 16px;
+  margin: 0;
+}
+.zd-faq-list { background: #0a0a0a; padding: 64px 24px 80px; }
+.zd-faq-list__inner { max-width: 900px; margin: 0 auto; }
+.zd-faq-item {
+  background: #111114;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.zd-faq-item[open] { border-color: rgba(234,255,0,0.3); }
+.zd-faq-item__q {
+  cursor: pointer;
+  padding: 20px 22px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  list-style: none;
+  user-select: none;
+}
+.zd-faq-item__q::-webkit-details-marker { display: none; }
+.zd-faq-item__chevron {
+  color: #eaff00;
+  font-size: 22px;
+  font-weight: 800;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.zd-faq-item[open] .zd-faq-item__chevron { transform: rotate(90deg); }
+.zd-faq-item__a {
+  padding: 0 22px 22px;
+  color: rgba(255,255,255,0.75);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+.zd-faq-cta {
+  background: #0a0c0f;
+  padding: 64px 24px 80px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.zd-faq-cta h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 8px;
+}
+.zd-faq-cta p { color: rgba(255,255,255,0.65); margin: 0 0 24px; font-size: 16px; }
+.zd-faq-cta p a { color: #eaff00; font-weight: 800; text-decoration: none; }
+.zd-faq-cta__btn {
+  display: inline-block;
+  background: #eaff00;
+  color: #000;
+  padding: 14px 32px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Page transition micro-animation — fade-up on initial render
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes zd-page-emerge {
+  0% { opacity: 0; transform: translateY(20px); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+main, body > section:first-child, .zd-services-hero, .zd-process-hero, .zd-gallery-hero {
+  animation: zd-page-emerge 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Bento tile click effect — quick collapse-down feedback on press */
+.zd-bento-tile--small:active,
+.zd-bento-social:active,
+.zd-bento-weather:active {
+  transform: translateY(2px) scale(0.99);
+  filter: brightness(0.85);
+}
+.zd-bento-tile--small,
+.zd-bento-social,
+.zd-bento-weather {
+  transition: transform 0.15s ease, filter 0.15s ease, background 0.25s ease;
+}
+
+/* Mobile responsiveness for the new bento layout */
+@media (max-width: 768px) {
+  .zd-bento-inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "ig    fb"
+      "yt    wthr"
+      "large large"
+      "bottom bottom";
+    height: auto;
+  }
+  .zd-bento-tile--large {
+    aspect-ratio: 16/10;
+    /* No clip-path on mobile — logo sits as overlay without notch */
+    clip-path: none;
+  }
+  .zd-bento-bottom-row {
+    grid-template-columns: 1fr;
+  }
+  .zd-bento-logo {
+    width: 140px;
+    height: 90px;
+    top: 12px;
+    left: 12px;
+    padding: 12px;
   }
 }
 
@@ -552,4 +1501,99 @@ html[data-intro-seen="1"] .zd-intro-gate {
 
 .zd-video-gate__btn:hover {
   opacity: 0.85;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVENESS PASS — overrides for inline styles
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Gallery: tighten padding + single-column grid on phones */
+@media (max-width: 768px) {
+  .zd-gallery-hero {
+    padding: 110px 20px 56px !important;
+  }
+  .zd-gallery-hero h1 {
+    font-size: clamp(48px, 12vw, 80px) !important;
+  }
+  .zd-gallery-grid {
+    padding: 40px 16px 64px !important;
+  }
+  .zd-gallery-grid__inner {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .zd-gallery-cta {
+    padding: 56px 20px !important;
+  }
+}
+
+/* Two-column gallery for tablets */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .zd-gallery-grid__inner {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* Services hero: tighten on phones */
+@media (max-width: 600px) {
+  .zd-services-hero {
+    padding: 96px 20px 48px !important;
+    min-height: auto !important;
+  }
+  .zd-services-hero__title {
+    font-size: clamp(40px, 11vw, 64px) !important;
+    margin-bottom: 24px !important;
+  }
+  .zd-services-hero__tagline {
+    font-size: 16px !important;
+  }
+  .zd-services-hero__tagline-sub {
+    font-size: 13px !important;
+  }
+  .zd-services-hero__right p {
+    font-size: 15px !important;
+  }
+}
+
+/* Service cards: tighten body padding on phones */
+@media (max-width: 600px) {
+  .zd-svc-card__body {
+    padding: 28px 22px !important;
+  }
+  .zd-svc-card__num {
+    font-size: 56px !important;
+  }
+  .zd-svc-card {
+    min-height: auto !important;
+  }
+  .zd-svc-card__img {
+    aspect-ratio: 4/3 !important;
+  }
+}
+
+/* Carousel captions: smaller on phones, dots inline */
+@media (max-width: 600px) {
+  .zd-ppf-carousel__caption {
+    left: 10px !important;
+    bottom: 10px !important;
+    padding: 7px 10px !important;
+    max-width: calc(100% - 80px) !important;
+  }
+  .zd-ppf-carousel__step {
+    font-size: 9px !important;
+  }
+  .zd-ppf-carousel__label {
+    font-size: 12px !important;
+  }
+  .zd-ppf-carousel__dots {
+    right: 12px !important;
+    bottom: 16px !important;
+  }
+}
+
+/* Bento on tiny phones: keep 1-col layout (rule already exists at 768px) */
+@media (max-width: 480px) {
+  .zd-bento-section {
+    padding: 24px 8px !important;
+  }
 }

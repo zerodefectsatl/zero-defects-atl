@@ -55,22 +55,10 @@ export default function Home() {
 
       {/* BENTO DASHBOARD */}
       <section id="services" className="zd-bento-section">
-        {/* Single unified block — logo chip, large tile, small tile all in one container */}
+        {/* Unified block containing all tiles */}
         <div className="zd-bento-block">
 
-          {/* Logo chip — absolute top-left of the whole block */}
-          <div className="zd-bento-logo">
-            <Image
-              src="/images/logos/zd-lockup-compact.svg"
-              alt="Zero Defects ATL"
-              width={160}
-              height={160}
-              unoptimized
-              style={{ objectFit: 'contain', padding: 16 }}
-            />
-          </div>
-
-          {/* Grid: large tile + small tile, flush inside the block */}
+          {/* Grid: socials + weather (top row), large tile (with logo overlay), bottom row */}
           <div className="zd-bento-inner">
 
             {/* Large tile: ZD Mentality */}
@@ -84,6 +72,18 @@ export default function Home() {
                 background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.18) 55%, transparent 100%)',
                 pointerEvents: 'none',
               }} />
+              {/* Logo — small box inside the top-left of the large tile (Option B) */}
+              <div className="zd-bento-logo">
+                <Image
+                  src="/images/logos/zd-lockup-dark.svg"
+                  alt="Zero Defects ATL"
+                  width={130}
+                  height={94}
+                  unoptimized
+                  priority
+                  style={{ objectFit: 'contain', width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
               {/* Yellow icon chip — top-right */}
               <div className="zd-bento-chip">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
@@ -100,6 +100,49 @@ export default function Home() {
                 <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 22, lineHeight: 1 }}>↗</span>
               </div>
             </div>
+
+            {/* Top row: socials + weather (all in the same row as the logo) */}
+              <a className="zd-bento-social zd-bento-social--ig" href="https://instagram.com/zerodefectsatl" target="_blank" rel="noopener" aria-label="Instagram @zerodefectsatl">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+                  <path d="M12 2.16c3.2 0 3.58.012 4.85.07 1.17.054 1.8.249 2.22.413.56.217.96.477 1.38.896.42.42.68.82.9 1.38.16.42.36 1.06.41 2.22.06 1.27.07 1.65.07 4.85s-.012 3.58-.07 4.85c-.054 1.17-.249 1.8-.413 2.22a3.72 3.72 0 0 1-.896 1.38 3.72 3.72 0 0 1-1.38.9c-.42.16-1.06.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.012-4.85-.07c-1.17-.054-1.8-.249-2.22-.413a3.72 3.72 0 0 1-1.38-.896 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.22C2.172 15.583 2.16 15.2 2.16 12s.012-3.58.07-4.85c.054-1.17.249-1.8.413-2.22.217-.56.477-.96.896-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.22-.41C8.42 2.172 8.8 2.16 12 2.16M12 0C8.74 0 8.33.013 7.05.072 5.77.131 4.9.333 4.14.63a5.88 5.88 0 0 0-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.333 4.9.131 5.77.072 7.05.013 8.33 0 8.74 0 12s.013 3.67.072 4.95c.06 1.28.261 2.15.558 2.91A5.88 5.88 0 0 0 2.01 22a5.88 5.88 0 0 0 2.13 1.38c.76.296 1.63.499 2.91.558C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.28-.06 2.15-.262 2.91-.559a5.88 5.88 0 0 0 2.13-1.38A5.88 5.88 0 0 0 23.37 19.86c.296-.76.499-1.63.558-2.91C23.99 15.67 24 15.26 24 12s-.01-3.67-.07-4.95c-.06-1.28-.262-2.15-.559-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.296-1.63-.499-2.91-.558C15.67.013 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.81a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+                </svg>
+                <span className="zd-bento-social__label">Instagram</span>
+              </a>
+              <a className="zd-bento-social zd-bento-social--fb" href="https://facebook.com/zerodefectsatl" target="_blank" rel="noopener" aria-label="Facebook @zerodefectsatl">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+                  <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07c0 6.03 4.39 11.02 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.23 2.69.23v2.97h-1.52c-1.49 0-1.95.93-1.95 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/>
+                </svg>
+                <span className="zd-bento-social__label">Facebook</span>
+              </a>
+              <a className="zd-bento-social zd-bento-social--yt" href="https://youtube.com/@zerodefectsatl" target="_blank" rel="noopener" aria-label="YouTube @zerodefectsatl">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+                  <path d="M23.5 6.19a3 3 0 0 0-2.12-2.12C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.52A3 3 0 0 0 .5 6.19C0 8.06 0 12 0 12s0 3.94.5 5.81a3 3 0 0 0 2.12 2.12c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.12C24 15.94 24 12 24 12s0-3.94-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/>
+                </svg>
+                <span className="zd-bento-social__label">YouTube</span>
+              </a>
+
+            {/* Weather & coordinates widget — top right (same row as socials) */}
+            <div className="zd-bento-weather">
+              <div className="zd-bento-weather__top">
+                <div className="zd-bento-weather__location">
+                  <p className="zd-bento-weather__city">Braselton, GA</p>
+                  <p className="zd-bento-weather__coords">34.1018° N · 83.7960° W</p>
+                </div>
+                <div className="zd-bento-chip" style={{ position: 'static', width: 36, height: 36 }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#000">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"/>
+                  </svg>
+                </div>
+              </div>
+              <div className="zd-bento-weather__main">
+                <span className="zd-bento-weather__temp">75°</span>
+                <span className="zd-bento-weather__cond">Partly Cloudy</span>
+              </div>
+              <p className="zd-bento-weather__sub">Climate-controlled shop · By appointment</p>
+            </div>
+
+            {/* Bottom row: Services / Process / Gallery */}
+            <div className="zd-bento-bottom-row">
 
             {/* Small tile 1: Our Services */}
             <a href="/services" style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
@@ -130,7 +173,7 @@ export default function Home() {
             </a>
 
             {/* Small tile 2: Our Process */}
-            <a href="#process" style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
+            <a href="/process" style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
               <div className="zd-bento-tile--small">
                 <div className="zd-tile-img-wrap zd-tile-img-wrap--right">
                   <Image
@@ -155,6 +198,83 @@ export default function Home() {
                   <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 20 }}>↗</span>
                 </div>
               </div>
+            </a>
+
+            {/* Small tile 3: Gallery */}
+            <a href="/gallery" style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
+              <div className="zd-bento-tile--small">
+                <div className="zd-tile-img-wrap zd-tile-img-wrap--left">
+                  <Image
+                    src="/images/gallery/IMG_9517.jpeg"
+                    alt="Gallery"
+                    fill
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)', zIndex: 1 }} />
+                {/* Yellow icon chip */}
+                <div className="zd-bento-chip" style={{ zIndex: 2 }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
+                    <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                  </svg>
+                </div>
+                <div style={{ position: 'absolute', bottom: 22, left: 24, right: 24, zIndex: 2 }}>
+                  <h3 style={{ color: '#fff', fontSize: 26, fontWeight: 800, margin: '0 0 10px', lineHeight: 1.1 }}>
+                    Gallery
+                  </h3>
+                  <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 20 }}>↗</span>
+                </div>
+              </div>
+            </a>
+
+            {/* Small tile 4 (NEW): FAQ */}
+            <a href="/faq" className="zd-bento-tile--faq" style={{ textDecoration: 'none' }}>
+              <div className="zd-bento-chip">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                </svg>
+              </div>
+              <div className="zd-bento-tile--faq__body">
+                <p className="zd-bento-tile--faq__eyebrow">Frequently Asked</p>
+                <h3 className="zd-bento-tile--faq__title">FAQ</h3>
+                <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 20 }}>↗</span>
+              </div>
+            </a>
+
+            </div>{/* /zd-bento-bottom-row */}
+
+            {/* Featured Video tile — middle row, right side */}
+            <a href="/gallery" className="zd-bento-tile--video">
+              <LazyVideo
+                src="/videos/hero-services.mp4"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+              <div className="zd-bento-tile--video__overlay" />
+              <div className="zd-bento-chip">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+              <div className="zd-bento-tile--video__body">
+                <p className="zd-bento-tile--video__eyebrow">Featured Project</p>
+                <h3 className="zd-bento-tile--video__title">Watch the<br/>build</h3>
+                <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 20 }}>↗</span>
+              </div>
+            </a>
+
+            {/* Reviews marquee — full-width strip at bottom */}
+            <a href="/reviews" className="zd-bento-tile--reviews">
+              <div className="zd-bento-tile--reviews__track">
+                {[...reviews, ...reviews, ...reviews].map((r, i) => (
+                  <div key={i} className="zd-bento-tile--reviews__item">
+                    <span className="zd-bento-tile--reviews__stars">★★★★★</span>
+                    <span className="zd-bento-tile--reviews__text">&ldquo;{r.text.slice(0, 110)}{r.text.length > 110 ? '…' : ''}&rdquo;</span>
+                    <span className="zd-bento-tile--reviews__name">— {r.name}, {r.vehicle}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="zd-bento-tile--reviews__cta">All Reviews <span aria-hidden>&rarr;</span></div>
             </a>
 
           </div>
@@ -189,23 +309,6 @@ export default function Home() {
                   <div style={{ fontWeight: 700, color: '#fff', fontSize: 14 }}>{r.name}</div>
                   <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{r.vehicle} &middot; {r.ago}</div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section id="process" style={{ background: '#000', padding: '80px 24px' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>How It Works</p>
-          <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, marginBottom: 48, color: '#fff' }}>The Zero Defects Process</h2>
-          <div className="zd-grid-process" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 24 }}>
-            {processSteps.map((s, i) => (
-              <div key={i} style={{ borderTop: '2px solid rgba(234,255,0,0.3)', paddingTop: 24 }}>
-                <div style={{ fontSize: 56, fontWeight: 800, color: 'rgba(234,255,0,0.15)', lineHeight: 1, marginBottom: 12 }}>{s.num}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 10 }}>{s.title}</h3>
-                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.65 }}>{s.desc}</p>
               </div>
             ))}
           </div>
