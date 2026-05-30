@@ -5,6 +5,31 @@ import MorphLogo from '@/components/MorphLogo'
 export const metadata = {
   title: 'Ceramic Coating & PPF Services in Atlanta, GA | Zero Defects',
   description: 'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
+  alternates: { canonical: '/services' },
+  openGraph: {
+    title: 'Ceramic Coating, PPF & Paint Correction in Atlanta, GA | Zero Defects ATL',
+    description:
+      'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
+    url: 'https://zerodefectsatl.com/services',
+    siteName: 'Zero Defects ATL',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: '/images/gallery/IMG_9517.jpeg',
+        width: 1200,
+        height: 800,
+        alt: 'Ceramic coating and PPF services at Zero Defects ATL — Atlanta, GA',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ceramic Coating, PPF & Paint Correction in Atlanta, GA | Zero Defects ATL',
+    description:
+      'Gtechniq-accredited ceramic coating, XPEL PPF & paint correction for metro Atlanta, GA. Factory-trained installer in Braselton. Get a free quote today.',
+    images: ['/images/gallery/IMG_9517.jpeg'],
+  },
 }
 
 const services = [
