@@ -558,7 +558,7 @@ body {
 =============================================================== */
 
 .bento-wrap {
-  --bento-bg:      #ece3d0;
+  --bento-bg:      #2a2a2a;
   --bento-card:    #101010;
   --bento-yellow:  #eaff00;
   --bento-white:   #ffffff;
@@ -972,7 +972,8 @@ body {
 .bento-faq-card {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
-  min-height: 168px;
+  /* match the compact bottom-row track (140px) so the label isn't clipped */
+  min-height: 140px;
 }
 .bento-faq__lines {
   position: absolute;
