@@ -105,7 +105,7 @@ export default function Home() {
           <a href="/gallery" className="bento-card bento-gallery-card">
             <div
               className="bento-card__bg"
-              style={{ backgroundImage: 'url(/images/gallery/IMG_7887.jpeg)' }}
+              style={{ backgroundImage: 'url(/images/gallery/IMG_9219.jpeg)' }}
             />
             <div className="bento-card__overlay" />
             <div className="bento-card__label">
