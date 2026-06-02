@@ -14,6 +14,17 @@ const RB = 480   // polar ring diameter
 
 export default function IntroCube({ onComplete }) {
   const [phase, setPhase] = useState('hidden')
+  // Scale the whole scene to fit the viewport. The scene footprint (rings +
+  // tumbling cube) is ~720px; below that on the smaller axis we scale down so
+  // nothing gets clipped on phones / short windows. Caps at 1 on big screens.
+  const [scale, setScale] = useState(1)
+
+  useEffect(() => {
+    const fit = () => setScale(Math.min(1, Math.min(window.innerWidth, window.innerHeight) / 720))
+    fit()
+    window.addEventListener('resize', fit)
+    return () => window.removeEventListener('resize', fit)
+  }, [])
 
   useEffect(() => {
     let seen = false
@@ -65,12 +76,17 @@ export default function IntroCube({ onComplete }) {
         background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(26,143,255,0.07) 0%, rgba(234,255,0,0.03) 40%, transparent 70%)'
       }}/>
 
-      {/* 3D perspective scene */}
-      <div style={{ perspective: '1100px', perspectiveOrigin: '50% 50%' }}>
+      {/* 3D perspective scene — scaled to fit the viewport so it's never clipped */}
+      <div style={{
+        perspective: '1100px', perspectiveOrigin: '50% 50%',
+        transform: `scale(${scale})`, transformOrigin: 'center center',
+      }}>
         <div style={{
           width: S, height: S,
           position: 'relative',
           transformStyle: 'preserve-3d',
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
           animation: spinning ? 'cubeSpinIn 3.4s cubic-bezier(0.16, 1, 0.3, 1) forwards'
                    : stable  ? 'cubeSpin 12s linear infinite'
                    : undefined,
@@ -325,11 +341,6 @@ function LogoInCube() {
         <filter id="ls">
           <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000" floodOpacity="0.9"/>
         </filter>
-        <filter id="tg">
-          <feGaussianBlur stdDeviation="3" result="b"/>
-          <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.1  0 0 0 0 0.3  0 0 0 0 1  0 0 0 0.5 0" result="g"/>
-          <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
       </defs>
       {/* Z — thick blocky bars + parallelogram diagonal (matches original chunky logo) */}
       <rect x="8" y="8" width="163" height="188" rx="3" fill="rgba(26,143,255,0.08)" stroke="rgba(26,143,255,0.35)" strokeWidth="1"/>
@@ -340,8 +351,8 @@ function LogoInCube() {
       <path d="M 197,12 L 239,12 A 115 94 0 0 1 239,200 L 197,200 Z M 239,52 A 73 54 0 0 1 239,160 Z" fill="rgba(0,20,10,0.5)" fillRule="evenodd"/>
       <path d="M 193,8 L 235,8 A 115 94 0 0 1 235,196 L 193,196 Z M 235,48 A 73 54 0 0 1 235,156 Z" fill="url(#cd)" fillRule="evenodd" filter="url(#ls)"/>
       <rect x="8" y="208" width="344" height="1" fill="rgba(255,255,255,0.08)"/>
-      <text x="180" y="278" textAnchor="middle" fontFamily="Arial Black,Impact,sans-serif" fontSize="72" fontWeight="900" letterSpacing="8" fill="url(#ct)" filter="url(#tg)">ZERO</text>
-      <text x="180" y="348" textAnchor="middle" fontFamily="Arial Black,Impact,sans-serif" fontSize="68" fontWeight="900" letterSpacing="4" fill="url(#ct)" filter="url(#tg)">DEFECTS</text>
+      <text x="180" y="278" textAnchor="middle" fontFamily="Arial Black,Impact,sans-serif" fontSize="72" fontWeight="900" letterSpacing="8" fill="url(#ct)">ZERO</text>
+      <text x="180" y="348" textAnchor="middle" fontFamily="Arial Black,Impact,sans-serif" fontSize="68" fontWeight="900" letterSpacing="4" fill="url(#ct)">DEFECTS</text>
       <rect x="60" y="365" width="240" height="1" fill="rgba(255,255,255,0.1)"/>
       <text x="180" y="390" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="500" letterSpacing="5" fill="rgba(240,244,248,0.45)">PROTECTIVE SURFACE COATINGS</text>
       <rect x="130" y="408" width="100" height="2" rx="1" fill="url(#ct)" opacity="0.6"/>
