@@ -1,26 +1,11 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
-import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { pageMetadata } from '@/lib/seo'
 
-export const metadata = pageMetadata({
-  path: '/gallery',
-  title: 'Gallery — Zero Defects ATL | Ceramic Coating & PPF Portfolio',
-  description:
-    'Browse completed projects — ceramic coatings, paint protection film, and paint correction on luxury vehicles in Braselton, GA.',
-  keywords: [
-    'ceramic coating portfolio Braselton',
-    'PPF gallery Atlanta',
-    'paint protection film examples Georgia',
-    'exotic car detailing Braselton GA',
-    'Zero Defects ATL work',
-  ],
-  imageAlt: 'Zero Defects ATL gallery',
-})
-
-/* ─── All automotive projects (aviation excluded) ─────────── */
+/* ─── All automotive projects ─────────── */
 const allWork = [
-  // Porsche
   { img: '/images/gallery/IMG_9439.jpeg', vehicle: 'Porsche 911 GT2 RS', service: 'Crystal Serum Ultra · XPEL Ultimate', tag: 'Coating + PPF' },
   { img: '/images/gallery/IMG_8518.jpeg', vehicle: 'Porsche 911 GT3 RS', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
   { img: '/images/gallery/IMG_8882.jpeg', vehicle: 'Porsche 911 GTS e-Hybrid', service: 'XPEL Ultimate Plus · Full PPF', tag: 'PPF' },
@@ -28,8 +13,6 @@ const allWork = [
   { img: '/images/gallery/IMG_8880.jpeg', vehicle: 'Porsche 911 GTS e-Hybrid', service: 'PPF Installation Detail', tag: 'PPF' },
   { img: '/images/gallery/IMG_7388.jpeg', vehicle: 'Porsche Cayenne GTS', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
   { img: '/images/gallery/IMG_6130.jpeg', vehicle: 'Porsche 718 Cayman GT4', service: 'Custom Art Wrap · Paint Protection', tag: 'Wrap' },
-
-  // Audi
   { img: '/images/gallery/IMG_7409.jpeg', vehicle: 'Audi R8 V10', service: 'XPEL Stealth Matte PPF', tag: 'PPF' },
   { img: '/images/gallery/IMG_7437.jpeg', vehicle: 'Audi R8 V10', service: 'XPEL Stealth Matte PPF', tag: 'PPF' },
   { img: '/images/gallery/IMG_7402.jpeg', vehicle: 'Audi R8 V10', service: 'XPEL Stealth · In Progress', tag: 'PPF' },
@@ -39,56 +22,34 @@ const allWork = [
   { img: '/images/gallery/IMG_7400.jpeg', vehicle: 'Audi R8 V10', service: 'XPEL Stealth · In Progress', tag: 'PPF' },
   { img: '/images/gallery/IMG_7405.jpeg', vehicle: 'Audi R8 V10', service: 'XPEL Stealth · Detail View', tag: 'PPF' },
   { img: '/images/gallery/IMG_9517.jpeg', vehicle: 'Audi R8 V10 Performance', service: 'Crystal Serum Ultra · PPF', tag: 'Coating + PPF' },
-
-  // Ferrari
   { img: '/images/gallery/IMG_9219.jpeg', vehicle: 'Ferrari 296 GTS', service: 'Full PPF · Ceramic Coating', tag: 'Coating + PPF' },
   { img: '/images/gallery/IMG_8707.jpeg', vehicle: 'Ferrari 488 Spider', service: 'XPEL Ultimate · Paint Correction', tag: 'PPF' },
-
-  // Corvette C8
   { img: '/images/gallery/IMG_9306.jpeg', vehicle: 'Corvette Z06', service: 'XPEL Ultimate Plus · Full PPF', tag: 'PPF' },
   { img: '/images/gallery/IMG_8054.jpeg', vehicle: 'Corvette Z06', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
   { img: '/images/gallery/IMG_8058.jpeg', vehicle: 'Corvette Z06', service: 'Crystal Serum Ultra · XPEL Ultimate', tag: 'Coating + PPF' },
   { img: '/images/gallery/IMG_9417.jpeg', vehicle: 'Corvette E-Ray', service: 'Crystal Serum Ultra · PPF', tag: 'Coating + PPF' },
   { img: '/images/gallery/IMG_7887.jpeg', vehicle: 'Corvette C8', service: 'Color Shift Vinyl Wrap', tag: 'Wrap' },
-
-  // Aston Martin
   { img: '/images/gallery/IMG_8433.jpeg', vehicle: 'Aston Martin DB11', service: 'XPEL Stealth Full PPF', tag: 'PPF' },
   { img: '/images/gallery/IMG_8434.jpeg', vehicle: 'Aston Martin DB11', service: 'XPEL Stealth Full PPF', tag: 'PPF' },
   { img: '/images/gallery/IMG_8427.jpeg', vehicle: 'Aston Martin DB11', service: 'PPF Installation', tag: 'PPF' },
   { img: '/images/gallery/IMG_8859.jpeg', vehicle: 'Aston Martin Vantage GT4', service: 'Race Livery Vinyl Wrap', tag: 'Wrap' },
   { img: '/images/gallery/IMG_8856.jpeg', vehicle: 'Aston Martin Vantage GT4', service: 'Race Livery · In Progress', tag: 'Wrap' },
   { img: '/images/gallery/IMG_8851.jpeg', vehicle: 'Aston Martin Vantage GT4', service: 'Race Livery · In Progress', tag: 'Wrap' },
-
-  // Bentley
   { img: '/images/gallery/IMG_8575.jpeg', vehicle: 'Bentley Bentayga S', service: 'Crystal Serum Ultra · Full PPF', tag: 'Coating + PPF' },
   { img: '/images/gallery/IMG_8556.jpeg', vehicle: 'Bentley Bentayga S', service: 'Crystal Serum Ultra · Full PPF', tag: 'Coating + PPF' },
-
-  // Cadillac
   { img: '/images/gallery/IMG_8718.jpeg', vehicle: 'Cadillac CT5-V Blackwing', service: 'Crystal Serum Ultra', tag: 'Coating' },
   { img: '/images/gallery/IMG_8715.jpeg', vehicle: 'Cadillac CT5-V Blackwing', service: 'Crystal Serum Ultra', tag: 'Coating' },
-
-  // Mercedes
   { img: '/images/gallery/IMG_5864.jpeg', vehicle: 'Mercedes-AMG E63 S', service: 'Crystal Serum Ultra · Matte PPF', tag: 'Coating + PPF' },
-
-  // BMW
   { img: '/images/gallery/IMG_7885.jpeg', vehicle: 'BMW M5', service: 'XPEL Ultimate Plus · Full PPF', tag: 'PPF' },
-
-  // Tesla
   { img: '/images/gallery/IMG_8513.jpeg', vehicle: 'Tesla Model Y', service: 'XPEL Ultimate Plus · PPF', tag: 'PPF' },
   { img: '/images/gallery/IMG_8143.jpeg', vehicle: 'Tesla Model S', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
-
-  // Trucks
   { img: '/images/gallery/IMG_7531.jpeg', vehicle: 'GMC Sierra 2500HD Denali', service: 'XPEL Ultimate Plus · Full PPF', tag: 'PPF' },
   { img: '/images/gallery/IMG_7530.jpeg', vehicle: 'GMC Sierra 2500HD Denali', service: 'XPEL Ultimate Plus · Full PPF', tag: 'PPF' },
   { img: '/images/gallery/IMG_7573.jpeg', vehicle: 'Ford F-250 Super Duty', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
   { img: '/images/gallery/IMG_1486.jpeg', vehicle: 'Dodge Ram SRT-10', service: 'Paint Correction · Ceramic Coating', tag: 'Coating' },
-
-  // SUVs
   { img: '/images/gallery/IMG_8146.jpeg', vehicle: 'Jeep Wrangler Rubicon', service: 'Crystal Serum Ultra · Full PPF', tag: 'Coating + PPF' },
   { img: '/images/gallery/IMG_6951.jpeg', vehicle: 'Kia Telluride', service: 'Matte Black Vinyl Wrap', tag: 'Wrap' },
   { img: '/images/gallery/IMG_6952.jpeg', vehicle: 'Kia Telluride', service: 'Matte Black Vinyl Wrap · Detail', tag: 'Wrap' },
-
-  // Classics & Muscle
   { img: '/images/gallery/IMG_5979.jpeg', vehicle: '1961 Chevrolet Corvette', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
   { img: '/images/gallery/IMG_5920.jpeg', vehicle: '1965 Ford Mustang', service: 'Paint Correction · Ceramic Coating', tag: 'Coating' },
   { img: '/images/gallery/IMG_8822.jpeg', vehicle: 'Ford Mustang SVT Cobra', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
@@ -103,281 +64,165 @@ const tagColor = {
   'Wrap': '#f59e0b',
 }
 
-const S = {
-  eyebrow: {
-    fontFamily: 'var(--font-barlow-cond), sans-serif',
-    fontSize: '11px',
-    fontWeight: 600,
-    letterSpacing: '4px',
-    textTransform: 'uppercase',
-    color: '#1a8fff',
-    marginBottom: '16px',
-    display: 'block',
-  },
-}
+const LIME = '#eaff00'
+const BLUE = '#1a8fff'
+const DISPLAY = 'var(--font-bebas-neue), Manrope, sans-serif'
 
 export default function Gallery() {
+  const [selected, setSelected] = useState(null)
+
   return (
-    <>
-      <Navbar />
-
-      {/* ── HERO BANNER ───────────────────────────────────────── */}
-      <section
-        className="zd-gallery-hero"
-        style={{
-          background: '#1f1f23',
-          padding: '160px 48px 80px',
-          borderBottom: '1px solid rgba(255,255,255,0.07)',
-        }}
+    <main className="tile-page">
+      {/* MorphLogo can't be used in a client component that also needs metadata
+          from a layout — the layout.js handles metadata; the logo link is inline */}
+      <a
+        href="/"
+        aria-label="Zero Defects ATL — home"
+        style={{ position: 'fixed', top: 20, left: 24, zIndex: 50, lineHeight: 0 }}
       >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <a
-            href="/"
-            style={{
-              display: 'inline-block',
-              marginBottom: 32,
-              fontSize: 11,
-              letterSpacing: 3,
-              textTransform: 'uppercase',
-              color: '#eaff00',
-              textDecoration: 'none',
-              fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
-              fontWeight: 600,
-            }}
-          >
-            ← Back to home
-          </a>
-          <span style={S.eyebrow}>Portfolio</span>
-          <h1
-            style={{
-              fontFamily: 'var(--font-bebas-neue), Manrope, sans-serif',
-              fontSize: 'clamp(64px, 10vw, 140px)',
-              lineHeight: 0.9,
-              letterSpacing: '3px',
-              color: '#f0f4f8',
-              marginBottom: '24px',
-              fontWeight: 700,
-            }}
-          >
-            Our Work
-          </h1>
-          <p
-            style={{
-              fontFamily: 'var(--font-barlow), sans-serif',
-              fontSize: '17px',
-              color: 'rgba(240,244,248,0.55)',
-              maxWidth: '520px',
-              lineHeight: 1.6,
-              margin: 0,
-            }}
-          >
-            Every vehicle we protect. Paint protection film, ceramic coatings,
-            vinyl wraps, and paint correction — all done in our climate-controlled
-            Braselton shop.
-          </p>
+        <Image
+          src="/images/logos/zd-logo-clean.png"
+          alt="Zero Defects ATL"
+          width={52}
+          height={51}
+          priority
+          style={{ display: 'block', viewTransitionName: 'zd-logo' }}
+        />
+      </a>
 
-          {/* Legend */}
-          <div
-            style={{
-              display: 'flex',
-              gap: '24px',
-              marginTop: '40px',
-              flexWrap: 'wrap',
-            }}
-          >
-            {Object.entries(tagColor).map(([label, color]) => (
-              <div
-                key={label}
-                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-              >
-                <div
-                  style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    background: color,
-                    flexShrink: 0,
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: 'var(--font-barlow-cond), sans-serif',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    letterSpacing: '2px',
-                    textTransform: 'uppercase',
-                    color: 'rgba(240,244,248,0.5)',
-                  }}
+      <div className="tile-lock">
+        <section className="tile tile-scroll" style={{ padding: 0 }}>
+
+          {/* If a photo is selected, show the lightbox view */}
+          {selected !== null ? (
+            <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              {/* Close bar */}
+              <div style={{ padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #262626' }}>
+                <button
+                  onClick={() => setSelected(null)}
+                  style={{ all: 'unset', cursor: 'pointer', fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 12, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: LIME }}
                 >
-                  {label}
-                </span>
+                  ← Back to gallery
+                </button>
+                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>
+                  {selected + 1} / {allWork.length}
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── GALLERY GRID ──────────────────────────────────────── */}
-      <section className="zd-gallery-grid" style={{ background: '#1f1f23', padding: '64px 48px 96px' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div
-            className="zd-gallery-grid__inner"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-              gap: '16px',
-            }}
-          >
-            {allWork.map((item, i) => (
-              <GalleryCard key={i} item={item} />
-            ))}
-          </div>
-        </div>
-      </section>
+              {/* Photo fills the tile */}
+              <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+                <Image
+                  src={allWork[selected].img}
+                  alt={allWork[selected].vehicle}
+                  fill
+                  sizes="100vw"
+                  style={{ objectFit: 'contain', padding: 16 }}
+                  priority
+                />
+              </div>
 
-      {/* ── CTA ───────────────────────────────────────────────── */}
-      <section
-        className="zd-gallery-cta"
-        style={{
-          background: '#1f1f23',
-          borderTop: '1px solid rgba(255,255,255,0.07)',
-          padding: '80px 48px',
-          textAlign: 'center',
-        }}
-      >
-        <span style={{ ...S.eyebrow, display: 'block', textAlign: 'center' }}>
-          Ready to Protect Your Vehicle?
-        </span>
-        <h2
-          style={{
-            fontFamily: 'var(--font-bebas-neue), sans-serif',
-            fontSize: 'clamp(40px, 6vw, 72px)',
-            lineHeight: 0.9,
-            letterSpacing: '2px',
-            color: '#f0f4f8',
-            marginBottom: '32px',
-          }}
-        >
-          Get a Free Quote
-        </h2>
-        <a
-          href="/#contact"
-          style={{
-            display: 'inline-block',
-            fontFamily: 'var(--font-barlow-cond), sans-serif',
-            fontSize: '13px',
-            fontWeight: 700,
-            letterSpacing: '3px',
-            textTransform: 'uppercase',
-            color: '#080a0c',
-            background: '#1a8fff',
-            padding: '16px 40px',
-            textDecoration: 'none',
-            borderRadius: '2px',
-          }}
-        >
-          Contact Us →
-        </a>
-      </section>
-      <Footer />
-    </>
-  )
-}
+              {/* Info bar */}
+              <div style={{ padding: '18px 24px', borderTop: '1px solid #262626', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+                <div>
+                  <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 22, letterSpacing: 0.5 }}>
+                    {allWork[selected].vehicle}
+                  </div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', marginTop: 4 }}>
+                    {allWork[selected].service}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button
+                    onClick={() => setSelected(Math.max(0, selected - 1))}
+                    disabled={selected === 0}
+                    style={{ all: 'unset', cursor: selected === 0 ? 'default' : 'pointer', opacity: selected === 0 ? 0.3 : 1, fontSize: 18, padding: '6px 14px', border: '1px solid #262626', borderRadius: 6, color: '#fff' }}
+                  >
+                    ←
+                  </button>
+                  <button
+                    onClick={() => setSelected(Math.min(allWork.length - 1, selected + 1))}
+                    disabled={selected === allWork.length - 1}
+                    style={{ all: 'unset', cursor: selected === allWork.length - 1 ? 'default' : 'pointer', opacity: selected === allWork.length - 1 ? 0.3 : 1, fontSize: 18, padding: '6px 14px', border: '1px solid #262626', borderRadius: 6, color: '#fff' }}
+                  >
+                    →
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Gallery grid (scrollable inside the tile) */
+            <div style={{ padding: '80px 28px 28px' }}>
+              <a
+                href="/"
+                style={{ display: 'inline-block', marginBottom: 22, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}
+              >
+                ← Back to home
+              </a>
+              <p className="tile-eyebrow" style={{ color: BLUE }}>Portfolio</p>
+              <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 'clamp(38px, 5.6vw, 70px)', lineHeight: 0.95, letterSpacing: 1, margin: '0 0 16px' }}>
+                Our Work
+              </h1>
+              <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 16, lineHeight: 1.6, maxWidth: 520, margin: '0 0 28px' }}>
+                Every vehicle we protect. Click any photo to view it full-size.
+              </p>
 
-function GalleryCard({ item }) {
-  const color = tagColor[item.tag] || '#1a8fff'
+              {/* Legend */}
+              <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 28 }}>
+                {Object.entries(tagColor).map(([label, color]) => (
+                  <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                    <div style={{ width: 7, height: 7, borderRadius: '50%', background: color }} />
+                    <span style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
 
-  return (
-    <div
-      style={{
-        position: 'relative',
-        aspectRatio: '4/3',
-        overflow: 'hidden',
-        borderRadius: '8px',
-        background: '#101010',
-        border: '1px solid #262626',
-      }}
-    >
-      <Image
-        src={item.img}
-        alt={item.vehicle}
-        fill
-        style={{ objectFit: 'cover', transition: 'transform 0.5s ease' }}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      />
+              {/* Image grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 6 }}>
+                {allWork.map((item, i) => {
+                  const color = tagColor[item.tag] || BLUE
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setSelected(i)}
+                      style={{
+                        all: 'unset',
+                        cursor: 'pointer',
+                        position: 'relative',
+                        aspectRatio: '4/3',
+                        overflow: 'hidden',
+                        borderRadius: 8,
+                        background: '#101010',
+                        border: '1px solid #262626',
+                      }}
+                    >
+                      <Image
+                        src={item.img}
+                        alt={item.vehicle}
+                        fill
+                        style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%)' }} />
+                      <div style={{ position: 'absolute', bottom: 10, left: 12, right: 12 }}>
+                        <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 12, fontWeight: 700, color: '#fff', letterSpacing: 0.5 }}>
+                          {item.vehicle}
+                        </div>
+                        <div style={{ fontSize: 10, color: `${color}cc`, marginTop: 3 }}>
+                          {item.service}
+                        </div>
+                      </div>
+                    </button>
+                  )
+                })}
+              </div>
 
-      {/* Gradient overlay */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background:
-            'linear-gradient(to top, rgba(8,10,12,0.92) 0%, rgba(8,10,12,0.2) 55%, transparent 100%)',
-        }}
-      />
-
-      {/* Tag pill — top right */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '14px',
-          right: '14px',
-          background: `${color}22`,
-          border: `1px solid ${color}55`,
-          borderRadius: '2px',
-          padding: '4px 10px',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-barlow-cond), sans-serif',
-            fontSize: '10px',
-            fontWeight: 700,
-            letterSpacing: '2px',
-            textTransform: 'uppercase',
-            color: color,
-          }}
-        >
-          {item.tag}
-        </span>
+              <Footer />
+            </div>
+          )}
+        </section>
       </div>
-
-      {/* Vehicle info — bottom */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '18px',
-          left: '18px',
-          right: '18px',
-        }}
-      >
-        <div
-          style={{
-            fontFamily: 'var(--font-barlow-cond), sans-serif',
-            fontSize: '18px',
-            fontWeight: 700,
-            letterSpacing: '1px',
-            textTransform: 'uppercase',
-            color: '#f0f4f8',
-            marginBottom: '5px',
-            lineHeight: 1.1,
-          }}
-        >
-          {item.vehicle}
-        </div>
-        <div
-          style={{
-            fontFamily: 'var(--font-barlow-cond), sans-serif',
-            fontSize: '10px',
-            fontWeight: 600,
-            letterSpacing: '2px',
-            textTransform: 'uppercase',
-            color: color,
-          }}
-        >
-          {item.service}
-        </div>
-      </div>
-    </div>
+    </main>
   )
 }
