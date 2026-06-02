@@ -690,7 +690,10 @@ body {
   --bento-gap:     8px;
   --bento-r:       12px;
 
-  background: var(--bento-bg);
+  /* faint cool glow up top so the backdrop feels lit/awake, not flat grey */
+  background:
+    radial-gradient(1100px 520px at 50% -8%, rgba(57, 214, 232, 0.05), transparent 62%),
+    var(--bento-bg);
   color: var(--bento-white);
   padding: 0;
   /* fill the viewport so the (now smaller) bento centers with gutters */
@@ -734,27 +737,32 @@ body {
 }
 
 .bento-card {
-  background: var(--bento-card);
-  /* subtle glassmorphism: translucent light edge + soft outer shadow for depth,
-     plus a 1px top inner highlight so each tile reads as a lifted glass panel */
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  /* Top-lit surface: catches light at the top edge, settles darker at the
+     bottom — reads dimensional without a heavy cast shadow. */
+  background: linear-gradient(180deg, #17181c 0%, #0e0f12 100%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--bento-r);
   position: relative;
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
   color: var(--bento-white);
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s ease;
   min-height: 0;
+  /* Beveled glass edge (bright top inset, dark bottom inset) + a light, tight
+     ambient shadow. Depth comes from the edge light, not a dark drop. */
   box-shadow:
-    0 6px 20px -12px rgba(0, 0, 0, 0.75),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 2px 6px -3px rgba(0, 0, 0, 0.4);
 }
 .bento-card:hover {
-  border-color: rgba(255, 255, 255, 0.20);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
   box-shadow:
-    0 14px 32px -14px rgba(0, 0, 0, 0.85),
-    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 8px 18px -8px rgba(0, 0, 0, 0.45);
 }
 
 .bento-badge {
@@ -850,7 +858,18 @@ body {
     0 0 0 11px var(--bento-bg),
     0 0 0 12px var(--bento-border);
 }
+/* The logo card's box-shadow IS the L-notch ring, and lifting it would
+   misalign the cutout — keep it pinned and preserve the ring on hover. */
+.bento-logo-card,
+.bento-logo-card:hover {
+  transform: none;
+  box-shadow:
+    0 0 0 11px var(--bento-bg),
+    0 0 0 12px var(--bento-border);
+}
 .bento-logo-card:hover { border-color: var(--bento-border); }
+/* Hero is the notch host — never lift it either. */
+.bento-hero:hover { transform: none; }
 .bento-logo-card__mark {
   width: auto;
   height: 66px;
