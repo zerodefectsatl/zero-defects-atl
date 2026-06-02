@@ -735,19 +735,26 @@ body {
 
 .bento-card {
   background: var(--bento-card);
-  border: 1px solid var(--bento-border);
+  /* subtle glassmorphism: translucent light edge + soft outer shadow for depth,
+     plus a 1px top inner highlight so each tile reads as a lifted glass panel */
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--bento-r);
   position: relative;
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
   color: var(--bento-white);
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
   min-height: 0;
+  box-shadow:
+    0 6px 20px -12px rgba(0, 0, 0, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 .bento-card:hover {
-  /* subtle neutral hover — no blue outline around tiles */
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.20);
+  box-shadow:
+    0 14px 32px -14px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
 .bento-badge {
@@ -777,10 +784,10 @@ body {
 
 .bento-corner-arrow {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
+  bottom: 15px;
+  right: 15px;
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.4);
   z-index: 10;
   pointer-events: none;
   line-height: 1;
@@ -788,8 +795,8 @@ body {
 
 .bento-card__label {
   position: absolute;
-  bottom: 14px;
-  left: 14px;
+  bottom: 17px;
+  left: 17px;
   z-index: 5;
   pointer-events: none;
 }

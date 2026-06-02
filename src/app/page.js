@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import IntroCube from '@/components/IntroCube'
 import ServicesTile from '@/components/ServicesTile'
+import ProcessTile from '@/components/ProcessTile'
 
 const reviews = [
   {
@@ -88,19 +89,8 @@ export default function Home() {
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
           </a>
 
-          {/* PROCESS — bottom center */}
-          <a href="/our-process" className="bento-card bento-process-card">
-            <div
-              className="bento-card__bg"
-              style={{ backgroundImage: 'url(/images/gallery/IMG_9306.jpeg)' }}
-            />
-            <div className="bento-card__overlay" />
-            <div className="bento-card__label">
-              <div className="bento-card__eyebrow">How it works</div>
-              <h2 className="bento-card__title">Our Process</h2>
-            </div>
-            <span className="bento-corner-arrow" aria-hidden="true">↗</span>
-          </a>
+          {/* PROCESS — bottom center: photo-free animated blueprint step-rail */}
+          <ProcessTile />
 
           {/* GALLERY — bottom right of left column */}
           <a href="/gallery" className="bento-card bento-gallery-card">
