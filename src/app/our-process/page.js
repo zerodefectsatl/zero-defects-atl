@@ -122,33 +122,11 @@ export default function OurProcessPage() {
 
         {/* The 4 steps */}
         <section style={{ borderTop: '1px solid #262626', marginTop: 32, paddingTop: 30 }}>
-          {steps.map((s, i) => (
-            <div
-              key={s.num}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '120px 1fr',
-                gap: 32,
-                paddingBottom: 56,
-                marginBottom: 56,
-                borderBottom: i < steps.length - 1 ? '1px solid #1c1c1c' : 'none',
-              }}
-            >
-              {/* Number column */}
-              <div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-bebas-neue), Manrope, sans-serif',
-                    fontSize: 80,
-                    color: '#eaff00',
-                    lineHeight: 1,
-                    fontWeight: 700,
-                  }}
-                >
-                  {s.num}
-                </div>
-              </div>
-              {/* Content column */}
+          {steps.map((s) => (
+            <div key={s.num} className="zd-proc-step">
+              {/* Number */}
+              <div className="zd-proc-step__num">{s.num}</div>
+              {/* Content */}
               <div>
                 <h2
                   style={{

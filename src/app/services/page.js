@@ -91,7 +91,7 @@ export default function ServicesPage() {
           </a>
 
           {/* Intro glass card */}
-          <div className="zd-services-intro-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+          <div className="zd-services-intro-card zd-svc-intro-grid">
             <div>
               <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>
                 Zero Defects ATL &mdash; Braselton, GA
@@ -120,14 +120,9 @@ export default function ServicesPage() {
             <div key={idx}>
               {/* 68% social proof between cards 01 and 02 */}
               {idx === 1 && (
-                <div style={{
+                <div className="zd-svc-proof" style={{
                   background: '#eaff00',
                   borderRadius: 16,
-                  padding: '40px 48px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: 32,
                   marginBottom: 24,
                 }}>
                   <div>
