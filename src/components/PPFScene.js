@@ -27,9 +27,12 @@ const LAYERS = [
  *   mode="full"      — interactive with legend, controls, header (standalone page)
  *   mode="ambient"   — auto-rotating backdrop, no UI (services tile background)
  */
-export default function PPFScene({ mode = 'full', opacity = 0.4, interactive = mode === 'full' }) {
+export default function PPFScene({ mode = 'full', opacity = 0.4, interactive = mode === 'full', onDragStateChange }) {
   const mountRef = useRef(null)
   const stateRef = useRef(null)
+  // Keep the latest callback without re-initialising the scene.
+  const onDragRef = useRef(onDragStateChange)
+  onDragRef.current = onDragStateChange
 
   const init = useCallback(() => {
     if (typeof window === 'undefined') return
@@ -41,6 +44,9 @@ export default function PPFScene({ mode = 'full', opacity = 0.4, interactive = m
     let az = -0.6, pol = 1.12, dist = mode === 'ambient' ? 16 : 13
     let autoRot = true, spin = mode === 'ambient' ? 0.12 : 0.22
     let explode = mode === 'ambient' ? 0.45 : 0.55
+    const baseExplode = explode
+    const expandedExplode = mode === 'ambient' ? 1.2 : explode  // hover spreads the layers apart
+    let explodeTarget = explode
     let isolated = null, drag = false, px = 0, py = 0
 
     const scene = new THREE.Scene()
@@ -99,6 +105,7 @@ export default function PPFScene({ mode = 'full', opacity = 0.4, interactive = m
     function animate() {
       raf = requestAnimationFrame(animate)
       if (autoRot) az += spin * 0.006
+      explode += (explodeTarget - explode) * 0.1  // ease toward target (hover expand / slider)
       meshes.forEach(m => {
         const l = m.userData.layer
         m.position.y = l.baseY + l.spreadDir * explode * 1.7
@@ -117,15 +124,35 @@ export default function PPFScene({ mode = 'full', opacity = 0.4, interactive = m
     if (interactive) {
       // Tile keeps drifting after you let go; the standalone page stays put.
       const resumeSpin = mode !== 'full'
+      let startX = 0, startY = 0, moved = false
       c.style.cursor = 'grab'
-      c.addEventListener('pointerdown', e => { drag = true; px = e.clientX; py = e.clientY; autoRot = false; c.style.cursor = 'grabbing' })
-      window.addEventListener('pointerup', () => { drag = false; c.style.cursor = 'grab'; if (resumeSpin) autoRot = true })
+      c.addEventListener('pointerdown', e => {
+        drag = true; moved = false
+        startX = px = e.clientX; startY = py = e.clientY
+        autoRot = false; c.style.cursor = 'grabbing'
+        onDragRef.current?.(false)  // fresh interaction — assume tap until proven a drag
+      })
+      window.addEventListener('pointerup', () => {
+        if (!drag) return
+        drag = false; c.style.cursor = 'grab'
+        if (resumeSpin) autoRot = true
+      })
       window.addEventListener('pointermove', e => {
         if (!drag) return
+        // Past a few px it's a drag (orbit), not a tap — tell the wrapper to
+        // suppress the link click so dragging never navigates.
+        if (!moved && Math.hypot(e.clientX - startX, e.clientY - startY) > 6) {
+          moved = true; onDragRef.current?.(true)
+        }
         az -= (e.clientX - px) * 0.008
         pol = Math.max(0.25, Math.min(2.5, pol - (e.clientY - py) * 0.006))
         px = e.clientX; py = e.clientY
       })
+      if (mode !== 'full') {
+        // Hover spreads the layers apart; leaving collapses them back.
+        c.addEventListener('pointerenter', () => { explodeTarget = expandedExplode })
+        c.addEventListener('pointerleave', () => { explodeTarget = baseExplode })
+      }
     }
     if (mode === 'full') {
       // Scroll-to-zoom only on the standalone page — on the homepage tile it
@@ -142,11 +169,11 @@ export default function PPFScene({ mode = 'full', opacity = 0.4, interactive = m
 
     stateRef.current = {
       renderer, raf, onResize,
-      setExplode: v => { explode = v },
+      setExplode: v => { explodeTarget = v },
       setSpin: v => { spin = v },
       setAutoRot: v => { autoRot = v },
       getAutoRot: () => autoRot,
-      reset: () => { az = -0.6; pol = 1.12; dist = 13; autoRot = true; explode = 0.55; spin = 0.22 },
+      reset: () => { az = -0.6; pol = 1.12; dist = 13; autoRot = true; explodeTarget = 0.55; spin = 0.22 },
     }
   }, [mode, interactive])
 
