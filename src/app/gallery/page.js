@@ -9,7 +9,6 @@ const allWork = [
   { img: '/images/gallery/IMG_9439.jpeg', vehicle: 'Porsche 911 GT2 RS', service: 'Crystal Serum Ultra · XPEL Ultimate', tag: 'Coating + PPF' },
   { img: '/images/gallery/IMG_8518.jpeg', vehicle: 'Porsche 911 GT3 RS', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
   { img: '/images/gallery/IMG_8882.jpeg', vehicle: 'Porsche 911 GTS e-Hybrid', service: 'XPEL Ultimate Plus · Full PPF', tag: 'PPF' },
-  { img: '/images/gallery/IMG_8880.jpeg', vehicle: 'Porsche 911 GTS e-Hybrid', service: 'PPF Installation Detail', tag: 'PPF' },
   { img: '/images/gallery/IMG_7388.jpeg', vehicle: 'Porsche Cayenne GTS', service: 'Crystal Serum Ultra · Paint Correction', tag: 'Coating' },
   { img: '/images/gallery/IMG_6130.jpeg', vehicle: 'Porsche 718 Cayman GT4', service: 'Custom Art Wrap · Paint Protection', tag: 'Wrap' },
   { img: '/images/gallery/IMG_7409.jpeg', vehicle: 'Audi R8 V10', service: 'XPEL Stealth Matte PPF', tag: 'PPF' },
