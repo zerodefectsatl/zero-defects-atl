@@ -47,9 +47,9 @@ export default function PaintProtectionFilmPage() {
         { q: 'How long does PPF last?', a: 'XPEL Ultimate Plus carries a 10-year warranty and stays clear and self-healing throughout, with proper care.' },
       ]}
       related={[
+        { href: '/ppf-layers', eyebrow: 'Interactive 3D', label: 'Explore PPF Layers' },
         { href: '/ceramic-coating', eyebrow: 'Add Gloss', label: 'Ceramic Coating' },
         { href: '/paint-correction', eyebrow: 'Prep First', label: 'Paint Correction' },
-        { href: '/gallery', eyebrow: 'Our Work', label: 'Gallery' },
       ]}
     />
   )

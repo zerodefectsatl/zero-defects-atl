@@ -2,6 +2,7 @@ import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import TilePage from '@/components/TilePage'
 import Footer from '@/components/Footer'
+import PPFScene from '@/components/PPFScene'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
@@ -65,6 +66,8 @@ const services = [
 export default function ServicesPage() {
   return (
     <TilePage>
+      {/* Ambient 3D PPF scene as the tile background */}
+      <PPFScene mode="ambient" />
       {/* Hero */}
       <h1 className="sr-only">Ceramic Coating, PPF &amp; Paint Correction in Atlanta, GA</h1>
       <section style={{ background: 'transparent', paddingTop: 80, paddingBottom: 0, paddingLeft: 24, paddingRight: 24 }}>
