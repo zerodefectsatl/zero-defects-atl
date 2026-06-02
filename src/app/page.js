@@ -174,8 +174,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* SERVICES — bottom right (wide tile): live 3D PPF cross-section.
-              Click opens /services, drag orbits, hover expands the layers. */}
+          {/* SERVICES — bottom right (wide tile): blueprint card that stacks our
+              three core services; sheen sweeps across them on hover. Opens /services. */}
           <ServicesTile />
 
         </div>
