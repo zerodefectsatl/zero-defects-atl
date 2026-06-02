@@ -57,7 +57,6 @@ export default function Home() {
                 <span className="bento-hero__cta-arrow">↗</span>
               </div>
             </div>
-            <span className="bento-badge bento-badge--play" aria-hidden="true">▶</span>
             <span className="bento-corner-arrow" aria-hidden="true">↗</span>
           </a>
 
@@ -81,7 +80,6 @@ export default function Home() {
             <div className="bento-faq__lines" aria-hidden="true">
               <div /><div /><div /><div />
             </div>
-            <span className="bento-badge bento-badge--q" aria-hidden="true">?</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">Help</div>
               <h2 className="bento-card__title">FAQ</h2>
@@ -96,7 +94,6 @@ export default function Home() {
               style={{ backgroundImage: 'url(/images/gallery/IMG_9306.jpeg)' }}
             />
             <div className="bento-card__overlay" />
-            <span className="bento-badge" aria-hidden="true">⚙</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">How it works</div>
               <h2 className="bento-card__title">Our Process</h2>
@@ -108,10 +105,9 @@ export default function Home() {
           <a href="/gallery" className="bento-card bento-gallery-card">
             <div
               className="bento-card__bg"
-              style={{ backgroundImage: 'url(/images/gallery/IMG_8707.jpeg)' }}
+              style={{ backgroundImage: 'url(/images/gallery/IMG_7887.jpeg)' }}
             />
             <div className="bento-card__overlay" />
-            <span className="bento-badge" aria-hidden="true">⊞</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">Our work</div>
               <h2 className="bento-card__title">Gallery</h2>
@@ -185,7 +181,6 @@ export default function Home() {
               <div className="bento-reviews__num">5.0</div>
               <div className="bento-reviews__of">out of 5</div>
             </div>
-            <span className="bento-badge bento-badge--ghost" aria-hidden="true">✦</span>
           </div>
 
           {/* SERVICES — bottom right (wide tile) */}
@@ -195,7 +190,6 @@ export default function Home() {
               style={{ backgroundImage: 'url(/images/gallery/g-techniq-ultra-serum.jpg)' }}
             />
             <div className="bento-card__overlay" />
-            <span className="bento-badge" aria-hidden="true">◻</span>
             <div className="bento-card__label">
               <div className="bento-card__eyebrow">What we do</div>
               <h2 className="bento-card__title">Our Services</h2>

@@ -755,17 +755,11 @@ body {
   position: absolute;
   bottom: 12px;
   right: 12px;
-  width: 24px;
-  height: 24px;
-  border: 1px solid rgba(26, 143, 255, 0.35);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  color: var(--bento-blue);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.35);
   z-index: 10;
   pointer-events: none;
+  line-height: 1;
 }
 
 .bento-card__label {
