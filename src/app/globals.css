@@ -110,6 +110,28 @@ body {
 .tile-scroll {
   height: 100%;
   overflow-y: auto;
+  /* CSS-only parallax: perspective on the scroll container lets children
+     with translateZ move at different scroll rates. */
+  perspective: 1px;
+  perspective-origin: center top;
+}
+
+/* Parallax layer: sits behind content, scrolls slower.
+   scale compensates for the translateZ shrink so the image stays full-size. */
+.parallax-bg {
+  transform: translateZ(-0.5px) scale(1.5);
+  transform-origin: center top;
+  position: absolute;
+  inset: -20% 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Content layer: normal scroll rate, sits above the parallax bg */
+.parallax-fg {
+  transform: translateZ(0);
+  position: relative;
+  z-index: 1;
 }
 /* Mobile: release the lock and scroll the page normally. */
 @media (max-width: 900px) {

@@ -38,18 +38,20 @@ export default function ServiceLanding({
       <div className="tile-lock">
         <section className="tile tile-scroll" style={{ padding: 0 }}>
 
-          {/* Hero block — bright photo backdrop, left gradient, content left */}
+          {/* Hero block — bright photo backdrop with parallax, left gradient, content left */}
           <div style={{ position: 'relative', overflow: 'hidden', minHeight: 'min(72vh, 540px)' }}>
-            <Image
-              src={heroImage}
-              alt={`${serviceType} at Zero Defects ATL in Braselton, GA`}
-              fill
-              priority
-              sizes="100vw"
-              style={{ objectFit: 'cover', opacity: 0.95 }}
-            />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(16,16,16,0.94) 0%, rgba(16,16,16,0.72) 38%, rgba(16,16,16,0.25) 68%, rgba(16,16,16,0) 100%)' }} />
-            <div style={{ position: 'relative', zIndex: 1, padding: '80px 38px 44px', maxWidth: 600 }}>
+            <div className="parallax-bg">
+              <Image
+                src={heroImage}
+                alt={`${serviceType} at Zero Defects ATL in Braselton, GA`}
+                fill
+                priority
+                sizes="100vw"
+                style={{ objectFit: 'cover', opacity: 0.95 }}
+              />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(16,16,16,0.94) 0%, rgba(16,16,16,0.72) 38%, rgba(16,16,16,0.25) 68%, rgba(16,16,16,0) 100%)' }} />
+            </div>
+            <div className="parallax-fg" style={{ padding: '80px 38px 44px', maxWidth: 600 }}>
               <a href="/" style={{ display: 'inline-block', marginBottom: 22, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}>
                 ← Back to home
               </a>
