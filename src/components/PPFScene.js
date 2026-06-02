@@ -27,7 +27,7 @@ const LAYERS = [
  *   mode="full"      — interactive with legend, controls, header (standalone page)
  *   mode="ambient"   — auto-rotating backdrop, no UI (services tile background)
  */
-export default function PPFScene({ mode = 'full' }) {
+export default function PPFScene({ mode = 'full', opacity = 0.4, interactive = mode === 'full' }) {
   const mountRef = useRef(null)
   const stateRef = useRef(null)
 
@@ -113,16 +113,23 @@ export default function PPFScene({ mode = 'full' }) {
     }
     animate()
 
-    if (mode === 'full') {
-      const c = renderer.domElement
-      c.addEventListener('pointerdown', e => { drag = true; px = e.clientX; py = e.clientY; autoRot = false })
-      window.addEventListener('pointerup', () => { drag = false })
+    const c = renderer.domElement
+    if (interactive) {
+      // Tile keeps drifting after you let go; the standalone page stays put.
+      const resumeSpin = mode !== 'full'
+      c.style.cursor = 'grab'
+      c.addEventListener('pointerdown', e => { drag = true; px = e.clientX; py = e.clientY; autoRot = false; c.style.cursor = 'grabbing' })
+      window.addEventListener('pointerup', () => { drag = false; c.style.cursor = 'grab'; if (resumeSpin) autoRot = true })
       window.addEventListener('pointermove', e => {
         if (!drag) return
         az -= (e.clientX - px) * 0.008
         pol = Math.max(0.25, Math.min(2.5, pol - (e.clientY - py) * 0.006))
         px = e.clientX; py = e.clientY
       })
+    }
+    if (mode === 'full') {
+      // Scroll-to-zoom only on the standalone page — on the homepage tile it
+      // would hijack page scrolling, so the tile is drag-to-orbit only.
       c.addEventListener('wheel', e => { e.preventDefault(); dist = Math.max(7, Math.min(24, dist + e.deltaY * 0.012)) }, { passive: false })
     }
 
@@ -141,7 +148,7 @@ export default function PPFScene({ mode = 'full' }) {
       getAutoRot: () => autoRot,
       reset: () => { az = -0.6; pol = 1.12; dist = 13; autoRot = true; explode = 0.55; spin = 0.22 },
     }
-  }, [mode])
+  }, [mode, interactive])
 
   useEffect(() => {
     init()
@@ -155,7 +162,7 @@ export default function PPFScene({ mode = 'full' }) {
   }, [init])
 
   if (mode === 'ambient') {
-    return <div ref={mountRef} style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.4, pointerEvents: 'none' }} />
+    return <div ref={mountRef} style={{ position: 'absolute', inset: 0, zIndex: 0, opacity, pointerEvents: interactive ? 'auto' : 'none' }} />
   }
 
   return (

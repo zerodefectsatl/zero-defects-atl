@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import IntroCube from '@/components/IntroCube'
+import PPFScene from '@/components/PPFScene'
 
 const reviews = [
   {
@@ -183,19 +184,24 @@ export default function Home() {
             </div>
           </div>
 
-          {/* SERVICES — bottom right (wide tile) */}
-          <a href="/services" className="bento-card bento-services-card">
-            <div
-              className="bento-card__bg"
-              style={{ backgroundImage: 'url(/images/gallery/g-techniq-ultra-serum.jpg)' }}
-            />
+          {/* SERVICES — bottom right (wide tile).
+              The tile is a live, draggable layered-PPF 3D cross-section
+              (drag to orbit). It's a <div>, not a link, so dragging never
+              navigates; the corner arrow is the link to /services. */}
+          <div className="bento-card bento-services-card">
+            <PPFScene mode="ambient" opacity={0.95} interactive />
             <div className="bento-card__overlay" />
             <div className="bento-card__label">
-              <div className="bento-card__eyebrow">What we do</div>
+              <div className="bento-card__eyebrow">What we do · drag to explore</div>
               <h2 className="bento-card__title">Our Services</h2>
             </div>
-            <span className="bento-corner-arrow" aria-hidden="true">↗</span>
-          </a>
+            <a
+              href="/services"
+              className="bento-corner-arrow"
+              aria-label="Our Services"
+              style={{ pointerEvents: 'auto', cursor: 'pointer', textDecoration: 'none', fontSize: 18, color: 'rgba(255,255,255,0.55)' }}
+            >↗</a>
+          </div>
 
         </div>
 

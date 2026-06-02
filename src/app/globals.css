@@ -1205,7 +1205,14 @@ body {
 }
 
 /* Position the photos for best framing on small cards */
-.bento-services-card .bento-card__bg { background-position: center center; background-size: contain; background-color: #0a0a0a; }
+/* Services tile uses the ambient 3D PPF scene as its backdrop — deep
+   blue-black stage matching the scene's fog so the layers read clearly. */
+.bento-services-card { background: radial-gradient(120% 120% at 50% 30%, #0d1626 0%, #070a10 100%); }
+/* Lighter scrim than the photo tiles so the 3D film stays visible — only
+   darkens toward the bottom-left where the "Our Services" label sits. */
+.bento-services-card .bento-card__overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.10) 45%, rgba(0,0,0,0.78) 100%);
+}
 .bento-process-card .bento-card__bg  { background-position: center 50%; }
 .bento-gallery-card .bento-card__bg  { background-position: center 60%; }
 
