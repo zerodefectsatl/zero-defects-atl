@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
 
@@ -71,6 +71,24 @@ const DISPLAY = 'var(--font-bebas-neue), Manrope, sans-serif'
 export default function Gallery() {
   const [selected, setSelected] = useState(null)
 
+  // While the lightbox is open: Esc closes, ← / → step through, and the
+  // background scroll is locked.
+  useEffect(() => {
+    if (selected === null) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setSelected(null)
+      else if (e.key === 'ArrowLeft') setSelected((s) => Math.max(0, s - 1))
+      else if (e.key === 'ArrowRight') setSelected((s) => Math.min(allWork.length - 1, s + 1))
+    }
+    window.addEventListener('keydown', onKey)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [selected])
+
   return (
     <main className="tile-page">
       {/* MorphLogo can't be used in a client component that also needs metadata
@@ -92,137 +110,146 @@ export default function Gallery() {
 
       <div className="tile-lock">
         <section className="tile tile-scroll" style={{ padding: 0 }}>
+          {/* Gallery grid (scrollable inside the tile) */}
+          <div style={{ padding: '80px 28px 28px' }}>
+            <a
+              href="/"
+              style={{ display: 'inline-block', marginBottom: 22, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}
+            >
+              ← Back to home
+            </a>
+            <p className="tile-eyebrow" style={{ color: BLUE }}>Portfolio</p>
+            <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 'clamp(38px, 5.6vw, 70px)', lineHeight: 0.95, letterSpacing: 1, margin: '0 0 16px' }}>
+              Our Work
+            </h1>
+            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 16, lineHeight: 1.6, maxWidth: 520, margin: '0 0 28px' }}>
+              Every vehicle we protect. Click any photo to view it full-size.
+            </p>
 
-          {/* If a photo is selected, show the lightbox view */}
-          {selected !== null ? (
-            <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-              {/* Close bar */}
-              <div style={{ padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #262626' }}>
-                <button
-                  onClick={() => setSelected(null)}
-                  style={{ all: 'unset', cursor: 'pointer', fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 12, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: LIME }}
-                >
-                  ← Back to gallery
-                </button>
-                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>
-                  {selected + 1} / {allWork.length}
+            {/* Legend */}
+            <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 28 }}>
+              {Object.entries(tagColor).map(([label, color]) => (
+                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                  <div style={{ width: 7, height: 7, borderRadius: '50%', background: color }} />
+                  <span style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
+                    {label}
+                  </span>
                 </div>
-              </div>
-
-              {/* Photo fills the tile */}
-              <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
-                <Image
-                  src={allWork[selected].img}
-                  alt={allWork[selected].vehicle}
-                  fill
-                  sizes="100vw"
-                  style={{ objectFit: 'contain', padding: 16 }}
-                  priority
-                />
-              </div>
-
-              {/* Info bar */}
-              <div style={{ padding: '18px 24px', borderTop: '1px solid #262626', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-                <div>
-                  <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 22, letterSpacing: 0.5 }}>
-                    {allWork[selected].vehicle}
-                  </div>
-                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', marginTop: 4 }}>
-                    {allWork[selected].service}
-                  </div>
-                </div>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <button
-                    onClick={() => setSelected(Math.max(0, selected - 1))}
-                    disabled={selected === 0}
-                    style={{ all: 'unset', cursor: selected === 0 ? 'default' : 'pointer', opacity: selected === 0 ? 0.3 : 1, fontSize: 18, padding: '6px 14px', border: '1px solid #262626', borderRadius: 6, color: '#fff' }}
-                  >
-                    ←
-                  </button>
-                  <button
-                    onClick={() => setSelected(Math.min(allWork.length - 1, selected + 1))}
-                    disabled={selected === allWork.length - 1}
-                    style={{ all: 'unset', cursor: selected === allWork.length - 1 ? 'default' : 'pointer', opacity: selected === allWork.length - 1 ? 0.3 : 1, fontSize: 18, padding: '6px 14px', border: '1px solid #262626', borderRadius: 6, color: '#fff' }}
-                  >
-                    →
-                  </button>
-                </div>
-              </div>
+              ))}
             </div>
-          ) : (
-            /* Gallery grid (scrollable inside the tile) */
-            <div style={{ padding: '80px 28px 28px' }}>
-              <a
-                href="/"
-                style={{ display: 'inline-block', marginBottom: 22, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: LIME, textDecoration: 'none', fontWeight: 700 }}
-              >
-                ← Back to home
-              </a>
-              <p className="tile-eyebrow" style={{ color: BLUE }}>Portfolio</p>
-              <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 'clamp(38px, 5.6vw, 70px)', lineHeight: 0.95, letterSpacing: 1, margin: '0 0 16px' }}>
-                Our Work
-              </h1>
-              <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 16, lineHeight: 1.6, maxWidth: 520, margin: '0 0 28px' }}>
-                Every vehicle we protect. Click any photo to view it full-size.
-              </p>
 
-              {/* Legend */}
-              <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 28 }}>
-                {Object.entries(tagColor).map(([label, color]) => (
-                  <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-                    <div style={{ width: 7, height: 7, borderRadius: '50%', background: color }} />
-                    <span style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
-                      {label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Image grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 6 }}>
-                {allWork.map((item, i) => {
-                  const color = tagColor[item.tag] || BLUE
-                  return (
-                    <button
-                      key={i}
-                      onClick={() => setSelected(i)}
-                      style={{
-                        all: 'unset',
-                        cursor: 'pointer',
-                        position: 'relative',
-                        aspectRatio: '4/3',
-                        overflow: 'hidden',
-                        borderRadius: 8,
-                        background: '#101010',
-                        border: '1px solid #262626',
-                      }}
-                    >
-                      <Image
-                        src={item.img}
-                        alt={item.vehicle}
-                        fill
-                        style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%)' }} />
-                      <div style={{ position: 'absolute', bottom: 10, left: 12, right: 12 }}>
-                        <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 12, fontWeight: 700, color: '#fff', letterSpacing: 0.5 }}>
-                          {item.vehicle}
-                        </div>
-                        <div style={{ fontSize: 10, color: `${color}cc`, marginTop: 3 }}>
-                          {item.service}
-                        </div>
+            {/* Image grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 6 }}>
+              {allWork.map((item, i) => {
+                const color = tagColor[item.tag] || BLUE
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setSelected(i)}
+                    style={{
+                      all: 'unset',
+                      cursor: 'pointer',
+                      position: 'relative',
+                      aspectRatio: '4/3',
+                      overflow: 'hidden',
+                      borderRadius: 8,
+                      background: '#101010',
+                      border: '1px solid #262626',
+                    }}
+                  >
+                    <Image
+                      src={item.img}
+                      alt={item.vehicle}
+                      fill
+                      style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%)' }} />
+                    <div style={{ position: 'absolute', bottom: 10, left: 12, right: 12 }}>
+                      <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 12, fontWeight: 700, color: '#fff', letterSpacing: 0.5 }}>
+                        {item.vehicle}
                       </div>
-                    </button>
-                  )
-                })}
-              </div>
-
-              <Footer />
+                      <div style={{ fontSize: 10, color: `${color}cc`, marginTop: 3 }}>
+                        {item.service}
+                      </div>
+                    </div>
+                  </button>
+                )
+              })}
             </div>
-          )}
+
+            <Footer />
+          </div>
         </section>
       </div>
+
+      {/* Full-screen lightbox — rendered OUTSIDE .tile-scroll on purpose: that
+          container has `perspective` for the parallax effect, and a position:fixed
+          element nested inside a perspective/transform ancestor gets trapped in
+          that ancestor's box (the small tile) instead of filling the viewport.
+          Living here under <main>, it covers the whole screen as its own window. */}
+      {selected !== null && (
+        <div
+          onClick={() => setSelected(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${allWork[selected].vehicle} — full size`}
+          style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(8,9,12,0.96)', backdropFilter: 'blur(6px)', display: 'flex', flexDirection: 'column' }}
+        >
+          {/* Close bar */}
+          <div onClick={(e) => e.stopPropagation()} style={{ padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #262626' }}>
+            <button
+              onClick={() => setSelected(null)}
+              style={{ all: 'unset', cursor: 'pointer', fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 12, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: LIME }}
+            >
+              ← Back to gallery
+            </button>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>
+              {selected + 1} / {allWork.length}
+            </div>
+          </div>
+
+          {/* Photo fills the viewport */}
+          <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+            <Image
+              src={allWork[selected].img}
+              alt={allWork[selected].vehicle}
+              fill
+              sizes="100vw"
+              style={{ objectFit: 'contain', padding: 16 }}
+              priority
+            />
+          </div>
+
+          {/* Info bar */}
+          <div onClick={(e) => e.stopPropagation()} style={{ padding: '18px 24px', borderTop: '1px solid #262626', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+            <div>
+              <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 22, letterSpacing: 0.5 }}>
+                {allWork[selected].vehicle}
+              </div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', marginTop: 4 }}>
+                {allWork[selected].service}
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button
+                onClick={() => setSelected(Math.max(0, selected - 1))}
+                disabled={selected === 0}
+                style={{ all: 'unset', cursor: selected === 0 ? 'default' : 'pointer', opacity: selected === 0 ? 0.3 : 1, fontSize: 18, padding: '6px 14px', border: '1px solid #262626', borderRadius: 6, color: '#fff' }}
+              >
+                ←
+              </button>
+              <button
+                onClick={() => setSelected(Math.min(allWork.length - 1, selected + 1))}
+                disabled={selected === allWork.length - 1}
+                style={{ all: 'unset', cursor: selected === allWork.length - 1 ? 'default' : 'pointer', opacity: selected === allWork.length - 1 ? 0.3 : 1, fontSize: 18, padding: '6px 14px', border: '1px solid #262626', borderRadius: 6, color: '#fff' }}
+              >
+                →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
