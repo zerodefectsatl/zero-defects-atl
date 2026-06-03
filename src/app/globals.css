@@ -375,58 +375,63 @@ body {
 
 /* ── Ken Burns slide variants ────────────────────────── */
 
-/* 1: dramatic pull-back reveal — starts very tight, opens up */
+/* Ken Burns scales kept gentle (peak ~1.10) — the hero source photos are only
+   1288px wide, so heavy zoom magnified their softness on large screens. Minimum
+   scale stays at ~1.02–1.04 and pans are trimmed so the reduced zoom never
+   exposes an edge of the cover image. */
+
+/* 1: pull-back reveal — starts a touch tight, opens up */
 @keyframes kb-pullback {
-  0%   { transform: scale(1.28) translate(0%, 0%); }
-  100% { transform: scale(1.0)  translate(0%, 0%); }
+  0%   { transform: scale(1.10) translate(0%, 0%); }
+  100% { transform: scale(1.02) translate(0%, 0%); }
 }
 
-/* 2: aggressive tracking pan left */
+/* 2: tracking pan left */
 @keyframes kb-panleft {
-  0%   { transform: scale(1.10) translate(4%,  0%); }
-  100% { transform: scale(1.12) translate(-3%, 0%); }
+  0%   { transform: scale(1.07) translate(2%,  0%); }
+  100% { transform: scale(1.07) translate(-2%, 0%); }
 }
 
 /* 3: slow zoom in — pushes into the detail */
 @keyframes kb-zoomin {
-  0%   { transform: scale(1.0)  translate(0%, 0%);    }
-  100% { transform: scale(1.18) translate(-1%, 0.5%); }
+  0%   { transform: scale(1.02) translate(0%, 0%);      }
+  100% { transform: scale(1.10) translate(-0.6%, 0.3%); }
 }
 
 /* 4: tracking pan right */
 @keyframes kb-panright {
-  0%   { transform: scale(1.10) translate(-4%, 0%); }
-  100% { transform: scale(1.12) translate(3%,  0%); }
+  0%   { transform: scale(1.07) translate(-2%, 0%); }
+  100% { transform: scale(1.07) translate(2%,  0%); }
 }
 
 /* 5: diagonal push bottom-left → top-right */
 @keyframes kb-diag1 {
-  0%   { transform: scale(1.0)  translate(-3%,   2.5%);  }
-  100% { transform: scale(1.16) translate(1.5%, -1.5%);  }
+  0%   { transform: scale(1.04) translate(-1.2%, 1%);   }
+  100% { transform: scale(1.10) translate(0.8%, -0.8%); }
 }
 
 /* 6: float upward with scale */
 @keyframes kb-driftup {
-  0%   { transform: scale(1.14) translate(0%,  3%); }
-  100% { transform: scale(1.06) translate(0%, -1%); }
+  0%   { transform: scale(1.10) translate(0%,  1.5%); }
+  100% { transform: scale(1.03) translate(0%, -0.6%); }
 }
 
 /* 7: zoom out — reveals full scene */
 @keyframes kb-zoomout {
-  0%   { transform: scale(1.22) translate(0.5%, -0.5%); }
-  100% { transform: scale(1.0)  translate(0%,    0%);   }
+  0%   { transform: scale(1.10) translate(0.3%, -0.3%); }
+  100% { transform: scale(1.02) translate(0%,    0%);   }
 }
 
 /* 8: diagonal top-right → bottom-left */
 @keyframes kb-diag2 {
-  0%   { transform: scale(1.0)  translate(3%,  -2.5%); }
-  100% { transform: scale(1.16) translate(-1.5%, 1.5%); }
+  0%   { transform: scale(1.04) translate(1.2%, -1%);   }
+  100% { transform: scale(1.10) translate(-0.8%, 0.8%); }
 }
 
 /* 9: off-center zoom push */
 @keyframes kb-zoomin2 {
-  0%   { transform: scale(1.0)  translate(2.5%,  2%); }
-  100% { transform: scale(1.18) translate(-1.5%, -1%); }
+  0%   { transform: scale(1.04) translate(1.2%,  0.8%);  }
+  100% { transform: scale(1.10) translate(-0.8%, -0.5%); }
 }
 
 /* Hero crossfade — incoming slide fades up over the outgoing one.
