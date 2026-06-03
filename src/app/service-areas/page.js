@@ -3,7 +3,7 @@ import Footer from '@/components/Footer'
 import { CITIES } from '@/lib/cities'
 import { pageMetadata } from '@/lib/seo'
 
-const LIME = '#eaff00'
+const LIME = '#f5ff36'
 
 export const metadata = pageMetadata({
   path: '/service-areas',

@@ -119,7 +119,7 @@ export default function FAQPage() {
             fontSize: 11,
             letterSpacing: 3,
             textTransform: 'uppercase',
-            color: '#eaff00',
+            color: '#f5ff36',
             textDecoration: 'none',
             fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
             fontWeight: 600,
@@ -134,7 +134,7 @@ export default function FAQPage() {
               fontSize: 11,
               letterSpacing: 4,
               textTransform: 'uppercase',
-              color: '#eaff00',
+              color: '#f5ff36',
               marginBottom: 16,
               fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
               fontWeight: 600,
@@ -165,7 +165,7 @@ export default function FAQPage() {
           >
             Everything we get asked about ceramic coating, paint protection film,
             paint correction, and what it’s like to work with us. Don’t see
-            yours? <a href="tel:4044063355" style={{ color: '#eaff00', textDecoration: 'underline' }}>Call us</a>.
+            yours? <a href="tel:4044063355" style={{ color: '#f5ff36', textDecoration: 'underline' }}>Call us</a>.
           </p>
         </header>
 
@@ -226,9 +226,9 @@ export default function FAQPage() {
                           width: 28,
                           height: 28,
                           borderRadius: 6,
-                          background: isOpen ? '#eaff00' : 'transparent',
-                          border: `1px solid ${isOpen ? '#eaff00' : '#2a2a2a'}`,
-                          color: isOpen ? '#000' : '#eaff00',
+                          background: isOpen ? '#f5ff36' : 'transparent',
+                          border: `1px solid ${isOpen ? '#f5ff36' : '#2a2a2a'}`,
+                          color: isOpen ? '#000' : '#f5ff36',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -278,7 +278,7 @@ export default function FAQPage() {
               fontSize: 11,
               letterSpacing: 3,
               textTransform: 'uppercase',
-              color: '#eaff00',
+              color: '#f5ff36',
               fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
               fontWeight: 600,
             }}
@@ -304,7 +304,7 @@ export default function FAQPage() {
               href="tel:4044063355"
               style={{
                 display: 'inline-block',
-                background: '#eaff00',
+                background: '#f5ff36',
                 color: '#000',
                 padding: '12px 24px',
                 borderRadius: 6,
@@ -322,8 +322,8 @@ export default function FAQPage() {
               style={{
                 display: 'inline-block',
                 background: 'transparent',
-                color: '#eaff00',
-                border: '1px solid #eaff00',
+                color: '#f5ff36',
+                border: '1px solid #f5ff36',
                 padding: '11px 24px',
                 borderRadius: 6,
                 fontWeight: 700,

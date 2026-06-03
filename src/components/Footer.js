@@ -1,7 +1,7 @@
 import { BUSINESS } from '@/lib/seo'
 import { CITIES } from '@/lib/cities'
 
-const LIME = '#eaff00'
+const LIME = '#f5ff36'
 
 const QUICK_LINKS = [
   { label: 'Ceramic Coating', href: '/ceramic-coating' },

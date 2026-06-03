@@ -125,7 +125,7 @@ export default function IntroCube({ onComplete }) {
               position:'absolute',
               width: 7, height: 7,
               borderRadius:'50%',
-              background: i < 4 ? '#1a8fff' : '#eaff00',
+              background: i < 4 ? '#1a8fff' : '#f5ff36',
               boxShadow: `0 0 10px 3px ${i < 4 ? 'rgba(26,143,255,0.9)' : 'rgba(234,255,0,0.9)'}`,
               left: c[0] - 3.5,
               top:  c[1] - 3.5,
@@ -276,8 +276,8 @@ export default function IntroCube({ onComplete }) {
 const h = S / 2
 const OUTER_FACES = [
   { type:'front',  w:S, h:S, tf:`translateZ(${h}px)`,               bg:'rgba(26,143,255,0.025)',  border:'rgba(26,143,255,0.4)',  shadow:'inset 0 0 60px rgba(26,143,255,0.05)', lineColor:'#1a8fff' },
-  { type:'back',   w:S, h:S, tf:`rotateY(180deg) translateZ(${h}px)`,bg:'rgba(234,255,0,0.015)',   border:'rgba(234,255,0,0.25)',  shadow:null,                                   lineColor:'#eaff00' },
-  { type:'right',  w:S, h:S, tf:`rotateY(90deg) translateZ(${h}px)`, bg:'rgba(234,255,0,0.02)',    border:'rgba(234,255,0,0.3)',   shadow:null,                                   lineColor:'#eaff00' },
+  { type:'back',   w:S, h:S, tf:`rotateY(180deg) translateZ(${h}px)`,bg:'rgba(234,255,0,0.015)',   border:'rgba(234,255,0,0.25)',  shadow:null,                                   lineColor:'#f5ff36' },
+  { type:'right',  w:S, h:S, tf:`rotateY(90deg) translateZ(${h}px)`, bg:'rgba(234,255,0,0.02)',    border:'rgba(234,255,0,0.3)',   shadow:null,                                   lineColor:'#f5ff36' },
   { type:'left',   w:S, h:S, tf:`rotateY(-90deg) translateZ(${h}px)`,bg:'rgba(26,143,255,0.015)',  border:'rgba(26,143,255,0.25)', shadow:null,                                   lineColor:'#1a8fff' },
   { type:'top',    w:S, h:S, tf:`rotateX(90deg) translateZ(${h}px)`, bg:'rgba(100,200,255,0.015)', border:'rgba(100,200,255,0.22)',shadow:null,                                   lineColor:'#64c8ff' },
   { type:'bottom', w:S, h:S, tf:`rotateX(-90deg) translateZ(${h}px)`,bg:'rgba(100,200,255,0.01)',  border:'rgba(100,200,255,0.18)',shadow:null,                                   lineColor:'#64c8ff' },
@@ -330,13 +330,13 @@ function LogoInCube() {
         <linearGradient id="cd" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stopColor="#fffde0"/>
           <stop offset="28%"  stopColor="#f8ff50"/>
-          <stop offset="62%"  stopColor="#eaff00"/>
+          <stop offset="62%"  stopColor="#f5ff36"/>
           <stop offset="100%" stopColor="#c8d800"/>
         </linearGradient>
         <linearGradient id="ct" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%"   stopColor="#1a8fff"/>
           <stop offset="60%"  stopColor="#44aaff"/>
-          <stop offset="100%" stopColor="#eaff00"/>
+          <stop offset="100%" stopColor="#f5ff36"/>
         </linearGradient>
         <filter id="ls">
           <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000" floodOpacity="0.9"/>

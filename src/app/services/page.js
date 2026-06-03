@@ -78,7 +78,7 @@ export default function ServicesPage() {
               fontSize: 11,
               letterSpacing: 3,
               textTransform: 'uppercase',
-              color: '#eaff00',
+              color: '#f5ff36',
               textDecoration: 'none',
               fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
               fontWeight: 600,
@@ -90,7 +90,7 @@ export default function ServicesPage() {
           {/* Intro glass card */}
           <div className="zd-services-intro-card zd-svc-intro-grid">
             <div>
-              <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>
+              <p style={{ color: '#f5ff36', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>
                 Zero Defects ATL &mdash; Braselton, GA
               </p>
               <blockquote style={{ fontSize: 'clamp(28px, 3vw, 44px)', fontWeight: 800, lineHeight: 1.15, color: '#fff', margin: 0 }}>
@@ -118,7 +118,7 @@ export default function ServicesPage() {
               {/* 68% social proof between cards 01 and 02 */}
               {idx === 1 && (
                 <div className="zd-svc-proof" style={{
-                  background: '#eaff00',
+                  background: '#f5ff36',
                   borderRadius: 16,
                   marginBottom: 24,
                 }}>
@@ -136,7 +136,7 @@ export default function ServicesPage() {
                 <div className="zd-svc-card__body">
                   <div>
                     <div className="zd-svc-card__num">{svc.rank}</div>
-                    <p style={{ color: '#eaff00', fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: 8, marginTop: 8 }}>
+                    <p style={{ color: '#f5ff36', fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: 8, marginTop: 8 }}>
                       {svc.subtitle}
                     </p>
                     <h2 style={{ fontSize: 'clamp(28px,3vw,44px)', fontWeight: 800, color: '#fff', lineHeight: 1.1, marginBottom: 20 }}>
@@ -148,7 +148,7 @@ export default function ServicesPage() {
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
                       {svc.features.map((f, fi) => (
                         <li key={fi} style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', display: 'flex', alignItems: 'center', gap: 10 }}>
-                          <span style={{ color: '#eaff00', fontSize: 10 }}>&#9654;</span>
+                          <span style={{ color: '#f5ff36', fontSize: 10 }}>&#9654;</span>
                           {f}
                         </li>
                       ))}
@@ -157,7 +157,7 @@ export default function ServicesPage() {
                   <div style={{ marginTop: 32, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 20 }}>
                     <a href="#contact" style={{
                       display: 'inline-block',
-                      background: '#eaff00',
+                      background: '#f5ff36',
                       color: '#000',
                       padding: '14px 32px',
                       borderRadius: 4,
@@ -169,7 +169,7 @@ export default function ServicesPage() {
                     }}>{svc.cta}</a>
                     {svc.slug && (
                       <a href={svc.slug} style={{
-                        color: '#eaff00',
+                        color: '#f5ff36',
                         fontSize: 13,
                         fontWeight: 700,
                         letterSpacing: '0.08em',
@@ -215,7 +215,7 @@ export default function ServicesPage() {
                               padding: '8px 12px',
                               background:
                                 'linear-gradient(0deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0) 100%)',
-                              color: '#eaff00',
+                              color: '#f5ff36',
                               fontSize: 10,
                               fontWeight: 700,
                               letterSpacing: '0.14em',
@@ -285,7 +285,7 @@ export default function ServicesPage() {
         />
         {/* Form content, above the video */}
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 800, margin: '0 auto' }}>
-          <p style={{ color: '#eaff00', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>Get a Quote</p>
+          <p style={{ color: '#f5ff36', fontSize: 12, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>Get a Quote</p>
           <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, marginBottom: 8, color: '#fff' }}>
             Ready to protect your car?
           </h2>

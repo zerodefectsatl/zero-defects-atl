@@ -571,7 +571,7 @@ export default function Home() {
           </div>
 
           <p className="zd-about-areas" data-reveal>Serving Braselton, Atlanta, Gainesville, Buford, Flowery Branch, Hoschton, Jefferson, Cumming, Suwanee &amp; all of Northeast Georgia.</p>
-          <p className="zd-about-tag" data-reveal><span style={{ color: '#1a8fff' }}>Zero</span> <span style={{ color: '#eaff00' }}>Defects</span> — because the standard isn&rsquo;t negotiable.</p>
+          <p className="zd-about-tag" data-reveal><span style={{ color: '#1a8fff' }}>Zero</span> <span style={{ color: '#f5ff36' }}>Defects</span> — because the standard isn&rsquo;t negotiable.</p>
         </div>
       </section>
 
@@ -582,7 +582,7 @@ export default function Home() {
           poster="/images/gallery/IMG_8707.jpeg"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,10,12,0.82)', zIndex: 1 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,10,12,0.55)', zIndex: 1 }} />
         <div style={{ ...S.section, position: 'relative', zIndex: 2 }}>
           <div className="zd-contact-grid">
             <div>
@@ -595,12 +595,12 @@ export default function Home() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
-                  { icon: '📍', label: 'Location', val: '5450 Technology Pkwy, Suite 500\nBraselton, GA 30517', href: 'https://maps.google.com/?q=5450+Technology+Pkwy+Suite+500+Braselton+GA+30517' },
-                  { icon: '📞', label: 'Phone', val: '404-406-3355', href: 'tel:4044063355' },
-                  { icon: '⏱', label: 'Response Time', val: 'Within 24 hours' },
+                  { icon: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>), label: 'Location', val: '5450 Technology Pkwy, Suite 500\nBraselton, GA 30517', href: 'https://maps.google.com/?q=5450+Technology+Pkwy+Suite+500+Braselton+GA+30517' },
+                  { icon: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>), label: 'Phone', val: '404-406-3355', href: 'tel:4044063355' },
+                  { icon: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>), label: 'Response Time', val: 'Within 24 hours' },
                 ].map((item) => (
                   <div key={item.label} style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                    <span style={{ fontSize: '18px' }}>{item.icon}</span>
+                    <span style={{ color: '#1a8fff', display: 'flex', alignItems: 'center' }}>{item.icon}</span>
                     <div>
                       <div style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.35)', marginBottom: '2px' }}>{item.label}</div>
                       {item.href

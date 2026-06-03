@@ -48,7 +48,7 @@ export default function Navbar() {
           alt="Zero Defects ATL"
           width={48}
           height={47}
-          style={{ display: 'block', objectFit: 'contain', height: '48px', width: '48px', marginTop: '0', viewTransitionName: 'zd-logo' }}
+          style={{ display: 'block', objectFit: 'contain', height: '48px', width: 'auto', marginTop: '0', viewTransitionName: 'zd-logo' }}
           priority
           fetchPriority="high"
           loading="eager"
@@ -138,7 +138,7 @@ export default function Navbar() {
               letterSpacing: '2px',
               textTransform: 'uppercase',
               color: '#080a0c',
-              background: '#eaff00',
+              background: '#f5ff36',
               padding: '14px 24px',
               borderRadius: '4px',
               textDecoration: 'none',

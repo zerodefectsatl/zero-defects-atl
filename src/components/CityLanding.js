@@ -2,7 +2,7 @@ import TilePage from '@/components/TilePage'
 import Footer from '@/components/Footer'
 import { BUSINESS, cityJsonLd } from '@/lib/seo'
 
-const LIME = '#eaff00'
+const LIME = '#f5ff36'
 const BLUE = '#1a8fff'
 const DISPLAY = 'var(--font-bebas-neue), Manrope, sans-serif'
 

@@ -238,7 +238,7 @@ export default function PPFScene({ mode = 'full', opacity = 0.4, interactive = m
       </div>
 
       {/* Back link */}
-      <a href="/paint-protection-film" style={{ position: 'absolute', bottom: 26, right: 30, zIndex: 20, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: '#eaff00', textDecoration: 'none', fontWeight: 700 }}>
+      <a href="/paint-protection-film" style={{ position: 'absolute', bottom: 26, right: 30, zIndex: 20, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', color: '#f5ff36', textDecoration: 'none', fontWeight: 700 }}>
         ← Back to PPF
       </a>
     </div>

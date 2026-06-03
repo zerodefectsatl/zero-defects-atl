@@ -62,7 +62,7 @@ const tagColor = {
   'Wrap': '#f59e0b',
 }
 
-const LIME = '#eaff00'
+const LIME = '#f5ff36'
 const BLUE = '#1a8fff'
 const DISPLAY = 'var(--font-bebas-neue), Manrope, sans-serif'
 

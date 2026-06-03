@@ -5,14 +5,14 @@
   --color-zd-dark:   #1a1a1a;
   --color-zd-card:   #1a1a1a;
   --color-zd-blue:   #1a8fff;
-  --color-zd-yellow: #eaff00;
+  --color-zd-yellow: #f5ff36;
   --color-zd-white:  #ffffff;
 
   --color-background: #000000;
   --color-foreground: #ffffff;
 
-  --gradient-brand:         linear-gradient(90deg, #1a8fff, #eaff00);
-  --gradient-brand-diag:    linear-gradient(105deg, #1a8fff, #eaff00);
+  --gradient-brand:         linear-gradient(90deg, #1a8fff, #f5ff36);
+  --gradient-brand-diag:    linear-gradient(105deg, #1a8fff, #f5ff36);
   --gradient-overlay-hero:  linear-gradient(105deg, rgba(8,10,12,0.95) 45%, rgba(8,10,12,0.5) 100%);
   --gradient-overlay-dark:  linear-gradient(to bottom, transparent, #000000);
 
@@ -85,7 +85,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #eaff00;
+  color: #f5ff36;
   margin-bottom: 14px;
 }
 
@@ -145,19 +145,19 @@ body {
 /* ───────────── Reviews page (normal-scroll, tiled cards on the field) ───────────── */
 .zd-reviews-hero { background: #1f1f23; padding: 120px 24px 44px; }
 .zd-reviews-hero__inner { max-width: 1080px; margin: 0 auto; }
-.zd-reviews-hero__eyebrow { font-family: var(--font-barlow-cond), sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #eaff00; margin: 0 0 14px; }
+.zd-reviews-hero__eyebrow { font-family: var(--font-barlow-cond), sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #f5ff36; margin: 0 0 14px; }
 .zd-reviews-hero__title { font-family: var(--font-bebas-neue), sans-serif; font-weight: 800; font-size: clamp(40px, 7vw, 84px); line-height: 0.95; letter-spacing: 1px; margin: 0 0 16px; color: #fff; }
 .zd-reviews-hero__tagline { color: rgba(255,255,255,0.6); font-size: 16px; margin: 0; max-width: 560px; }
 .zd-reviews-grid { background: #1f1f23; padding: 8px 24px 72px; }
 .zd-reviews-grid__inner { max-width: 1080px; margin: 0 auto; display: grid; gap: 6px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
 .zd-review-card { background: #101010; border: 1px solid #262626; border-radius: 10px; padding: 24px 26px; }
-.zd-review-card__stars { color: #eaff00; font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
+.zd-review-card__stars { color: #f5ff36; font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
 .zd-review-card__text { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.78); font-style: italic; margin: 0 0 16px; }
 .zd-review-card__name { font-family: var(--font-barlow-cond), sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
 .zd-review-card__sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; }
 .zd-reviews-cta { background: #1f1f23; padding: 0 24px 96px; text-align: center; }
 .zd-reviews-cta h2 { font-family: var(--font-bebas-neue), sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 48px); margin: 0 0 24px; color: #fff; }
-.zd-reviews-cta__btn { display: inline-block; background: #eaff00; color: #000; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; padding: 14px 30px; border-radius: 999px; text-decoration: none; }
+.zd-reviews-cta__btn { display: inline-block; background: #f5ff36; color: #000; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; padding: 14px 30px; border-radius: 999px; text-decoration: none; }
 
 /* ── Reusable utilities ─────────────────────────────── */
 
@@ -194,7 +194,7 @@ body {
 }
 
 .gradient-bg {
-  background: linear-gradient(90deg, #1a8fff, #eaff00);
+  background: linear-gradient(90deg, #1a8fff, #f5ff36);
 }
 
 .zd-card {
@@ -542,7 +542,7 @@ body {
   right: 14px;
   width: 40px;
   height: 40px;
-  background: #eaff00;
+  background: #f5ff36;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -625,7 +625,7 @@ body {
 .zd-proc-step__num {
   font-family: var(--font-bebas-neue), 'Manrope', sans-serif;
   font-size: 80px;
-  color: #eaff00;
+  color: #f5ff36;
   line-height: 1;
   font-weight: 700;
 }
@@ -694,7 +694,7 @@ body {
   bottom: 48px;
   left: 50%;
   transform: translateX(-50%);
-  background: #eaff00;
+  background: #f5ff36;
   color: #000;
   font-family: var(--font-bebas-neue), 'Manrope', sans-serif;
   font-weight: 800;
@@ -716,13 +716,13 @@ body {
    BENTO HOMEPAGE - Zero Defects ATL
    2fr/1fr outer | 130/1fr/1fr x 100/1fr/168 inner-left
    L-shape hero (z-1) with logo card on top (z-2)
-   Brand: #eaff00 yellow, #080808 bg, #101010 card
+   Brand: #f5ff36 yellow, #080808 bg, #101010 card
 =============================================================== */
 
 .bento-wrap {
   --bento-bg:      #1f1f23;
   --bento-card:    #101010;
-  --bento-yellow:  #eaff00;
+  --bento-yellow:  #f5ff36;
   --bento-blue:    #1a8fff;
   --bento-white:   #ffffff;
   --bento-muted:   #9a9a9a;
@@ -1341,7 +1341,7 @@ body {
   text-shadow: 0 1px 0 rgba(0,0,0,0.45), 0 2px 0 rgba(0,0,0,0.40), 0 3px 0 rgba(0,0,0,0.32), 0 5px 4px rgba(0,0,0,0.40), 0 10px 22px rgba(0,0,0,0.55);
 }
 .zd-hero-wordmark h1 > span:last-child {
-  color: transparent; -webkit-text-stroke: 2px #eaff00;
+  color: transparent; -webkit-text-stroke: 2px #f5ff36;
   filter: drop-shadow(0 2px 0 rgba(8,28,58,0.95)) drop-shadow(0 4px 0 rgba(6,20,42,0.70)) drop-shadow(0 10px 16px rgba(0,0,0,0.55));
 }
 @media (max-width: 768px) {
@@ -1378,7 +1378,7 @@ body {
 .zd-coat-item { display: flex; flex-direction: column; background: rgba(8,10,12,0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px; }
 .zd-coat-item__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
 .zd-coat-item__num { font-family: var(--font-bebas-neue), sans-serif; font-size: 46px; line-height: 1; }
-.zd-coat-item__warr { font-family: var(--font-barlow-cond), sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #eaff00; text-align: right; }
+.zd-coat-item__warr { font-family: var(--font-barlow-cond), sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #f5ff36; text-align: right; }
 .zd-coat-item__name { font-family: var(--font-barlow-cond), sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f0f4f8; margin: 0 0 4px; }
 .zd-coat-item__tag { font-family: var(--font-barlow-cond), sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(240,244,248,0.4); margin-bottom: 14px; }
 .zd-coat-item__desc { font-size: 14px; line-height: 1.7; color: rgba(240,244,248,0.78); margin-bottom: 18px; }
@@ -1398,10 +1398,10 @@ body {
 .zd-pkg--pop { border-color: rgba(26,143,255,0.5); }
 .zd-pkg__pop { font-family: var(--font-barlow-cond), sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #1a8fff; display: block; margin-bottom: 10px; }
 .zd-pkg__name { font-family: var(--font-barlow-cond), sans-serif; font-size: 19px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f0f4f8; margin: 0 0 4px; }
-.zd-pkg__tag { font-family: var(--font-barlow-cond), sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #eaff00; margin-bottom: 12px; }
+.zd-pkg__tag { font-family: var(--font-barlow-cond), sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #f5ff36; margin-bottom: 12px; }
 .zd-pkg__desc { font-size: 14px; line-height: 1.7; color: rgba(240,244,248,0.62); margin: 0 0 16px; }
 .zd-pkg__cta { font-family: var(--font-barlow-cond), sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #1a8fff; text-decoration: none; border-bottom: 1px solid rgba(26,143,255,0.35); padding-bottom: 2px; }
-.zd-cta-solid { font-family: var(--font-barlow-cond), sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #080a0c; background: #eaff00; padding: 15px 34px; border-radius: 6px; text-decoration: none; white-space: nowrap; }
+.zd-cta-solid { font-family: var(--font-barlow-cond), sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #080a0c; background: #f5ff36; padding: 15px 34px; border-radius: 6px; text-decoration: none; white-space: nowrap; }
 
 .zd-timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; margin-top: 8px; }
 .zd-timeline::before {  /* dotted connector */
@@ -1445,7 +1445,7 @@ body {
 .zd-about-body p:last-child { margin-bottom: 0; }
 .zd-about-body strong { color: #f0f4f8; font-weight: 700; }
 .zd-about-aside { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 24px; }
-.zd-about-quote { font-family: var(--font-barlow-cond), sans-serif; font-size: clamp(20px, 2.4vw, 26px); font-weight: 700; line-height: 1.3; color: #f0f4f8; border-left: 3px solid #eaff00; padding: 4px 0 4px 20px; margin: 0; }
+.zd-about-quote { font-family: var(--font-barlow-cond), sans-serif; font-size: clamp(20px, 2.4vw, 26px); font-weight: 700; line-height: 1.3; color: #f0f4f8; border-left: 3px solid #f5ff36; padding: 4px 0 4px 20px; margin: 0; }
 .zd-about-creds { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.08); }
 .zd-about-cred { display: flex; flex-direction: column; gap: 2px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .zd-about-cred__k { font-family: var(--font-barlow-cond), sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #1a8fff; }
@@ -1459,7 +1459,7 @@ body {
 
 /* Navbar dropdown links — full visibility + brand hover */
 .zd-navlink { color: #f0f4f8; transition: color 0.2s ease; }
-.zd-navlink:hover, .zd-navlink:focus-visible { color: #eaff00; }
+.zd-navlink:hover, .zd-navlink:focus-visible { color: #f5ff36; }
 
 /* Navbar: hamburger on mobile; three minimal lines on desktop */
 .zd-nav-desktop { display: none; }
@@ -1468,9 +1468,9 @@ body {
   .zd-nav-burger { display: none; }
 }
 .zd-nav-line { display: flex; align-items: center; justify-content: flex-end; gap: 12px; height: 14px; text-decoration: none; cursor: pointer; }
-.zd-nav-line::after { content: ''; width: 34px; height: 2px; background: #eaff00; opacity: 0.95; box-shadow: 0 1px 6px rgba(0,0,0,0.5); transition: width 0.25s ease, opacity 0.25s ease; }
-.zd-nav-line:hover::after, .zd-nav-line:focus-visible::after { width: 50px; background: #eaff00; opacity: 1; }
-.zd-nav-line__label { font-family: var(--font-barlow-cond), sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #eaff00; white-space: nowrap; opacity: 0; transform: translateX(8px); transition: opacity 0.25s ease, transform 0.25s ease; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
+.zd-nav-line::after { content: ''; width: 34px; height: 2px; background: #f5ff36; opacity: 0.95; box-shadow: 0 1px 6px rgba(0,0,0,0.5); transition: width 0.25s ease, opacity 0.25s ease; }
+.zd-nav-line:hover::after, .zd-nav-line:focus-visible::after { width: 50px; background: #f5ff36; opacity: 1; }
+.zd-nav-line__label { font-family: var(--font-barlow-cond), sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f5ff36; white-space: nowrap; opacity: 0; transform: translateX(8px); transition: opacity 0.25s ease, transform 0.25s ease; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
 .zd-nav-line:hover .zd-nav-line__label, .zd-nav-line:focus-visible .zd-nav-line__label { opacity: 1; transform: translateX(0); }
 
 /* anchor offset under the fixed navbar */

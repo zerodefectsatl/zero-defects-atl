@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>ZD Bento Layout Sketches</title>
+<style>
+  :root {
+    --bg: #15181c;
+    --tile: #1a1a1a;
+    --line: #000;
+    --yellow: #eaff00;
+    --blue: #1a8fff;
+    --text: #f0f4f8;
+    --muted: rgba(240,244,248,0.55);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #0a0c0f;
+    color: var(--text);
+    font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+    padding: 40px 24px 96px;
+  }
+  h1 {
+    font-size: 32px;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+  .lede {
+    color: var(--muted);
+    margin: 0 0 32px;
+    font-size: 14px;
+  }
+  .option {
+    max-width: 1280px;
+    margin: 0 auto 48px;
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .option__title {
+    font-size: 18px;
+    margin: 0 0 4px;
+    color: var(--yellow);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+  .option__sub {
+    color: var(--muted);
+    margin: 0 0 18px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .pick-btn {
+    display: inline-block;
+    background: var(--yellow);
+    color: #000;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 18px;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+
+  /* shared bento styling */
+  .bento {
+    background: #000;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    position: relative;
+  }
+  .tile {
+    background: var(--tile);
+    border-radius: 5px;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+  }
+  .tile--hero {
+    background: linear-gradient(135deg, #0a3a5a, #0a1a30);
+    font-size: 14px;
+    color: var(--yellow);
+  }
+  .tile--logo {
+    background: #1a1a1a;
+    color: var(--yellow);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+  .tile--logo small {
+    display: block;
+    color: #fff;
+    font-size: 8px;
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+  }
+  .tile--weather {
+    background: var(--tile);
+  }
+  .tile--weather b {
+    color: var(--yellow);
+    font-size: 18px;
+    font-weight: 800;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* ────── OPTION A: Logo as floating corner badge ────── */
+  .opt-a .bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1.4fr;
+    grid-template-rows: 100px 1fr 110px;
+    grid-template-areas:
+      "ig fb yt wthr"
+      "large large large large"
+      "bot1 bot1 bot2 bot3";
+    gap: 5px;
+    height: 480px;
+    padding: 5px;
+    overflow: visible;
+  }
+  .opt-a .tile--ig { grid-area: ig; }
+  .opt-a .tile--fb { grid-area: fb; }
+  .opt-a .tile--yt { grid-area: yt; }
+  .opt-a .tile--wthr { grid-area: wthr; }
+  .opt-a .tile--hero { grid-area: large; }
+  .opt-a .tile--bot1 { grid-area: bot1; }
+  .opt-a .tile--bot2 { grid-area: bot2; }
+  .opt-a .tile--bot3 { grid-area: bot3; }
+  .opt-a .logo-badge {
+    position: absolute;
+    top: -22px;
+    left: -22px;
+    width: 160px;
+    height: 100px;
+    background: var(--tile);
+    border-radius: 8px;
+    border: 3px solid #0a0c0f;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--yellow);
+    font-size: 16px;
+    font-weight: 900;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+  }
+  .opt-a .logo-badge small {
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    margin-top: 4px;
+  }
+
+  /* ────── OPTION B: Logo as small box overlapping ZD Mentality top-left corner ────── */
+  .opt-b .bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1.4fr;
+    grid-template-rows: 100px 1fr 110px;
+    grid-template-areas:
+      "ig fb yt wthr"
+      "large large large large"
+      "bot1 bot1 bot2 bot3";
+    gap: 5px;
+    height: 480px;
+    padding: 5px;
+    overflow: hidden;
+  }
+  .opt-b .tile--ig { grid-area: ig; }
+  .opt-b .tile--fb { grid-area: fb; }
+  .opt-b .tile--yt { grid-area: yt; }
+  .opt-b .tile--wthr { grid-area: wthr; }
+  .opt-b .tile--hero {
+    grid-area: large;
+    position: relative;
+  }
+  .opt-b .tile--bot1 { grid-area: bot1; }
+  .opt-b .tile--bot2 { grid-area: bot2; }
+  .opt-b .tile--bot3 { grid-area: bot3; }
+  .opt-b .logo-corner {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 130px;
+    height: 80px;
+    background: var(--tile);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--yellow);
+    font-size: 14px;
+    font-weight: 900;
+    z-index: 5;
+  }
+  .opt-b .logo-corner small {
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    margin-top: 3px;
+  }
+
+  /* ────── OPTION C: Logo as notch (current state) ────── */
+  .opt-c .bento {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr 1fr 1.4fr;
+    grid-template-rows: 100px 1fr 110px;
+    grid-template-areas:
+      "logo ig fb yt wthr"
+      "large large large large large"
+      "bot1 bot1 bot2 bot3 bot3";
+    gap: 5px;
+    height: 480px;
+    padding: 5px;
+  }
+  .opt-c .tile--logo { grid-area: logo; }
+  .opt-c .tile--ig { grid-area: ig; }
+  .opt-c .tile--fb { grid-area: fb; }
+  .opt-c .tile--yt { grid-area: yt; }
+  .opt-c .tile--wthr { grid-area: wthr; }
+  .opt-c .tile--hero { grid-area: large; }
+  .opt-c .tile--bot1 { grid-area: bot1; }
+  .opt-c .tile--bot2 { grid-area: bot2; }
+  .opt-c .tile--bot3 { grid-area: bot3; }
+
+  /* ────── OPTION D: Logo floats outside top edge, above the bento ────── */
+  .opt-d .bento-wrap {
+    position: relative;
+    padding-top: 60px;
+  }
+  .opt-d .bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1.4fr;
+    grid-template-rows: 100px 1fr 110px;
+    grid-template-areas:
+      "ig fb yt wthr"
+      "large large large large"
+      "bot1 bot1 bot2 bot3";
+    gap: 5px;
+    height: 480px;
+    padding: 5px;
+  }
+  .opt-d .tile--ig { grid-area: ig; }
+  .opt-d .tile--fb { grid-area: fb; }
+  .opt-d .tile--yt { grid-area: yt; }
+  .opt-d .tile--wthr { grid-area: wthr; }
+  .opt-d .tile--hero { grid-area: large; }
+  .opt-d .tile--bot1 { grid-area: bot1; }
+  .opt-d .tile--bot2 { grid-area: bot2; }
+  .opt-d .tile--bot3 { grid-area: bot3; }
+  .opt-d .logo-above {
+    position: absolute;
+    top: 0;
+    left: 16px;
+    width: 180px;
+    height: 70px;
+    background: var(--tile);
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--yellow);
+    font-size: 14px;
+    font-weight: 900;
+  }
+  .opt-d .logo-above small {
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    margin-top: 3px;
+  }
+</style>
+</head>
+<body>
+  <h1>ZD Bento Layout Sketches</h1>
+  <p class="lede">Pick the layout option you like. Reply in chat with the letter (A, B, C, or D) and I'll implement that exact layout.</p>
+
+  <!-- OPTION A -->
+  <div class="option opt-a">
+    <div class="option__title">Option A — Logo as floating corner BADGE (off the bento)</div>
+    <p class="option__sub">A small dedicated logo box sits OUTSIDE the bento's top-left corner, pulled up with negative margins. Has a thick dark border to feel like it's "stuck on" the bento. Most dramatic / brand-forward.</p>
+    <div style="position: relative; padding: 30px 30px 10px;">
+      <div class="bento">
+        <div class="logo-badge">ZD<small>ZERO DEFECTS</small></div>
+        <div class="tile tile--ig">Instagram</div>
+        <div class="tile tile--fb">Facebook</div>
+        <div class="tile tile--yt">YouTube</div>
+        <div class="tile tile--weather tile--wthr">Braselton<b>75°</b></div>
+        <div class="tile tile--hero">ZD Mentality — Obsession-level detail. Zero compromises.</div>
+        <div class="tile tile--bot1">Our Services</div>
+        <div class="tile tile--bot2">Our Process</div>
+        <div class="tile tile--bot3">Gallery</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION B -->
+  <div class="option opt-b">
+    <div class="option__title">Option B — Logo INSIDE top-left of ZD Mentality tile</div>
+    <p class="option__sub">A small logo box sits inside the large ZD Mentality tile, top-left corner. Overlays the video. Subtle, integrated. Frees up the top row entirely for socials + weather.</p>
+    <div style="padding: 0 30px;">
+      <div class="bento">
+        <div class="tile tile--ig">Instagram</div>
+        <div class="tile tile--fb">Facebook</div>
+        <div class="tile tile--yt">YouTube</div>
+        <div class="tile tile--weather tile--wthr">Braselton<b>75°</b></div>
+        <div class="tile tile--hero">
+          <div class="logo-corner">ZD<small>ZERO DEFECTS</small></div>
+          ZD Mentality — Obsession-level detail.
+        </div>
+        <div class="tile tile--bot1">Our Services</div>
+        <div class="tile tile--bot2">Our Process</div>
+        <div class="tile tile--bot3">Gallery</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION C (current) -->
+  <div class="option opt-c">
+    <div class="option__title">Option C — Logo as top-left grid cell (CURRENT)</div>
+    <p class="option__sub">What you have now. The logo is a normal grid cell sitting next to the socials in the top row. Clean and uniform, but the logo sits "inside" the layout rather than standing out.</p>
+    <div style="padding: 0 30px;">
+      <div class="bento">
+        <div class="tile tile--logo">ZD<small>ZERO DEFECTS</small></div>
+        <div class="tile tile--ig">Instagram</div>
+        <div class="tile tile--fb">Facebook</div>
+        <div class="tile tile--yt">YouTube</div>
+        <div class="tile tile--weather tile--wthr">Braselton<b>75°</b></div>
+        <div class="tile tile--hero">ZD Mentality — Obsession-level detail.</div>
+        <div class="tile tile--bot1">Our Services</div>
+        <div class="tile tile--bot2">Our Process</div>
+        <div class="tile tile--bot3">Gallery</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION D -->
+  <div class="option opt-d">
+    <div class="option__title">Option D — Logo above the bento, anchored to top edge</div>
+    <p class="option__sub">Logo box sits ABOVE the bento on the grey backing area, anchored to the top-left edge (rounded only on the top corners, flat on the bottom so it visually merges with the bento below). Feels like a label on a filing cabinet.</p>
+    <div class="bento-wrap" style="padding: 0 30px;">
+      <div class="logo-above">ZD<small>ZERO DEFECTS</small></div>
+      <div class="bento">
+        <div class="tile tile--ig">Instagram</div>
+        <div class="tile tile--fb">Facebook</div>
+        <div class="tile tile--yt">YouTube</div>
+        <div class="tile tile--weather tile--wthr">Braselton<b>75°</b></div>
+        <div class="tile tile--hero">ZD Mentality — Obsession-level detail.</div>
+        <div class="tile tile--bot1">Our Services</div>
+        <div class="tile tile--bot2">Our Process</div>
+        <div class="tile tile--bot3">Gallery</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1280px; margin: 0 auto; text-align: center; color: var(--muted); font-size: 13px;">
+    Open this file at <code style="color:var(--yellow)">http://localhost:3000/bento-sketch.html</code> in your browser.
+    <br><br>Reply in chat: <b style="color:var(--yellow)">"go with A"</b>, <b style="color:var(--yellow)">"go with B"</b>, etc.
+  </div>
+</body>
+</html>

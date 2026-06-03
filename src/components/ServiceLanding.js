@@ -3,7 +3,7 @@ import MorphLogo from '@/components/MorphLogo'
 import Footer from '@/components/Footer'
 import { BUSINESS, SERVICE_AREAS, serviceJsonLd } from '@/lib/seo'
 
-const LIME = '#eaff00'
+const LIME = '#f5ff36'
 const BLUE = '#1a8fff'
 const DISPLAY = 'var(--font-bebas-neue), Manrope, sans-serif'
 

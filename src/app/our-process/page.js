@@ -67,7 +67,7 @@ export default function OurProcessPage() {
             fontSize: 11,
             letterSpacing: 3,
             textTransform: 'uppercase',
-            color: '#eaff00',
+            color: '#f5ff36',
             textDecoration: 'none',
             fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
             fontWeight: 600,
@@ -83,7 +83,7 @@ export default function OurProcessPage() {
               fontSize: 11,
               letterSpacing: 4,
               textTransform: 'uppercase',
-              color: '#eaff00',
+              color: '#f5ff36',
               marginBottom: 16,
               fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
               fontWeight: 600,
@@ -103,7 +103,7 @@ export default function OurProcessPage() {
             }}
           >
             Four steps.<br />
-            <span style={{ color: '#eaff00' }}>Zero</span> shortcuts.
+            <span style={{ color: '#f5ff36' }}>Zero</span> shortcuts.
           </h1>
           <p
             style={{
@@ -192,7 +192,7 @@ export default function OurProcessPage() {
               fontSize: 11,
               letterSpacing: 3,
               textTransform: 'uppercase',
-              color: '#eaff00',
+              color: '#f5ff36',
               marginBottom: 12,
               fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
               fontWeight: 600,
@@ -242,7 +242,7 @@ export default function OurProcessPage() {
                   style={{
                     fontFamily: 'var(--font-bebas-neue), Manrope, sans-serif',
                     fontSize: 22,
-                    color: '#eaff00',
+                    color: '#f5ff36',
                     fontWeight: 700,
                     letterSpacing: 0.5,
                   }}
@@ -265,7 +265,7 @@ export default function OurProcessPage() {
               fontSize: 11,
               letterSpacing: 3,
               textTransform: 'uppercase',
-              color: '#eaff00',
+              color: '#f5ff36',
               fontFamily: 'var(--font-barlow-cond), Manrope, sans-serif',
               fontWeight: 600,
             }}
@@ -292,7 +292,7 @@ export default function OurProcessPage() {
               href="tel:4044063355"
               style={{
                 display: 'inline-block',
-                background: '#eaff00',
+                background: '#f5ff36',
                 color: '#000',
                 padding: '12px 24px',
                 borderRadius: 6,
@@ -310,8 +310,8 @@ export default function OurProcessPage() {
               style={{
                 display: 'inline-block',
                 background: 'transparent',
-                color: '#eaff00',
-                border: '1px solid #eaff00',
+                color: '#f5ff36',
+                border: '1px solid #f5ff36',
                 padding: '11px 24px',
                 borderRadius: 6,
                 fontWeight: 700,

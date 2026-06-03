@@ -41,7 +41,7 @@ const absolutes = [
 ]
 
 const DISPLAY = 'var(--font-bebas-neue), Manrope, sans-serif'
-const LIME = '#eaff00'
+const LIME = '#f5ff36'
 const BLUE = '#1a8fff'
 const lead = { fontSize: 17, lineHeight: 1.65, color: 'rgba(255,255,255,0.75)', margin: '0 0 18px' }
 const strong = { color: '#fff', fontWeight: 700 }
