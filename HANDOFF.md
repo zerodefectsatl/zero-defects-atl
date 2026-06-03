@@ -1,98 +1,87 @@
-# Handoff — Zero Defects ATL (view-transitions + on-page SEO)
+# Zero Defects ATL — Developer Handoff
 
-Context handoff for continuing this work in Claude Code / a coding agent. Written 2026-05-30.
+_Last updated: June 3, 2026_
 
 ## TL;DR
+Active work is the **editorial homepage redesign** on branch **`classic-home`**. It is fully committed and runs locally. The live site (`master` → Vercel → zerodefectsatl.com) is **untouched**. Push `classic-home` for a Vercel preview; merge to `master` to go live.
 
-Two workstreams shipped to production (zerodefectsatl.com via Vercel):
+---
 
-1. **Cross-document View Transitions** — slow page fall/rise + a shared logo morph on every route.
-2. **On-page SEO** — Atlanta geo-targeting on Home + Services (title, meta, real H1, heading hierarchy, Services canonical/OG).
+## Tech stack
+- **Next.js 16.2.6** (App Router, JavaScript) + **Turbopack**
+- **React 19.2.4**
+- **Tailwind CSS v4** (`@import "tailwindcss"` + `@theme inline` in `globals.css`; no `tailwind.config.js`)
+- Fonts: all **Manrope** via `next/font/google`, aliased to `--font-bebas-neue`, `--font-barlow-body`, `--font-barlow-cond` (Bebas Neue is NOT actually loaded)
+- Email: Resend (`src/app/api/contact/route.js`)
+- Deploy: **Vercel** (production branch = `master`) → https://zerodefectsatl.com
+- Remote: `https://github.com/zerodefectsatl/zero-defects-atl.git`
 
-There is **one uncommitted change** on disk (Services OpenGraph/canonical) and **one open SEO bug** (`/faq` canonical). See "Immediate next steps."
+## Branches
+| Branch | Purpose |
+|--------|---------|
+| `master` | Production / live (Vercel auto-deploys) |
+| `classic-home` | **Editorial homepage redesign — current work** (ahead of master) |
+| `view-transitions` | Parked: cross-document View Transitions (slow fall/rise page transitions + logo morph) for the bento homepage |
+| `bento-redesign` | Earlier bento dashboard homepage |
 
-## Repo / deploy facts
+---
 
-- **Stack:** Next.js 16 (App Router, JavaScript, ESM), React 19, Tailwind v4 (`@import "tailwindcss"` + `@theme inline` in `globals.css`, no `tailwind.config.js`). Package manager: npm.
-- **Local path:** `C:\Users\bilba\OneDrive\Documents\Claude\Projects\zero-defects-atl` (OneDrive-synced — see Gotchas).
-- **Remote:** `https://github.com/zerodefectsatl/zero-defects-atl.git`
-- **Branch in progress:** `view-transitions`. Local `master` drifts behind `origin/master` — always `git fetch` and compare before editing.
-- **Deploy:** Vercel auto-deploys `origin/master`. To ship from the `view-transitions` branch without switching branches:
-  ```powershell
-  git push origin HEAD:master
-  ```
-  This fast-forwards `master` (works because `origin/master` is an ancestor of `view-transitions`). Vercel builds in ~1–2 min.
-- **Last deployed commit:** `a924541` — "On-page SEO: Atlanta geo targeting on Home + Services".
+## What's on `classic-home` (the editorial homepage)
+`src/app/page.js` is a long-scroll editorial homepage. Section order:
 
-## What changed — files
+**Hero → Statement → Services → Gallery (Our Work) → Stats bar → Reviews → Process → About Us → Contact → Footer**
 
-### View Transitions
-- `src/app/globals.css` — `@view-transition { navigation: auto }`, `::view-transition-old/new(root)` fall/rise keyframes (`zd-page-fall` / `zd-page-rise`, 950ms), and `::view-transition-group(zd-logo)`. Gated behind `prefers-reduced-motion`.
-- `src/components/MorphLogo.js` — NEW. Fixed top-left logo (`zd-logo-clean.png`) carrying `view-transition-name: zd-logo`. The shared-element morph target.
-- `src/app/page.js` (Home) — bento logo card carries `viewTransitionName: 'zd-logo'`.
-- `src/components/Navbar.js` — logo switched to `zd-logo-clean.png` (square 48×48) and carries `zd-logo`. Used by gallery/process/reviews.
-- `src/app/{zd-mentality,faq,our-process,services}/page.js` — render `<MorphLogo/>`.
-- `src/app/gallery/page.js` — back-to-home changed from `next/link <Link>` to plain `<a href="/">` (see Gotchas), `next/link` import removed.
+Key pieces:
+- **Hero** (`HeroSlider` photo carousel): wordmark bottom-left, left-aligned with the navbar logo. "ZERO" solid brand blue, "DEFECTS" neon-yellow **outline**, both with a dark extrude (`.zd-hero-wordmark` in `globals.css`).
+- **Navbar** (`src/components/Navbar.js`): three minimal **hover-reveal lines** top-right on desktop (≥768px) — Ceramic Coating / PPF / Paint Correction — anchoring to `/#ceramic-coating`, `/#ppf`, `/#paint-correction`. Collapses to a hamburger menu below 768px. Lines are neon-yellow (`.zd-nav-line`).
+- **Services**: card layout, all detail kept (CSU/CCI tiers, warranties, pricing, XPEL packages). Cards have ids `#ceramic-coating`, `#ppf`, `#paint-correction` (`.zd-svc-card2`, `.zd-coat-*`, `.zd-ppf-*`, `.zd-pkg-*`).
+- **Process**: horizontal 4-step timeline with an animated **light sweep** across a dotted line; collapses vertical on mobile (`.zd-timeline`, `@keyframes zd-sweep`).
+- **About Us**: built from `ZD_About_Draft.md` — two-column body + pull-quote + credentials panel + service-area line + tagline. Years = **17+** (reconciled with hero stats). (`.zd-about-*`)
+- **Contact**: `public/videos/lambo.mp4` video background (via `LazyVideo`) with a 55%-opacity dark overlay; contact icons are inline brand-blue SVGs (not emoji).
 
-### On-page SEO
-- `src/app/layout.js` — root `metadata` title + description (and OG/Twitter copies) now lead with "PPF & Ceramic Coating … Atlanta, GA".
-- `src/app/page.js` (Home) — added `<h1 className="sr-only">` (keyword + geo); hero tagline demoted `<h1>`→`<p>` (styling is class-based, unchanged); four `bento-card__title` `<div>`s promoted to `<h2>`.
-- `src/app/services/page.js` — `metadata` title + description add Atlanta; added `<h1 className="sr-only">` (page previously had no H1). **Plus an uncommitted edit** adding `alternates.canonical: '/services'`, `openGraph`, and `twitter` blocks.
-- `src/app/globals.css` — appended `.sr-only` utility.
+## Brand tokens
+- Background: `#080808` / `#0e1216`
+- Primary blue: `#1a8fff`
+- Accent yellow (brightened this session): **`#f5ff36`** (was `#eaff00`)
+- **No green** — `#00e5a0` was fully purged; blue→yellow gradient *text* was switched to a blue-only gradient to avoid a green midpoint.
 
-## Invariants — do not break
+## Routes (all build clean — 23 static pages)
+`/`, `/services`, `/ceramic-coating`, `/paint-protection-film`, `/paint-correction`, `/gallery` (has a lightbox), `/our-process`, `/faq`, `/zd-mentality`, `/reviews`, `/service-areas/[city]`, `/api/contact`.
 
-- **Exactly one element per page may carry `view-transition-name: 'zd-logo'`.** Two on a page makes the browser skip the whole transition. Pages with `<Navbar/>` (gallery/process/reviews) get it from the Navbar; all others use `<MorphLogo/>`. A page must render one or the other, never both.
-- **Intra-site navigation must use plain `<a href>`, not `next/link <Link>`.** MPA view transitions only fire on full-document navigations; `<Link>` does a client-side soft nav and silently skips the fall/rise. If a transition "doesn't play" on a route, check for a `<Link>` first.
-- **View transitions only render in a production build** (`npm run build && npm run start`) on real navigations — `npm run dev` won't show them reliably.
-- Bento grid rules in `CLAUDE.md`/`AGENTS.md` still apply (CSS Grid only, logo card z-index 2 over hero z-index 1, explicit min-heights, don't restructure the grid).
+---
 
-## Gotchas (environment)
-
-- **OneDrive locks `.git`.** Git from a sandbox leaves stale `.git/index.lock`, `HEAD.lock`, `objects/maintenance.lock`, and `tmp_obj_*` that can't be removed there. Run git from **PowerShell**. If a command reports `index.lock: File exists`:
-  ```powershell
-  Remove-Item .git\index.lock, .git\HEAD.lock, .git\objects\maintenance.lock -Force -ErrorAction SilentlyContinue
-  ```
-- **PowerShell has no `&&`** — run git commands one per line (or use `;`).
-- **OneDrive line-ending churn** — `git status` shows ~30 unrelated files as modified; they're CRLF/parallel-session noise. Stage specific files explicitly; never `git add -A` here.
-- **`next build` may OOM (bus error) in a constrained sandbox** — build locally. Syntax can be sanity-checked with `npx esbuild <file> --loader:.js=jsx --outfile=/dev/null`.
-- **Vercel edge cache** can serve a stale route briefly after deploy; append a `?v=` query to bust it when verifying.
-
-## Immediate next steps
-
-- [ ] **Commit + deploy the pending Services OG/canonical change** (currently uncommitted on disk):
-  ```powershell
-  git add src/app/services/page.js
-  git commit -m "Services: own canonical, OpenGraph & Twitter metadata"
-  git push origin HEAD:master
-  ```
-- [ ] **Fix `/faq` canonical.** `src/app/faq/page.js` has no `alternates.canonical`, so it inherits the homepage canonical (`/`) — tells Google it's a duplicate of Home. Add `alternates: { canonical: '/faq' }` to its `metadata` (and ideally its own `openGraph`/`twitter`, same pattern as Services). All other routes already set their own canonical.
-
-## SEO backlog (optional, lower priority)
-
-- Home is a deliberately minimal bento → content-thin for a competitive commercial term. Consider one visible, on-brand geo sentence (service + metro cluster: Braselton, Buford, Gainesville, Cumming, Atlanta) somewhere crawlable. `/services` is the stronger money-page target for "ppf ceramic coating atlanta ga".
-- Run the same on-page pass (keyword H1, geo title/meta, own OG) on `/gallery`, `/our-process`, `/zd-mentality`.
-- `/services` and `/our-process` both exist as routes serving similar process content — confirm no cannibalization; `/process` and `/reviews` also exist from a parallel session.
-- Schema is strong already (`layout.js` ships LocalBusiness/AutoBodyShop + FAQPage JSON-LD with reviews, geo, `areaServed` incl. Atlanta) — leave it.
-
-## Verifying live
-
+## Running locally
+```powershell
+npm install
+npm run dev          # dev server w/ hot reload  → http://localhost:3000
+# or, production build:
+npm run build
+npm run start
 ```
-# cache-busted fetch of a route to confirm new title/meta/H1/canonical
-https://zerodefectsatl.com/services?v=check
-```
-Look for: page-specific `<title>`, meta description, the `sr-only` H1 as the page's first heading, and `canonical` pointing at the route (not `/`).
+- Run the **dev server in its own terminal tab**; run git in a **separate tab** (using the server's tab for git kills the server).
+- If the port is stuck or the server jams: `taskkill /IM node.exe /F`, then relaunch.
 
-## ⚠️ zd-mentality is staged locally — COMMIT, do not regenerate (2026-05-30)
+## Deploy
+- Push a branch → Vercel builds a **preview** deployment automatically.
+- `git push -u origin classic-home` → preview URL (`…-git-classic-home-….vercel.app`).
+- Merge `classic-home` → `master` to publish to the live domain.
 
-`src/app/zd-mentality/page.js` is fully rewritten in the working tree and **not yet committed**. `origin/master` still holds the OLD dark/yellow version, so committing the working copy IS the intended change. It already contains:
+---
 
-- The **About** section (Chris Kessler story — 17+ years, Road Atlanta, credentials, exotics) merged directly after the philosophy / Four Absolutes, with a bridge line ("…that someone is Chris Kessler").
-- **Light restyle**: white background, black body text, every `#eaff00` yellow swapped to brand blue `#1a8fff`.
-- The word **"Zero"** in the H1 uses `<span className="zd-zero-outline">` — double blue traced outline, transparent fill.
+## ⚠️ OneDrive + Git gotchas (important)
+The repo lives in **OneDrive**, which breaks git operations run from non-Windows tooling:
+- **Run ALL git commands from PowerShell (Windows).** Git run from the sandbox/agent sees a truncated `.git/HEAD` and will create junk commits on a phantom branch.
+- If a commit fails with `Unable to create '...index.lock'` or `...HEAD.lock'`:
+  ```powershell
+  Remove-Item .git\index.lock -Force -ErrorAction SilentlyContinue
+  Remove-Item .git\HEAD.lock  -Force -ErrorAction SilentlyContinue
+  ```
+  then re-run the commit.
+- CRLF warnings ("LF will be replaced by CRLF") on commit are harmless.
+- Config/doc files (`AGENTS.md`, etc.) may show as modified due to line-ending noise — don't worry about them.
 
-Do NOT regenerate or re-style this page. Just commit the existing file as-is to avoid a duplicate/divergent rewrite.
-
-`globals.css` already defines `.zd-zero-outline` AND `.sr-only` on `origin/master` — do not add them again. The working copy already matches origin (an accidental duplicate was removed). Years figure is **17+** site-wide (not 20+).
-
-Local `HEAD` may be detached/broken (`git rev-parse HEAD` → "Needed a single revision") from OneDrive `.git` lock churn — re-checkout the branch and clear `.git/*.lock` before committing.
+## Suggested next steps
+1. `git push -u origin classic-home` → review the Vercel preview.
+2. Decide: merge `classic-home` → `master` to make the editorial homepage live.
+3. Optional: revisit the `view-transitions` branch (slow page transitions + logo morph) if you want that motion on the live homepage.
+4. Optional: compress `public/videos/lambo.mp4` (~11.8 MB) if the contact section loads slowly.
