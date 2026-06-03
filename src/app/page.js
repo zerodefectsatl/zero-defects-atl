@@ -258,8 +258,8 @@ export default function Home() {
             letterSpacing: '4px',
             margin: 0,
           }}>
-            <span style={{ display: 'block', color: '#f0f4f8', filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.92))' }}>ZERO</span>
-            <span className="stroke-text" style={{ display: 'block' }}>DEFECTS</span>
+            <span style={{ display: 'block', color: '#1a8fff' }}>ZERO</span>
+            <span style={{ display: 'block' }}>DEFECTS</span>
           </h1>
         </div>
 
@@ -285,155 +285,140 @@ export default function Home() {
       </section>
 
       {/* ── SERVICES — CERAMIC COATINGS ───────────────────────── */}
-      <section id="services" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Parallax background — fixed on desktop, scroll on iOS (background-attachment:fixed broken on Safari) */}
-        <div className="zd-services-bg" style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: "url('/images/gallery/g-techniq-ultra-serum.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 50%',
-          zIndex: 0,
-        }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,10,12,0.82)', zIndex: 1 }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 50% at 15% 65%, rgba(26,143,255,0.07) 0%, transparent 55%)', zIndex: 1 }} />
-
-        <div style={{ position: 'relative', zIndex: 2 }}>
+      <section id="services" style={{ position: 'relative', overflow: 'hidden', background: BG.primary }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: 'radial-gradient(ellipse 70% 50% at 15% 25%, rgba(26,143,255,0.07) 0%, transparent 55%)' }} />
+        <div style={{ position: 'relative', zIndex: 1 }}>
           <div style={S.section}>
 
-            {/* Header — centered */}
-            <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+            <div style={{ marginBottom: 'clamp(40px, 6vw, 72px)' }}>
               <span style={S.eyebrow} data-reveal>What We Do</span>
-              <h2 style={{ ...S.sectionTitle, textShadow: GLOW }} data-reveal data-reveal-delay="1">Our Services</h2>
+              <h2 style={{ ...S.sectionTitle, textShadow: GLOW, marginBottom: 0 }} data-reveal data-reveal-delay="1">Our Services</h2>
             </div>
 
-            {/* ── 01 Ceramic Coatings ── */}
-            <div style={{ marginBottom: '96px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '48px', paddingBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                <span style={{ ...S.cardLabel, color: '#1a8fff', fontSize: '11px', letterSpacing: '4px' }}>01</span>
-                <h3 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '22px', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: '#f0f4f8' }}>Ceramic Coatings</h3>
-                <span style={{ ...S.cardLabel, fontSize: '10px', color: 'rgba(240,244,248,0.35)' }}>Two Premium Brands · One Elite Shop</span>
+            {/* 01 — Ceramic Coatings */}
+            <div id="ceramic-coating" className="zd-svc-card2" data-reveal>
+              <div className="zd-svc-card2__head">
+                <span className="zd-svc-card2__num">01</span>
+                <h3 className="zd-svc-card2__title">Ceramic Coatings</h3>
+                <span className="zd-svc-card2__meta">Two Premium Brands · One Elite Shop</span>
               </div>
-
-              {/* Crystal Serum Ultra — editorial, no photo */}
-              <div data-reveal style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '56px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
-                  <span className="gradient-text" style={{ fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: '64px', lineHeight: 1 }}>01</span>
-                  <span style={{ ...S.cardLabel, fontSize: '10px', color: '#00e5a0', letterSpacing: '2px' }}>9-Year Warranty</span>
-                </div>
-                <div className="zd-csu-grid">
-                  <div>
-                    <div style={{ ...S.cardLabel, fontSize: '10px', color: '#1a8fff', marginBottom: '8px' }}>Gtechniq</div>
-                    <h4 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '32px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8', marginBottom: '8px' }}>Crystal Serum Ultra</h4>
-                    <div style={{ ...S.cardLabel, fontSize: '10px', color: 'rgba(240,244,248,0.38)' }}>Accredited Installer · Only Shop in the Area</div>
-                  </div>
-                  <div>
-                    <p style={{ fontSize: '15px', lineHeight: 1.75, color: 'rgba(240,244,248,0.78)', marginBottom: '28px' }}>
-                      The absolute best in ceramic protection. Dual-layer 10H/7H system delivers swirl resistance no 9H coating can match — rated from −40°C to +250°C.
-                    </p>
-                    <ul style={{ listStyle: 'none', padding: 0, marginBottom: '32px' }} className="zd-features-2col">
-                      {coatingServices[0].features.map((f) => (
-                        <li key={f} style={{ fontSize: '14px', color: 'rgba(240,244,248,0.72)', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                          <span style={{ color: '#1a8fff', flexShrink: 0 }}>✓</span>{f}
-                        </li>
+              <div className="zd-coat-grid">
+                {coatingServices.map((svc) => (
+                  <div key={svc.name} className="zd-coat-item">
+                    <div className="zd-coat-item__top">
+                      <span className="gradient-text zd-coat-item__num">{svc.num}</span>
+                      <span className="zd-coat-item__warr">{svc.warranty}</span>
+                    </div>
+                    <div className="zd-svc-card2__brand">{svc.brand}</div>
+                    <h4 className="zd-coat-item__name">{svc.name}</h4>
+                    <div className="zd-coat-item__tag">{svc.tag}</div>
+                    <p className="zd-coat-item__desc">{svc.desc}</p>
+                    <ul className="zd-feat">
+                      {svc.features.map((f) => (
+                        <li key={f}><span className="zd-feat__tick">✓</span>{f}</li>
                       ))}
                     </ul>
-                    <div style={{ display: 'flex', gap: '0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-                      {coatingServices[0].pricing.map((p, pi) => (
-                        <div key={p.label} style={{ flex: 1, padding: '16px', borderRight: pi < coatingServices[0].pricing.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                          <div style={{ ...S.cardLabel, fontSize: '10px', color: 'rgba(240,244,248,0.35)', marginBottom: '4px' }}>{p.label}</div>
-                          <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '17px', fontWeight: 700, color: '#f0f4f8' }}>{p.price}</div>
+                    <div className="zd-price-row">
+                      {svc.pricing.map((p) => (
+                        <div key={p.label} className="zd-price">
+                          <div className="zd-price__label">{p.label}</div>
+                          <div className="zd-price__val">{p.price}</div>
                         </div>
                       ))}
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* CCI Revolution + Advance — open 2-col */}
-              <div className="zd-cci-grid">
-                {coatingServices.slice(1).map((svc, i) => (
-                  <div key={svc.name} data-reveal style={{ padding: '48px 40px', borderRight: i === 0 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
-                      <span className="gradient-text" style={{ fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: '56px', lineHeight: 1 }}>{svc.num}</span>
-                      <span style={{ ...S.cardLabel, fontSize: '10px', color: '#00e5a0', letterSpacing: '2px', textAlign: 'right' }}>{svc.warranty}</span>
-                    </div>
-                    <div style={{ ...S.cardLabel, fontSize: '10px', color: '#1a8fff', marginBottom: '4px' }}>{svc.brand}</div>
-                    <h4 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8', marginBottom: '4px' }}>{svc.name}</h4>
-                    <div style={{ ...S.cardLabel, fontSize: '10px', color: 'rgba(240,244,248,0.4)', marginBottom: '16px' }}>{svc.tag}</div>
-                    <p style={{ fontSize: '15px', lineHeight: 1.7, color: 'rgba(240,244,248,0.78)', marginBottom: '24px' }}>{svc.desc}</p>
-                    <ul style={{ listStyle: 'none', padding: 0, marginBottom: '28px' }}>
-                      {svc.features.map((f) => (
-                        <li key={f} style={{ fontSize: '14px', color: 'rgba(240,244,248,0.72)', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                          <span style={{ color: '#1a8fff', flexShrink: 0 }}>✓</span>{f}
-                        </li>
-                      ))}
-                    </ul>
-                    <a href="tel:4044063355" style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '12px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1a8fff', textDecoration: 'none' }}>
-                      Call for Pricing →
-                    </a>
-                  </div>
                 ))}
               </div>
             </div>
 
-            {/* ── 02 PPF ── */}
-            <div style={{ marginBottom: '96px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '48px', paddingBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                <span style={{ ...S.cardLabel, color: '#1a8fff', fontSize: '11px', letterSpacing: '4px' }}>02</span>
-                <h3 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '22px', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: '#f0f4f8' }}>Paint Protection Film</h3>
-                <span style={{ ...S.cardLabel, fontSize: '10px', color: 'rgba(240,244,248,0.35)' }}>XPEL Authorized Installer · 10-Year Warranty</span>
+            {/* 02 — Paint Protection Film */}
+            <div id="ppf" className="zd-svc-card2" data-reveal>
+              <div className="zd-svc-card2__head">
+                <span className="zd-svc-card2__num">02</span>
+                <h3 className="zd-svc-card2__title">Paint Protection Film</h3>
+                <span className="zd-svc-card2__meta">XPEL Authorized · 10-Year Warranty</span>
               </div>
-              <div className="zd-grid-ppf-split">
-                <p style={{ fontSize: '15px', lineHeight: 1.8, color: 'rgba(240,244,248,0.78)' }}>
-                  Self-healing TPU film — stops rock chips, scratches, and UV before they reach your paint.
-                  Available in gloss or matte. Factory-certified at XPEL HQ in San Antonio.
-                  10-year manufacturer warranty included.
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {[
-                    'Self-healing top coat — scuffs disappear with heat',
-                    'OEM approved by virtually all car manufacturers',
-                    'XPEL factory-trained & certified — San Antonio, TX',
-                    'Computer-cut templates for seamless, precision fitment',
-                    'XPEL Ultimate Plus (gloss) or XPEL Stealth (matte)',
-                  ].map((f) => (
-                    <div key={f} style={{ fontSize: '14px', color: 'rgba(240,244,248,0.75)', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                      <span style={{ color: '#00e5a0', flexShrink: 0 }}>✓</span>{f}
+              <div className="zd-ppf-grid">
+                <div>
+                  <p className="zd-svc-lead">Self-healing TPU film — stops rock chips, scratches, and UV before they reach your paint. Available in gloss or matte. Factory-certified at XPEL HQ in San Antonio, with a 10-year manufacturer warranty.</p>
+                  <ul className="zd-feat">
+                    {['Self-healing top coat — scuffs vanish with heat', 'OEM approved by virtually all manufacturers', 'XPEL factory-trained & certified — San Antonio, TX', 'Computer-cut templates for seamless fitment', 'XPEL Ultimate Plus (gloss) or Stealth (matte)'].map((f) => (
+                      <li key={f}><span className="zd-feat__tick">✓</span>{f}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="zd-pkg-list">
+                  {ppfPackages.map((pkg, i) => (
+                    <div key={pkg.name} className={`zd-pkg${i === 0 ? ' zd-pkg--pop' : ''}`}>
+                      {i === 0 && <span className="zd-pkg__pop">★ Most Popular</span>}
+                      <h4 className="zd-pkg__name">{pkg.name}</h4>
+                      <div className="zd-pkg__tag">{pkg.tag}</div>
+                      <p className="zd-pkg__desc">{pkg.desc}</p>
+                      <a href="tel:4044063355" className="zd-pkg__cta">Call for Pricing →</a>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="zd-grid-ppf-packages" style={{ gap: '0', marginTop: '48px' }}>
-                {ppfPackages.map((pkg, i) => (
-                  <div key={pkg.name} style={{ padding: '32px', borderTop: i === 0 ? '2px solid #1a8fff' : '1px solid rgba(255,255,255,0.07)' }}>
-                    {i === 0 && <span style={{ ...S.cardLabel, fontSize: '10px', color: '#1a8fff', display: 'block', marginBottom: '12px' }}>★ Most Popular</span>}
-                    <h4 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8', marginBottom: '4px' }}>{pkg.name}</h4>
-                    <div style={{ ...S.cardLabel, fontSize: '10px', color: '#00e5a0', marginBottom: '16px' }}>{pkg.tag}</div>
-                    <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'rgba(240,244,248,0.6)', marginBottom: '24px' }}>{pkg.desc}</p>
-                    <a href="tel:4044063355" style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '12px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1a8fff', textDecoration: 'none', borderBottom: '1px solid rgba(26,143,255,0.35)', paddingBottom: '2px' }}>
-                      Call for Pricing →
-                    </a>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            {/* ── 03 Paint Correction ── */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '32px', flexWrap: 'wrap', paddingTop: '40px', paddingBottom: '16px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+            {/* 03 — Paint Correction */}
+            <div id="paint-correction" className="zd-svc-card2 zd-svc-card2--row" data-reveal>
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
-                  <span style={{ ...S.cardLabel, color: '#1a8fff', fontSize: '11px', letterSpacing: '4px' }}>03</span>
-                  <h3 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '22px', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: '#f0f4f8' }}>Paint Correction</h3>
+                <div className="zd-svc-card2__head zd-svc-card2__head--tight">
+                  <span className="zd-svc-card2__num">03</span>
+                  <h3 className="zd-svc-card2__title">Paint Correction</h3>
                 </div>
-                <p style={{ fontSize: '15px', lineHeight: 1.7, color: 'rgba(240,244,248,0.78)', maxWidth: '520px' }}>
-                  Machine polishing removes swirls, water spots, and oxidation — restoring true depth before any coating goes on.
-                </p>
+                <p className="zd-svc-lead" style={{ maxWidth: 560, margin: '12px 0 0' }}>Machine polishing removes swirls, water spots, and oxidation — restoring true depth before any coating goes on.</p>
               </div>
-              <a href="tel:4044063355" style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '13px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#080a0c', background: 'linear-gradient(90deg, #1a8fff, #00e5a0)', padding: '14px 32px', borderRadius: '4px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-                Contact for Pricing
-              </a>
+              <a href="tel:4044063355" className="zd-cta-solid">Contact for Pricing</a>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* ── OUR WORK ──────────────────────────────────────────── */}
+      <section id="work" style={{ background: BG.alt, borderBottom: '1px solid rgba(255,255,255,0.07)', padding: '96px 0' }}>
+        <div style={S.section}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <span style={S.eyebrow} data-reveal>Recent Projects</span>
+            <h2 style={{ ...S.sectionTitle, marginBottom: '20px', textShadow: GLOW }} data-reveal data-reveal-delay="1">Our Work</h2>
+            <a href="/gallery" style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: '#1a8fff', textDecoration: 'none' }}>
+              Full Gallery →
+            </a>
+          </div>
+
+          <div
+            data-parallax
+            data-parallax-speed="-0.15"
+            className="zd-grid-work"
+            style={{ gap: '12px' }}
+          >
+            {recentWork.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  position: 'relative',
+                  aspectRatio: '4/3',
+                  overflow: 'hidden',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  ...S6[i % S6.length],
+                  boxShadow: i % 3 === 0
+                    ? '0 24px 64px rgba(26,143,255,0.15)'
+                    : i % 3 === 1
+                    ? '0 32px 80px rgba(0,0,0,0.4)'
+                    : '0 16px 48px rgba(26,143,255,0.08)',
+                }}
+              >
+                <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover', transition: 'transform 0.4s' }} sizes="(max-width: 768px) 100vw, 33vw" />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,10,12,0.9) 0%, transparent 60%)' }} />
+                <div style={{ position: 'absolute', bottom: '20px', left: '20px', right: '20px' }}>
+                  <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '16px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#f0f4f8', marginBottom: '4px' }}>{item.title}</div>
+                  <div style={{ ...S.cardLabel, fontSize: '10px', color: '#1a8fff' }}>{item.service}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -492,7 +477,7 @@ export default function Home() {
                   position: 'absolute', top: '20px', right: '28px',
                   fontFamily: 'Georgia, serif',
                   fontSize: '72px', lineHeight: 1,
-                  background: 'linear-gradient(135deg, #1a8fff, #00e5a0)',
+                  background: '#1a8fff',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                   opacity: 0.25,
                   userSelect: 'none',
@@ -540,180 +525,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── OUR WORK ──────────────────────────────────────────── */}
-      <section id="work" style={{ background: BG.alt, borderBottom: '1px solid rgba(255,255,255,0.07)', padding: '96px 0' }}>
-        <div style={S.section}>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <span style={S.eyebrow} data-reveal>Recent Projects</span>
-            <h2 style={{ ...S.sectionTitle, marginBottom: '20px', textShadow: GLOW }} data-reveal data-reveal-delay="1">Our Work</h2>
-            <a href="/gallery" style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: '#1a8fff', textDecoration: 'none' }}>
-              Full Gallery →
-            </a>
-          </div>
-
-          <div
-            data-parallax
-            data-parallax-speed="-0.15"
-            className="zd-grid-work"
-            style={{ gap: '12px' }}
-          >
-            {recentWork.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  position: 'relative',
-                  aspectRatio: '4/3',
-                  overflow: 'hidden',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  ...S6[i % S6.length],
-                  boxShadow: i % 3 === 0
-                    ? '0 24px 64px rgba(26,143,255,0.15)'
-                    : i % 3 === 1
-                    ? '0 32px 80px rgba(0,0,0,0.4)'
-                    : '0 16px 48px rgba(26,143,255,0.08)',
-                }}
-              >
-                <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover', transition: 'transform 0.4s' }} sizes="(max-width: 768px) 100vw, 33vw" />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,10,12,0.9) 0%, transparent 60%)' }} />
-                <div style={{ position: 'absolute', bottom: '20px', left: '20px', right: '20px' }}>
-                  <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '16px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#f0f4f8', marginBottom: '4px' }}>{item.title}</div>
-                  <div style={{ ...S.cardLabel, fontSize: '10px', color: '#1a8fff' }}>{item.service}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── PROCESS ───────────────────────────────────────────── */}
-      <section id="process" style={{ position: 'relative', padding: '96px 0', overflow: 'hidden' }}>
-        <div
-          data-parallax
-          data-parallax-speed="0.18"
-          style={{ position: 'absolute', top: '-15%', bottom: '-15%', left: 0, right: 0, zIndex: 0 }}
-        >
-          <Image src="/images/gallery/IMG_8856.jpeg" alt="" fill style={{ objectFit: 'cover', objectPosition: 'center 40%' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,10,12,0.82)' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #080a0c 0%, transparent 30%, transparent 70%, #080a0c 100%)' }} />
-        </div>
+      <section id="process" style={{ position: 'relative', padding: 'clamp(64px, 9vw, 110px) 0', overflow: 'hidden', background: BG.alt }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: 'radial-gradient(ellipse 70% 50% at 80% 20%, rgba(26,143,255,0.07) 0%, transparent 55%)' }} />
         <div style={{ ...S.section, position: 'relative', zIndex: 1 }}>
           <span style={S.eyebrow} data-reveal>How It Works</span>
           <h2 style={{ ...S.sectionTitle, textShadow: GLOW }} data-reveal data-reveal-delay="1">The Process</h2>
-
-          <div className="zd-process-grid">
-            {processSteps.map((step, i) => (
-              <div key={step.num} className="zd-process-cell" style={{
-                borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.08)' : 'none',
-                borderRight: i % 2 === 0 ? '1px solid rgba(255,255,255,0.08)' : 'none',
-              }}>
-                <div className="gradient-text" style={{ fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: '80px', lineHeight: 1, marginBottom: '16px' }}>{step.num}</div>
-                <h3 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8', marginBottom: '12px' }}>{step.title}</h3>
-                <p style={{ fontSize: '15px', lineHeight: 1.7, color: 'rgba(240,244,248,0.78)' }}>{step.desc}</p>
+          <div className="zd-timeline" data-reveal>
+            {processSteps.map((step) => (
+              <div key={step.num} className="zd-timeline__step">
+                <span className="zd-timeline__dot" aria-hidden="true" />
+                <div className="zd-timeline__num">{step.num}</div>
+                <h3 className="zd-timeline__title">{step.title}</h3>
+                <p className="zd-timeline__desc">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── PHILOSOPHY ────────────────────────────────────────── */}
-      <section id="about" style={{ background: '#111418', borderTop: '1px solid rgba(232,228,218,0.08)', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'relative', padding: 'clamp(72px,10vw,120px) clamp(20px,5.5vw,48px) 0', maxWidth: '1200px', margin: '0 auto' }}>
-          <span style={S.eyebrow} data-reveal>The Philosophy</span>
+      {/* ── ABOUT US ──────────────────────────────────────────── */}
+      <section id="about" style={{ position: 'relative', overflow: 'hidden', background: BG.primary, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: 'radial-gradient(ellipse 70% 50% at 80% 12%, rgba(26,143,255,0.06) 0%, transparent 55%)' }} />
+        <div style={{ ...S.section, position: 'relative', zIndex: 1 }}>
+          <span style={S.eyebrow} data-reveal>Who We Are</span>
+          <h2 style={{ ...S.sectionTitle, textShadow: GLOW }} data-reveal data-reveal-delay="1">The Standard Isn&rsquo;t Negotiable</h2>
 
-          <h2 data-reveal data-reveal-delay="1" style={{ fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: 'clamp(40px, 6vw, 80px)', lineHeight: 0.92, letterSpacing: '3px', marginTop: '20px', marginBottom: '28px', position: 'relative', zIndex: 1 }}>
-            <span style={{ display: 'block', color: 'rgba(240,244,248,0.88)' }}>Zero</span>
-            <span className="gradient-text" style={{ display: 'block' }}>Defects</span>
-          </h2>
-
-          <p data-reveal data-reveal-delay="2" style={{ fontSize: '14px', lineHeight: 1.9, color: 'rgba(232,228,218,0.38)', maxWidth: '420px', position: 'relative', zIndex: 1, paddingBottom: 'clamp(56px,8vw,96px)', letterSpacing: '0.02em' }}>
-            A standard born inside the United States military — governing every decision made in this shop, from the first inspection to the final coat.
-          </p>
-        </div>
-
-        {/* Principles */}
-        <div style={{ position: 'relative' }}>
-          <div style={{ position: 'absolute', left: 'clamp(20px,5.5vw,48px)', top: 0, bottom: 0, width: '1px', background: 'linear-gradient(to bottom, rgba(26,143,255,0.4), rgba(0,229,160,0.2) 60%, transparent)', pointerEvents: 'none' }} />
-
-          {[
-            { n: '01', title: 'Quality is conformance to requirements', accentColor: '#1a8fff' },
-            { n: '02', title: 'Defect prevention is preferable to quality inspection and correction', accentColor: '#00c48a' },
-            { n: '03', title: 'Zero Defects is the quality standard', accentColor: '#1a8fff' },
-            { n: '04', title: 'Quality is measured in monetary terms — the Price of Nonconformance', accentColor: '#00e5a0' },
-          ].map((p, i) => (
-            <div key={p.n} data-reveal data-reveal-delay={String((i % 2) + 1)} style={{ borderTop: '1px solid rgba(232,228,218,0.09)', position: 'relative' }}>
-              <div style={{ position: 'absolute', left: 'calc(clamp(20px,5.5vw,48px) - 3px)', top: '50%', width: '7px', height: '7px', borderRadius: '50%', background: p.accentColor, boxShadow: `0 0 10px ${p.accentColor}66`, transform: 'translateY(-50%)', zIndex: 2 }} />
-              <div style={{ padding: 'clamp(32px,4.5vw,52px) clamp(20px,5.5vw,48px)', paddingLeft: `calc(clamp(20px,5.5vw,48px) + 28px)` }}>
-                <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: p.accentColor, marginBottom: '12px', opacity: 0.85 }}>{p.n}</div>
-                <h3 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: 'clamp(12px, 1.2vw, 15px)', fontWeight: 400, fontStyle: 'italic', lineHeight: 1.55, letterSpacing: '0.02em', color: 'rgba(232,228,218,0.65)', maxWidth: '620px' }}>{p.title}</h3>
-              </div>
+          <div className="zd-about-grid">
+            <div className="zd-about-body" data-reveal>
+              <p>Some standards don&rsquo;t have a middle ground. You either meet them or you don&rsquo;t. That&rsquo;s the philosophy Chris Kessler built a career on.</p>
+              <p>CK has spent more than 17 years in this industry — nearly his entire professional life. He didn&rsquo;t come up in a dealership detail bay. His experience runs deeper: hands-on work with professional race teams, where the relationship between surface preparation and performance is literal, not theoretical. Motorsport sharpens your eye. When you&rsquo;ve worked on cars that run at Road Atlanta, you stop tolerating imperfection — you develop a standard, and you hold to it.</p>
+              <p>Zero Defects ATL is based in Braselton, Georgia — minutes from Road Atlanta, one of the most respected road courses in North America. This is Northeast Georgia: a region where exotic, luxury, and performance vehicles are part of everyday life, and where the people who own them expect more than an average shop can deliver.</p>
+              <p>CK holds two of the most respected credentials in the protective coatings industry — an <strong>XPEL Authorized Installer</strong> for paint protection film, and a <strong>Gtechniq Crystal Serum Ultra Accredited Installer</strong>. These require factory training, documented application standards, and ongoing accountability to the manufacturer. When CK puts his name on a job, those credentials are on the line with it.</p>
+              <p>The vehicles that come through reflect that standard: Ferraris, Porsches, Lamborghinis, McLarens, Aston Martins — owners who understand exactly what their car is worth, and what it takes to protect it properly.</p>
+              <p>This has never been a volume shop. CK oversees every vehicle, every step. Some shops measure their week by how many cars they turn over. Zero Defects measures it by whether each car leaves better than its owner expected.</p>
             </div>
-          ))}
-          <div style={{ borderTop: '1px solid rgba(232,228,218,0.09)' }} />
-        </div>
-
-        {/* Attribution */}
-        <div data-reveal style={{ background: 'rgba(255,255,255,0.012)', borderTop: '1px solid rgba(232,228,218,0.08)', padding: 'clamp(40px,6vw,72px) clamp(20px,5.5vw,48px)' }}>
-          <div style={{ maxWidth: '1200px', width: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '40px', flexWrap: 'wrap' }}>
-            <div>
-              <p style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(232,228,218,0.22)', marginBottom: '8px' }}>Source</p>
-              <p style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '15px', fontWeight: 700, letterSpacing: '1px', color: 'rgba(240,244,248,0.8)', marginBottom: '4px' }}>United States Army. Pershing Missile Program.</p>
-              <p style={{ fontSize: '13px', color: 'rgba(240,244,248,0.35)' }}>Philip Crosby, Founder of the Standard Philosophy; <em>Zero Defects</em></p>
-            </div>
-            <p style={{ fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: 'clamp(14px, 2vw, 20px)', letterSpacing: '5px', background: 'linear-gradient(90deg, #1a8fff, #00e5a0)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              Proudly Preserving American Values
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── WHY ZERO DEFECTS ──────────────────────────────────── */}
-      <section style={{ position: 'relative', borderTop: '1px solid rgba(255,255,255,0.07)', padding: '96px 0', overflow: 'hidden' }}>
-        {/* Ferrari wheel video background — lazy-loaded when scrolled into view */}
-        <LazyVideo
-          src="/videos/ferrari-wheel.mp4"
-          poster="/images/gallery/IMG_8707.jpeg"
-          style={{
-            position: 'absolute', inset: 0,
-            width: '100%', height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center',
-            zIndex: 0,
-          }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(26,143,255,0.07) 0%, transparent 70%)', zIndex: 1 }} />
-
-        <div style={{ ...S.section, position: 'relative', zIndex: 2 }}>
-          <span style={S.eyebrow} data-reveal>Why Zero Defects</span>
-          <h2 style={{ ...S.sectionTitle, textShadow: GLOW }} data-reveal data-reveal-delay="1">Built on Precision</h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {trustPoints.map((pt, i) => (
-              <div
-                key={pt.title}
-                data-reveal
-                data-reveal-delay={String((i % 2) + 1)}
-                className="zd-trust-row"
-                style={{ display: 'grid', gridTemplateColumns: '56px 1fr 2fr', gap: '32px', alignItems: 'start', padding: '36px 0', borderBottom: i < trustPoints.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}
-              >
-                <div style={{ fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: '13px', letterSpacing: '3px', background: 'linear-gradient(135deg, #1a8fff, #00e5a0)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', paddingTop: '3px' }}>
-                  {String(i + 1).padStart(2, '0')}
-                </div>
-                <h3 style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '17px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8', paddingTop: '2px' }}>{pt.title}</h3>
-                <p className="zd-trust-row-desc" style={{ fontSize: '15px', lineHeight: 1.75, color: 'rgba(240,244,248,0.82)' }}>{pt.desc}</p>
+            <aside className="zd-about-aside" data-reveal data-reveal-delay="1">
+              <blockquote className="zd-about-quote">&ldquo;The only Gtechniq Crystal Serum Ultra accredited installer in the area.&rdquo;</blockquote>
+              <div className="zd-about-creds">
+                <div className="zd-about-cred"><span className="zd-about-cred__k">XPEL</span><span className="zd-about-cred__v">Authorized Installer</span></div>
+                <div className="zd-about-cred"><span className="zd-about-cred__k">Gtechniq</span><span className="zd-about-cred__v">Crystal Serum Ultra Accredited</span></div>
+                <div className="zd-about-cred"><span className="zd-about-cred__k">17+ Years</span><span className="zd-about-cred__v">Motorsport-honed experience</span></div>
               </div>
-            ))}
+            </aside>
           </div>
 
-          <div data-reveal style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', gap: '32px', flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '12px', letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.45)', flexShrink: 0 }}>Certified by</span>
-            {['Gtechniq Crystal Serum Ultra', 'XPEL Authorized', 'Glassparency Authorized'].map((c) => (
-              <div key={c} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-barlow-cond), sans-serif', fontSize: '13px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.82)' }}>
-                <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'linear-gradient(135deg, #1a8fff, #00e5a0)', flexShrink: 0 }} />
-                {c}
-              </div>
-            ))}
-          </div>
+          <p className="zd-about-areas" data-reveal>Serving Braselton, Atlanta, Gainesville, Buford, Flowery Branch, Hoschton, Jefferson, Cumming, Suwanee &amp; all of Northeast Georgia.</p>
+          <p className="zd-about-tag" data-reveal><span style={{ color: '#1a8fff' }}>Zero</span> <span style={{ color: '#eaff00' }}>Defects</span> — because the standard isn&rsquo;t negotiable.</p>
         </div>
       </section>
 
@@ -760,7 +618,7 @@ export default function Home() {
       <footer style={{ background: '#080a0c', borderTop: '1px solid rgba(255,255,255,0.07)', padding: '48px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '36px', height: '36px', background: 'linear-gradient(135deg, #1a8fff, #00e5a0)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: '16px', color: '#080a0c' }}>ZD</div>
+            <div style={{ width: '36px', height: '36px', background: '#1a8fff', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-bebas-neue), sans-serif', fontSize: '16px', color: '#080a0c' }}>ZD</div>
             <div>
               <div style={{ fontFamily: 'var(--font-barlow-cond), sans-serif', fontWeight: 700, fontSize: '14px', letterSpacing: '2px', textTransform: 'uppercase', color: '#f0f4f8' }}>Zero Defects</div>
               <div style={{ fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(240,244,248,0.4)' }}>5450 Technology Pkwy, Ste 500 · Braselton, GA 30517</div>

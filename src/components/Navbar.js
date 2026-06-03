@@ -107,6 +107,7 @@ export default function Navbar() {
             <a
               key={l.label}
               href={l.href}
+              className="zd-navlink"
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily: 'var(--font-barlow-cond), sans-serif',
@@ -114,7 +115,6 @@ export default function Navbar() {
                 fontWeight: 600,
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
-                color: 'rgba(240,244,248,0.7)',
                 textDecoration: 'none',
                 padding: '14px 0',
                 borderBottom: '1px solid rgba(255,255,255,0.05)',
@@ -133,7 +133,7 @@ export default function Navbar() {
               letterSpacing: '2px',
               textTransform: 'uppercase',
               color: '#080a0c',
-              background: 'linear-gradient(90deg, #1a8fff, #00e5a0)',
+              background: '#eaff00',
               padding: '14px 24px',
               borderRadius: '4px',
               textDecoration: 'none',
