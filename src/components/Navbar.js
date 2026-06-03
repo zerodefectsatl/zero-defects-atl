@@ -14,14 +14,9 @@ export default function Navbar() {
   }, [])
 
   const links = [
-    { label: 'Services', href: '/services' },
-    { label: 'Ceramic Coating', href: '/ceramic-coating' },
-    { label: 'Paint Protection Film', href: '/paint-protection-film' },
-    { label: 'Paint Correction', href: '/paint-correction' },
-    { label: 'Our Work', href: '/gallery' },
-    { label: 'Reviews', href: '/reviews' },
-    { label: 'Process', href: '/our-process' },
-    { label: 'FAQ', href: '/faq' },
+    { label: 'Ceramic Coating', href: '/#ceramic-coating' },
+    { label: 'PPF', href: '/#ppf' },
+    { label: 'Paint Correction', href: '/#paint-correction' },
   ]
 
   return (
@@ -60,8 +55,18 @@ export default function Navbar() {
         />
       </a>
 
+      {/* Desktop nav — three minimal lines, label on hover */}
+      <div className="zd-nav-desktop">
+        {links.map((l) => (
+          <a key={l.label} href={l.href} className="zd-nav-line" aria-label={l.label}>
+            <span className="zd-nav-line__label">{l.label}</span>
+          </a>
+        ))}
+      </div>
+
       {/* Hamburger */}
       <button
+          className="zd-nav-burger"
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
             background: 'none',

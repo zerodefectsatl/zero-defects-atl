@@ -1460,3 +1460,18 @@ body {
 /* Navbar dropdown links — full visibility + brand hover */
 .zd-navlink { color: #f0f4f8; transition: color 0.2s ease; }
 .zd-navlink:hover, .zd-navlink:focus-visible { color: #eaff00; }
+
+/* Navbar: hamburger on mobile; three minimal lines on desktop */
+.zd-nav-desktop { display: none; }
+@media (min-width: 768px) {
+  .zd-nav-desktop { display: flex; flex-direction: column; align-items: flex-end; gap: 11px; }
+  .zd-nav-burger { display: none; }
+}
+.zd-nav-line { display: flex; align-items: center; justify-content: flex-end; gap: 12px; height: 14px; text-decoration: none; cursor: pointer; }
+.zd-nav-line::after { content: ''; width: 34px; height: 2px; background: #eaff00; opacity: 0.95; box-shadow: 0 1px 6px rgba(0,0,0,0.5); transition: width 0.25s ease, opacity 0.25s ease; }
+.zd-nav-line:hover::after, .zd-nav-line:focus-visible::after { width: 50px; background: #eaff00; opacity: 1; }
+.zd-nav-line__label { font-family: var(--font-barlow-cond), sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #eaff00; white-space: nowrap; opacity: 0; transform: translateX(8px); transition: opacity 0.25s ease, transform 0.25s ease; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
+.zd-nav-line:hover .zd-nav-line__label, .zd-nav-line:focus-visible .zd-nav-line__label { opacity: 1; transform: translateX(0); }
+
+/* anchor offset under the fixed navbar */
+#ceramic-coating, #ppf, #paint-correction { scroll-margin-top: 90px; }
