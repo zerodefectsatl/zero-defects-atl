@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const SLIDES = [
@@ -15,42 +15,48 @@ const SLIDES = [
   { src: '/images/gallery/IMG_8556.jpeg', pos: '40% 48%', kb: 'kb-zoomin2',   dur: '6s', alt: 'Gold Bentley Bentayga — ceramic coating by Zero Defects ATL' },
 ]
 
-const INTERVAL = 4000
+// Hold each slide long enough for its Ken Burns move (max 6s) to finish before
+// the crossfade to the next one begins.
+const INTERVAL = 6000
 const FADE_MS  = 1000
 
 export default function HeroSlider() {
-  const [cur,    setCur]    = useState(0)
-  const [prev,   setPrev]   = useState(null)
-  const [fading, setFading] = useState(false)
-  const timer = useRef(null)
-
-  const advance = () => {
-    setCur(c => {
-      const next = (c + 1) % SLIDES.length
-      setPrev(c)
-      setFading(true)
-      setTimeout(() => { setPrev(null); setFading(false) }, FADE_MS)
-      return next
-    })
-  }
+  // cur = visible slide, prev = outgoing slide still fading underneath (null when settled).
+  // Both indices are derived from prior state in one pure updater — no side effects in the updater.
+  const [{ cur, prev }, setState] = useState({ cur: 0, prev: null })
 
   useEffect(() => {
-    timer.current = setInterval(advance, INTERVAL)
-    return () => clearInterval(timer.current)
+    const id = setInterval(() => {
+      setState(s => ({ cur: (s.cur + 1) % SLIDES.length, prev: s.cur }))
+    }, INTERVAL)
+    return () => clearInterval(id)
   }, [])
+
+  // Once the incoming slide has finished fading in, drop the outgoing layer.
+  useEffect(() => {
+    if (prev === null) return
+    const t = setTimeout(() => setState(s => ({ ...s, prev: null })), FADE_MS)
+    return () => clearTimeout(t)
+  }, [cur, prev])
 
   return (
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+      {/* Outgoing slide — stays fully opaque underneath while the incoming fades in over it */}
       {prev !== null && (
-        <div
-          key={`prev-${prev}`}
-          style={{ position: 'absolute', inset: 0, opacity: 0, transition: `opacity ${FADE_MS}ms ease` }}
-        >
+        <div key={`prev-${prev}`} style={{ position: 'absolute', inset: 0 }}>
           <SlideFrame slide={SLIDES[prev]} active={false} />
         </div>
       )}
 
-      <div key={`cur-${cur}`} style={{ position: 'absolute', inset: 0 }}>
+      {/* Incoming slide — fades 0→1 on mount. A CSS keyframe animates on mount;
+          a `transition` would not, because the element is born at its target opacity. */}
+      <div
+        key={`cur-${cur}`}
+        style={{
+          position: 'absolute', inset: 0,
+          animation: prev !== null ? `zd-hero-fade ${FADE_MS}ms ease forwards` : 'none',
+        }}
+      >
         <SlideFrame slide={SLIDES[cur]} active />
       </div>
     </div>
