@@ -576,8 +576,14 @@ export default function Home() {
       </section>
 
       {/* ── CONTACT ───────────────────────────────────────────── */}
-      <section id="contact" style={{ background: BG.alt, padding: '96px 0' }}>
-        <div style={S.section}>
+      <section id="contact" style={{ position: 'relative', overflow: 'hidden', padding: '96px 0' }}>
+        <LazyVideo
+          src="/videos/lambo.mp4"
+          poster="/images/gallery/IMG_8707.jpeg"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,10,12,0.82)', zIndex: 1 }} />
+        <div style={{ ...S.section, position: 'relative', zIndex: 2 }}>
           <div className="zd-contact-grid">
             <div>
               <span style={{ ...S.eyebrow, color: '#f0f4f8' }}>Get a Quote</span>
