@@ -277,13 +277,18 @@ body {
   min-height: 100vh;
 }
 @media (max-width: 768px) {
+  /* Hero photos are 1288x952 (~4:3). In a tall phone-shaped box, object-fit:cover
+     scales them to fill the height and chops the front & rear of the car off the
+     sides. Match the hero box to the photo's aspect ratio so the whole vehicle
+     fits edge-to-edge with no horizontal crop, and disable the Ken Burns zoom/pan
+     (it scales up to 1.28x and would crop the car back out of frame). */
   .zd-hero {
-    min-height: 56vh;
+    min-height: 0;
+    aspect-ratio: 1288 / 952;
   }
-  /* Landscape car photos crop hard in a tall phone-shaped box — center the
-     car and ease the zoom so the whole vehicle stays in frame. */
   .zd-hero img {
     object-position: 50% 50% !important;
+    animation: none !important;
   }
 }
 
