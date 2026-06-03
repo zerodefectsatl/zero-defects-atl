@@ -1313,8 +1313,13 @@ body {
 /* Visually-hidden but screen-reader/SEO-readable (accessible H1 on visual pages) */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* ZD Mentality — "Zero" headline: outline only, double blue traced (inner + outer line, transparent fill) */
+/* ZD Mentality — "Zero" headline: outline only, a single thin blue traced
+   line (transparent fill). A heavy stroke fills in the letter counters at
+   mobile sizes and reads as a blurry blob — keep it a crisp hairline that
+   scales gently with the headline. */
 .zd-zero-outline{
   color: transparent;
-  -webkit-text-stroke: 3px #1a8fff;
+  -webkit-text-stroke-width: clamp(1px, 0.18vw + 0.6px, 1.8px);
+  -webkit-text-stroke-color: #1a8fff;
+  paint-order: stroke fill;
 }
