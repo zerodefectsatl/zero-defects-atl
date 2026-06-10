@@ -207,9 +207,6 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body>
-        <Script id="zd-intro-skip" strategy="beforeInteractive">
-          {"try{if(sessionStorage.getItem('zd-intro-seen'))document.documentElement.setAttribute('data-intro-seen','1')}catch(e){}"}
-        </Script>
         {children}
         <script
           type="application/ld+json"

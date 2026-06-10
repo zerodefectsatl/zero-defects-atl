@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 
 export default function RevealText({ children, style, tag: Tag = 'p' }) {
   const ref = useRef(null)
@@ -29,31 +29,35 @@ export default function RevealText({ children, style, tag: Tag = 'p' }) {
   const words = (typeof children === 'string' ? children : '').split(' ')
   let charIndex = 0
 
+  // Each word is an inline-block whose letters animate individually, but a real
+  // space text node sits between words so the rendered DOM reads as a complete,
+  // properly spaced sentence — search engines and screen readers see
+  // "Precision protection for the vehicles…", not the letters jammed together.
   return (
     <Tag ref={ref} style={style}>
       {words.map((word, wi) => (
-        <span
-          key={wi}
-          style={{ display: 'inline-block', whiteSpace: 'nowrap', marginRight: '0.28em' }}
-        >
-          {word.split('').map((char) => {
-            const idx = charIndex++
-            return (
-              <span
-                key={idx}
-                className="rl"
-                style={{
-                  display: 'inline-block',
-                  opacity: 0,
-                  transform: 'translateY(18px)',
-                  transition: 'opacity 0.55s ease, transform 0.55s cubic-bezier(0.23, 1, 0.32, 1)',
-                }}
-              >
-                {char}
-              </span>
-            )
-          })}
-        </span>
+        <Fragment key={wi}>
+          <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+            {word.split('').map((char) => {
+              const idx = charIndex++
+              return (
+                <span
+                  key={idx}
+                  className="rl"
+                  style={{
+                    display: 'inline-block',
+                    opacity: 0,
+                    transform: 'translateY(18px)',
+                    transition: 'opacity 0.55s ease, transform 0.55s cubic-bezier(0.23, 1, 0.32, 1)',
+                  }}
+                >
+                  {char}
+                </span>
+              )
+            })}
+          </span>
+          {wi < words.length - 1 ? ' ' : null}
+        </Fragment>
       ))}
     </Tag>
   )

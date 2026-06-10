@@ -1,11 +1,9 @@
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
-import SiteGate from '@/components/SiteGate'
 import ParallaxScroll from '@/components/ParallaxScroll'
 import ContactForm from '@/components/ContactForm'
 import RevealText from '@/components/RevealText'
 import HeroSlider from '@/components/HeroSlider'
-import IntroCube from '@/components/IntroCube'
 import LazyVideo from '@/components/LazyVideo'
 
 const galleryImages = [
@@ -231,7 +229,6 @@ const S6 = [
 export default function Home() {
   return (
     <>
-      <IntroCube />
       <ParallaxScroll />
       <Navbar />
 
