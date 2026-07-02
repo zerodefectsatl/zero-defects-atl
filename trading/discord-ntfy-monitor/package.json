@@ -1,0 +1,18 @@
+{
+  "name": "discord-ntfy-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Watches Discord trading channels, parses signals, pushes ntfy alerts with TradingView chart links",
+  "main": "monitor.js",
+  "scripts": {
+    "start": "node monitor.js",
+    "test": "node parser.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5"
+  }
+}

@@ -48,3 +48,8 @@ ZD-Claude-Memory.md
 
 # local stashed assets (not deployed)
 /unused-assets
+
+# trading toolkit (local runtime files only; keep the env template)
+trading/discord-ntfy-monitor/node_modules/
+trading/discord-ntfy-monitor/signals-log.jsonl
+!trading/discord-ntfy-monitor/.env.example
