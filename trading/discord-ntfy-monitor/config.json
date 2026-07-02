@@ -1,0 +1,8 @@
+{
+  "watchChannels": [
+    { "id": "PASTE_CHANNEL_ID_HERE", "name": "chrwme-signals" },
+    { "id": "PASTE_SECOND_CHANNEL_ID", "name": "chrwme-day-trades" }
+  ],
+  "forwardNonSignals": false,
+  "includeBotMessages": true
+}
