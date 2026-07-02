@@ -25,8 +25,17 @@ if (!BOT_TOKEN || !NTFY_TOPIC) {
 
 const watchedIds = new Map(config.watchChannels.map((c) => [c.id, c]));
 
+// Common futures roots -> TradingView continuous-contract symbols, so the
+// chart link opens the right instrument instead of a stock lookup.
+const FUTURES_SYMBOLS = {
+  ES: 'CME_MINI:ES1!', NQ: 'CME_MINI:NQ1!', RTY: 'CME_MINI:RTY1!',
+  YM: 'CBOT_MINI:YM1!', CL: 'NYMEX:CL1!', GC: 'COMEX:GC1!', SI: 'COMEX:SI1!',
+  MES: 'CME_MINI:MES1!', MNQ: 'CME_MINI:MNQ1!',
+};
+
 function tradingViewUrl(symbol) {
-  return `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(symbol)}`;
+  const resolved = FUTURES_SYMBOLS[symbol] || symbol;
+  return `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(resolved)}`;
 }
 
 function formatTitle(parsed, channelName) {

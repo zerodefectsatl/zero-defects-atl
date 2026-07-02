@@ -186,3 +186,5 @@ Everything before it is automated:
 | `discord-ntfy-monitor/config.json` | Which channels to watch, keyword tuning |
 | `discord-ntfy-monitor/.env.example` | Template for bot token + ntfy topic |
 | `discord-ntfy-monitor/run-monitor.bat` | Double-click launcher / Task Scheduler target |
+| `discord-ntfy-monitor/latest-signal.js` | Print newest signal(s) — the Claude/TradingView-MCP bridge (`node latest-signal.js 5`) |
+| `discord-ntfy-monitor/parser.test.js` | Parser regression tests (`npm test`) |

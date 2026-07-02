@@ -5,7 +5,8 @@
   "description": "Watches Discord trading channels, parses signals, pushes ntfy alerts with TradingView chart links",
   "main": "monitor.js",
   "scripts": {
-    "start": "node monitor.js"
+    "start": "node monitor.js",
+    "test": "node parser.test.js"
   },
   "engines": {
     "node": ">=18"

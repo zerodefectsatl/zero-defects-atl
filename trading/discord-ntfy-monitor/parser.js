@@ -25,6 +25,12 @@ function extractSymbols(text) {
     symbols.add(m[1].toUpperCase());
   }
 
+  // Futures shorthand at a word start: /ES, /NQ, /CL (uppercase only, so
+  // prose like "and/or" or "risk/reward" doesn't false-match).
+  for (const m of text.matchAll(/(?:^|\s)\/([A-Z]{2,3})\b/g)) {
+    if (!NOT_TICKERS.has(m[1])) symbols.add(m[1]);
+  }
+
   // Bare uppercase tokens (TSLA, SPY) if nothing $-prefixed was found.
   if (symbols.size === 0) {
     for (const m of text.matchAll(/\b([A-Z]{2,5})\b/g)) {
@@ -39,6 +45,10 @@ function extractDirection(text) {
   const t = text.toLowerCase();
   if (/\b(long|calls?|buy(ing)?|bto|bullish)\b/.test(t)) return 'LONG';
   if (/\b(short(ing)?|puts?|sell(ing)?|sto|bearish)\b/.test(t)) return 'SHORT';
+  // Option strike shorthand: "AAPL 230c 7/10" / "SPY 500p" — calls imply a
+  // bullish idea, puts bearish.
+  if (/\b\d{1,6}(?:\.\d+)?c\b/.test(t)) return 'LONG';
+  if (/\b\d{1,6}(?:\.\d+)?p\b/.test(t)) return 'SHORT';
   return null;
 }
 
