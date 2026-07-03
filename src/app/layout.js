@@ -1,5 +1,6 @@
 import { Bebas_Neue, Inter } from 'next/font/google'
 import Script from 'next/script'
+import AnalyticsEvents from '@/components/AnalyticsEvents'
 import './globals.css'
 
 // Body + UI text → Inter (the --font-barlow-cond label var is aliased to
@@ -208,6 +209,7 @@ export default function RootLayout({ children }) {
     >
       <body>
         {children}
+        <AnalyticsEvents />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
