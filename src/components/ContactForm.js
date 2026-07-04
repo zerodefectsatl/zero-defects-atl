@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { track } from '@/lib/analytics'
 
 const SERVICES = [
   'Ceramic Coating',
@@ -60,6 +61,10 @@ export default function ContactForm() {
         body: JSON.stringify(form),
       })
       if (res.ok) {
+        track('generate_lead', {
+          method: 'contact_form',
+          service: form.service || 'not_specified',
+        })
         setStatus('sent')
         setForm({ name: '', phone: '', email: '', vehicle: '', service: '', message: '' })
       } else {
